@@ -1,3 +1,3 @@
 # gk2v-tcc
 
-git
+vs code
