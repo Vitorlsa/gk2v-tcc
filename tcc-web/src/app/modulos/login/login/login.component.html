@@ -8,7 +8,10 @@
 
 <p>nome: {{usuario.name}}</p>
 <p>nome: {{usuario.senha}}</p>
+<button type="button" (click)="logar()">Logar</button>
 
+<p *ngIf="!logado">Nao logado</p>
+<p *ngIf="logado">logado</p>
 
 <ul *ngIf="users">
   <li *ngFor="let user of users.data">

@@ -11,11 +11,12 @@ export class LoginComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
 
-  users: object;
-  usuario: object = {
+  public users: object;
+  public usuario = {
     name: "giu",
     senha: ""
   };
+  public logado = false;
 
   ngOnInit() {
     this.getUsers().subscribe(data => {
@@ -28,6 +29,15 @@ export class LoginComponent implements OnInit {
 
   getUsers() {
     return this.http.get('https://reqres.in/api/users')
+  }
+
+  logar() {
+    if (this.usuario.name == "giu" && this.usuario.senha == "123") {
+      this.logado = true;
+    }
+    else {
+      this.logado = false;
+    }
   }
 
 }
