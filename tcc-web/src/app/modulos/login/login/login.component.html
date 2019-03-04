@@ -1,3 +1,11 @@
 <p>
   login works!
 </p>
+
+
+<ul *ngIf="users">
+  <li *ngFor="let user of users.data">
+    <img [src]="user.avatar">
+    <p>{{ user.first_name }} {{ user.last_name }}</p>
+  </li>
+</ul>
