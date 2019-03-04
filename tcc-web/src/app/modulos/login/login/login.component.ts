@@ -12,6 +12,10 @@ export class LoginComponent implements OnInit {
 
 
   users: object;
+  usuario: object = {
+    name: "giu",
+    senha: ""
+  };
 
   ngOnInit() {
     this.getUsers().subscribe(data => {

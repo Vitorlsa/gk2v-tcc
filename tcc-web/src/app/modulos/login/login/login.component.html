@@ -3,6 +3,13 @@
 </p>
 
 
+  <input type="text" [(ngModel)]="usuario.name" />
+  <input type="text" [(ngModel)]="usuario.senha" />
+
+<p>nome: {{usuario.name}}</p>
+<p>nome: {{usuario.senha}}</p>
+
+
 <ul *ngIf="users">
   <li *ngFor="let user of users.data">
     <img [src]="user.avatar">

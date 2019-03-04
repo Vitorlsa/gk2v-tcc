@@ -3,20 +3,23 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './modulos/login/login/login.component';
+import { LoginModule } from './modulos/login/login.module';
+import {FormsModule} from '@angular/forms'
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    LoginModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
