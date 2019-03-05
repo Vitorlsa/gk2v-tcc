@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
     senha: ""
   };
   public logado = false;
+  private url = "https://reqres.in";
 
   ngOnInit() {
     this.getUsers().subscribe(data => {
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit {
 
 
   getUsers() {
-    return this.http.get('https://reqres.in/api/users')
+    return this.http.get(this.url + '/api/users')
   }
 
   logar() {
@@ -46,11 +47,12 @@ export class LoginComponent implements OnInit {
 
     this.service.guardaUsuario(this.usuario);
 
-    this.router.navigate(['/cadastro']);
 
-    // this.http.post("url", this.usuario).subscribe(data => {
-    //   alert(data);
-    // })
+
+    this.http.post(this.url + "/api/users", this.usuario).subscribe(data => {
+      console.log(data);
+      this.router.navigate(['/cadastro']);
+    })
 
 
   }
