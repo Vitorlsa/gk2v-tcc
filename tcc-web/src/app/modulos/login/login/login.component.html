@@ -14,7 +14,7 @@
 <p *ngIf="logado">logado</p>
 
 <ul *ngIf="users">
-  <li *ngFor="let user of users.data">
+  <li *ngFor="let user of this.users.data">
     <img [src]="user.avatar">
     <p>{{ user.first_name }} {{ user.last_name }}</p>
   </li>
