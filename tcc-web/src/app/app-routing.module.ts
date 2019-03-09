@@ -4,7 +4,7 @@ import { LoginComponent } from './modulos/login/login/login.component';
 import { CadastroComponent } from './modulos/login/cadastro/cadastro.component';
 
 const routes: Routes = [
-  {path:'', component:LoginComponent},
+  {path:'login', component:LoginComponent},
   {path:'cadastro', component:CadastroComponent},
 ];
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
+import { CadastroComponent } from '../cadastro/cadastro.component';
 
 
 @Component({
@@ -51,11 +52,15 @@ export class LoginComponent implements OnInit {
 
     this.http.post(this.url + "/api/users", this.usuario).subscribe(data => {
       console.log(data);
-      this.router.navigate(['/cadastro']);
+      //this.router.navigate(['/cadastro']);
     })
-
-
   }
+
+
+  cadastro() {
+    this.router.navigate(['/cadastro']);
+  }
+
 
 }
 

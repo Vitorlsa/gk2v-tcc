@@ -20,7 +20,7 @@
   </li>
 </ul> -->
 
-<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
 <div class="limiter">
   <div class="container-login100" id="bgLogin">
     <div class="wrap-login100">
@@ -33,7 +33,7 @@
           Log in
         </span>
 
-        <div class="wrap-input100 validate-input" data-validate = "Enter username">
+        <div class="wrap-input100 validate-input" data-validate="Enter username">
           <input [(ngModel)]="usuario.name" class="input100" type="text" name="username" placeholder="Username">
           <span class="focus-input100" data-placeholder="&#xf207;"></span>
         </div>
@@ -53,6 +53,9 @@
         <div class="container-login100-form-btn">
           <button (click)="logar()" class="login100-form-btn">
             Login
+          </button>
+          <button (click)="cadastro()" class="login100-form-btn">
+            Cadastrar
           </button>
         </div>
 
