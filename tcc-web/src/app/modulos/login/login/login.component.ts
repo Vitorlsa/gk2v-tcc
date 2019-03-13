@@ -56,6 +56,9 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  voltarHome(){
+      this.router.navigate(['/home']);
+  }
 
   cadastro() {
     this.router.navigate(['/cadastro']);
