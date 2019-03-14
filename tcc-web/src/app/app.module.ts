@@ -9,12 +9,14 @@ import { AppComponent } from './app.component';
 import { LoginModule } from './modulos/login/login.module';
 import {FormsModule} from '@angular/forms';
 import { HomeComponent } from './modulos/home/home.component';
+import { BoardComponent } from './modulos/board/board.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    BoardComponent,
   ],
   imports: [
     BrowserModule,
