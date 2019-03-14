@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import $ from 'node_modules/jquery'
+
 
 @Component({
   selector: 'app-home',
@@ -19,9 +21,10 @@ export class HomeComponent implements OnInit {
 
 
   scrollDiv() {
-    // $('html, body').animate({
-    //   scrollTop: $("#div1").offset().top
-    // }, 2000);
+    console.log("log:" + $(window).height())
+    $('html, body').animate({
+      scrollTop: $("#div1").offset().top
+    }, 2000);
   }
 
 }
