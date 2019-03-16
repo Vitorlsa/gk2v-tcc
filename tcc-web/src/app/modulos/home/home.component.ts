@@ -21,9 +21,8 @@ export class HomeComponent implements OnInit {
 
 
   scrollDiv() {
-    console.log("log:" + $(window).height())
     $('html, body').animate({
-      scrollTop: $("#div1").offset().top
+      scrollTop: $("#one").offset().top
     }, 2000);
   }
 
