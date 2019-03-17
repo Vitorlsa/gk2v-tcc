@@ -44,6 +44,21 @@ public banner1 = "images/banner01.png";
 				});
 
 			});
+
+
+			$footer.each( function() {
+
+				var t 		= jQuery(this),
+					inner 	= t.find('.inner'),
+					button 	= t.find('.info');
+
+				button.click(function(e) {
+					t.toggleClass('show');
+					e.preventDefault();
+				});
+
+			});
+
   }
 
 }

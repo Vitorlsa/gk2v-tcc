@@ -1,5 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Pattaya|Work+Sans:400,200,300);
 
+
+@font-face {
+    font-family: FontAwesome;
+    // src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+    src: url("../login/login/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.ttf")
+    
+  }
 /*
 	Radius by TEMPLATED
 	templated.co @templatedco
@@ -1282,7 +1289,7 @@
 			}
 
 				#header .inner .button.hidden {
-					display: none;
+					// display: none;
 					cursor: pointer;
 				}
 
@@ -1480,6 +1487,36 @@
 			#footer .inner .copyright ul {
 				border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 				padding-bottom: 1em;
+			}
+
+			.fa-info-circle:before{
+				content: "\f05a";
+				font-family: FontAwesome;
+				cursor: pointer;
+			}
+
+			.fa-twitter:before {
+				content: "\f099";
+				font-family: FontAwesome;
+				cursor: pointer;
+			}
+
+			.fa-facebook-f:before, .fa-facebook:before{
+				content: "\f09a";
+				font-family: FontAwesome;
+				cursor: pointer;
+			}
+
+			.fa-dribbble:before {
+				content: "\f17d";
+				font-family: FontAwesome;
+				cursor: pointer;
+			}
+
+			.fa-instagram:before {
+				content: "\f16d";
+				font-family: FontAwesome;
+				cursor: pointer;
 			}
 
 		@media screen and (max-width: 980px) {
