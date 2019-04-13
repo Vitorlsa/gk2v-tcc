@@ -2,15 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-
-
-
+import { AuthGuardService } from './guards/auth-guard.service';
 import { AppRoutingModule } from './app-routing.module';
+import {FormsModule} from '@angular/forms';
+
 import { AppComponent } from './app.component';
 import { LoginModule } from './modulos/login/login.module';
-import {FormsModule} from '@angular/forms';
 import { HomeComponent } from './modulos/home/home.component';
 import { BoardComponent } from './modulos/board/board.component';
+
 
 
 @NgModule({
@@ -26,7 +26,7 @@ import { BoardComponent } from './modulos/board/board.component';
     LoginModule,
     FormsModule
   ],
-  providers: [CookieService],
+  providers: [CookieService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
