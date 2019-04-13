@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
 import { CadastroComponent } from '../cadastro/cadastro.component';
+import { CookieService } from 'ngx-cookie-service';
+
 
 
 @Component({
@@ -12,9 +14,9 @@ import { CadastroComponent } from '../cadastro/cadastro.component';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private http: HttpClient, private service: LoginService, private router: Router) { }
+  constructor(private http: HttpClient, private service: LoginService, private router: Router, private cookieService: CookieService) { }
 
-
+  cookieValue = 'UNKNOWN';  
   public users: object;
   public usuario = {
     name: "giu",
@@ -24,6 +26,13 @@ export class LoginComponent implements OnInit {
   private url = "https://reqres.in";
 
   ngOnInit() {
+
+
+    this.cookieService.set( 'Test', 'Hello World' );
+    this.cookieValue = this.cookieService.get('Test');
+
+    console.log(this.cookieValue);
+
     this.getUsers().subscribe(data => {
       this.users = data;
       console.log(this.users);

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Component({
   selector: 'app-board',
@@ -6,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
+	cookieValue: string;
 
-  constructor() { }
+  constructor(private cookieService: CookieService	) { }
 
 public banner1 = "images/banner01.png";
 
@@ -15,6 +18,9 @@ public banner1 = "images/banner01.png";
   ngOnInit() {
 
 
+		this.cookieValue = this.cookieService.get('Test');
+
+    console.log(this.cookieValue);
 
 
 
