@@ -4,12 +4,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { AppRoutingModule } from './app-routing.module';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LoginModule } from './modulos/login/login.module';
 import { HomeComponent } from './modulos/home/home.component';
 import { BoardComponent } from './modulos/board/board.component';
+import { UtilsService } from './funcoes/utils.service';
 
 
 
@@ -26,7 +27,7 @@ import { BoardComponent } from './modulos/board/board.component';
     LoginModule,
     FormsModule
   ],
-  providers: [CookieService, AuthGuardService],
+  providers: [CookieService, AuthGuardService, UtilsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

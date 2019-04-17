@@ -1,7 +1,8 @@
-<p>
-  cadastro works!
-</p>
+<section *ngIf="this.tipoCadastro">
+<p>section</p>
+</section>
 
-<p>usuario: {{this.usuario.name}}</p>
+<p >usuario: {{this.usuario.name}}</p>
 
+<button type="button" (click)="cadastrar()">Cadastrar</button>
 <button type="button" (click)="voltarLogin()">Voltar login</button>
