@@ -1,0 +1,185 @@
+<!-- <p>
+  cadastro-gestor works!
+</p> -->
+
+
+<!-- Header -->
+<header id="header" class="preview">
+  <div class="inner">
+    <div class="content">
+      <h1>LCM</h1>
+      <h2>Cadastro Gestor.</h2>
+    </div>
+    <a href="cadastro_tipo.html" class="button hidden"><span>Let's Go</span></a>
+  </div>
+</header>
+
+<!-- Main -->
+<div id="preview">
+  <div class="inner">
+    <div class="image fit">
+      <img src="../../../assets/images/cadastro/banner_cadastro.jpg" alt="" />
+    </div>
+    <div class="content">
+      <header>
+        <h2>Cadastro Gestor</h2>
+      </header>
+      <div id="welcome">
+        <div class="title">
+          <span class="byline"><b>Preencha todos os campos obrigatórios.</b></span>
+        </div>
+        <br>            
+        <div class="row">
+            <div class="col-lg-12">
+              <section class="panel">
+              <header class="panel-heading">
+              </header>
+              <div class="panel-body">
+                  <div class="form">
+                      <form class="form-validate form-horizontal " id="register_form" method="get" action="">
+                        <div class="form-group ">
+                          <label for="fullname" class="control-label col-lg-2">Nome Completo<span class="required">*</span></label>
+                          <div class="col-lg-10">
+                            <input class=" form-control" id="fullname" name="fullname" type="text" />
+                          </div>
+                        </div>
+                      <br>
+                      <div class="form-group ">
+                        <label for="username" class="control-label col-lg-2">Usuário <span class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input class="form-control " id="username" name="username" type="text" />
+                        </div>
+                      </div>
+                      <br>
+                      <div class="form-group ">
+                        <label for="password" class="control-label col-lg-2">Senha <span class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input class="form-control " id="password" name="password" type="password" />
+                        </div>
+                      </div>
+                      <br>
+                      <div class="form-group ">
+                        <label for="confirm_password" class="control-label col-lg-2">Confirmar Senha <span class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input class="form-control " id="confirm_password" name="confirm_password" type="password" />
+                        </div>
+                      </div>
+                      <br>
+                      <div class="form-group ">
+                        <label for="email" class="control-label col-lg-2">Email <span class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input class="form-control " id="email" name="email" type="email" />
+                        </div>
+                      </div>
+                      <br>
+                      <div class="form-group ">
+                          <label for="nascimento" class="control-label col-lg-2">Data de Nascimento <span class="required">*</span></label>
+                          <div class="col-lg-10">
+                            <input class="form-control " id="nascimento" name="nascimento" type="email" />
+                          </div>
+                        </div>
+                      <br>
+                      <div class="form-group ">
+                          <label for="sexo" class="control-label col-lg-2">Sexo <span class="required">*</span></label>
+                          <select id=sexo>
+                            <option>Outro</option>
+                            <option>Masculino</option>
+                            <option>Feminino</option>
+                          </select>
+                        </div>
+                      <br>
+                      <div class="form-group ">
+                          <label for="cpf" class="control-label col-lg-2">CPF <span class="required">*</span></label>
+                          <div class="col-lg-10">
+                            <input class="form-control " id="cpf" name="cpf" type="email" />
+                          </div>
+                        </div>
+                      <br>
+                      <div class="form-group ">
+                          <label for="telefone" class="control-label col-lg-2">Telefone <span class="required">*</span></label>
+                          <div class="col-lg-10">
+                            <input class="form-control " id="telefone" name="telefone" type="email" />
+                          </div>
+                        </div>
+                      <br>
+                      <div class="form-group ">
+                          <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
+                          <div class="col-lg-10">
+                            <input class="form-control " id="cidade" name="cidade" type="email" />
+                          </div>
+                        </div>
+                      <br>
+                      <div class="form-group ">
+                          <label for="historico" class="control-label col-lg-2">Histórico Profissional</label>
+                          <div class="col-lg-10">
+                            <input class="form-control " id="historico" name="historico" type="email" />
+                          </div>
+                        </div>
+                      <br>
+                      <div class="form-group ">
+                          <label for="cursos" class="control-label col-lg-2">Cursos/Certificações</label>
+                          <div class="col-lg-10">
+                            <input class="form-control " id="cursos" name="cursos" type="email" />
+                          </div>
+                        </div>
+                      <br>
+                      <div class="form-group ">
+                          <label for="comentario" class="control-label col-lg-2">Comentário</label>
+                          <div class="col-lg-10">
+                            <input class="form-control " id="comentario" name="comentario" type="email" />
+                          </div>
+                        </div>
+                      <br>
+                      <div class="form-group ">
+                          <label for="sexo" class="control-label col-lg-2">Termos e política de uso <span class="required">*</span></label>
+                          <select id=sexo>
+                            <option>Aceito</option>
+                            <option>Não aceito</option>
+                          </select>
+                        </div>
+                        <br>
+                 <!-- <div class="form-group ">
+                  <label for="agree" class="control-label col-lg-2 col-sm-3">Aceita nossa política? <span class="required">*</span></label><input type="checkbox" style="width: 20px" class="checkbox form-control" id="agree" name="agree" />
+                    <form> 
+                      <INPUT TYPE="RADIO" NAME="OPCAO1" VALUE="op1_epoca"> Aceito <br>
+                      <INPUT TYPE="RADIO" NAME="OPCAO2" VALUE="op2_epoca"> Não aceito <br>
+                    </form> 
+                </div> -->
+                <br>
+                  <div class="form-group">
+                  <div class="col-lg-offset-2 col-lg-10">
+                    <button class="btn btn-primary" type="submit">Enviar</button>
+                    <button class="btn btn-default" type="button">Cancelar</button>
+                  </div>
+                  </div>
+                </form>
+                </div>
+              </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+  <a href="#" class="info fa fa-info-circle"><span>Sobre</span></a>
+  <div class="inner">
+    <div class="content">
+      <h3>Bem Vindo ao Life Care Manager</h3>
+      <p>Com uma equipe qualificada com médicos experientes e o mais alto padrão de atendimento, a LCM oferece qualidade, economia, e mais comodidade para você e sua família.</p>
+    </div>
+    <div class="copyright">
+      <h3>Siga-nos</h3>
+      <ul class="icons">
+        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+      </ul>
+      &copy; LCM. Developed by: <a href="#">GK2V Team - PUC-Campinas,SP</a>
+    </div>
+  </div>
+</footer>
