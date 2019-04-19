@@ -53,6 +53,12 @@ export class CadastroContratanteComponent implements OnInit {
       cpf: "",
       telefone: "",
       cidade: "",
+      estado:"",
+      bairro:"",
+      cep:"",
+      rua:"",
+      numero:"",
+      complemento:"",
       comentario: "",
       termos: null,
     };
