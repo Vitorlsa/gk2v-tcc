@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-cadastro-prestador',
@@ -8,54 +9,59 @@ import { Router } from '@angular/router';
 })
 export class CadastroPrestadorComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
-  public prestador:object = {
+
+  public api = "";
+  public prestador: object = {
     nomeCompleto: "",
-    username:"",
-    senha:"",
-    confirmaSenha:"",
-    email:"",
-    nascimento:"",
-    sexo:"",
-    cpf:"",
-    telefone:"",
-    cidade:"",
-    competencias:"",
-    comentario:"",
-    termos:false, 
+    username: "",
+    senha: "",
+    confirmaSenha: "",
+    email: "",
+    nascimento: "",
+    sexo: "",
+    cpf: "",
+    telefone: "",
+    cidade: "",
+    competencias: "",
+    comentario: "",
+    termos: false,
   };
 
   ngOnInit() {
     this.limparUsuario();
   }
 
-salvar(){
-  console.log(this.prestador);
-}
+  salvar() {
+    console.log(this.prestador);
+    this.http.post(this.api, this.prestador).subscribe(data => {
+      console.log(data);
+    })
+  }
 
-cancelar(){
-  this.router.navigate(['/cadastro']);
-}
+  cancelar() {
+    this.router.navigate(['/cadastro']);
+  }
 
 
-limparUsuario(){
-  this.prestador     = {
-    nomeCompleto: "",
-    username:"",
-    senha:"",
-    confirmaSenha:"",
-    email:"",
-    nascimento:"",
-    sexo:"",
-    cpf:"",
-    telefone:"",
-    cidade:"",
-    competencias:"",
-    comentario:"",
-    termos:false,
-  };
-}
+  limparUsuario() {
+    this.prestador = {
+      nomeCompleto: "",
+      username: "",
+      senha: "",
+      confirmaSenha: "",
+      email: "",
+      nascimento: "",
+      sexo: "",
+      cpf: "",
+      telefone: "",
+      cidade: "",
+      competencias: "",
+      comentario: "",
+      termos: false,
+    };
+  }
 
 
 }

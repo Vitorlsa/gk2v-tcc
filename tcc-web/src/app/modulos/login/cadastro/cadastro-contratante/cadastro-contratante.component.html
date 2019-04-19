@@ -118,9 +118,9 @@
                   <br>
                   <div class="form-group ">
                       <label for="termos" class="control-label col-lg-2">Termos e política de uso <span class="required">*</span></label>
-                      <select [(ngModel)]="usuario.termos" id=sexo>
-                        <option>Aceito</option>
-                        <option>Não aceito</option>
+                      <select  id=sexo>
+                        <option *ngFor="let op of termos" [ngValue]="op.valor">{{op.name}}</option>
+                        <!-- <option value="false">Não aceito</option> -->
                       </select>
                     </div>
                     <br>
