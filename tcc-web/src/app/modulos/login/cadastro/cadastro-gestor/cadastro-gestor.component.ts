@@ -13,22 +13,7 @@ export class CadastroGestorComponent implements OnInit {
 
   public api ="";
 
-  public gestor:object = {
-    nomeCompleto: "",
-    username:"",
-    senha:"",
-    confirmaSenha:"",
-    email:"",
-    nascimento:"",
-    sexo:"",
-    cpf:"",
-    telefone:"",
-    cidade:"",
-    historico:"",
-    cursos:"",
-    comentario:"",
-    termos:false, 
-  };
+  public gestor:object;
 
   ngOnInit() {
     this.limparUsuario();

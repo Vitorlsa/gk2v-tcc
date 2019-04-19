@@ -13,21 +13,7 @@ export class CadastroPrestadorComponent implements OnInit {
 
 
   public api = "";
-  public prestador: object = {
-    nomeCompleto: "",
-    username: "",
-    senha: "",
-    confirmaSenha: "",
-    email: "",
-    nascimento: "",
-    sexo: "",
-    cpf: "",
-    telefone: "",
-    cidade: "",
-    competencias: "",
-    comentario: "",
-    termos: false,
-  };
+  public prestador: object;
 
   ngOnInit() {
     this.limparUsuario();
