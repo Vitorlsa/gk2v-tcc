@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-gestor',
@@ -7,12 +8,56 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadastroGestorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
-public usuario:object;
-
+  public gestor:object = {
+    nomeCompleto: "",
+    username:"",
+    senha:"",
+    confirmaSenha:"",
+    email:"",
+    nascimento:"",
+    sexo:"",
+    cpf:"",
+    telefone:"",
+    cidade:"",
+    historico:"",
+    cursos:"",
+    comentario:"",
+    termos:false, 
+  };
 
   ngOnInit() {
+    this.limparUsuario();
   }
+
+salvar(){
+  console.log(this.gestor);
+}
+
+cancelar(){
+  this.router.navigate(['/cadastro']);
+}
+
+
+limparUsuario(){
+  this.gestor = {
+    nomeCompleto: "",
+    username:"",
+    senha:"",
+    confirmaSenha:"",
+    email:"",
+    nascimento:"",
+    sexo:"",
+    cpf:"",
+    telefone:"",
+    cidade:"",
+    historico:"",
+    cursos:"",
+    comentario:"",
+    termos:false,
+  };
+}
+
 
 }

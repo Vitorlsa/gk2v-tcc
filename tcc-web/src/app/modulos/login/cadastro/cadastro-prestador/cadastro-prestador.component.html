@@ -39,48 +39,48 @@
                         <div class="form-group ">
                           <label for="fullname" class="control-label col-lg-2">Nome Completo<span class="required">*</span></label>
                           <div class="col-lg-10">
-                            <input class=" form-control" id="fullname" name="fullname" type="text" />
+                            <input [(ngModel)]="prestador.nomeCompleto" class=" form-control" id="fullname" name="fullname" type="text" />
                           </div>
                         </div>
                       <br>
                       <div class="form-group ">
                         <label for="username" class="control-label col-lg-2">Usuário <span class="required">*</span></label>
                         <div class="col-lg-10">
-                          <input class="form-control " id="username" name="username" type="text" />
+                          <input [(ngModel)]="prestador.username" class="form-control " id="username" name="username" type="text" />
                         </div>
                       </div>
                       <br>
                       <div class="form-group ">
                         <label for="password" class="control-label col-lg-2">Senha <span class="required">*</span></label>
                         <div class="col-lg-10">
-                          <input class="form-control " id="password" name="password" type="password" />
+                          <input [(ngModel)]="prestador.senha" class="form-control " id="password" name="password" type="password" />
                         </div>
                       </div>
                       <br>
                       <div class="form-group ">
                         <label for="confirm_password" class="control-label col-lg-2">Confirmar Senha <span class="required">*</span></label>
                         <div class="col-lg-10">
-                          <input class="form-control " id="confirm_password" name="confirm_password" type="password" />
+                          <input [(ngModel)]="prestador.confirmaSenha" class="form-control " id="confirm_password" name="confirm_password" type="password" />
                         </div>
                       </div>
                       <br>
                       <div class="form-group ">
                         <label for="email" class="control-label col-lg-2">Email <span class="required">*</span></label>
                         <div class="col-lg-10">
-                          <input class="form-control " id="email" name="email" type="email" />
+                          <input [(ngModel)]="prestador.email" class="form-control " id="email" name="email" type="email" />
                         </div>
                       </div>
                       <br>
                       <div class="form-group ">
                           <label for="nascimento" class="control-label col-lg-2">Data de Nascimento <span class="required">*</span></label>
                           <div class="col-lg-10">
-                            <input class="form-control " id="nascimento" name="nascimento" type="email" />
+                            <input [(ngModel)]="prestador.nascimento" class="form-control " id="nascimento" name="nascimento" type="email" />
                           </div>
                         </div>
                       <br>
                       <div class="form-group ">
                         <label for="sexo" class="control-label col-lg-2">Sexo <span class="required">*</span></label>
-                        <select id=sexo>
+                        <select [(ngModel)]="prestador.sexo" id=sexo>
                           <option>Outro</option>
                           <option>Masculino</option>
                           <option>Feminino</option>
@@ -90,41 +90,41 @@
                       <div class="form-group ">
                           <label for="cpf" class="control-label col-lg-2">CPF <span class="required">*</span></label>
                           <div class="col-lg-10">
-                            <input class="form-control " id="cpf" name="cpf" type="email" />
+                            <input [(ngModel)]="prestador.cpf" class="form-control " id="cpf" name="cpf" type="email" />
                           </div>
                         </div>
                       <br>
                       <div class="form-group ">
                           <label for="telefone" class="control-label col-lg-2">Telefone <span class="required">*</span></label>
                           <div class="col-lg-10">
-                            <input class="form-control " id="telefone" name="telefone" type="email" />
+                            <input [(ngModel)]="prestador.telefone" class="form-control " id="telefone" name="telefone" type="email" />
                           </div>
                         </div>
                       <br>
                       <div class="form-group ">
                           <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
                           <div class="col-lg-10">
-                            <input class="form-control " id="cidade" name="cidade" type="email" />
+                            <input [(ngModel)]="prestador.cidade" class="form-control " id="cidade" name="cidade" type="email" />
                           </div>
                         </div>
                       <br>
                       <div class="form-group ">
                         <label for="competencias" class="control-label col-lg-2">Competências <span class="required">*</span></label>
                         <div class="col-lg-10">
-                          <input class="form-control " id="competencias" name="competencias" type="email" />
+                          <input [(ngModel)]="prestador.competencias" class="form-control " id="competencias" name="competencias" type="email" />
                         </div>
                       </div>
                     <br>
                     <div class="form-group ">
                       <label for="comentario" class="control-label col-lg-2">Comentário</label>
                       <div class="col-lg-10">
-                        <input class="form-control " id="comentario" name="comentario" type="email" />
+                        <input [(ngModel)]="prestador.comentario" class="form-control " id="comentario" name="comentario" type="email" />
                       </div>
                     </div>
                     <br>
                     <div class="form-group ">
-                      <label for="sexo" class="control-label col-lg-2">Termos e política de uso <span class="required">*</span></label>
-                      <select id=sexo>
+                      <label for="termos" class="control-label col-lg-2">Termos e política de uso <span class="required">*</span></label>
+                      <select [(ngModel)]="prestador.termos" id=sexo>
                         <option>Aceito</option>
                         <option>Não aceito</option>
                       </select>
@@ -140,8 +140,8 @@
                 <br>
                   <div class="form-group">
                   <div class="col-lg-offset-2 col-lg-10">
-                    <button class="btn btn-primary" type="submit">Enviar</button>
-                    <button class="btn btn-default" type="button">Cancelar</button>
+                    <button (click)="salvar()" class="btn btn-primary" type="submit">Enviar</button>
+                    <button (click)="cancelar()" class="btn btn-default" type="button">Cancelar</button>
                   </div>
                   </div>
                 </form>

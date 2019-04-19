@@ -40,48 +40,48 @@
                         <div class="form-group ">
                           <label for="fullname" class="control-label col-lg-2">Nome Completo<span class="required">*</span></label>
                           <div class="col-lg-10">
-                            <input class=" form-control" id="fullname" name="fullname" type="text" />
+                            <input [(ngModel)]="gestor.nomeCompleto" class=" form-control" id="fullname" name="fullname" type="text" />
                           </div>
                         </div>
                       <br>
                       <div class="form-group ">
                         <label for="username" class="control-label col-lg-2">Usuário <span class="required">*</span></label>
                         <div class="col-lg-10">
-                          <input class="form-control " id="username" name="username" type="text" />
+                          <input [(ngModel)]="gestor.username" class="form-control " id="username" name="username" type="text" />
                         </div>
                       </div>
                       <br>
                       <div class="form-group ">
                         <label for="password" class="control-label col-lg-2">Senha <span class="required">*</span></label>
                         <div class="col-lg-10">
-                          <input class="form-control " id="password" name="password" type="password" />
+                          <input [(ngModel)]="gestor.senha" class="form-control " id="password" name="password" type="password" />
                         </div>
                       </div>
                       <br>
                       <div class="form-group ">
                         <label for="confirm_password" class="control-label col-lg-2">Confirmar Senha <span class="required">*</span></label>
                         <div class="col-lg-10">
-                          <input class="form-control " id="confirm_password" name="confirm_password" type="password" />
+                          <input [(ngModel)]="gestor.confirmaSenha" class="form-control " id="confirm_password" name="confirm_password" type="password" />
                         </div>
                       </div>
                       <br>
                       <div class="form-group ">
                         <label for="email" class="control-label col-lg-2">Email <span class="required">*</span></label>
                         <div class="col-lg-10">
-                          <input class="form-control " id="email" name="email" type="email" />
+                          <input [(ngModel)]="gestor.email" class="form-control " id="email" name="email" type="email" />
                         </div>
                       </div>
                       <br>
                       <div class="form-group ">
                           <label for="nascimento" class="control-label col-lg-2">Data de Nascimento <span class="required">*</span></label>
                           <div class="col-lg-10">
-                            <input class="form-control " id="nascimento" name="nascimento" type="email" />
+                            <input [(ngModel)]="gestor.nascimento" class="form-control " id="nascimento" name="nascimento" type="email" />
                           </div>
                         </div>
                       <br>
                       <div class="form-group ">
                           <label for="sexo" class="control-label col-lg-2">Sexo <span class="required">*</span></label>
-                          <select id=sexo>
+                          <select [(ngModel)]="gestor.sexo" id=sexo>
                             <option>Outro</option>
                             <option>Masculino</option>
                             <option>Feminino</option>
@@ -91,48 +91,48 @@
                       <div class="form-group ">
                           <label for="cpf" class="control-label col-lg-2">CPF <span class="required">*</span></label>
                           <div class="col-lg-10">
-                            <input class="form-control " id="cpf" name="cpf" type="email" />
+                            <input [(ngModel)]="gestor.cpf" class="form-control " id="cpf" name="cpf" type="email" />
                           </div>
                         </div>
                       <br>
                       <div class="form-group ">
                           <label for="telefone" class="control-label col-lg-2">Telefone <span class="required">*</span></label>
                           <div class="col-lg-10">
-                            <input class="form-control " id="telefone" name="telefone" type="email" />
+                            <input [(ngModel)]="gestor.telefone" class="form-control " id="telefone" name="telefone" type="email" />
                           </div>
                         </div>
                       <br>
                       <div class="form-group ">
                           <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
                           <div class="col-lg-10">
-                            <input class="form-control " id="cidade" name="cidade" type="email" />
+                            <input [(ngModel)]="gestor.cidade" class="form-control " id="cidade" name="cidade" type="email" />
                           </div>
                         </div>
                       <br>
                       <div class="form-group ">
                           <label for="historico" class="control-label col-lg-2">Histórico Profissional</label>
                           <div class="col-lg-10">
-                            <input class="form-control " id="historico" name="historico" type="email" />
+                            <input [(ngModel)]="gestor.historico" class="form-control " id="historico" name="historico" type="email" />
                           </div>
                         </div>
                       <br>
                       <div class="form-group ">
                           <label for="cursos" class="control-label col-lg-2">Cursos/Certificações</label>
                           <div class="col-lg-10">
-                            <input class="form-control " id="cursos" name="cursos" type="email" />
+                            <input [(ngModel)]="gestor.cursos" class="form-control " id="cursos" name="cursos" type="email" />
                           </div>
                         </div>
                       <br>
                       <div class="form-group ">
                           <label for="comentario" class="control-label col-lg-2">Comentário</label>
                           <div class="col-lg-10">
-                            <input class="form-control " id="comentario" name="comentario" type="email" />
+                            <input [(ngModel)]="gestor.comentario" class="form-control " id="comentario" name="comentario" type="email" />
                           </div>
                         </div>
                       <br>
                       <div class="form-group ">
-                          <label for="sexo" class="control-label col-lg-2">Termos e política de uso <span class="required">*</span></label>
-                          <select id=sexo>
+                          <label for="Termos" class="control-label col-lg-2">Termos e política de uso <span class="required">*</span></label>
+                          <select [(ngModel)]="gestor.termos" id=sexo>
                             <option>Aceito</option>
                             <option>Não aceito</option>
                           </select>
@@ -148,8 +148,8 @@
                 <br>
                   <div class="form-group">
                   <div class="col-lg-offset-2 col-lg-10">
-                    <button class="btn btn-primary" type="submit">Enviar</button>
-                    <button class="btn btn-default" type="button">Cancelar</button>
+                    <button (click)="salvar()" class="btn btn-primary" type="submit">Enviar</button>
+                    <button (click)="cancelar()" class="btn btn-default" type="button">Cancelar</button>
                   </div>
                   </div>
                 </form>
