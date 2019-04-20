@@ -9,7 +9,7 @@ export class AuthGuardService implements CanActivate {
 
   constructor(private router: Router, private cookieService: CookieService) { }
 
-  private temPermissao = false;
+  private temPermissao = true;
 
   private cookieValue;
   
@@ -21,6 +21,8 @@ export class AuthGuardService implements CanActivate {
   if (!this.temPermissao)
     return this.router.navigate(['/login']);
 
+
+    return true;
 }
 
 }

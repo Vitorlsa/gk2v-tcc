@@ -8,6 +8,7 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { CadastroContratanteComponent } from './modulos/login/cadastro/cadastro-contratante/cadastro-contratante.component';
 import { CadastroGestorComponent } from './modulos/login/cadastro/cadastro-gestor/cadastro-gestor.component';
 import { CadastroPrestadorComponent } from './modulos/login/cadastro/cadastro-prestador/cadastro-prestador.component';
+import { AnaliseCadastroComponent } from './modulos/board/analise-cadastro/analise-cadastro.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'cadastroPrestador', component: CadastroPrestadorComponent },
   { path: 'cadastroGestor', component: CadastroGestorComponent },
   { path: 'board', component: BoardComponent,canActivate: [AuthGuardService]  },
+  { path: 'analiseCadastro', component: AnaliseCadastroComponent},
 
 ];
 

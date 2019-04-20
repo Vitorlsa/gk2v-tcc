@@ -55,11 +55,11 @@ export class LoginComponent implements OnInit {
 
     this.service.teste();
 
-    this.service.guardaUsuario(this.usuario);
-    this.http.post(this.url + "/api/users", this.usuario).subscribe(data => {
-      console.log(data);
+    // this.service.guardaUsuario(this.usuario);
+    // this.http.post(this.url + "/api/users", this.usuario).subscribe(data => {
+    //   console.log(data);
       this.router.navigate(['/board']);
-    })
+    // })
   }
 
   voltarHome(){
