@@ -47,6 +47,15 @@ export class CadastroContratanteComponent implements OnInit {
     this.limparUsuario();
   }
 
+
+  setSexo(event) {
+    this.usuario.sexo = event.target.value;
+  }
+
+  setTermos(event) {
+    this.usuario.termos = event.target.value;
+  }
+
   salvar() {
 
     //[(ngModel)]="usuario.termos"
