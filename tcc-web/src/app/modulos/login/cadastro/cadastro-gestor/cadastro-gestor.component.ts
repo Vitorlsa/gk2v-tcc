@@ -13,7 +13,28 @@ export class CadastroGestorComponent implements OnInit {
 
   public api = "";
 
-  public gestor: object;
+  public gestor = {
+    nomeCompleto: "",
+    username: "",
+    senha: "",
+    confirmaSenha: "",
+    email: "",
+    nascimento: "",
+    sexo: "",
+    cpf: "",
+    telefone: "",
+    cidade: "",
+    estado: "",
+    bairro: "",
+    cep: "",
+    rua: "",
+    numero: "",
+    complemento: "",
+    historico: "",
+    cursos: "",
+    comentario: "",
+    termos: false,
+  };
 
   ngOnInit() {
     this.limparUsuario();
@@ -24,6 +45,14 @@ export class CadastroGestorComponent implements OnInit {
     this.http.post(this.api, this.gestor).subscribe(data => {
       console.log(data);
     })
+  }
+
+  setSexo(event) {
+    this.gestor.sexo = event.target.value;
+  }
+
+  setTermos(event) {
+    this.gestor.termos = event.target.value;
   }
 
   cancelar() {
@@ -45,8 +74,8 @@ export class CadastroGestorComponent implements OnInit {
       cidade: "",
       estado: "",
       bairro: "",
-      cep:"",
-      rua:"",
+      cep: "",
+      rua: "",
       numero: "",
       complemento: "",
       historico: "",

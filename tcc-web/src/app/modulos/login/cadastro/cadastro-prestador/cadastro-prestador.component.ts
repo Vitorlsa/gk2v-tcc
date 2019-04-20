@@ -13,7 +13,29 @@ export class CadastroPrestadorComponent implements OnInit {
 
 
   public api = "";
-  public prestador: object;
+  public prestador = {
+    nomeCompleto: "",
+    username: "",
+    senha: "",
+    confirmaSenha: "",
+    email: "",
+    nascimento: "",
+    sexo: "",
+    cpf: "",
+    telefone: "",
+    cidade: "",
+    estado:"",
+    bairro:"",
+    cep:"",
+    rua:"",
+    numero:"",
+    complemento:"",
+    competencias: "",
+    comentario: "",
+    termos: false,
+  };
+  
+
 
   ngOnInit() {
     this.limparUsuario();
@@ -24,6 +46,14 @@ export class CadastroPrestadorComponent implements OnInit {
     this.http.post(this.api, this.prestador).subscribe(data => {
       console.log(data);
     })
+  }
+
+  setSexo(event){
+    this.prestador.sexo = event.target.value;
+  }
+
+  setTermos(event){
+    this.prestador.termos = event.target.value;
   }
 
   cancelar() {

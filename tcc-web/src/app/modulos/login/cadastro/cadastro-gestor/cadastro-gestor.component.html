@@ -81,11 +81,12 @@
                       <br>
                       <div class="form-group ">
                           <label for="sexo" class="control-label col-lg-2">Sexo <span class="required">*</span></label>
-                          <select [(ngModel)]="gestor.sexo" id=sexo>
-                            <option>Outro</option>
-                            <option>Masculino</option>
-                            <option>Feminino</option>
-                          </select>
+                          <select (change)="setSexo($event)" id=sexo>
+                              <!-- [(ngModel)]="prestador.sexo" -->
+                              <option [value]="'outro'">Outro</option>
+                              <option [value]="'masculino'">Masculino</option>
+                              <option [value]="'feminino'">Feminino</option>
+                            </select>
                         </div>
                       <br>
                       <div class="form-group ">
@@ -168,10 +169,10 @@
                       <br>
                       <div class="form-group ">
                           <label for="Termos" class="control-label col-lg-2">Termos e política de uso <span class="required">*</span></label>
-                          <select [(ngModel)]="gestor.termos" id=sexo>
-                            <option>Aceito</option>
-                            <option>Não aceito</option>
-                          </select>
+                          <select (change)="setTermos($event)" id="termos">
+                              <option [value]="true">Aceito</option>
+                              <option [value]="false">Não aceito</option>
+                            </select>
                         </div>
                         <br>
                  <!-- <div class="form-group ">

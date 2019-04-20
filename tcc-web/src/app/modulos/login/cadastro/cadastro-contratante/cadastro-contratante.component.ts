@@ -11,16 +11,28 @@ export class CadastroContratanteComponent implements OnInit {
 
   constructor(private router: Router, private http: HttpClient) { }
 
-  public usuario: object;
+  public usuario = {
+    nomeCompleto: "",
+    username: "",
+    senha: "",
+    confimaSenha: "",
+    email: "",
+    nascimento: "",
+    sexo: null,
+    cpf: "",
+    telefone: "",
+    cidade: "",
+    estado: "",
+    bairro: "",
+    cep: "",
+    rua: "",
+    numero: "",
+    complemento: "",
+    comentario: "",
+    termos: null,
+  };
   public api = "";
-  public termos = [{
-    valor:true,
-    name:'Aceito'
-  },{
-    valor:false,
-    name:"Não aceito",
-  }
-]
+
 
   ngOnInit() {
     this.limparUsuario();
@@ -29,11 +41,19 @@ export class CadastroContratanteComponent implements OnInit {
   salvar() {
 
     //[(ngModel)]="usuario.termos"
-//    this.usuario.termos = op
+    //    this.usuario.termos = op
     console.log(this.usuario);
     this.http.post(this.api, this.usuario).subscribe(data => {
       console.log(data);
     })
+  }
+
+  setSexo(event) {
+    this.usuario.sexo = event.target.value;
+  }
+
+  setTermos(event) {
+    this.usuario.termos = event.target.value;
   }
 
   cancelar() {
@@ -53,12 +73,12 @@ export class CadastroContratanteComponent implements OnInit {
       cpf: "",
       telefone: "",
       cidade: "",
-      estado:"",
-      bairro:"",
-      cep:"",
-      rua:"",
-      numero:"",
-      complemento:"",
+      estado: "",
+      bairro: "",
+      cep: "",
+      rua: "",
+      numero: "",
+      complemento: "",
       comentario: "",
       termos: null,
     };
