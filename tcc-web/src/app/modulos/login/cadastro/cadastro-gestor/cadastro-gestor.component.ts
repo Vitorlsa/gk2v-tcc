@@ -11,16 +11,16 @@ export class CadastroGestorComponent implements OnInit {
 
   constructor(private router: Router, private http: HttpClient) { }
 
-  public api = "";
+  public api = "http://localhost:8080/api/gestor/cadastrar";
 
   public gestor = {
-    nomeCompleto: "",
-    username: "",
+    nome: "",
+    login: "",
     senha: "",
     confirmaSenha: "",
     email: "",
-    nascimento: "",
-    sexo: "",
+    dataNascimento: "",
+    sexo: 0,
     cpf: "",
     telefone: "",
     cidade: "",
@@ -62,26 +62,26 @@ export class CadastroGestorComponent implements OnInit {
 
   limparUsuario() {
     this.gestor = {
-      nomeCompleto: "",
-      username: "",
-      senha: "",
-      confirmaSenha: "",
-      email: "",
-      nascimento: "",
-      sexo: "",
-      cpf: "",
-      telefone: "",
-      cidade: "",
-      estado: "",
-      bairro: "",
-      cep: "",
-      rua: "",
-      numero: "",
-      complemento: "",
-      historico: "",
-      cursos: "",
-      comentario: "",
-      termos: false,
+      nome: "",
+    login: "",
+    senha: "",
+    confirmaSenha: "",
+    email: "",
+    dataNascimento: "",
+    sexo: 0,
+    cpf: "",
+    telefone: "",
+    cidade: "",
+    estado: "",
+    bairro: "",
+    cep: "",
+    rua: "",
+    numero: "",
+    complemento: "",
+    historico: "",
+    cursos: "",
+    comentario: "",
+    termos: false,
     };
   }
 

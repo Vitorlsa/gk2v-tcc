@@ -40,14 +40,14 @@
                         <div class="form-group ">
                           <label for="fullname" class="control-label col-lg-2">Nome Completo<span class="required">*</span></label>
                           <div class="col-lg-10">
-                            <input [(ngModel)]="gestor.nomeCompleto" class=" form-control" id="fullname" name="fullname" type="text" />
+                            <input [(ngModel)]="gestor.nome" class=" form-control" id="fullname" name="fullname" type="text" />
                           </div>
                         </div>
                       <br>
                       <div class="form-group ">
                         <label for="username" class="control-label col-lg-2">Usuário <span class="required">*</span></label>
                         <div class="col-lg-10">
-                          <input [(ngModel)]="gestor.username" class="form-control " id="username" name="username" type="text" />
+                          <input [(ngModel)]="gestor.login" class="form-control " id="username" name="username" type="text" />
                         </div>
                       </div>
                       <br>
@@ -75,7 +75,7 @@
                       <div class="form-group ">
                           <label for="nascimento" class="control-label col-lg-2">Data de Nascimento <span class="required">*</span></label>
                           <div class="col-lg-10">
-                            <input [(ngModel)]="gestor.nascimento" class="form-control " id="nascimento" name="nascimento" type="email" />
+                            <input [(ngModel)]="gestor.dataNascimento" class="form-control " id="nascimento" name="nascimento" type="date" />
                           </div>
                         </div>
                       <br>
@@ -83,9 +83,9 @@
                           <label for="sexo" class="control-label col-lg-2">Sexo <span class="required">*</span></label>
                           <select (change)="setSexo($event)" id=sexo>
                               <!-- [(ngModel)]="prestador.sexo" -->
-                              <option [value]="'outro'">Outro</option>
-                              <option [value]="'masculino'">Masculino</option>
-                              <option [value]="'feminino'">Feminino</option>
+                              <option [value]="2">Outro</option>
+                              <option [value]="0">Masculino</option>
+                              <option [value]="1">Feminino</option>
                             </select>
                         </div>
                       <br>

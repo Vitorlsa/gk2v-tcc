@@ -12,15 +12,15 @@ export class CadastroPrestadorComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) { }
 
 
-  public api = "";
+  public api = "http://localhost:8080/api/prestadordeservico/cadastrar";
   public prestador = {
-    nomeCompleto: "",
-    username: "",
+    nome: "",
+    login: "",
     senha: "",
     confirmaSenha: "",
     email: "",
-    nascimento: "",
-    sexo: "",
+    dataNascimento: "",
+    sexo: 0,
     cpf: "",
     telefone: "",
     cidade: "",
@@ -63,13 +63,13 @@ export class CadastroPrestadorComponent implements OnInit {
 
   limparUsuario() {
     this.prestador = {
-      nomeCompleto: "",
-      username: "",
+      nome: "",
+      login: "",
       senha: "",
       confirmaSenha: "",
       email: "",
-      nascimento: "",
-      sexo: "",
+      dataNascimento: "",
+      sexo: 0,
       cpf: "",
       telefone: "",
       cidade: "",
