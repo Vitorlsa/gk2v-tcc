@@ -27,131 +27,190 @@
         <div class="title">
           <span class="byline"><b>Preencha todos os campos obrigatórios.</b></span>
         </div>
-        <br>            
+        <br>
         <div class="row">
-            <div class="col-lg-12">
-              <section class="panel">
+          <div class="col-lg-12">
+            <section class="panel">
               <header class="panel-heading">
               </header>
               <div class="panel-body">
-                  <div class="form">
-                      <form class="form-validate form-horizontal " id="register_form" method="get" action="">
-                        <div class="form-group ">
-                          <label for="fullname" class="control-label col-lg-2">Nome Completo<span class="required">*</span></label>
-                          <div class="col-lg-10">
-                            <input [(ngModel)]="prestador.nomeCompleto" class=" form-control" id="fullname" name="fullname" type="text" />
-                          </div>
-                        </div>
-                      <br>
-                      <div class="form-group ">
-                        <label for="username" class="control-label col-lg-2">Usuário <span class="required">*</span></label>
-                        <div class="col-lg-10">
-                          <input [(ngModel)]="prestador.username" class="form-control " id="username" name="username" type="text" />
-                        </div>
+                <div class="form">
+                  <form class="form-validate form-horizontal " id="register_form" method="get" action="">
+                    <div class="form-group ">
+                      <label for="fullname" class="control-label col-lg-2">Nome Completo<span
+                          class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="prestador.nomeCompleto" class=" form-control" id="fullname" name="fullname"
+                          type="text" />
                       </div>
-                      <br>
-                      <div class="form-group ">
-                        <label for="password" class="control-label col-lg-2">Senha <span class="required">*</span></label>
-                        <div class="col-lg-10">
-                          <input [(ngModel)]="prestador.senha" class="form-control " id="password" name="password" type="password" />
-                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group ">
+                      <label for="username" class="control-label col-lg-2">Usuário <span
+                          class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="prestador.username" class="form-control " id="username" name="username"
+                          type="text" />
                       </div>
-                      <br>
-                      <div class="form-group ">
-                        <label for="confirm_password" class="control-label col-lg-2">Confirmar Senha <span class="required">*</span></label>
-                        <div class="col-lg-10">
-                          <input [(ngModel)]="prestador.confirmaSenha" class="form-control " id="confirm_password" name="confirm_password" type="password" />
-                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group ">
+                      <label for="password" class="control-label col-lg-2">Senha <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="prestador.senha" class="form-control " id="password" name="password"
+                          type="password" />
                       </div>
-                      <br>
-                      <div class="form-group ">
-                        <label for="email" class="control-label col-lg-2">Email <span class="required">*</span></label>
-                        <div class="col-lg-10">
-                          <input [(ngModel)]="prestador.email" class="form-control " id="email" name="email" type="email" />
-                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group ">
+                      <label for="confirm_password" class="control-label col-lg-2">Confirmar Senha <span
+                          class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="prestador.confirmaSenha" class="form-control " id="confirm_password"
+                          name="confirm_password" type="password" />
                       </div>
-                      <br>
-                      <div class="form-group ">
-                          <label for="nascimento" class="control-label col-lg-2">Data de Nascimento <span class="required">*</span></label>
-                          <div class="col-lg-10">
-                            <input [(ngModel)]="prestador.nascimento" class="form-control " id="nascimento" name="nascimento" type="email" />
-                          </div>
-                        </div>
-                      <br>
-                      <div class="form-group ">
-                        <label for="sexo" class="control-label col-lg-2">Sexo <span class="required">*</span></label>
-                        <select [(ngModel)]="prestador.sexo" id=sexo>
-                          <option>Outro</option>
-                          <option>Masculino</option>
-                          <option>Feminino</option>
-                        </select>
+                    </div>
+                    <br>
+                    <div class="form-group ">
+                      <label for="email" class="control-label col-lg-2">Email <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="prestador.email" class="form-control " id="email" name="email"
+                          type="email" />
                       </div>
-                      <br>
-                      <div class="form-group ">
-                          <label for="cpf" class="control-label col-lg-2">CPF <span class="required">*</span></label>
-                          <div class="col-lg-10">
-                            <input [(ngModel)]="prestador.cpf" class="form-control " id="cpf" name="cpf" type="email" />
-                          </div>
-                        </div>
-                      <br>
-                      <div class="form-group ">
-                          <label for="telefone" class="control-label col-lg-2">Telefone <span class="required">*</span></label>
-                          <div class="col-lg-10">
-                            <input [(ngModel)]="prestador.telefone" class="form-control " id="telefone" name="telefone" type="email" />
-                          </div>
-                        </div>
-                      <br>
-                      <div class="form-group ">
-                          <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
-                          <div class="col-lg-10">
-                            <input [(ngModel)]="prestador.cidade" class="form-control " id="cidade" name="cidade" type="email" />
-                          </div>
-                        </div>
-                      <br>
-                      <div class="form-group ">
-                        <label for="competencias" class="control-label col-lg-2">Competências <span class="required">*</span></label>
-                        <div class="col-lg-10">
-                          <input [(ngModel)]="prestador.competencias" class="form-control " id="competencias" name="competencias" type="email" />
-                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group ">
+                      <label for="nascimento" class="control-label col-lg-2">Data de Nascimento <span
+                          class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="prestador.nascimento" class="form-control " id="nascimento"
+                          name="nascimento" type="email" />
                       </div>
+                    </div>
+                    <br>
+                    <div class="form-group ">
+                      <label for="sexo" class="control-label col-lg-2">Sexo <span class="required">*</span></label>
+                      <select (change)="setSexo($event)" id=sexo>
+                        <!-- [(ngModel)]="prestador.sexo" -->
+                        <option [value]="'outro'">Outro</option>
+                        <option [value]="'masculino'">Masculino</option>
+                        <option [value]="'feminino'">Feminino</option>
+                      </select>
+                    </div>
+                    <br>
+                    <div class="form-group ">
+                      <label for="cpf" class="control-label col-lg-2">CPF <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="prestador.cpf" class="form-control " id="cpf" name="cpf" type="email" />
+                      </div>
+                    </div>
+                    <br>
+                    <div class="form-group ">
+                      <label for="telefone" class="control-label col-lg-2">Telefone <span
+                          class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="prestador.telefone" class="form-control " id="telefone" name="telefone"
+                          type="email" />
+                      </div>
+                    </div>
+                    <br>
+                    <div class="form-group ">
+                      <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="prestador.cidade" class="form-control " id="cidade" name="cidade"
+                          type="email" />
+                      </div>
+                    </div>
+                    <br>
+                    <div class="form-group ">
+                      <label for="UF" class="control-label col-lg-2">Estado <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="prestador.estado" class="form-control " id="estado" name="estado"
+                          type="text" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="bairro" class="control-label col-lg-2">Bairro <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="prestador.bairro" class="form-control " id="bairro" name="bairro"
+                          type="text" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="cep" class="control-label col-lg-2">CEP <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="prestador.cep" class="form-control " id="cep" name="cep" type="text" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="rua" class="control-label col-lg-2">Rua <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="prestador.rua" class="form-control " id="rua" name="rua" type="text" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="numero" class="control-label col-lg-2">Numero <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="prestador.numero" class="form-control " id="numero" name="numero"
+                          type="text" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="comlemento" class="control-label col-lg-2">Complemento <span
+                          class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="prestador.complemento" class="form-control " id="complemento"
+                          name="complemento" type="text" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="competencias" class="control-label col-lg-2">Competências <span
+                          class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="prestador.competencias" class="form-control " id="competencias"
+                          name="competencias" type="email" />
+                      </div>
+                    </div>
                     <br>
                     <div class="form-group ">
                       <label for="comentario" class="control-label col-lg-2">Comentário</label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="prestador.comentario" class="form-control " id="comentario" name="comentario" type="email" />
+                        <input [(ngModel)]="prestador.comentario" class="form-control " id="comentario"
+                          name="comentario" type="email" />
                       </div>
                     </div>
                     <br>
                     <div class="form-group ">
-                      <label for="termos" class="control-label col-lg-2">Termos e política de uso <span class="required">*</span></label>
-                      <select [(ngModel)]="prestador.termos" id=sexo>
-                        <option>Aceito</option>
-                        <option>Não aceito</option>
+                      <label for="termos" class="control-label col-lg-2">Termos e política de uso <span
+                          class="required">*</span></label>
+                      <select (change)="setTermos($event)" id="termos">
+                        <option [value]="true">Aceito</option>
+                        <option [value]="false">Não aceito</option>
                       </select>
                     </div>
                     <br>
-                 <!-- <div class="form-group ">
+                    <!-- <div class="form-group ">
                   <label for="agree" class="control-label col-lg-2 col-sm-3">Aceita nossa política? <span class="required">*</span></label><input type="checkbox" style="width: 20px" class="checkbox form-control" id="agree" name="agree" />
                     <form> 
                       <INPUT TYPE="RADIO" NAME="OPCAO1" VALUE="op1_epoca"> Aceito <br>
                       <INPUT TYPE="RADIO" NAME="OPCAO2" VALUE="op2_epoca"> Não aceito <br>
                     </form> 
                 </div> -->
-                <br>
-                  <div class="form-group">
-                  <div class="col-lg-offset-2 col-lg-10">
-                    <button (click)="salvar()" class="btn btn-primary" type="submit">Enviar</button>
-                    <button (click)="cancelar()" class="btn btn-default" type="button">Cancelar</button>
-                  </div>
-                  </div>
-                </form>
+                    <br>
+                    <div class="form-group">
+                      <div class="col-lg-offset-2 col-lg-10">
+                        <button (click)="salvar()" class="btn btn-primary" type="submit">Enviar</button>
+                        <button (click)="cancelar()" class="btn btn-default" type="button">Cancelar</button>
+                      </div>
+                    </div>
+                  </form>
                 </div>
               </div>
-              </section>
-            </div>
+            </section>
           </div>
         </div>
       </div>
+    </div>
   </div>
 </div>
 
@@ -161,7 +220,8 @@
   <div class="inner">
     <div class="content">
       <h3>Bem Vindo ao Life Care Manager</h3>
-      <p>Com uma equipe qualificada com médicos experientes e o mais alto padrão de atendimento, a LCM oferece qualidade, economia, e mais comodidade para você e sua família.</p>
+      <p>Com uma equipe qualificada com médicos experientes e o mais alto padrão de atendimento, a LCM oferece
+        qualidade, economia, e mais comodidade para você e sua família.</p>
     </div>
     <div class="copyright">
       <h3>Siga-nos</h3>

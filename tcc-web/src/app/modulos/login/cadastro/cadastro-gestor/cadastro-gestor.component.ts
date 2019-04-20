@@ -9,46 +9,81 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CadastroGestorComponent implements OnInit {
 
-  constructor(private router:Router, private http:HttpClient) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
-  public api ="";
+  public api = "";
 
-  public gestor:object;
+  public gestor = {
+    nomeCompleto: "",
+    username: "",
+    senha: "",
+    confirmaSenha: "",
+    email: "",
+    nascimento: "",
+    sexo: "",
+    cpf: "",
+    telefone: "",
+    cidade: "",
+    estado: "",
+    bairro: "",
+    cep: "",
+    rua: "",
+    numero: "",
+    complemento: "",
+    historico: "",
+    cursos: "",
+    comentario: "",
+    termos: false,
+  };
 
   ngOnInit() {
     this.limparUsuario();
   }
 
-salvar(){
-  console.log(this.gestor);
-  this.http.post(this.api, this.gestor).subscribe(data => {
-    console.log(data);
-  })
-}
+  salvar() {
+    console.log(this.gestor);
+    this.http.post(this.api, this.gestor).subscribe(data => {
+      console.log(data);
+    })
+  }
 
-cancelar(){
-  this.router.navigate(['/cadastro']);
-}
+  setSexo(event) {
+    this.gestor.sexo = event.target.value;
+  }
+
+  setTermos(event) {
+    this.gestor.termos = event.target.value;
+  }
+
+  cancelar() {
+    this.router.navigate(['/cadastro']);
+  }
 
 
-limparUsuario(){
-  this.gestor = {
-    nomeCompleto: "",
-    username:"",
-    senha:"",
-    confirmaSenha:"",
-    email:"",
-    nascimento:"",
-    sexo:"",
-    cpf:"",
-    telefone:"",
-    cidade:"",
-    historico:"",
-    cursos:"",
-    comentario:"",
-    termos:false,
-  };
-}
+  limparUsuario() {
+    this.gestor = {
+      nomeCompleto: "",
+      username: "",
+      senha: "",
+      confirmaSenha: "",
+      email: "",
+      nascimento: "",
+      sexo: "",
+      cpf: "",
+      telefone: "",
+      cidade: "",
+      estado: "",
+      bairro: "",
+      cep: "",
+      rua: "",
+      numero: "",
+      complemento: "",
+      historico: "",
+      cursos: "",
+      comentario: "",
+      termos: false,
+    };
+  }
 
 
 }

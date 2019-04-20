@@ -19,12 +19,19 @@ export class CadastroContratanteComponent implements OnInit {
     confimaSenha: "",
     email: "",
     datanascimento: "",
-    sexo: null,
+    sexo: 0,
     cpf: "",
     telefone: "",
     cidade: "",
     comentario: "",
-    termos: null,
+    termos: false,
+    estado: "",
+    bairro: "",
+    cep : "",
+    rua: "",
+    numero: "",
+    complemento : ""
+      
   };
   public api = "http://localhost:8080/api/contratante/cadastrar";
   public termos = [{
@@ -43,7 +50,6 @@ export class CadastroContratanteComponent implements OnInit {
   salvar() {
 
     //[(ngModel)]="usuario.termos"
-//    this.usuario.termos = op=
     this.http.post(this.api,  {nome: this.usuario.nome, login : this.usuario.login, senha : this.usuario.senha, email : this.usuario.email,
       datanascimento: this.usuario.datanascimento, cpf: this.usuario.cpf, telefone : this.usuario.telefone,
       cidade : this.usuario.cidade, comentario : this.usuario.comentario }).subscribe(
@@ -54,6 +60,7 @@ export class CadastroContratanteComponent implements OnInit {
         console.log(err); 
       });
   }
+  
 
   cancelar() {
     this.router.navigate(['/cadastro']);
@@ -68,12 +75,18 @@ export class CadastroContratanteComponent implements OnInit {
       confimaSenha: "",
       email: "",
       datanascimento: "",
-      sexo: null,
+      sexo: 0,
       cpf: "",
       telefone: "",
       cidade: "",
+      estado: "",
+      bairro: "",
+      cep: "",
+      rua: "",
+      numero: "",
+      complemento: "",
       comentario: "",
-      termos: null,
+      termos: false,
     };
   }
 

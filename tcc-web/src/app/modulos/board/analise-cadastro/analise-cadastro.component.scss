@@ -1,0 +1,35 @@
+.listaAnalise{
+    border:1px solid;
+    height: 65px;
+}
+
+.listaAnalise > p {
+    float: left;
+    margin: 0;
+}
+
+.listaAnalise > button {
+    float: right;
+    margin: 0;
+    color: white;
+    border:0;
+    // border-radius: 10px;
+    padding: 10px;
+}
+
+
+.listaAnalise > button:first-of-type:hover {
+    background-color:darkgreen;
+}
+
+.listaAnalise > button:first-of-type {
+    background-color: green;
+}
+
+
+.listaAnalise > button:last-of-type:hover {
+    background-color: darkred;
+}
+.listaAnalise > button:last-of-type {
+    background-color: red;
+}

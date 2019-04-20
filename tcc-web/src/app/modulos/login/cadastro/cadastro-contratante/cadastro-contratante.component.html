@@ -81,46 +81,84 @@
                   <br>
                   <div class="form-group ">
                       <label for="sexo" class="control-label col-lg-2">Sexo <span class="required">*</span></label>
-                      <select matNativeControl [(ngModel)]="usuario.sexo" id=sexo>
-                        <option [value]="2">Outro</option>
-                        <option [value]="1">Masculino</option>
-                        <option [value]="0">Feminino</option>
-                      </select>
+                      <select (change)="setSexo($event)" id=sexo>
+                          <!-- [(ngModel)]="prestador.sexo" -->
+                          <option [value]="2">Outro</option>
+                          <option [value]="0">Masculino</option>
+                          <option [value]="1">Feminino</option>
+                        </select>
                     </div>
                   <br>
                   <div class="form-group ">
                       <label for="cpf" class="control-label col-lg-2">CPF <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.cpf" class="form-control " id="cpf" name="cpf" type="email" />
+                        <input [(ngModel)]="usuario.cpf" class="form-control " id="cpf" name="cpf" type="text" />
                       </div>
                     </div>
                   <br>
                   <div class="form-group ">
                       <label for="telefone" class="control-label col-lg-2">Telefone <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.telefone" class="form-control " id="telefone" name="telefone" type="email" />
+                        <input [(ngModel)]="usuario.telefone" class="form-control " id="telefone" name="telefone" type="text" />
                       </div>
                     </div>
                   <br>
                   <div class="form-group ">
                       <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.cidade" class="form-control " id="cidade" name="cidade" type="email" />
+                        <input [(ngModel)]="usuario.cidade" class="form-control " id="cidade" name="cidade" type="text" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="UF" class="control-label col-lg-2">Estado <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="usuario.estado" class="form-control " id="estado" name="estado" type="text" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="bairro" class="control-label col-lg-2">Bairro <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="usuario.bairro" class="form-control " id="bairro" name="bairro" type="text" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="cep" class="control-label col-lg-2">CEP <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="usuario.cep" class="form-control " id="cep" name="cep" type="text" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="Rua" class="control-label col-lg-2">Numero <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="usuario.rua" class="form-control " id="rua" name="rua" type="text" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="numero" class="control-label col-lg-2">Numero <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="usuario.numero" class="form-control " id="numero" name="numero" type="text" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="comlemento" class="control-label col-lg-2">Complemento <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="usuario.complemento" class="form-control " id="complemento" name="complemento" type="text" />
                       </div>
                     </div>
                   <br>
                   <div class="form-group ">
                       <label for="comentario" class="control-label col-lg-2">Comentário/Necessidades</label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.comentario" class="form-control " id="comentario" name="comentario" />
+                        <input [(ngModel)]="usuario.comentario" class="form-control " id="comentario" name="comentario" type="text" />
                       </div>
                     </div>
                   <br>
                   <div class="form-group ">
                       <label for="termos" class="control-label col-lg-2">Termos e política de uso <span class="required">*</span></label>
-                      <select matNativeControl [(ngModel)]="usuario.termos">
-                        <option *ngFor="let op of termos" [ngValue]="op.valor">{{op.name}}</option>
-                      </select>
+                      <select (change)="setTermos($event)" id="termos">
+                          <option [value]="true">Aceito</option>
+                          <option [value]="false">Não aceito</option>
+                        </select>
                     </div>
                     <br>
                 <br>

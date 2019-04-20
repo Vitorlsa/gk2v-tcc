@@ -11,6 +11,7 @@ import { LoginModule } from './modulos/login/login.module';
 import { HomeComponent } from './modulos/home/home.component';
 import { BoardComponent } from './modulos/board/board.component';
 import { UtilsService } from './funcoes/utils.service';
+import { AnaliseCadastroComponent } from './modulos/board/analise-cadastro/analise-cadastro.component';
 
 
 
@@ -19,6 +20,7 @@ import { UtilsService } from './funcoes/utils.service';
     AppComponent,
     HomeComponent,
     BoardComponent,
+    AnaliseCadastroComponent,
   ],
   imports: [
     BrowserModule,

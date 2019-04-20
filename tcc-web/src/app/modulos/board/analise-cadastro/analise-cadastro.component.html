@@ -1,0 +1,9 @@
+<h1>Cadastros a serem analisados</h1>
+
+  <div class="listaAnalise" *ngFor="let cadastro of cadastros">
+    <p>{{cadastro.nome}}</p>
+    <br>
+    <p *ngFor="let d of cadastro.desc"> | {{d}}</p>
+    <button (click)="aprovar(cadastro)">Aprovar</button>
+    <button (click)="reprovar(cadastro)">Recusar</button>
+  </div>
