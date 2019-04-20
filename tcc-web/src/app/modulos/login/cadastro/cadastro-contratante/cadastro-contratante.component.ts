@@ -50,9 +50,7 @@ export class CadastroContratanteComponent implements OnInit {
   salvar() {
 
     //[(ngModel)]="usuario.termos"
-    this.http.post(this.api,  {nome: this.usuario.nome, login : this.usuario.login, senha : this.usuario.senha, email : this.usuario.email,
-      datanascimento: this.usuario.datanascimento, cpf: this.usuario.cpf, telefone : this.usuario.telefone,
-      cidade : this.usuario.cidade, comentario : this.usuario.comentario }).subscribe(
+    this.http.post(this.api, this.usuario).subscribe(
       res => {
 
       },
@@ -89,6 +87,4 @@ export class CadastroContratanteComponent implements OnInit {
       termos: false,
     };
   }
-
-
 }
