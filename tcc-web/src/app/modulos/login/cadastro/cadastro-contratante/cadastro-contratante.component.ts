@@ -11,8 +11,22 @@ export class CadastroContratanteComponent implements OnInit {
 
   constructor(private router: Router, private http: HttpClient) { }
 
-  public usuario: object;
-  public api = "";
+  //// precisa criar os types com typescript senao nao faz o bind na hora do post
+  public usuario:  {
+    nome: "",
+    login: "",
+    senha: "",
+    confimaSenha: "",
+    email: "",
+    datanascimento: "",
+    sexo: null,
+    cpf: "",
+    telefone: "",
+    cidade: "",
+    comentario: "",
+    termos: null,
+  };
+  public api = "http://localhost:8080/api/contratante/cadastrar";
   public termos = [{
     valor:true,
     name:'Aceito'
@@ -29,11 +43,16 @@ export class CadastroContratanteComponent implements OnInit {
   salvar() {
 
     //[(ngModel)]="usuario.termos"
-//    this.usuario.termos = op
-    console.log(this.usuario);
-    this.http.post(this.api, this.usuario).subscribe(data => {
-      console.log(data);
-    })
+//    this.usuario.termos = op=
+    this.http.post(this.api,  {nome: this.usuario.nome, login : this.usuario.login, senha : this.usuario.senha, email : this.usuario.email,
+      datanascimento: this.usuario.datanascimento, cpf: this.usuario.cpf, telefone : this.usuario.telefone,
+      cidade : this.usuario.cidade, comentario : this.usuario.comentario }).subscribe(
+      res => {
+
+      },
+      err => {
+        console.log(err); 
+      });
   }
 
   cancelar() {
@@ -43,12 +62,12 @@ export class CadastroContratanteComponent implements OnInit {
 
   limparUsuario() {
     this.usuario = {
-      nomeCompleto: "",
-      username: "",
+      nome: "",
+      login: "",
       senha: "",
       confimaSenha: "",
       email: "",
-      nascimento: "",
+      datanascimento: "",
       sexo: null,
       cpf: "",
       telefone: "",
