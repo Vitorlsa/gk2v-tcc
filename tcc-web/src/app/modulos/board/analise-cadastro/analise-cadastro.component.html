@@ -1,5 +1,6 @@
 <h1>Cadastros a serem analisados</h1>
-
+<section>
+  <h2>Contratantes</h2>
   <div class="listaAnalise" *ngFor="let cadastro of cadastros">
     <p>{{cadastro.nome}}</p>
     <br>
@@ -7,3 +8,26 @@
     <button (click)="aprovar(cadastro)">Aprovar</button>
     <button (click)="reprovar(cadastro)">Recusar</button>
   </div>
+</section>
+
+<section>
+    <h2>Gestores</h2>
+  <div class="listaAnalise" *ngFor="let cadastro of cadastros">
+    <p>{{cadastro.nome}}</p>
+    <br>
+    <p *ngFor="let d of cadastro.desc"> | {{d}}</p>
+    <button (click)="aprovar(cadastro)">Aprovar</button>
+    <button (click)="reprovar(cadastro)">Recusar</button>
+  </div>
+</section>
+
+<section>
+    <h2>Prestadores</h2>
+  <div class="listaAnalise" *ngFor="let cadastro of cadastros">
+    <p>{{cadastro.nome}}</p>
+    <br>
+    <p *ngFor="let d of cadastro.desc"> | {{d}}</p>
+    <button (click)="aprovar(cadastro)">Aprovar</button>
+    <button (click)="reprovar(cadastro)">Recusar</button>
+  </div>
+</section>

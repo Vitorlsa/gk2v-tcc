@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-analise-cadastro',
@@ -7,14 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnaliseCadastroComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   public cadastros = [];
   public cadastrado = { nome: "Orandi", desc: ["enfermeiro", "cuidador"] };
-
+  private api = "";
 
   ngOnInit() {
     this.cadastros.push(this.cadastrado);
+    this.listarPendencias();
   }
 
   aprovar(cadastro) {
@@ -24,4 +26,15 @@ export class AnaliseCadastroComponent implements OnInit {
   reprovar(cadastro) {
     console.log("reprovado" + cadastro);
   }
+
+  listarPendencias() {
+    try {
+      this.http.post(this.api, {}).subscribe(data => {
+        console.log(data);
+      })
+    } catch{
+      console.log("nao chamaou api");
+    }
+  }
+
 }
