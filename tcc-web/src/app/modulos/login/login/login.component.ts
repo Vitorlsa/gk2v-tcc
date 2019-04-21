@@ -17,49 +17,33 @@ export class LoginComponent implements OnInit {
   constructor(private http: HttpClient, private service: LoginService, private router: Router, private cookieService: CookieService) { }
 
   cookieValue = 'UNKNOWN';  
+  public api = "http://localhost:8080/api/usuario/logar"
   public users: object;
   public usuario = {
-    name: "giu",
+    login: "",
     senha: ""
   };
   public logado = false;
-  private url = "https://reqres.in";
 
   ngOnInit() {
 
-
-    this.cookieService.set( 'Test', 'Hello World' );
-    this.cookieValue = this.cookieService.get('Test');
-
-    console.log(this.cookieValue);
-
-    this.getUsers().subscribe(data => {
-      this.users = data;
-      console.log(this.users);
-    }
-    );
   };
 
 
   getUsers() {
-    return this.http.get(this.url + '/api/users')
+    return this.http.post(this.api,this.usuario).subscribe(data => 
+      {
+        if(data != null)
+        {
+          
+          this.cookieService.set("usuarioLogado", );
+          this.router.navigate(['/board']);
+        }
+      });
   }
 
   logar() {
-    if (this.usuario.name == "giu" && this.usuario.senha == "123") {
-      this.logado = true;
-    }
-    else {
-      this.logado = false;
-    }
-
-    this.service.teste();
-
-    // this.service.guardaUsuario(this.usuario);
-    // this.http.post(this.url + "/api/users", this.usuario).subscribe(data => {
-    //   console.log(data);
-      this.router.navigate(['/board']);
-    // })
+    this.getUsers();
   }
 
   voltarHome(){
