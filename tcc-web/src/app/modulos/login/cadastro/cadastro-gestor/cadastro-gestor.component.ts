@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { CadastroServiceService } from '../cadastro-service.service';
 
 @Component({
   selector: 'app-cadastro-gestor',
@@ -8,8 +9,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./cadastro-gestor.component.scss']
 })
 export class CadastroGestorComponent implements OnInit {
-
-  constructor(private router: Router, private http: HttpClient) { }
+  
+  constructor(private router: Router, private http: HttpClient, private cadastroService:CadastroServiceService  ) { }
 
   public api = "http://localhost:8080/api/gestor/cadastrar";
 
@@ -41,10 +42,14 @@ export class CadastroGestorComponent implements OnInit {
   }
 
   salvar() {
-    console.log(this.gestor);
-    this.http.post(this.api, this.gestor).subscribe(data => {
-      console.log(data);
-    })
+    if (this.cadastroService.validaCadastro(this.gestor)) {
+      this.http.post(this.api, this.gestor).subscribe(data => {
+        // console.log(data);
+        alert("Cadastro salvo com sucesso");
+      })
+    } else {
+      alert("Campos preenchidos incorretamente");
+    }
   }
 
   setSexo(event) {
@@ -63,25 +68,25 @@ export class CadastroGestorComponent implements OnInit {
   limparUsuario() {
     this.gestor = {
       nome: "",
-    login: "",
-    senha: "",
-    confirmaSenha: "",
-    email: "",
-    dataNascimento: "",
-    sexo: 0,
-    cpf: "",
-    telefone: "",
-    cidade: "",
-    estado: "",
-    bairro: "",
-    cep: "",
-    rua: "",
-    numero: "",
-    complemento: "",
-    historico: "",
-    cursos: "",
-    comentario: "",
-    termos: false,
+      login: "",
+      senha: "",
+      confirmaSenha: "",
+      email: "",
+      dataNascimento: "",
+      sexo: 0,
+      cpf: "",
+      telefone: "",
+      cidade: "",
+      estado: "",
+      bairro: "",
+      cep: "",
+      rua: "",
+      numero: "",
+      complemento: "",
+      historico: "",
+      cursos: "",
+      comentario: "",
+      termos: false,
     };
   }
 

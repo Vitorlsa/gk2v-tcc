@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
         if(data != null)
         {
           
-          this.cookieService.set("usuarioLogado", );
+          this.cookieService.set("usuarioLogado","teste");
           this.router.navigate(['/board']);
         }
       });
@@ -46,8 +46,8 @@ export class LoginComponent implements OnInit {
     this.getUsers();
   }
 
-  voltarHome(){
-      this.router.navigate(['/home']);
+  voltarHome() {
+    this.router.navigate(['/home']);
   }
 
   cadastro() {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { CadastroServiceService } from '../cadastro-service.service';
 
 @Component({
   selector: 'app-cadastro-contratante',
@@ -9,14 +10,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CadastroContratanteComponent implements OnInit {
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient, private cadastroService: CadastroServiceService) { }
 
   //// precisa criar os types com typescript senao nao faz o bind na hora do post
-  public usuario:  {
+  public usuario: {
     nome: "",
     login: "",
     senha: "",
-    confimaSenha: "",
+    confirmaSenha: "",
     email: "",
     datanascimento: "",
     sexo: 0,
@@ -27,21 +28,21 @@ export class CadastroContratanteComponent implements OnInit {
     termos: false,
     estado: "",
     bairro: "",
-    cep : "",
+    cep: "",
     rua: "",
     numero: "",
-    complemento : ""
-      
+    complemento: ""
+
   };
   public api = "http://localhost:8080/api/contratante/cadastrar";
   public termos = [{
-    valor:true,
-    name:'Aceito'
-  },{
-    valor:false,
-    name:"Não aceito",
+    valor: true,
+    name: 'Aceito'
+  }, {
+    valor: false,
+    name: "Não aceito",
   }
-]
+  ]
 
   ngOnInit() {
     this.limparUsuario();
@@ -57,17 +58,19 @@ export class CadastroContratanteComponent implements OnInit {
   }
 
   salvar() {
-
-    //[(ngModel)]="usuario.termos"
-    this.http.post(this.api, this.usuario).subscribe(
-      res => {
-
-      },
-      err => {
-        console.log(err); 
-      });
+    if (this.cadastroService.validaCadastro(this.usuario)) {
+      this.http.post(this.api, this.usuario).subscribe(
+        res => {
+          alert("Cadastro salvo com sucesso");
+        },
+        err => {
+          console.log(err);
+        });
+    } else {
+      alert("Campos preenchidos incorretamente");
+    }
   }
-  
+
 
   cancelar() {
     this.router.navigate(['/cadastro']);
@@ -79,7 +82,7 @@ export class CadastroContratanteComponent implements OnInit {
       nome: "",
       login: "",
       senha: "",
-      confimaSenha: "",
+      confirmaSenha: "",
       email: "",
       datanascimento: "",
       sexo: 0,

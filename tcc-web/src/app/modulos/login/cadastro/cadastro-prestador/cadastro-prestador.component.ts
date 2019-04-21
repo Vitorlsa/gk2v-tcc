@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { CadastroServiceService } from '../cadastro-service.service';
 
 @Component({
   selector: 'app-cadastro-prestador',
@@ -9,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CadastroPrestadorComponent implements OnInit {
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient, private cadastroService: CadastroServiceService) { }
 
 
   public api = "http://localhost:8080/api/prestadordeservico/cadastrar";
@@ -24,17 +25,17 @@ export class CadastroPrestadorComponent implements OnInit {
     cpf: "",
     telefone: "",
     cidade: "",
-    estado:"",
-    bairro:"",
-    cep:"",
-    rua:"",
-    numero:"",
-    complemento:"",
+    estado: "",
+    bairro: "",
+    cep: "",
+    rua: "",
+    numero: "",
+    complemento: "",
     competencias: "",
     comentario: "",
     termos: false,
   };
-  
+
 
 
   ngOnInit() {
@@ -42,17 +43,21 @@ export class CadastroPrestadorComponent implements OnInit {
   }
 
   salvar() {
-    console.log(this.prestador);
-    this.http.post(this.api, this.prestador).subscribe(data => {
-      console.log(data);
-    })
+    if (this.cadastroService.validaCadastro(this.prestador)) {
+      this.http.post(this.api, this.prestador).subscribe(data => {
+        // console.log(data);
+        alert("Cadastro salvo com sucesso");
+      })
+    } else {
+      alert("Campos preenchidos incorretamente");
+    }
   }
 
-  setSexo(event){
+  setSexo(event) {
     this.prestador.sexo = event.target.value;
   }
 
-  setTermos(event){
+  setTermos(event) {
     this.prestador.termos = event.target.value;
   }
 
@@ -73,12 +78,12 @@ export class CadastroPrestadorComponent implements OnInit {
       cpf: "",
       telefone: "",
       cidade: "",
-      estado:"",
-      bairro:"",
-      cep:"",
-      rua:"",
-      numero:"",
-      complemento:"",
+      estado: "",
+      bairro: "",
+      cep: "",
+      rua: "",
+      numero: "",
+      complemento: "",
       competencias: "",
       comentario: "",
       termos: false,
