@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { timingSafeEqual } from 'crypto';
-import { flattenStyles } from '@angular/platform-browser/src/dom/dom_renderer';
 import { UtilsService } from 'src/app/funcoes/utils.service';
 
 @Injectable({

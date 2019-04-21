@@ -16,34 +16,20 @@ export class LoginComponent implements OnInit {
 
   constructor(private http: HttpClient, private service: LoginService, private router: Router, private cookieService: CookieService) { }
 
-  cookieValue = 'UNKNOWN';  
+  cookieValue = {};
   public users: object;
   public usuario = {
-    name: "giu",
+    name: "",
     senha: ""
   };
   public logado = false;
-  private url = "https://reqres.in";
+  //private url = "https://reqres.in";
+  private api = "http://localhost:8080/api/usuario/logar";
 
   ngOnInit() {
 
-
-    this.cookieService.set( 'Test', 'Hello World' );
-    this.cookieValue = this.cookieService.get('Test');
-
-    console.log(this.cookieValue);
-
-    this.getUsers().subscribe(data => {
-      this.users = data;
-      console.log(this.users);
-    }
-    );
   };
 
-
-  getUsers() {
-    return this.http.get(this.url + '/api/users')
-  }
 
   logar() {
     if (this.usuario.name == "giu" && this.usuario.senha == "123") {
@@ -55,15 +41,21 @@ export class LoginComponent implements OnInit {
 
     this.service.teste();
 
-    // this.service.guardaUsuario(this.usuario);
-    // this.http.post(this.url + "/api/users", this.usuario).subscribe(data => {
-    //   console.log(data);
+
+    this.http.post(this.api, { login: this.usuario.name, senha: this.usuario.senha }).subscribe(data => {
+      this.users = data;
+      console.log(this.users);
+      this.service.guardaUsuario(this.usuario);
+      this.cookieService.set('Test', this.users.toString());
+      this.cookieValue = this.cookieService.getAll();
+      console.log(this.cookieValue);
       this.router.navigate(['/board']);
-    // })
+    }
+    );
   }
 
-  voltarHome(){
-      this.router.navigate(['/home']);
+  voltarHome() {
+    this.router.navigate(['/home']);
   }
 
   cadastro() {
