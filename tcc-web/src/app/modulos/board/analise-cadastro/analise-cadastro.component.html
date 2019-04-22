@@ -14,7 +14,10 @@
     <h2>Gestores</h2>
   <div class="listaAnalise" *ngFor="let cadastro of this.gestores">
     <p>{{cadastro.nome}}</p>
-    <br>
+    <br/>
+    <p>Cursos: {{cadastro.cursosCertificacoes}}</p>
+    <br/>
+    <p>Historico profissional:{{cadastro.historicoProfissional}}</p>
     <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
     <button (click)="aprovar(cadastro)">Aprovar</button>
     <button (click)="deletarUser(cadastro.id, 2)">Recusar</button>
@@ -26,6 +29,7 @@
   <div class="listaAnalise" *ngFor="let cadastro of this.prestadores">
     <p>{{cadastro.nome}}</p>
     <br>
+    <p>Competencias: {{cadastro.competencias}}</p>
     <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
     <button (click)="aprovar(cadastro)">Aprovar</button>
     <button (click)="deletarUser(cadastro.id, 3)">Recusar</button>
