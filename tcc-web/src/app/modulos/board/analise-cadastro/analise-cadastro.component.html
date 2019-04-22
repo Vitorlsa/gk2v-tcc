@@ -1,33 +1,33 @@
 <h1>Cadastros a serem analisados</h1>
 <section>
   <h2>Contratantes</h2>
-  <div class="listaAnalise" *ngFor="let cadastro of cadastros">
+  <div class="listaAnalise" *ngFor="let cadastro of this.contratantes">
     <p>{{cadastro.nome}}</p>
     <br>
-    <p *ngFor="let d of cadastro.desc"> | {{d}}</p>
+    <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
     <button (click)="aprovar(cadastro)">Aprovar</button>
-    <button (click)="reprovar(cadastro)">Recusar</button>
+    <button (click)="deletarUser(cadastro.id, 1)">Recusar</button>
   </div>
 </section>
 
 <section>
     <h2>Gestores</h2>
-  <div class="listaAnalise" *ngFor="let cadastro of cadastros">
+  <div class="listaAnalise" *ngFor="let cadastro of this.gestores">
     <p>{{cadastro.nome}}</p>
     <br>
-    <p *ngFor="let d of cadastro.desc"> | {{d}}</p>
+    <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
     <button (click)="aprovar(cadastro)">Aprovar</button>
-    <button (click)="reprovar(cadastro)">Recusar</button>
+    <button (click)="deletarUser(cadastro.id, 2)">Recusar</button>
   </div>
 </section>
 
 <section>
     <h2>Prestadores</h2>
-  <div class="listaAnalise" *ngFor="let cadastro of cadastros">
+  <div class="listaAnalise" *ngFor="let cadastro of this.prestadores">
     <p>{{cadastro.nome}}</p>
     <br>
-    <p *ngFor="let d of cadastro.desc"> | {{d}}</p>
+    <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
     <button (click)="aprovar(cadastro)">Aprovar</button>
-    <button (click)="reprovar(cadastro)">Recusar</button>
+    <button (click)="deletarUser(cadastro.id, 3)">Recusar</button>
   </div>
 </section>
