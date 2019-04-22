@@ -35,168 +35,147 @@
               <header class="panel-heading">
               </header>
               <div class="panel-body">
-                <div class="form">
-                  <form class="form-validate form-horizontal " id="register_form" method="get" action="">
-                    <div class="form-group ">
-                      <label for="fullname" class="control-label col-lg-2">Nome Completo<span
-                          class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="gestor.nome" class=" form-control" id="fullname" name="fullname"
-                          type="text" />
+                  <div class="form">
+                      <form class="form-validate form-horizontal " id="register_form" method="get" action="">
+                        <div class="form-group ">
+                          <label for="fullname" class="control-label col-lg-2">Nome Completo<span class="required">*</span></label>
+                          <div class="col-lg-10">
+                            <input [(ngModel)]="gestor.nome" class=" form-control" id="fullname" name="fullname" type="text" />
+                          </div>
+                        </div>
+                      <br>
+                      <div class="form-group ">
+                        <label for="username" class="control-label col-lg-2">Usuário <span class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input [(ngModel)]="gestor.login" class="form-control " id="username" name="username" type="text" />
+                        </div>
                       </div>
-                    </div>
-                    <br>
-                    <div class="form-group ">
-                      <label for="username" class="control-label col-lg-2">Usuário <span
-                          class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="gestor.login" class="form-control " id="username" name="username"
-                          type="text" />
+                      <br>
+                      <div class="form-group ">
+                        <label for="password" class="control-label col-lg-2">Senha <span class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input [(ngModel)]="gestor.senha" class="form-control " id="password" name="password" type="password" />
+                        </div>
                       </div>
-                    </div>
-                    <br>
-                    <div class="form-group ">
-                      <label for="password" class="control-label col-lg-2">Senha <span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="gestor.senha" class="form-control " id="password" name="password"
-                          type="password" />
+                      <br>
+                      <div class="form-group ">
+                        <label for="confirm_password" class="control-label col-lg-2">Confirmar Senha <span class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input [(ngModel)]="gestor.confirmaSenha" class="form-control " id="confirm_password" name="confirm_password" type="password" />
+                        </div>
                       </div>
-                    </div>
-                    <br>
-                    <div class="form-group ">
-                      <label for="confirm_password" class="control-label col-lg-2">Confirmar Senha <span
-                          class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="gestor.confirmaSenha" class="form-control " id="confirm_password"
-                          name="confirm_password" type="password" />
+                      <br>
+                      <div class="form-group ">
+                        <label for="email" class="control-label col-lg-2">Email <span class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input [(ngModel)]="gestor.email" class="form-control " id="email" name="email" type="email" />
+                        </div>
                       </div>
-                    </div>
-                    <br>
-                    <div class="form-group ">
-                      <label for="email" class="control-label col-lg-2">Email <span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="gestor.email" class="form-control " id="email" name="email" type="email" />
+                      <br>
+                      <div class="form-group ">
+                          <label for="nascimento" class="control-label col-lg-2">Data de Nascimento <span class="required">*</span></label>
+                          <div class="col-lg-10">
+                            <input [(ngModel)]="gestor.dataNascimento" class="form-control " id="nascimento" name="nascimento" type="date" />
+                          </div>
+                        </div>
+                      <br>
+                      <div class="form-group ">
+                          <label for="sexo" class="control-label col-lg-2">Sexo <span class="required">*</span></label>
+                          <select (change)="setSexo($event)" id=sexo>
+                              <!-- [(ngModel)]="prestador.sexo" -->
+                              <option [value]="2">Outro</option>
+                              <option [value]="0">Masculino</option>
+                              <option [value]="1">Feminino</option>
+                            </select>
+                        </div>
+                      <br>
+                      <div class="form-group ">
+                          <label for="cpf" class="control-label col-lg-2">CPF <span class="required">*</span></label>
+                          <div class="col-lg-10">
+                            <input [(ngModel)]="gestor.cpf" class="form-control " id="cpf" name="cpf" type="email" />
+                          </div>
+                        </div>
+                      <br>
+                      <div class="form-group ">
+                          <label for="telefone" class="control-label col-lg-2">Telefone <span class="required">*</span></label>
+                          <div class="col-lg-10">
+                            <input [(ngModel)]="gestor.telefone" class="form-control " id="telefone" name="telefone" type="email" />
+                          </div>
+                        </div>
+                      <br>
+                      <div class="form-group ">
+                          <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
+                          <div class="col-lg-10">
+                            <input [(ngModel)]="gestor.cidade" class="form-control " id="cidade" name="cidade" type="email" />
+                          </div>
+                        </div>
+                      <br>
+                      <div class="form-group ">
+                        <label for="UF" class="control-label col-lg-2">Estado <span class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input [(ngModel)]="gestor.estado" class="form-control " id="estado" name="estado" type="text" />
+                        </div>
                       </div>
-                    </div>
-                    <br>
-                    <div class="form-group ">
-                      <label for="nascimento" class="control-label col-lg-2">Data de Nascimento <span
-                          class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="gestor.dataNascimento" class="form-control " id="nascimento"
-                          name="nascimento" type="date" />
+                      <div class="form-group ">
+                        <label for="bairro" class="control-label col-lg-2">Bairro <span class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input [(ngModel)]="gestor.bairro" class="form-control " id="bairro" name="bairro" type="text" />
+                        </div>
                       </div>
-                    </div>
-                    <br>
-                    <div class="form-group ">
-                      <label for="sexo" class="control-label col-lg-2">Sexo <span class="required">*</span></label>
-                      <select (change)="setSexo($event)" id=sexo>
-                        <!-- [(ngModel)]="prestador.sexo" -->
-                        <option [value]="2">Outro</option>
-                        <option [value]="0">Masculino</option>
-                        <option [value]="1">Feminino</option>
-                      </select>
-                    </div>
-                    <br>
-                    <div class="form-group ">
-                      <label for="cpf" class="control-label col-lg-2">CPF <span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="gestor.cpf" class="form-control " id="cpf" name="cpf" type="email" />
+                      <div class="form-group ">
+                        <label for="cep" class="control-label col-lg-2">CEP <span class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input [(ngModel)]="gestor.cep" class="form-control " id="cep" name="cep" type="text" />
+                        </div>
                       </div>
-                    </div>
-                    <br>
-                    <div class="form-group ">
-                      <label for="telefone" class="control-label col-lg-2">Telefone <span
-                          class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="gestor.telefone" class="form-control " id="telefone" name="telefone"
-                          type="email" />
+                      <div class="form-group ">
+                        <label for="rua" class="control-label col-lg-2">Bairro <span class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input [(ngModel)]="gestor.rua" class="form-control " id="rua" name="rua" type="text" />
+                        </div>
                       </div>
-                    </div>
-                    <br>
-                    <div class="form-group ">
-                      <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="gestor.cidade" class="form-control " id="cidade" name="cidade"
-                          type="email" />
+                      <div class="form-group ">
+                        <label for="numero" class="control-label col-lg-2">Numero <span class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input [(ngModel)]="gestor.numero" class="form-control " id="numero" name="numero" type="text" />
+                        </div>
                       </div>
-                    </div>
-                    <br>
-                    <div class="form-group ">
-                      <label for="UF" class="control-label col-lg-2">Estado <span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="gestor.estado" class="form-control " id="estado" name="estado"
-                          type="text" />
+                      <div class="form-group ">
+                        <label for="comlemento" class="control-label col-lg-2">Complemento <span class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input [(ngModel)]="gestor.complemento" class="form-control " id="complemento" name="complemento" type="text" />
+                        </div>
                       </div>
-                    </div>
-                    <div class="form-group ">
-                      <label for="bairro" class="control-label col-lg-2">Bairro <span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="gestor.bairro" class="form-control " id="bairro" name="bairro"
-                          type="text" />
-                      </div>
-                    </div>
-                    <div class="form-group ">
-                      <label for="cep" class="control-label col-lg-2">CEP <span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="gestor.cep" class="form-control " id="cep" name="cep" type="text" />
-                      </div>
-                    </div>
-                    <div class="form-group ">
-                      <label for="rua" class="control-label col-lg-2">Bairro <span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="gestor.rua" class="form-control " id="rua" name="rua" type="text" />
-                      </div>
-                    </div>
-                    <div class="form-group ">
-                      <label for="numero" class="control-label col-lg-2">Numero <span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="gestor.numero" class="form-control " id="numero" name="numero"
-                          type="text" />
-                      </div>
-                    </div>
-                    <div class="form-group ">
-                      <label for="comlemento" class="control-label col-lg-2">Complemento <span
-                          class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="gestor.complemento" class="form-control " id="complemento"
-                          name="complemento" type="text" />
-                      </div>
-                    </div>
-                    <div class="form-group ">
-                      <label for="historico" class="control-label col-lg-2">Histórico Profissional</label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="gestor.historico" class="form-control " id="historico" name="historico"
-                          type="email" />
-                      </div>
-                    </div>
-                    <br>
-                    <div class="form-group ">
-                      <label for="cursos" class="control-label col-lg-2">Cursos/Certificações</label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="gestor.cursos" class="form-control " id="cursos" name="cursos"
-                          type="email" />
-                      </div>
-                    </div>
-                    <br>
-                    <div class="form-group ">
-                      <label for="comentario" class="control-label col-lg-2">Comentário</label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="gestor.comentario" class="form-control " id="comentario" name="comentario"
-                          type="email" />
-                      </div>
-                    </div>
-                    <br>
-                    <div class="form-group ">
-                      <label for="Termos" class="control-label col-lg-2">Termos e política de uso <span
-                          class="required">*</span></label>
-                      <select (change)="setTermos($event)" id="termos">
-                        <option [value]="false">Não aceito</option>
-                        <option [value]="true">Aceito</option>
-                      </select>
-                    </div>
-                    <br>
-                    <!-- <div class="form-group ">
+                      <div class="form-group ">
+                          <label for="historico" class="control-label col-lg-2">Histórico Profissional</label>
+                          <div class="col-lg-10">
+                            <input [(ngModel)]="gestor.historico" class="form-control " id="historico" name="historico" type="email" />
+                          </div>
+                        </div>
+                      <br>
+                      <div class="form-group ">
+                          <label for="cursos" class="control-label col-lg-2">Cursos/Certificações</label>
+                          <div class="col-lg-10">
+                            <input [(ngModel)]="gestor.cursos" class="form-control " id="cursos" name="cursos" type="email" />
+                          </div>
+                        </div>
+                      <br>
+                      <div class="form-group ">
+                          <label for="comentario" class="control-label col-lg-2">Comentário</label>
+                          <div class="col-lg-10">
+                            <input [(ngModel)]="gestor.comentario" class="form-control " id="comentario" name="comentario" type="email" />
+                          </div>
+                        </div>
+                      <br>
+                      <div class="form-group ">
+                          <label for="Termos" class="control-label col-lg-2">Termos e política de uso <span class="required">*</span></label>
+                          <select (change)="setTermos($event)" id="termos">
+                              <option [value]="false">Não aceito</option>
+                              <option [value]="true">Aceito</option>
+                            </select>
+                        </div>
+                        <br>
+                 <!-- <div class="form-group ">
                   <label for="agree" class="control-label col-lg-2 col-sm-3">Aceita nossa política? <span class="required">*</span></label><input type="checkbox" style="width: 20px" class="checkbox form-control" id="agree" name="agree" />
                     <form> 
                       <INPUT TYPE="RADIO" NAME="OPCAO1" VALUE="op1_epoca"> Aceito <br>

@@ -30,10 +30,6 @@ export class AnaliseCadastroComponent implements OnInit {
     console.log("aprovado" + cadastro);
   }
 
-  reprovar(cadastro) {
-    console.log("reprovado" + cadastro);
-  }
-
   deletarUser(id, tipo) {
     try {
       this.http.post(this.apiDeletar, { Id: id }).subscribe(data => {
