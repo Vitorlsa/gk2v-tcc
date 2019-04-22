@@ -5,36 +5,36 @@
     <p>{{cadastro.nome}}</p>
     <br>
     <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
-    <button (click)="aprovar(true, 1)">Aprovar</button>
-    <button (click)="aprovar(false, 1)" class="reprovar">Reprovar</button>
+    <button (click)="aprovar(cadastro.id,true, 1)">Aprovar</button>
+    <button (click)="aprovar(cadastro.id,false, 1)" class="reprovar">Reprovar</button>
     <button (click)="deletarUser(cadastro.id, 1)">Recusar</button>
   </div>
 </section>
 
 <section>
-    <h2>Gestores</h2>
+  <h2>Gestores</h2>
   <div class="listaAnalise" *ngFor="let cadastro of this.gestores">
     <p>{{cadastro.nome}}</p>
-    <br/>
+    <br />
     <p>Cursos: {{cadastro.cursosCertificacoes}}</p>
-    <br/>
+    <br />
     <p>Historico profissional:{{cadastro.historicoProfissional}}</p>
     <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
-    <button (click)="aprovar(true, 2)">Aprovar</button>
-    <button (click)="aprovar(false, 2)" class="reprovar">Reprovar</button>
+    <button (click)="aprovar(cadastro.id, true, 2)">Aprovar</button>
+    <button (click)="aprovar(cadastro.id, false, 2)" class="reprovar">Reprovar</button>
     <button (click)="deletarUser(cadastro.id, 2)">Recusar</button>
   </div>
 </section>
 
 <section>
-    <h2>Prestadores</h2>
+  <h2>Prestadores</h2>
   <div class="listaAnalise" *ngFor="let cadastro of this.prestadores">
     <p>{{cadastro.nome}}</p>
     <br>
     <p>Competencias: {{cadastro.competencias}}</p>
     <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
-    <button (click)="aprovar(true, 3)">Aprovar</button>
-    <button (click)="aprovar(false,3)" class="reprovar">Reprovar</button>
+    <button (click)="aprovar(cadastro.id,true, 3)">Aprovar</button>
+    <button (click)="aprovar(cadastro.id,false,3)" class="reprovar">Reprovar</button>
     <button (click)="deletarUser(cadastro.id, 3)">Recusar</button>
   </div>
 </section>
