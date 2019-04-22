@@ -5,7 +5,8 @@
     <p>{{cadastro.nome}}</p>
     <br>
     <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
-    <button (click)="aprovar(cadastro)">Aprovar</button>
+    <button (click)="aprovar(true, 1)">Aprovar</button>
+    <button (click)="aprovar(false, 1)" class="reprovar">Reprovar</button>
     <button (click)="deletarUser(cadastro.id, 1)">Recusar</button>
   </div>
 </section>
@@ -19,7 +20,8 @@
     <br/>
     <p>Historico profissional:{{cadastro.historicoProfissional}}</p>
     <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
-    <button (click)="aprovar(cadastro)">Aprovar</button>
+    <button (click)="aprovar(true, 2)">Aprovar</button>
+    <button (click)="aprovar(false, 2)" class="reprovar">Reprovar</button>
     <button (click)="deletarUser(cadastro.id, 2)">Recusar</button>
   </div>
 </section>
@@ -31,7 +33,8 @@
     <br>
     <p>Competencias: {{cadastro.competencias}}</p>
     <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
-    <button (click)="aprovar(cadastro)">Aprovar</button>
+    <button (click)="aprovar(true, 3)">Aprovar</button>
+    <button (click)="aprovar(false,3)" class="reprovar">Reprovar</button>
     <button (click)="deletarUser(cadastro.id, 3)">Recusar</button>
   </div>
 </section>

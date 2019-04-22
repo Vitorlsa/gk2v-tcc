@@ -18,6 +18,7 @@ export class AnaliseCadastroComponent implements OnInit {
   private apiPrestador = "http://localhost:8080/api/prestadordeservico/listarnaoaprovados";
   private apiGestor = "http://localhost:8080/api/gestor/listarnaoaprovados";
   private apiDeletar = "http://localhost:8080/api/usuario/deletar"
+  private apiAprovar = "http://localhost:8080/api/usuario/aprovar"
 
   ngOnInit() {
     //this.cadastros.push(this.cadastrado);
@@ -26,8 +27,20 @@ export class AnaliseCadastroComponent implements OnInit {
     this.listarPrestador();
   }
 
-  aprovar(cadastro) {
-    console.log("aprovado" + cadastro);
+  aprovar(param, tipo) {
+    try {
+      this.http.post(this.apiAprovar, { Id: param }).subscribe(data => {
+        console.log(data);
+        if (tipo == 1)
+          this.listarContratante();
+        else if (tipo == 2)
+          this.listarGestor();
+        else if (tipo == 3)
+          this.listarPrestador();
+      })
+    } catch{
+      console.log("nao chamaou api");
+    }
   }
 
   deletarUser(id, tipo) {
