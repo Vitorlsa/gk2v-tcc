@@ -90,5 +90,8 @@ export class CadastroGestorComponent implements OnInit {
     };
   }
 
+  voltar(){
+    this.router.navigate(['/cadastro']);
+  }
 
 }

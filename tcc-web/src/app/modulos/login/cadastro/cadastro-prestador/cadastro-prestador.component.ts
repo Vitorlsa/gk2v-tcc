@@ -90,5 +90,9 @@ export class CadastroPrestadorComponent implements OnInit {
     };
   }
 
+  voltar(){
+    this.router.navigate(['/cadastro']);
+  }
+
 
 }

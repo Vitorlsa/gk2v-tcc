@@ -99,4 +99,9 @@ export class CadastroContratanteComponent implements OnInit {
       termos: false,
     };
   }
+
+  voltar(){
+    this.router.navigate(['/cadastro']);
+  }
+
 }

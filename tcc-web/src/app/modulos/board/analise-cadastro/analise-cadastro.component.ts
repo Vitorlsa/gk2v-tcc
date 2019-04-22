@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-analise-cadastro',
@@ -8,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AnaliseCadastroComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router:Router) { }
 
   public gestores = null;
   public contratantes = null;
@@ -94,6 +95,10 @@ export class AnaliseCadastroComponent implements OnInit {
     } catch{
       console.log("nao chamaou api");
     }
+  }
+
+  voltarBoard(){
+    this.router.navigate(['/board']);
   }
 
 }

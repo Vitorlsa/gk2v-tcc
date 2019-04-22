@@ -44,11 +44,11 @@ export class LoginComponent implements OnInit {
 
     this.http.post(this.api, { login: this.usuario.name, senha: this.usuario.senha }).subscribe(data => {
       this.users = data;
-      console.log(this.users);
+      // console.log(this.users);
       this.service.guardaUsuario(this.usuario);
-      this.cookieService.set('Test', this.users.toString());
-      this.cookieValue = this.cookieService.getAll();
-      console.log(this.cookieValue);
+      // this.cookieService.set('Test', this.users.toString());
+      // this.cookieValue = this.cookieService.getAll();
+      // console.log(this.cookieValue);
       this.router.navigate(['/board']);
     }
     );
