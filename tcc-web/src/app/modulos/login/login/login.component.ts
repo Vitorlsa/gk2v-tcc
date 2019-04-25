@@ -23,36 +23,21 @@ export class LoginComponent implements OnInit {
     senha: ""
   };
   public logado = false;
-  //private url = "https://reqres.in";
   private api = "http://localhost:8080/api/usuario/logar";
   public enun: UsuarioEnum
 
   ngOnInit() {
-    console.log(UsuarioEnum.Contratante == 1)
-console.log(this.enun == 1)
-this.enun = UsuarioEnum.Contratante
-console.log(this.enun)
+    console.log(UsuarioEnum.Contratante == 1);
+    console.log(this.enun == 1);
+    this.enun = UsuarioEnum.Contratante;
+    console.log(this.enun);
   };
 
 
   logar() {
-    if (this.usuario.name == "giu" && this.usuario.senha == "123") {
-      this.logado = true;
-    }
-    else {
-      this.logado = false;
-    }
-
-    this.service.teste();
-
-
     this.http.post(this.api, { login: this.usuario.name, senha: this.usuario.senha }).subscribe(data => {
       this.users = data;
-      // console.log(this.users);
       this.service.guardaUsuario(this.usuario);
-      // this.cookieService.set('Test', this.users.toString());
-      // this.cookieValue = this.cookieService.getAll();
-      // console.log(this.cookieValue);
       this.router.navigate(['/board']);
     }
     );

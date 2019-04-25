@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { LoginService } from '../login/login.service';
 
 
 @Component({
@@ -10,18 +11,14 @@ import { CookieService } from 'ngx-cookie-service';
 export class BoardComponent implements OnInit {
 	cookieValue: string;
 
-  constructor(private cookieService: CookieService	) { }
+  constructor(private cookieService: CookieService, private service:LoginService	) { }
 
 public banner1 = "images/banner01.png";
 
 
   ngOnInit() {
 
-
-		this.cookieValue = this.cookieService.get('Test');
-
-    console.log(this.cookieValue);
-
+		console.log(this.service.getUsuario());
 
 
     var	$window = $(window),
@@ -29,8 +26,6 @@ public banner1 = "images/banner01.png";
 			$header = $('#header'),
       $footer = $('#footer');
       
-
-
       // Header.
 			$header.each( function() {
 
@@ -65,6 +60,10 @@ public banner1 = "images/banner01.png";
 
 			});
 
-  }
+	}
+	
+
+	
+
 
 }

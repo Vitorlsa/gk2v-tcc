@@ -12,6 +12,7 @@ import { HomeComponent } from './modulos/home/home.component';
 import { BoardComponent } from './modulos/board/board.component';
 import { UtilsService } from './funcoes/utils.service';
 import { AnaliseCadastroComponent } from './modulos/board/analise-cadastro/analise-cadastro.component';
+import { PerfilComponent } from './modulos/board/perfil/perfil.component';
 
 
 
@@ -21,6 +22,7 @@ import { AnaliseCadastroComponent } from './modulos/board/analise-cadastro/anali
     HomeComponent,
     BoardComponent,
     AnaliseCadastroComponent,
+    PerfilComponent,
   ],
   imports: [
     BrowserModule,

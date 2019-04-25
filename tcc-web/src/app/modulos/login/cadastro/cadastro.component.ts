@@ -17,7 +17,6 @@ export class CadastroComponent implements OnInit {
   public tipoCadastro = null;
 
   ngOnInit() {
-    this.service.teste();
     this.usuario = this.service.getUsuario();
 
     this.tipoCadastro = this.func.nullOrUndef(this.tipoCadastro);

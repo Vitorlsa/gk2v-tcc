@@ -11,13 +11,11 @@ export class LoginService {
 
   guardaUsuario(usua) {
     this.usuario = usua;
+    sessionStorage.setItem('usuarioLogado',JSON.stringify(this.usuario));
   }
 
   getUsuario(){
-    return this.usuario;
+    return JSON.parse(sessionStorage.getItem('usuarioLogado'));
   }
 
-  teste() {
-    console.log("service");
-  }
 }
