@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CadastroServiceService } from '../cadastro-service.service';
+import { Gestor } from 'src/app/classes/gestor';
 
 @Component({
   selector: 'app-cadastro-gestor',
@@ -14,28 +15,32 @@ export class CadastroGestorComponent implements OnInit {
 
   public api = "http://localhost:8080/api/gestor/cadastrar";
 
-  public gestor = {
-    nome: "",
-    login: "",
-    senha: "",
-    confirmaSenha: "",
-    email: "",
-    dataNascimento: "",
-    sexo: 0,
-    cpf: "",
-    telefone: "",
-    cidade: "",
-    estado: "",
-    bairro: "",
-    cep: "",
-    rua: "",
-    numero: "",
-    complemento: "",
-    historico: "",
-    cursos: "",
-    comentario: "",
-    termos: false,
-  };
+  // public gestor = {
+  //   nome: "",
+  //   login: "",
+  //   senha: "",
+  //   confirmaSenha: "",
+  //   email: "",
+  //   dataNascimento: "",
+  //   sexo: 0,
+  //   cpf: "",
+  //   telefone: "",
+  //   cidade: "",
+  //   estado: "",
+  //   bairro: "",
+  //   cep: "",
+  //   rua: "",
+  //   numero: "",
+  //   complemento: "",
+  //   historico: "",
+  //   cursos: "",
+  //   comentario: "",
+  //   termos: false,
+  // };
+
+
+public gestor = new Gestor();
+
 
   ngOnInit() {
     this.limparUsuario();
@@ -53,11 +58,11 @@ export class CadastroGestorComponent implements OnInit {
   }
 
   setSexo(event) {
-    this.gestor.sexo = event.target.value;
+    this.gestor.setSexo(event.target.value);
   }
 
   setTermos(event) {
-    this.gestor.termos = event.target.value;
+    this.gestor.setTermos(event.target.value);
   }
 
   cancelar() {
@@ -66,28 +71,26 @@ export class CadastroGestorComponent implements OnInit {
 
 
   limparUsuario() {
-    this.gestor = {
-      nome: "",
-      login: "",
-      senha: "",
-      confirmaSenha: "",
-      email: "",
-      dataNascimento: "",
-      sexo: 0,
-      cpf: "",
-      telefone: "",
-      cidade: "",
-      estado: "",
-      bairro: "",
-      cep: "",
-      rua: "",
-      numero: "",
-      complemento: "",
-      historico: "",
-      cursos: "",
-      comentario: "",
-      termos: false,
-    };
+    this.gestor.nome= "";
+    this.gestor.login= "";
+    this.gestor.senha= "";
+    this.gestor.confirmaSenha= "";
+    this.gestor.email= "";
+    this.gestor.datanascimento= null;
+    this.gestor.sexo= 0;
+    this.gestor.cpf= "";
+    this.gestor.telefone= "";
+    this.gestor.cidade= "";
+    this.gestor.estado= "";
+    this.gestor.bairro= "";
+    this.gestor.cep= "";
+    this.gestor.rua= "";
+    this.gestor.numero= "";
+    this.gestor.complemento= "";
+    this.gestor.historico= "";
+    this.gestor.cursos= "";
+    this.gestor.comentario= "";
+    this.gestor.termos= false;
   }
 
   voltar(){

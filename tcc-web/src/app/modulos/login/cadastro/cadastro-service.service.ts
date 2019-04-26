@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { UtilsService } from 'src/app/funcoes/utils.service';
+import { CadastroContratanteComponent } from './cadastro-contratante/cadastro-contratante.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CadastroServiceService {
+  contratante: any;
 
-  constructor(private utils:UtilsService) { }
+  constructor(private utils: UtilsService) { }
 
 
   setSexo() {
@@ -24,12 +26,19 @@ export class CadastroServiceService {
       return false;
 
     for (var key in usuario) {
-      if(this.utils.nullOrUndefOrEmpty(usuario[key]))
-      return false;
+      if (this.utils.nullOrUndefOrEmpty(usuario[key]))
+        return false;
     }
 
     return true
   }
 
+  setContratantePaciente(contratante) {
+    this.contratante = contratante;
+  }
+
+  getContratantePaciente() {
+    return this.contratante;
+  }
 
 }

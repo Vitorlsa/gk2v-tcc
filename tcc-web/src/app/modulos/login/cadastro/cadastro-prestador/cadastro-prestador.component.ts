@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CadastroServiceService } from '../cadastro-service.service';
+import { Prestador } from 'src/app/classes/prestador';
 
 @Component({
   selector: 'app-cadastro-prestador',
@@ -14,27 +15,31 @@ export class CadastroPrestadorComponent implements OnInit {
 
 
   public api = "http://localhost:8080/api/prestadordeservico/cadastrar";
-  public prestador = {
-    nome: "",
-    login: "",
-    senha: "",
-    confirmaSenha: "",
-    email: "",
-    dataNascimento: "",
-    sexo: 0,
-    cpf: "",
-    telefone: "",
-    cidade: "",
-    estado: "",
-    bairro: "",
-    cep: "",
-    rua: "",
-    numero: "",
-    complemento: "",
-    competencias: "",
-    comentario: "",
-    termos: false,
-  };
+
+public prestador = new Prestador();
+
+
+  // public prestador = {
+  //   nome: "",
+  //   login: "",
+  //   senha: "",
+  //   confirmaSenha: "",
+  //   email: "",
+  //   dataNascimento: "",
+  //   sexo: 0,
+  //   cpf: "",
+  //   telefone: "",
+  //   cidade: "",
+  //   estado: "",
+  //   bairro: "",
+  //   cep: "",
+  //   rua: "",
+  //   numero: "",
+  //   complemento: "",
+  //   competencias: "",
+  //   comentario: "",
+  //   termos: false,
+  // };
 
 
 
@@ -54,11 +59,11 @@ export class CadastroPrestadorComponent implements OnInit {
   }
 
   setSexo(event) {
-    this.prestador.sexo = event.target.value;
+    this.prestador.setSexo(event.target.value);
   }
 
   setTermos(event) {
-    this.prestador.termos = event.target.value;
+    this.prestador.setTermos(event.target.value);
   }
 
   cancelar() {
@@ -67,27 +72,26 @@ export class CadastroPrestadorComponent implements OnInit {
 
 
   limparUsuario() {
-    this.prestador = {
-      nome: "",
-      login: "",
-      senha: "",
-      confirmaSenha: "",
-      email: "",
-      dataNascimento: "",
-      sexo: 0,
-      cpf: "",
-      telefone: "",
-      cidade: "",
-      estado: "",
-      bairro: "",
-      cep: "",
-      rua: "",
-      numero: "",
-      complemento: "",
-      competencias: "",
-      comentario: "",
-      termos: false,
-    };
+    // this.prestador = new Prestador();
+    this.prestador.nome = "";
+    this.prestador.login= "";
+    this.prestador.senha= "";
+    this.prestador.confirmaSenha= "";
+    this.prestador.email= "";
+    this.prestador.datanascimento= null;
+    this.prestador.sexo= 0;
+    this.prestador.cpf= "";
+    this.prestador.telefone= "";
+    this.prestador.cidade= "";
+    this.prestador.estado= "";
+    this.prestador.bairro= "";
+    this.prestador.cep= "";
+    this.prestador.rua= "";
+    this.prestador.numero= "";
+    this.prestador.complemento= "";
+    this.prestador.competencias= "";
+    this.prestador.comentario= "";
+    this.prestador.termos= false;
   }
 
   voltar(){

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { UsuarioEnum } from 'src/app/usuario-enum.enum';
+import { UsuarioEnum } from 'src/app/enum/usuario-enum.enum';
 
 
 

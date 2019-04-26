@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CadastroServiceService } from '../cadastro-service.service';
+import { Usuario } from 'src/app/classes/usuario';
 
 @Component({
   selector: 'app-cadastro-contratante',
@@ -12,28 +13,8 @@ export class CadastroContratanteComponent implements OnInit {
 
   constructor(private router: Router, private http: HttpClient, private cadastroService: CadastroServiceService) { }
 
-  //// precisa criar os types com typescript senao nao faz o bind na hora do post
-  public usuario: {
-    nome: "",
-    login: "",
-    senha: "",
-    confirmaSenha: "",
-    email: "",
-    datanascimento: "",
-    sexo: 0,
-    cpf: "",
-    telefone: "",
-    cidade: "",
-    comentario: "",
-    termos: false,
-    estado: "",
-    bairro: "",
-    cep: "",
-    rua: "",
-    numero: "",
-    complemento: ""
+public usuario = new Usuario();
 
-  };
   public api = "http://localhost:8080/api/contratante/cadastrar";
   public termos = [{
     valor: true,
@@ -50,11 +31,11 @@ export class CadastroContratanteComponent implements OnInit {
 
 
   setSexo(event) {
-    this.usuario.sexo = event.target.value;
+    this.usuario.setSexo(event.target.value);
   }
 
   setTermos(event) {
-    this.usuario.termos = event.target.value;
+    this.usuario.setTermos(event.target.value);
   }
 
   salvar() {
@@ -62,6 +43,7 @@ export class CadastroContratanteComponent implements OnInit {
       this.http.post(this.api, this.usuario).subscribe(
         res => {
           alert("Cadastro salvo com sucesso");
+          this.cadastroService.setContratantePaciente(this.usuario);
         },
         err => {
           console.log(err);
@@ -77,30 +59,28 @@ export class CadastroContratanteComponent implements OnInit {
   }
 
 
-  limparUsuario() {
-    this.usuario = {
-      nome: "",
-      login: "",
-      senha: "",
-      confirmaSenha: "",
-      email: "",
-      datanascimento: "",
-      sexo: 0,
-      cpf: "",
-      telefone: "",
-      cidade: "",
-      estado: "",
-      bairro: "",
-      cep: "",
-      rua: "",
-      numero: "",
-      complemento: "",
-      comentario: "",
-      termos: false,
-    };
+  limparUsuario() {    
+    this.usuario.nome= "";
+    this.usuario.login= "";
+    this.usuario.senha= "";
+    this.usuario.confirmaSenha= "";
+    this.usuario.email= "";
+    this.usuario.datanascimento= null;
+    this.usuario.sexo= 0;
+    this.usuario.cpf= "";
+    this.usuario.telefone= "";
+    this.usuario.cidade="";
+    this.usuario.estado= "";
+    this.usuario.bairro= "";
+    this.usuario.cep= "";
+    this.usuario.rua= "";
+    this.usuario.numero= "";
+    this.usuario.complemento= "";
+    this.usuario.comentario= "";
+    this.usuario.termos= false;
   }
 
-  voltar(){
+  voltar() {
     this.router.navigate(['/cadastro']);
   }
 
