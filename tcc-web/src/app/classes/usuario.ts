@@ -21,7 +21,7 @@ export class Usuario {
     public complemento: string;
 
 
-    constructor() { console.log("construtor usuario")}
+    constructor() { }
 
 
     setSexo(sexo) {
