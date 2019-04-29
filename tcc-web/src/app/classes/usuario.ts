@@ -1,4 +1,5 @@
 import { Sexoenum } from '../enum/sexoenum.enum';
+import { UsuarioEnum } from '../enum/usuario-enum.enum';
 
 export class Usuario {
     public nome: string;
@@ -19,6 +20,7 @@ export class Usuario {
     public rua: string;
     public numero: string;
     public complemento: string;
+    public perfilLogado:UsuarioEnum;
 
 
     constructor() { }

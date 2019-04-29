@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { LoginService } from '../login/login.service';
 
@@ -10,60 +10,52 @@ import { LoginService } from '../login/login.service';
 })
 export class BoardComponent implements OnInit {
 	cookieValue: string;
-
-  constructor(private cookieService: CookieService, private service:LoginService	) { }
-
-public banner1 = "images/banner01.png";
-
-
-  ngOnInit() {
-
-		console.log(this.service.getUsuario());
+	serviceContext:LoginService;
+  constructor(private cookieService: CookieService, private service:LoginService	) {
+		 this.serviceContext = service;
+	 }
 
 
-    var	$window = $(window),
-			$body = $('body'),
+@Input()
+perfilSelecionado = null; 
+
+
+pegaPerfilSelecionado(){
+	this.perfilSelecionado = this.serviceContext.getPerfil();
+}
+
+
+
+ngOnInit() {
+	//this.serviceContext.perfilAtual(this.pegaPerfilSelecionado);
+
+	var	$window = $(window),
 			$header = $('#header'),
       $footer = $('#footer');
       
       // Header.
 			$header.each( function() {
-
 				var t 		= jQuery(this),
 					button 	= t.find('.button');
-
 				button.click(function(e) {
-
 					t.toggleClass('hide');
-
 					if ( t.hasClass('preview') ) {
 						return true;
 					} else {
 						e.preventDefault();
 					}
-
 				});
-
 			});
 
-
 			$footer.each( function() {
-
 				var t 		= jQuery(this),
 					inner 	= t.find('.inner'),
 					button 	= t.find('.info');
-
 				button.click(function(e) {
 					t.toggleClass('show');
 					e.preventDefault();
 				});
 
 			});
-
 	}
-	
-
-	
-
-
 }
