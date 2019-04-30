@@ -1,42 +1,69 @@
-<h1>Cadastros a serem analisados</h1>
-<section>
-  <h2>Contratantes</h2>
-  <div class="listaAnalise" *ngFor="let cadastro of this.contratantes">
-    <p>{{cadastro.nome}}</p>
-    <br>
-    <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
-    <button (click)="aprovar(cadastro.id,true, 1)">Aprovar</button>
-    <button (click)="aprovar(cadastro.id,false, 1)" class="reprovar">Reprovar</button>
-    <button (click)="deletarUser(cadastro.id, 1)">Recusar</button>
-  </div>
-</section>
+<div id="preview">
+  <div class="inner">
+    <div class="content">
+      <header>
+        <h1>Cadastros a serem analisados</h1>
+      </header>
+      <div id="welcome">
+        <div class="row">
+          <div class="col-lg-12">
+            <section class="panel">
+              <header class="panel-heading">
+              </header>
+              <div class="panel-body">
+                <div class="form">
 
-<section>
-  <h2>Gestores</h2>
-  <div class="listaAnalise" *ngFor="let cadastro of this.gestores">
-    <p>{{cadastro.nome}}</p>
-    <br />
-    <p>Cursos: {{cadastro.cursosCertificacoes}}</p>
-    <br />
-    <p>Historico profissional:{{cadastro.historicoProfissional}}</p>
-    <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
-    <button (click)="aprovar(cadastro.id, true, 2)">Aprovar</button>
-    <button (click)="aprovar(cadastro.id, false, 2)" class="reprovar">Reprovar</button>
-    <button (click)="deletarUser(cadastro.id, 2)">Recusar</button>
-  </div>
-</section>
 
-<section>
-  <h2>Prestadores</h2>
-  <div class="listaAnalise" *ngFor="let cadastro of this.prestadores">
-    <p>{{cadastro.nome}}</p>
-    <br>
-    <p>Competencias: {{cadastro.competencias}}</p>
-    <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
-    <button (click)="aprovar(cadastro.id,true, 3)">Aprovar</button>
-    <button (click)="aprovar(cadastro.id,false,3)" class="reprovar">Reprovar</button>
-    <button (click)="deletarUser(cadastro.id, 3)">Recusar</button>
-  </div>
-</section>
 
-<button (click)="voltarBoard()">Voltar</button>
+
+                  <section>
+                    <h2>Contratantes</h2>
+                    <div class="listaAnalise" *ngFor="let cadastro of this.contratantes">
+                      <p>{{cadastro.nome}}</p>
+                      <br>
+                      <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
+                      <button (click)="aprovar(cadastro.id,true, 1)">Aprovar</button>
+                      <button (click)="aprovar(cadastro.id,false, 1)" class="reprovar">Reprovar</button>
+                      <button (click)="deletarUser(cadastro.id, 1)">Recusar</button>
+                    </div>
+                  </section>
+
+                  <section>
+                    <h2>Gestores</h2>
+                    <div class="listaAnalise" *ngFor="let cadastro of this.gestores">
+                      <p>{{cadastro.nome}}</p>
+                      <br />
+                      <p>Cursos: {{cadastro.cursosCertificacoes}}</p>
+                      <br />
+                      <p>Historico profissional:{{cadastro.historicoProfissional}}</p>
+                      <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
+                      <button (click)="aprovar(cadastro.id, true, 2)">Aprovar</button>
+                      <button (click)="aprovar(cadastro.id, false, 2)" class="reprovar">Reprovar</button>
+                      <button (click)="deletarUser(cadastro.id, 2)">Recusar</button>
+                    </div>
+                  </section>
+
+                  <section>
+                    <h2>Prestadores</h2>
+                    <div class="listaAnalise" *ngFor="let cadastro of this.prestadores">
+                      <p>{{cadastro.nome}}</p>
+                      <br>
+                      <p>Competencias: {{cadastro.competencias}}</p>
+                      <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
+                      <button (click)="aprovar(cadastro.id,true, 3)">Aprovar</button>
+                      <button (click)="aprovar(cadastro.id,false,3)" class="reprovar">Reprovar</button>
+                      <button (click)="deletarUser(cadastro.id, 3)">Recusar</button>
+                    </div>
+                  </section>
+
+                  <button (click)="voltarBoard()">Voltar</button>
+
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
