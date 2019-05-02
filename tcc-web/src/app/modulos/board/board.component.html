@@ -1,4 +1,6 @@
-<app-modalperfil (pSelect)="pegaPerfilSelecionado($event)"></app-modalperfil>
+<div *ngIf="this.perfilSelecionado == null">
+  <app-modalperfil (pSelect)="pegaPerfilSelecionado($event)"></app-modalperfil>
+</div>
 <p>Tipo: {{this.perfilSelecionado}}</p>
 <!-- Header -->
 <header id="header">
@@ -37,8 +39,9 @@
         <a><img src="../../../assets/images/board/banner04.png" alt="" /></a>
       </div>
 
-      <div class="image fit clicavel" >
-        <a href="cadastroPaciente"><img src="../../../assets/images/board/Intern_Banner_Template_Paciente.png" alt="" /></a>
+      <div class="image fit clicavel">
+        <a href="cadastroPaciente"><img src="../../../assets/images/board/Intern_Banner_Template_Paciente.png"
+            alt="" /></a>
       </div>
 
       <div class="image fit clicavel" style="background-color: blue;">

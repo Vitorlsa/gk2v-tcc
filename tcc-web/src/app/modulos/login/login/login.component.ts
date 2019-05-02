@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
     console.log(this.enun == 1);
     this.enun = UsuarioEnum.Contratante;
     console.log(this.enun);
+    sessionStorage.clear();
   };
 
 
