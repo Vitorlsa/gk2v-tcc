@@ -14,6 +14,7 @@ import { UtilsService } from './funcoes/utils.service';
 import { AnaliseCadastroComponent } from './modulos/board/analise-cadastro/analise-cadastro.component';
 import { PerfilComponent } from './modulos/board/perfil/perfil.component';
 import { ModalperfilComponent } from './modulos/modal/modalperfil/modalperfil.component';
+import { ModalAnaliseComponent } from './modulos/modal/modal-analise/modal-analise.component';
 
 
 
@@ -25,6 +26,7 @@ import { ModalperfilComponent } from './modulos/modal/modalperfil/modalperfil.co
     AnaliseCadastroComponent,
     PerfilComponent,
     ModalperfilComponent,
+    ModalAnaliseComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,7 @@
   <div class="inner">
     <div class="content">
       <header>
-        <h1>Cadastros a serem analisados</h1>
+        <h1 class="tituloPrincipal">Cadastros a serem analisados</h1>
       </header>
       <div id="welcome">
         <div class="row">
@@ -12,13 +12,9 @@
               </header>
               <div class="panel-body">
                 <div class="form">
-
-
-
-
                   <section>
-                    <h2>Contratantes</h2>
-                    <div class="listaAnalise" *ngFor="let cadastro of this.contratantes">
+                    <h2 class="titulo">Contratantes</h2>
+                    <div class="listaAnalise" *ngFor="let cadastro of this.contratantes" (click)="this.abreDetalhe(cadastro)">
                       <p>{{cadastro.nome}}</p>
                       <br>
                       <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
@@ -29,8 +25,8 @@
                   </section>
 
                   <section>
-                    <h2>Gestores</h2>
-                    <div class="listaAnalise" *ngFor="let cadastro of this.gestores">
+                    <h2 class="titulo">Gestores</h2>
+                    <div class="listaAnalise" *ngFor="let cadastro of this.gestores" (click)="this.abreDetalhe(cadastro)">
                       <p>{{cadastro.nome}}</p>
                       <br />
                       <p>Cursos: {{cadastro.cursosCertificacoes}}</p>
@@ -44,8 +40,8 @@
                   </section>
 
                   <section>
-                    <h2>Prestadores</h2>
-                    <div class="listaAnalise" *ngFor="let cadastro of this.prestadores">
+                    <h2 class="titulo">Prestadores</h2>
+                    <div class="listaAnalise" *ngFor="let cadastro of this.prestadores" (click)="this.abreDetalhe(cadastro)">
                       <p>{{cadastro.nome}}</p>
                       <br>
                       <p>Competencias: {{cadastro.competencias}}</p>
@@ -55,15 +51,15 @@
                       <button (click)="deletarUser(cadastro.id, 3)">Recusar</button>
                     </div>
                   </section>
-
                   <button (click)="voltarBoard()">Voltar</button>
-
                 </div>
               </div>
             </section>
           </div>
-        </div>
+        </div> 
       </div>
     </div>
   </div>
 </div>
+<!-- <app-modal-analise *ngIf="!this.util.nullOrUndef(this.cadastroSelecionado)" (emitir)="abreDetalhe($event)"></app-modal-analise> -->
+<app-modal-analise *ngIf="!this.util.nullOrUndef(this.cadastroSelecionado)" [cadastroSelecionado]="this.cadastroSelecionado"></app-modal-analise>
