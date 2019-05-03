@@ -6,7 +6,7 @@
     <label class="modal-overlay" for="modal-one"></label>
     <div class="modal-dialog">
       <div class="modal-header">
-        <h2>Dados cadastrais</h2>        
+        <h2 class="titulo">Dados cadastrais</h2>        
         <label class="btn-close" for="modal-one" aria-hidden="true">×</label>
       </div>
       <div class="modal-body">
@@ -16,7 +16,7 @@
         </div>
         <div>
           <label for="nasc">Data de Nascimento</label>
-          <input type="text" id="nasc" [(ngModel)]="this.cadastroSelecionado.dataNascimento" readonly>
+          <input type="text" id="nasc" [(ngModel)]="this.dataFormatada" readonly>
         </div>
         <div>
           <label for="sexo">Sexo</label>

@@ -85,3 +85,30 @@ textarea{
     border-top:#eaeaea solid 1px;
     text-align:right
 }
+
+
+input[type="text"], input[type="password"], input[type="email"], select, textarea {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    border-radius: 4px;
+    border: none;
+    border: solid 1px;
+    color: inherit;
+    display: block;
+    outline: 0;
+    padding: 0 1em;
+    text-decoration: none;
+    width: 100%;
+}
+
+input[type="text"], input[type="password"], input[type="email"], select, textarea {
+    background: rgba(144, 144, 144, 0.075);
+    border-color: rgba(144, 144, 144, 0.25);
+    width: 530px;
+}
+
+input[type="text"], input[type="password"], input[type="email"], select {
+    height: 2.75em;
+}
