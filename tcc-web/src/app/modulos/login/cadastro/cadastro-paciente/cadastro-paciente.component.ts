@@ -18,6 +18,48 @@ public paciente = new Paciente();
 
   ngOnInit() {
     this.limparPaciente();
+
+
+
+
+
+
+    var $window = $(window),
+			$header = $('#header'),
+			$footer = $('#footer');
+
+		// Header.
+		$header.each(function () {
+			var t = jQuery(this),
+				button = t.find('.button');
+			button.click(function (e) {
+				t.toggleClass('hide');
+				if (t.hasClass('preview')) {
+					return true;
+				} else {
+					e.preventDefault();
+				}
+			});
+		});
+
+		$footer.each(function () {
+			var t = jQuery(this),
+				inner = t.find('.inner'),
+				button = t.find('.info');
+			button.click(function (e) {
+				t.toggleClass('show');
+				e.preventDefault();
+			});
+
+		});
+	
+
+
+
+
+
+
+    
   }
 
 
@@ -38,9 +80,9 @@ public paciente = new Paciente();
 
   limparPaciente() {    
     this.paciente.nome= "";
-    this.paciente.login= "";
-    this.paciente.senha= "";
-    this.paciente.confirmaSenha= "";
+    // this.paciente.login= "";
+    // this.paciente.senha= "";
+    // this.paciente.confirmaSenha= "";
     this.paciente.email= "";
     this.paciente.datanascimento= null;
     this.paciente.sexo= 0;
@@ -54,6 +96,8 @@ public paciente = new Paciente();
     this.paciente.numero= "";
     this.paciente.complemento= "";
     this.paciente.comentario= "";
-    this.paciente.termos= false;
+    //this.paciente.termos= false;
+    this.paciente.condicoesClinicas = "";
+    
   }
 }
