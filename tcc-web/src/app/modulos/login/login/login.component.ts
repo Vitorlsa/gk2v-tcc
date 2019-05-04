@@ -15,10 +15,8 @@ import { CookieService } from 'ngx-cookie-service';
 export class LoginComponent implements OnInit {
 
   constructor(private http: HttpClient, private service: LoginService, private router: Router, private cookieService: CookieService) { }
-
-  cookieValue = 'UNKNOWN';  
+ 
   public api = "http://localhost:8080/api/usuario/logar"
-  public users: object;
   public usuario = {
     login: "",
     senha: ""
@@ -34,8 +32,7 @@ export class LoginComponent implements OnInit {
     return this.http.post(this.api,this.usuario).subscribe(data => 
       {
         if(data != null)
-        {
-          
+        {          
           this.cookieService.set("usuarioLogado","teste");
           this.router.navigate(['/board']);
         }
@@ -53,7 +50,5 @@ export class LoginComponent implements OnInit {
   cadastro() {
     this.router.navigate(['/cadastro']);
   }
-
-
 }
 
