@@ -3,7 +3,6 @@ import { LoginService } from '../login.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UtilsService } from 'src/app/funcoes/utils.service';
-import { utils } from 'protractor';
 
 @Component({
   selector: 'app-cadastro',
@@ -18,20 +17,14 @@ export class CadastroComponent implements OnInit {
   public tipoCadastro = null;
 
   ngOnInit() {
-    this.service.teste();
     this.usuario = this.service.getUsuario();
 
     this.tipoCadastro = this.func.nullOrUndef(this.tipoCadastro);
 
   }
 
-
-  voltarLogin() {
-    this.router.navigate(['']);
-  }
-
-  cadastrar() {
-    this.router.navigate(['']);
+  voltar(){
+    this.router.navigate(['/login']);
   }
 
 }

@@ -1,0 +1,24 @@
+<label class="btn" for="modal-one">Selecionar Perfil</label>
+<!-- Modal One -->
+<div class="modal">
+  <input class="modal-open" id="modal-one" type="checkbox" hidden>
+  <div class="modal-wrap" aria-hidden="true" role="dialog">
+    <label class="modal-overlay" for="modal-one"></label>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2>Vimos que você possui diversos perfis</h2>
+        <p>Como deseja acessar?</p>
+        <label class="btn-close" for="modal-one" aria-hidden="true">×</label>
+      </div>
+      <div class="modal-body">
+        <p style="cursor: pointer" (click)="this.selecionaPerfil(1)">Contratante</p>
+        <p style="cursor: pointer" (click)="this.selecionaPerfil(2)">Gestor</p>
+        <p style="cursor: pointer" (click)="this.selecionaPerfil(3)">Prestador de serviço</p>
+      </div>
+      <div class="modal-footer">
+        <!-- <label class="btn btn-primary" for="modal-one" (click)="fecha()">Nice!</label> -->
+        <button (click)="fecha()">OK!</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -83,7 +83,7 @@
                       <label for="nascimento" class="control-label col-lg-2">Data de Nascimento <span
                           class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="prestador.dataNascimento  " class="form-control " id="nascimento"
+                        <input [(ngModel)]="prestador.datanascimento  " class="form-control " id="nascimento"
                           name="nascimento" type="date" />
                       </div>
                     </div>
@@ -92,9 +92,9 @@
                       <label for="sexo" class="control-label col-lg-2">Sexo <span class="required">*</span></label>
                       <select (change)="setSexo($event)" id=sexo>
                         <!-- [(ngModel)]="prestador.sexo" -->
-                        <option [value]="2">Outro</option>
-                        <option [value]="0">Masculino</option>
-                        <option [value]="1">Feminino</option>
+                        <option [value]="3">Outro</option>
+                          <option [value]="1">Masculino</option>
+                          <option [value]="2">Feminino</option>
                       </select>
                     </div>
                     <br>
@@ -212,6 +212,8 @@
       </div>
     </div>
   </div>
+  <button (click)="voltar()">Voltar</button>
+
 </div>
 
 <!-- Footer -->

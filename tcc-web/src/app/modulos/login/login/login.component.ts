@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
-import { CadastroComponent } from '../cadastro/cadastro.component';
 import { CookieService } from 'ngx-cookie-service';
+import { UsuarioEnum } from 'src/app/enum/usuario-enum.enum';
 
 
 
@@ -13,6 +13,7 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  public users: Object;
 
   constructor(private http: HttpClient, private service: LoginService, private router: Router, private cookieService: CookieService) { }
  
@@ -22,25 +23,24 @@ export class LoginComponent implements OnInit {
     senha: ""
   };
   public logado = false;
+  public enun: UsuarioEnum
 
   ngOnInit() {
-
+    console.log(UsuarioEnum.Contratante == 1);
+    console.log(this.enun == 1);
+    this.enun = UsuarioEnum.Contratante;
+    console.log(this.enun);
+    sessionStorage.clear();
   };
 
 
-  getUsers() {
-    return this.http.post(this.api,this.usuario).subscribe(data => 
-      {
-        if(data != null)
-        {          
-          this.cookieService.set("usuarioLogado","teste");
-          this.router.navigate(['/board']);
-        }
-      });
-  }
-
   logar() {
-    this.getUsers();
+    this.http.post(this.api, { login: this.usuario.login, senha: this.usuario.senha }).subscribe(data => {
+      this.users = data;
+      this.service.guardaUsuario(this.usuario);
+      this.router.navigate(['/board']);
+    }
+    );
   }
 
   voltarHome() {

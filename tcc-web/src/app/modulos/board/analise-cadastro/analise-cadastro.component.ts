@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { UtilsService } from 'src/app/funcoes/utils.service';
+import { ModalperfilComponent } from '../../modal/modalperfil/modalperfil.component';
+import { ModalAnaliseComponent } from '../../modal/modal-analise/modal-analise.component';
 
 @Component({
   selector: 'app-analise-cadastro',
@@ -8,30 +12,44 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AnaliseCadastroComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router:Router, public util:UtilsService) { }
 
   public gestores = null;
   public contratantes = null;
   public prestadores = null;
-  // public cadastrado = { nome: "Orandi", desc: ["enfermeiro", "cuidador"] };
+  //public cadastroSelecionado = null;
   private apiContratante = "http://localhost:8080/api/contratante/listarnaoaprovados";
   private apiPrestador = "http://localhost:8080/api/prestadordeservico/listarnaoaprovados";
   private apiGestor = "http://localhost:8080/api/gestor/listarnaoaprovados";
-  private apiDeletar = "http://localhost:8080/api/usuario/deletar"
+  private apiDeletar = "http://localhost:8080/api/usuario/deletar";
+  private apiAprovar = "http://localhost:8080/api/usuario/analisar";
+
+
 
   ngOnInit() {
-    //this.cadastros.push(this.cadastrado);
     this.listarContratante();
     this.listarGestor();
     this.listarPrestador();
   }
 
-  aprovar(cadastro) {
-    console.log("aprovado" + cadastro);
-  }
+  @Output()
+  emitir = new EventEmitter<any>();
+  cadastroSelecionado = null;
 
-  reprovar(cadastro) {
-    console.log("reprovado" + cadastro);
+  aprovar(id, param, tipo) {
+    try {
+      this.http.post(this.apiAprovar, { Id: id, Aprovado: param }).subscribe(data => {
+        console.log(data);
+        if (tipo == 1)
+          this.listarContratante();
+        else if (tipo == 2)
+          this.listarGestor();
+        else if (tipo == 3)
+          this.listarPrestador();
+      })
+    } catch{
+      console.log("nao chamaou api");
+    }
   }
 
   deletarUser(id, tipo) {
@@ -48,9 +66,6 @@ export class AnaliseCadastroComponent implements OnInit {
     } catch{
       console.log("nao chamaou api");
     }
-
-
-
   }
 
 
@@ -85,6 +100,19 @@ export class AnaliseCadastroComponent implements OnInit {
     } catch{
       console.log("nao chamaou api");
     }
+  }
+
+
+  abreDetalhe(cadastro) {
+    console.log(cadastro);
+    this.cadastroSelecionado = cadastro;
+    console.log(!this.util.nullOrUndef(this.cadastroSelecionado));
+    this.emitir.emit(this.cadastroSelecionado);
+    $('.modal-open').prop('checked', true);
+  }
+
+  voltarBoard(){
+    this.router.navigate(['/board']);
   }
 
 }

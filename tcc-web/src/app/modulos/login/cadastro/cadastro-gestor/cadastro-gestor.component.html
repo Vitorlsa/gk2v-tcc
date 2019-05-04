@@ -28,10 +28,10 @@
         <div class="title">
           <span class="byline"><b>Preencha todos os campos obrigatórios.</b></span>
         </div>
-        <br>            
+        <br>
         <div class="row">
-            <div class="col-lg-12">
-              <section class="panel">
+          <div class="col-lg-12">
+            <section class="panel">
               <header class="panel-heading">
               </header>
               <div class="panel-body">
@@ -75,7 +75,7 @@
                       <div class="form-group ">
                           <label for="nascimento" class="control-label col-lg-2">Data de Nascimento <span class="required">*</span></label>
                           <div class="col-lg-10">
-                            <input [(ngModel)]="gestor.dataNascimento" class="form-control " id="nascimento" name="nascimento" type="date" />
+                            <input [(ngModel)]="gestor.datanascimento" class="form-control " id="nascimento" name="nascimento" type="date" />
                           </div>
                         </div>
                       <br>
@@ -83,9 +83,9 @@
                           <label for="sexo" class="control-label col-lg-2">Sexo <span class="required">*</span></label>
                           <select (change)="setSexo($event)" id=sexo>
                               <!-- [(ngModel)]="prestador.sexo" -->
-                              <option [value]="2">Outro</option>
-                              <option [value]="0">Masculino</option>
-                              <option [value]="1">Feminino</option>
+                              <option [value]="3">Outro</option>
+                          <option [value]="1">Masculino</option>
+                          <option [value]="2">Feminino</option>
                             </select>
                         </div>
                       <br>
@@ -182,22 +182,24 @@
                       <INPUT TYPE="RADIO" NAME="OPCAO2" VALUE="op2_epoca"> Não aceito <br>
                     </form> 
                 </div> -->
-                <br>
-                  <div class="form-group">
-                  <div class="col-lg-offset-2 col-lg-10">
-                    <button (click)="salvar()" class="btn btn-primary" type="submit">Enviar</button>
-                    <button (click)="cancelar()" class="btn btn-default" type="button">Cancelar</button>
-                  </div>
-                  </div>
-                </form>
+                    <br>
+                    <div class="form-group">
+                      <div class="col-lg-offset-2 col-lg-10">
+                        <button (click)="salvar()" class="btn btn-primary" type="submit">Enviar</button>
+                        <button (click)="cancelar()" class="btn btn-default" type="button">Cancelar</button>
+                      </div>
+                    </div>
+                  </form>
                 </div>
               </div>
-              </section>
-            </div>
+            </section>
           </div>
         </div>
       </div>
+    </div>
   </div>
+  <button (click)="voltar()">Voltar</button>
+
 </div>
 
 <!-- Footer -->
@@ -206,7 +208,8 @@
   <div class="inner">
     <div class="content">
       <h3>Bem Vindo ao Life Care Manager</h3>
-      <p>Com uma equipe qualificada com médicos experientes e o mais alto padrão de atendimento, a LCM oferece qualidade, economia, e mais comodidade para você e sua família.</p>
+      <p>Com uma equipe qualificada com médicos experientes e o mais alto padrão de atendimento, a LCM oferece
+        qualidade, economia, e mais comodidade para você e sua família.</p>
     </div>
     <div class="copyright">
       <h3>Siga-nos</h3>

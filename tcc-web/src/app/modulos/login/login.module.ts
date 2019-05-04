@@ -6,10 +6,11 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { CadastroContratanteComponent } from './cadastro/cadastro-contratante/cadastro-contratante.component';
 import { CadastroPrestadorComponent } from './cadastro/cadastro-prestador/cadastro-prestador.component';
 import { CadastroGestorComponent } from './cadastro/cadastro-gestor/cadastro-gestor.component';
+import { CadastroPacienteComponent } from './cadastro/cadastro-paciente/cadastro-paciente.component';
 
 
 @NgModule({
-  declarations: [LoginComponent, CadastroComponent, CadastroContratanteComponent, CadastroPrestadorComponent, CadastroGestorComponent],
+  declarations: [LoginComponent, CadastroComponent, CadastroContratanteComponent, CadastroPrestadorComponent, CadastroGestorComponent, CadastroPacienteComponent],
   imports: [
     CommonModule,
     FormsModule
