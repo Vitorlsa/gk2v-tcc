@@ -10,11 +10,25 @@ export class LoginService {
 
   private usuario = new Usuario();
   private pegaPerfil;
+  private perfis = []
   
 
   guardaUsuario(usua) {
     this.usuario = usua;
     sessionStorage.setItem('usuarioLogado', JSON.stringify(this.usuario));
+    this.guardaPerfil(usua);
+  }
+
+  guardaPerfil(usua){
+    this.perfis = []
+    usua.acessos.forEach(element => {
+      this.perfis.push(element.perfil);
+    });
+     sessionStorage.setItem('tipoPerfil', JSON.stringify(this.perfis));
+  }
+
+  getSessionPerfil(){
+    return JSON.parse(sessionStorage.tipoPerfil);
   }
 
   getUsuario() {

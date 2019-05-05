@@ -18,6 +18,8 @@ export class BoardComponent implements OnInit {
 		this.serviceContext = service;
 	}
 
+	public perfilsUsuario = null;
+
 
 	@Input()
 	perfilSelecionado = null;
@@ -31,12 +33,15 @@ export class BoardComponent implements OnInit {
 
 
 	ngOnInit() {
-		if (this.util.nullOrUndef(this.perfilSelecionado)) {
-			if (!this.util.nullOrUndef(sessionStorage.getItem('tipoPerfil'))) {
-				this.perfilSelecionado = sessionStorage.getItem('tipoPerfil');
-			}
-		}
+		// 	if (this.util.nullOrUndef(this.perfilSelecionado)) {
+		// 		if (!this.util.nullOrUndef(sessionStorage.getItem('tipoPerfil'))) {
+		// 			this.perfilSelecionado = sessionStorage.getItem('tipoPerfil');
+		// 		}
+		// 	}
 
+		this.perfilsUsuario = this.service.getSessionPerfil();
+		if (this.perfilsUsuario.length == 1)
+			this.perfilSelecionado = this.perfilsUsuario[0];
 
 		var $window = $(window),
 			$header = $('#header'),

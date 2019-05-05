@@ -1,4 +1,4 @@
-<div *ngIf="this.perfilSelecionado == null">
+<div *ngIf="this.perfilsUsuario.length > 1 && perfilSelecionado == null">
   <app-modalperfil (pSelect)="pegaPerfilSelecionado($event)"></app-modalperfil>
 </div>
 <p>Tipo: {{this.perfilSelecionado}}</p>

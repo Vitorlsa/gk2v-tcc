@@ -37,12 +37,12 @@ export class LoginComponent implements OnInit {
 
   logar() {
     this.http.post(this.api, { login: this.usuario.login, senha: this.usuario.senha }).subscribe(data => {
-      //if (!this.util.nullOrUndef(data)) {
+      if (!this.util.nullOrUndef(data)) {
         this.users = data;
-        this.service.guardaUsuario(this.usuario);
+        this.service.guardaUsuario(this.users);
         this.router.navigate(['/board']);
-      //} else
-        //alert("Usuario nao existe");
+      } else
+        alert("Usuario nao existe");
     }
     );
   }

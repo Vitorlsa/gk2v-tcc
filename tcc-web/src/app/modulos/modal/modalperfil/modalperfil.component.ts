@@ -20,6 +20,9 @@ export class ModalperfilComponent implements OnInit {
 
   ngOnInit() {
     $('.modal-open').prop('checked', true);
+
+    this.tipoU = this.loginService.getSessionPerfil();
+    console.log(this.tipoU);
   }
 
   fecha() {

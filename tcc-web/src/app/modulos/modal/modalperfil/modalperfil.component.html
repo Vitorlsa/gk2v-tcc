@@ -11,9 +11,9 @@
         <label class="btn-close" for="modal-one" aria-hidden="true">×</label>
       </div>
       <div class="modal-body">
-        <p style="cursor: pointer" (click)="this.selecionaPerfil(1)">Contratante</p>
-        <p style="cursor: pointer" (click)="this.selecionaPerfil(2)">Gestor</p>
-        <p style="cursor: pointer" (click)="this.selecionaPerfil(3)">Prestador de serviço</p>
+        <p *ngIf="tipoU.includes(2)" style="cursor: pointer" (click)="this.selecionaPerfil(1)">Contratante</p>
+        <p *ngIf="tipoU.includes(3)" style="cursor: pointer" (click)="this.selecionaPerfil(2)">Gestor</p>
+        <p *ngIf="tipoU.includes(4)" style="cursor: pointer" (click)="this.selecionaPerfil(3)">Prestador de serviço</p>
       </div>
       <div class="modal-footer">
         <!-- <label class="btn btn-primary" for="modal-one" (click)="fecha()">Nice!</label> -->

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { HttpClient } from '@angular/common/http';
 registerLocaleData(localePt);
 
 @Component({
@@ -11,18 +12,30 @@ registerLocaleData(localePt);
 })
 export class ModalAnaliseComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   public dataFormatada = null;
-
+private api = "http://localhost:8080/api/usuario/dadoscadastrais";
 
   @Input()
   cadastroSelecionado
 
   ngOnInit() {
+    console.log(this.cadastroSelecionado);
+    this.trazerDados(this.cadastroSelecionado.id)
     this.dataFormatada = new DatePipe('pt-BR').transform(this.cadastroSelecionado.dataNascimento, 'dd/MM/yyyy');
   }
 
+
+trazerDados(id){
+  try {
+    this.http.post(this.api, { Id: id}).subscribe(data => {
+      console.log(data);
+    })
+  } catch{
+    console.log("nao chamaou api");
+  }
+}
 
   fecha() {
     $('.modal-open').prop('checked', false);

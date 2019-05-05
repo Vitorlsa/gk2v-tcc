@@ -14,19 +14,21 @@
                 <div class="form">
                   <section>
                     <h2 class="titulo">Contratantes</h2>
-                    <div class="listaAnalise" *ngFor="let cadastro of this.contratantes" (click)="this.abreDetalhe(cadastro)">
+                    <div class="listaAnalise" *ngFor="let cadastro of this.contratantes">
                       <p>{{cadastro.nome}}</p>
                       <br>
                       <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
                       <button (click)="aprovar(cadastro.id,true, 1)">Aprovar</button>
                       <button (click)="aprovar(cadastro.id,false, 1)" class="reprovar">Reprovar</button>
                       <button (click)="deletarUser(cadastro.id, 1)">Recusar</button>
+                      <button (click)="this.abreDetalhe(cadastro)">Mais detalhes</button>
+
                     </div>
                   </section>
 
                   <section>
                     <h2 class="titulo">Gestores</h2>
-                    <div class="listaAnalise" *ngFor="let cadastro of this.gestores" (click)="this.abreDetalhe(cadastro)">
+                    <div class="listaAnalise" *ngFor="let cadastro of this.gestores" >
                       <p>{{cadastro.nome}}</p>
                       <br />
                       <p>Cursos: {{cadastro.cursosCertificacoes}}</p>
@@ -36,12 +38,13 @@
                       <button (click)="aprovar(cadastro.id, true, 2)">Aprovar</button>
                       <button (click)="aprovar(cadastro.id, false, 2)" class="reprovar">Reprovar</button>
                       <button (click)="deletarUser(cadastro.id, 2)">Recusar</button>
+                      <button (click)="this.abreDetalhe(cadastro)">Mais detalhes</button>
                     </div>
                   </section>
 
                   <section>
                     <h2 class="titulo">Prestadores</h2>
-                    <div class="listaAnalise" *ngFor="let cadastro of this.prestadores" (click)="this.abreDetalhe(cadastro)">
+                    <div class="listaAnalise" *ngFor="let cadastro of this.prestadores">
                       <p>{{cadastro.nome}}</p>
                       <br>
                       <p>Competencias: {{cadastro.competencias}}</p>
@@ -49,6 +52,7 @@
                       <button (click)="aprovar(cadastro.id,true, 3)">Aprovar</button>
                       <button (click)="aprovar(cadastro.id,false,3)" class="reprovar">Reprovar</button>
                       <button (click)="deletarUser(cadastro.id, 3)">Recusar</button>
+                      <button (click)="this.abreDetalhe(cadastro)">Mais detalhes</button>
                     </div>
                   </section>
                   <button (click)="voltarBoard()">Voltar</button>

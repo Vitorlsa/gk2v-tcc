@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CadastroServiceService } from '../cadastro-service.service';
 import { Paciente } from 'src/app/classes/paciente';
+import { LoginService } from '../../login.service';
 
 @Component({
   selector: 'app-cadastro-paciente',
@@ -9,19 +10,23 @@ import { Paciente } from 'src/app/classes/paciente';
   styleUrls: ['./cadastro-paciente.component.scss']
 })
 export class CadastroPacienteComponent implements OnInit {
+  
 
-  constructor(private http:HttpClient, private cadastroService: CadastroServiceService) {
+  constructor(private http:HttpClient, private service: LoginService, private cadastroService: CadastroServiceService) {
     this.paciente.sexo = 3;
    }
 
-private api = "http://localhost:8080/"
-private contratante = this.cadastroService.getContratantePaciente();
+private apiSalvar = "http://localhost:8080/api/beneficiario/adicionar";
+private apiListar = "http://localhost:8080/api/beneficiario/listarporcontratante";
+private contratante = this.service.getUsuario();
 public paciente = new Paciente();
 public novoPaciente = false;
+public todosPacientes = null;
 
   ngOnInit() {
     this.limparPaciente();
 
+    this.listarPacientes();
 
     var $window = $(window),
 			$header = $('#header'),
@@ -51,14 +56,19 @@ public novoPaciente = false;
 			});
 
 		});
-	
+  }
 
 
-
-
-
-
-    
+  listarPacientes() {
+    try {
+      this.http.post(this.apiListar, {Id: this.contratante.id }).subscribe(data => {
+        console.log(data);
+        this.todosPacientes = [];
+        this.todosPacientes = data;
+      })
+    } catch{
+      console.log("nao chamaou api");
+    }
   }
 
 
@@ -82,18 +92,19 @@ setTermos(event) {
 
   salvar() {
     console.log(this.paciente);
-    // if (this.cadastroService.validaCadastro(this.paciente)) {
-    //   this.http.post(this.api, this.paciente).subscribe(
-    //     res => {
-    //       alert("Cadastro salvo com sucesso");
-    //       this.cadastroService.setContratantePaciente(this.paciente);
-    //     },
-    //     err => {
-    //       console.log(err);
-    //     });
-    // } else {
-    //   alert("Campos preenchidos incorretamente");
-    // }
+    this.paciente.IdContratante = this.contratante.id
+    if (this.cadastroService.validaCadastro(this.paciente)) {
+      this.http.post(this.apiSalvar, this.paciente).subscribe(
+        res => {
+          alert("Cadastro salvo com sucesso");
+          this.cadastroService.setContratantePaciente(this.paciente);
+        },
+        err => {
+          console.log(err);
+        });
+    } else {
+      alert("Campos preenchidos incorretamente");
+    }
   }
 
   limparPaciente() {    
