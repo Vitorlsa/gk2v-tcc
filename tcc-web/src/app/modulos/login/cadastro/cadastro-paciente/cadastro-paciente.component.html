@@ -13,65 +13,233 @@
 <!-- Main -->
 <div id="main">
   <div class="inner">
+    <!-- <router-outlet></router-outlet> -->
+
+    <!-- listagem -->
+    <div *ngIf="!this.novoPaciente" >
     <div class="columns">
-      <!-- Column 1 (horizontal, vertical, horizontal, vertical) -->
-      <div class="image fit">
-        <!-- <a href="cadastro_paciente.html"><img src="images/Intern_Banner_Template_Cadastrar_Paciente.png" alt="" /></a> -->
-        <a class="clicavel"><img src="../../../../../assets/images/cadastro/Intern_Banner_Template_Cadastrar_Paciente.png" alt="" /></a>
+        <!-- Column 1 (horizontal, vertical, horizontal, vertical) -->
+        <div class="image fit">
+          <!-- <a href="cadastro_paciente.html"><img src="images/Intern_Banner_Template_Cadastrar_Paciente.png" alt="" /></a> -->
+          <a (click)="criarNovoPaciente()" class="clicavel"><img src="../../../../../assets/images/cadastro/Intern_Banner_Template_Cadastrar_Paciente.png" alt="" /></a>
+        </div>
+        <!-- Column 2 (vertical, horizontal, vertical, horizontal) -->
+        <div class="image fit">
+          <!-- <a href="cadastro_paciente.html"><img src="images/Intern_Banner_Template_Editar_Paciente.png" alt="" /></a> -->
+          <a class="clicavel"><img src="../../../../../assets/images/cadastro/Intern_Banner_Template_Editar_Paciente.png" alt="" /></a>
+        </div>
       </div>
-      <!-- Column 2 (vertical, horizontal, vertical, horizontal) -->
-      <div class="image fit">
-        <!-- <a href="cadastro_paciente.html"><img src="images/Intern_Banner_Template_Editar_Paciente.png" alt="" /></a> -->
-        <a class="clicavel"><img src="../../../../../assets/images/cadastro/Intern_Banner_Template_Editar_Paciente.png" alt="" /></a>
-      </div>
+    
+      <h2>Pacientes ja cadastrados</h2>
+    
+      <table>
+        <tr>
+          <th>Nome</th>
+          <th>Idade</th>
+          <th>Sexo</th>
+          <th>Condição clinica</th>
+        </tr>
+        <tr>
+          <td>Alfreds Futterkiste</td>
+          <td>Maria Anders</td>
+          <td>Germany</td>
+          <td>Germany</td>
+        </tr>
+        <tr>
+          <td>Centro comercial Moctezuma</td>
+          <td>Francisco Chang</td>
+          <td>Mexico</td>
+          <td>Mexico</td>
+        </tr>
+        <tr>
+          <td>Ernst Handel</td>
+          <td>Roland Mendel</td>
+          <td>Austria</td>
+          <td>Austria</td>
+        </tr>
+        <tr>
+          <td>Island Trading</td>
+          <td>Helen Bennett</td>
+          <td>UK</td>
+          <td>UK</td>
+        </tr>
+        <tr>
+          <td>Laughing Bacchus Winecellars</td>
+          <td>Yoshi Tannamuri</td>
+          <td>Canada</td>
+          <td>Canada</td>
+        </tr>
+        <tr>
+          <td>Magazzini Alimentari Riuniti</td>
+          <td>Giovanni Rovelli</td>
+          <td>Italy</td>
+          <td>Italy</td>
+        </tr>
+      </table>
     </div>
 
-    <h2>Pacientes ja cadastrados</h2>
-
-    <table>
-      <tr>
-        <th>Nome</th>
-        <th>Idade</th>
-        <th>Sexo</th>
-        <th>Condição clinica</th>
-      </tr>
-      <tr>
-        <td>Alfreds Futterkiste</td>
-        <td>Maria Anders</td>
-        <td>Germany</td>
-        <td>Germany</td>
-      </tr>
-      <tr>
-        <td>Centro comercial Moctezuma</td>
-        <td>Francisco Chang</td>
-        <td>Mexico</td>
-        <td>Mexico</td>
-      </tr>
-      <tr>
-        <td>Ernst Handel</td>
-        <td>Roland Mendel</td>
-        <td>Austria</td>
-        <td>Austria</td>
-      </tr>
-      <tr>
-        <td>Island Trading</td>
-        <td>Helen Bennett</td>
-        <td>UK</td>
-        <td>UK</td>
-      </tr>
-      <tr>
-        <td>Laughing Bacchus Winecellars</td>
-        <td>Yoshi Tannamuri</td>
-        <td>Canada</td>
-        <td>Canada</td>
-      </tr>
-      <tr>
-        <td>Magazzini Alimentari Riuniti</td>
-        <td>Giovanni Rovelli</td>
-        <td>Italy</td>
-        <td>Italy</td>
-      </tr>
-    </table>
+    <!-- novo paciente -->
+    <div *ngIf="this.novoPaciente" >
+        <div class="image fit">
+            <img src="images/banner_cadastro.jpg" alt="" />
+          </div>
+          <div class="content">
+            <header>
+              <h2>Cadastro Paciente</h2>
+            </header>
+            <div id="welcome">
+              <div class="title">
+                <span class="byline"><b>Preencha todos os campos obrigatórios.</b></span>
+              </div>
+              <br>            
+              <div class="row">
+                  <div class="col-lg-12">
+                    <section class="panel">
+                    <header class="panel-heading">
+                    </header>
+                    <div class="panel-body">
+                      <div class="form">
+                        <form class="form-validate form-horizontal " id="register_form" method="get" action="">
+                          <div class="form-group ">
+                            <label for="fullname" class="control-label col-lg-2">Nome Completo<span class="required">*</span></label>
+                            <div class="col-lg-10">
+                              <input [(ngModel)]="this.paciente.nome" class=" form-control" id="fullname" name="fullname" type="text" />
+                            </div>
+                          </div>
+                        <br>
+                        <div class="form-group ">
+                            <label for="nascimento" class="control-label col-lg-2">Data de Nascimento <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                              <input [(ngModel)]="this.paciente.datanascimento" class="form-control " id="nascimento" name="nascimento" type="date" />
+                            </div>
+                          </div>
+                        <br>
+                        <div class="form-group ">
+                            <label for="sexo" class="control-label col-lg-2">Sexo <span class="required">*</span></label>
+                            <select (change)="setSexo($event)" id=sexo>
+                                <!-- [(ngModel)]="prestador.sexo" -->
+                                <option [value]="3">Outro</option>
+                                <option [value]="1">Masculino</option>
+                                <option [value]="2">Feminino</option>
+                              </select>
+                          </div>
+                        <br>
+                        <div class="form-group ">
+                            <label for="cpf" class="control-label col-lg-2">CPF <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                              <input [(ngModel)]="this.paciente.email" class="form-control " id="cpf" name="cpf" type="email" />
+                            </div>
+                          </div>
+                        <br>
+                        <div class="form-group ">
+                            <label for="telefone" class="control-label col-lg-2">Telefone <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                              <input [(ngModel)]="this.paciente.telefone" class="form-control " id="telefone" name="telefone" type="text" />
+                            </div>
+                          </div>
+                        <br>
+                        <div class="form-group ">
+                            <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                              <input [(ngModel)]="this.paciente.cidade" class="form-control " id="cidade" name="cidade" type="text" />
+                            </div>
+                          </div>
+                        <br>
+                        <div class="form-group ">
+                            <label for="estado" class="control-label col-lg-2">Estado <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                              <input [(ngModel)]="this.paciente.estado" class="form-control " id="estado" name="estado" type="text" />
+                            </div>
+                          </div>
+                        <br>
+                        <div class="form-group ">
+                            <label for="rua" class="control-label col-lg-2">Rua <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                              <input [(ngModel)]="this.paciente.rua" class="form-control " id="rua" name="rua" type="text" />
+                            </div>
+                          </div>
+                        <br>
+                        <div class="form-group ">
+                            <label for="numero" class="control-label col-lg-2">Número <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                              <input [(ngModel)]="this.paciente.numero" class="form-control " id="numero" name="numero" type="text" />
+                            </div>
+                          </div>
+                        <br>
+                        <div class="form-group ">
+                            <label for="cpf" class="control-label col-lg-2">CPF  <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                              <input [(ngModel)]="this.paciente.cpf" class="form-control " id="cpf" name="cpf" type="text" />
+                            </div>
+                          </div>
+                        <br>
+                        <div class="form-group ">
+                            <label for="bairro" class="control-label col-lg-2">Bairro  <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                              <input [(ngModel)]="this.paciente.bairro" class="form-control " id="bairro" name="bairro" type="text" />
+                            </div>
+                          </div>
+                        <br>
+                        <div class="form-group ">
+                            <label for="cep" class="control-label col-lg-2">CEP  <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                              <input [(ngModel)]="this.paciente.cep" class="form-control " id="cep" name="cep" type="text" />
+                            </div>
+                          </div>
+                        <br>
+                        <div class="form-group ">
+                            <label for="complemento" class="control-label col-lg-2">Complemento  <span class="required">*</span></label>
+                            <div class="col-lg-10">
+                              <input [(ngModel)]="this.paciente.complemento" class="form-control " id="complemento" name="complemento" type="text" />
+                            </div>
+                          </div>
+                        <br>
+                        <div class="form-group ">
+                            <label for="comentario" class="control-label col-lg-2">Condições clínicas</label>
+                            <div class="col-lg-10">
+                              <input [(ngModel)]="this.paciente.comentario" class="form-control " id="comentario" name="comentario" type="text" />
+                            </div>
+                          </div>
+                        <br>
+                        <div class="form-group ">
+                          <label for="comentario" class="control-label col-lg-2">Condicoes clinicas</label>
+                          <div class="col-lg-10">
+                            <input [(ngModel)]="this.paciente.condicoesClinicas" class="form-control " id="comentario" name="comentario" type="email" />
+                          </div>
+                        </div>
+                        <br>
+                        <div class="form-group ">
+                            <label for="termos" class="control-label col-lg-2">Sou responsável por esse paciente: <span class="required">*</span></label>
+                            <select (change)="setTermos($event)" id="termos">
+                                <option [value]="false">Não aceito</option>
+                                <option [value]="true">Aceito</option>
+                              </select>
+                          </div>
+                          <br>
+                       <!-- <div class="form-group ">
+                        <label for="agree" class="control-label col-lg-2 col-sm-3">Aceita nossa política? <span class="required">*</span></label><input type="checkbox" style="width: 20px" class="checkbox form-control" id="agree" name="agree" />
+                          <form> 
+                            <INPUT TYPE="RADIO" NAME="OPCAO1" VALUE="op1_epoca"> Aceito <br>
+                            <INPUT TYPE="RADIO" NAME="OPCAO2" VALUE="op2_epoca"> Não aceito <br>
+                          </form> 
+                      </div> -->
+                      <br>
+                        <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                          <button  (click)="salvar()" class="btn btn-primary" type="submit">Enviar</button>
+                          <button (click)="voltar()" class="btn btn-default" type="button">Cancelar</button>
+                        </div>
+                        </div>
+                      </form>
+                      </div>
+                    </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+    </div>
+    
   </div>
 </div>
 

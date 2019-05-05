@@ -11,7 +11,9 @@ import { Prestador } from 'src/app/classes/prestador';
 })
 export class CadastroPrestadorComponent implements OnInit {
 
-  constructor(private router: Router, private http: HttpClient, private cadastroService: CadastroServiceService) { }
+  constructor(private router: Router, private http: HttpClient, private cadastroService: CadastroServiceService) {
+    this.prestador.sexo = 3;
+   }
 
 
   public api = "http://localhost:8080/api/prestadordeservico/cadastrar";

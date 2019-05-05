@@ -10,18 +10,17 @@ import { Paciente } from 'src/app/classes/paciente';
 })
 export class CadastroPacienteComponent implements OnInit {
 
-  constructor(private http:HttpClient, private cadastroService: CadastroServiceService) { }
+  constructor(private http:HttpClient, private cadastroService: CadastroServiceService) {
+    this.paciente.sexo = 3;
+   }
 
 private api = "http://localhost:8080/"
 private contratante = this.cadastroService.getContratantePaciente();
 public paciente = new Paciente();
+public novoPaciente = false;
 
   ngOnInit() {
     this.limparPaciente();
-
-
-
-
 
 
     var $window = $(window),
@@ -63,19 +62,38 @@ public paciente = new Paciente();
   }
 
 
+
+criarNovoPaciente(){
+  this.novoPaciente = true;
+}
+
+voltar(){
+  this.limparPaciente();
+  this.novoPaciente = false;
+}
+
+setSexo(event) {
+  this.paciente.setSexo(event.target.value);
+}
+
+setTermos(event) {
+  this.paciente.setTermos(event.target.value);
+}
+
   salvar() {
-    if (this.cadastroService.validaCadastro(this.paciente)) {
-      this.http.post(this.api, this.paciente).subscribe(
-        res => {
-          alert("Cadastro salvo com sucesso");
-          this.cadastroService.setContratantePaciente(this.paciente);
-        },
-        err => {
-          console.log(err);
-        });
-    } else {
-      alert("Campos preenchidos incorretamente");
-    }
+    console.log(this.paciente);
+    // if (this.cadastroService.validaCadastro(this.paciente)) {
+    //   this.http.post(this.api, this.paciente).subscribe(
+    //     res => {
+    //       alert("Cadastro salvo com sucesso");
+    //       this.cadastroService.setContratantePaciente(this.paciente);
+    //     },
+    //     err => {
+    //       console.log(err);
+    //     });
+    // } else {
+    //   alert("Campos preenchidos incorretamente");
+    // }
   }
 
   limparPaciente() {    

@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { UsuarioEnum } from 'src/app/enum/usuario-enum.enum';
+import { UtilsService } from 'src/app/funcoes/utils.service';
+import { utils } from 'protractor';
 
 
 
@@ -15,8 +16,8 @@ import { UsuarioEnum } from 'src/app/enum/usuario-enum.enum';
 export class LoginComponent implements OnInit {
   public users: Object;
 
-  constructor(private http: HttpClient, private service: LoginService, private router: Router, private cookieService: CookieService) { }
- 
+  constructor(private http: HttpClient, private service: LoginService, private router: Router, private util: UtilsService) { }
+
   public api = "http://localhost:8080/api/usuario/logar"
   public usuario = {
     login: "",
@@ -36,9 +37,12 @@ export class LoginComponent implements OnInit {
 
   logar() {
     this.http.post(this.api, { login: this.usuario.login, senha: this.usuario.senha }).subscribe(data => {
-      this.users = data;
-      this.service.guardaUsuario(this.usuario);
-      this.router.navigate(['/board']);
+      //if (!this.util.nullOrUndef(data)) {
+        this.users = data;
+        this.service.guardaUsuario(this.usuario);
+        this.router.navigate(['/board']);
+      //} else
+        //alert("Usuario nao existe");
     }
     );
   }

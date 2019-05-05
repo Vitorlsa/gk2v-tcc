@@ -11,7 +11,9 @@ import { Gestor } from 'src/app/classes/gestor';
 })
 export class CadastroGestorComponent implements OnInit {
   
-  constructor(private router: Router, private http: HttpClient, private cadastroService:CadastroServiceService  ) { }
+  constructor(private router: Router, private http: HttpClient, private cadastroService:CadastroServiceService  ) {
+    this.gestor.sexo = 3;
+   }
 
   public api = "http://localhost:8080/api/gestor/cadastrar";
 

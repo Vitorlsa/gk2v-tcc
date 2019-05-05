@@ -11,19 +11,28 @@ import { CadastroPrestadorComponent } from './modulos/login/cadastro/cadastro-pr
 import { AnaliseCadastroComponent } from './modulos/board/analise-cadastro/analise-cadastro.component';
 import { PerfilComponent } from './modulos/board/perfil/perfil.component';
 import { CadastroPacienteComponent } from './modulos/login/cadastro/cadastro-paciente/cadastro-paciente.component';
+import { ListapacienteComponent } from './modulos/login/cadastro/cadastro-paciente/listapaciente/listapaciente.component';
+import { NovoPacienteComponent } from './modulos/login/cadastro/cadastro-paciente/novo-paciente/novo-paciente.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent,},
+  { path: 'login', component: LoginComponent, },
   { path: 'cadastro', component: CadastroComponent },
   { path: 'cadastroContratante', component: CadastroContratanteComponent },
   { path: 'cadastroPrestador', component: CadastroPrestadorComponent },
   { path: 'cadastroGestor', component: CadastroGestorComponent },
-  { path: 'board', component: BoardComponent,canActivate: [AuthGuardService]  },
-  { path: 'analiseCadastro', component: AnaliseCadastroComponent},
-  { path: 'perfil', component: PerfilComponent},
-  { path: 'cadastroPaciente', component: CadastroPacienteComponent  }
+  { path: 'board', component: BoardComponent, canActivate: [AuthGuardService] },
+  { path: 'analiseCadastro', component: AnaliseCadastroComponent },
+  { path: 'perfil', component: PerfilComponent },
+  {
+    path: 'cadastroPaciente', component: CadastroPacienteComponent,
+    // children: [
+    //   { path: '', redirectTo:'listaPaciente' , component: ListapacienteComponent },
+    //   { path: 'listaPaciente',  component: ListapacienteComponent },
+    //   { path: 'novoPaciente', component: NovoPacienteComponent },
+    // ]
+  }
 
 ];
 
