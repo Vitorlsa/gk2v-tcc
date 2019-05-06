@@ -1,6 +1,6 @@
 export enum UsuarioEnum {
-    Contratante = 1,
-    Gestor = 2,
-    Prestador = 3,
-    Admin = 4
+    Admin = 1,
+    Contratante = 2,
+    Gestor = 3,
+    Prestador = 4,
 }

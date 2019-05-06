@@ -30,7 +30,7 @@ private api = "http://localhost:8080/api/usuario/dadoscadastrais";
 trazerDados(id){
   try {
     this.http.post(this.api, { Id: id}).subscribe(data => {
-      console.log(data);
+      this.cadastroSelecionado = data;
     })
   } catch{
     console.log("nao chamaou api");

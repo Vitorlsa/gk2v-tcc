@@ -35,13 +35,13 @@
       <table>
         <tr>
           <th>Nome</th>
-          <th>Idade</th>
+          <th>Nascimento</th>
           <th>Sexo</th>
           <th>Condição clinica</th>
         </tr>
         <tr *ngFor="let paciente of this.todosPacientes">
           <td>{{paciente.nome}}</td>
-          <td>{{paciente.dataNascimento}}</td>
+          <td>{{paciente.dataFormatada}}</td>
           <td>{{paciente.sexo}}</td>
           <td>{{paciente.condicoesClinicas}}</td>
         </tr>

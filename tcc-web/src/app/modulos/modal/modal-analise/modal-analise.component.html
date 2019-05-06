@@ -20,11 +20,11 @@
         </div>
         <div>
           <label for="sexo">Sexo</label>
-          <input type="text" id="sexo" readonly>
+          <input type="text" id="sexo" [(ngModel)]="this.cadastroSelecionado.sexo" readonly>
         </div>
         <div>
           <label for="tel">Telefone</label>
-          <input type="text" id="tel" readonly>
+          <input type="text" id="tel" [(ngModel)]="this.cadastroSelecionado.telefone" readonly>
         </div>
         <div>
           <label for="email">Email</label>
@@ -32,11 +32,11 @@
         </div>
         <div>
           <label for="cidade">Cidade</label>
-          <input type="text" id="cidade" readonly>
+          <input type="text" id="cidade" [(ngModel)]="this.cadastroSelecionado.cidade" readonly>
         </div>
         <div>
           <label for="msg">Comentário/Necessidades</label>
-          <textarea id="msg" readonly></textarea>
+          <textarea id="msg" readonly [(ngModel)]="this.cadastroSelecionado.comentario"></textarea>
         </div>
       </div>
       <div class="modal-footer">

@@ -3,6 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { CadastroServiceService } from '../cadastro-service.service';
 import { Paciente } from 'src/app/classes/paciente';
 import { LoginService } from '../../login.service';
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+import { DatePipe } from '@angular/common';
+registerLocaleData(localePt);
 
 @Component({
   selector: 'app-cadastro-paciente',
@@ -22,6 +26,7 @@ private contratante = this.service.getUsuario();
 public paciente = new Paciente();
 public novoPaciente = false;
 public todosPacientes = null;
+public dataFormatada = null;
 
   ngOnInit() {
     this.limparPaciente();
@@ -65,6 +70,10 @@ public todosPacientes = null;
         console.log(data);
         this.todosPacientes = [];
         this.todosPacientes = data;
+        this.todosPacientes.forEach((element, index) => {
+          this.todosPacientes[index].dataFormatada = new DatePipe('pt-BR').transform(element.dataNascimento, 'dd/MM/yyyy');
+        });
+         
       })
     } catch{
       console.log("nao chamaou api");
