@@ -1,3 +1,7 @@
+<div *ngIf="pacienteSelecionado == null" >
+  <!-- <app-modal-editar-paciente></app-modal-editar-paciente> -->
+</div>
+
 <!-- Header -->
 <header id="header">
   <div class="inner">
@@ -16,18 +20,18 @@
     <!-- <router-outlet></router-outlet> -->
 
     <!-- listagem -->
-    <div *ngIf="!this.novoPaciente" >
-    <div class="columns">
+    <div *ngIf="!this.novoPaciente" style="text-align: center">
+    <div class="columns" style="display: inline-flex">
         <!-- Column 1 (horizontal, vertical, horizontal, vertical) -->
         <div class="image fit">
           <!-- <a href="cadastro_paciente.html"><img src="images/Intern_Banner_Template_Cadastrar_Paciente.png" alt="" /></a> -->
           <a (click)="criarNovoPaciente()" class="clicavel"><img src="../../../../../assets/images/cadastro/Intern_Banner_Template_Cadastrar_Paciente.png" alt="" /></a>
         </div>
         <!-- Column 2 (vertical, horizontal, vertical, horizontal) -->
-        <div class="image fit">
-          <!-- <a href="cadastro_paciente.html"><img src="images/Intern_Banner_Template_Editar_Paciente.png" alt="" /></a> -->
+        <!-- <div class="image fit">
+          <a href="cadastro_paciente.html"><img src="images/Intern_Banner_Template_Editar_Paciente.png" alt="" /></a> 
           <a class="clicavel"><img src="../../../../../assets/images/cadastro/Intern_Banner_Template_Editar_Paciente.png" alt="" /></a>
-        </div>
+        </div> -->
       </div>
     
       <h2>Pacientes ja cadastrados</h2>
@@ -38,12 +42,14 @@
           <th>Nascimento</th>
           <th>Sexo</th>
           <th>Condição clinica</th>
+          <th>&nbsp;</th>
         </tr>
         <tr *ngFor="let paciente of this.todosPacientes">
           <td>{{paciente.nome}}</td>
           <td>{{paciente.dataFormatada}}</td>
           <td>{{paciente.sexo}}</td>
           <td>{{paciente.condicoesClinicas}}</td>
+          <button class="editarPaciente" (click)="editarPaciente(paciente)">editar</button>
         </tr>
       </table>
     </div>
@@ -95,9 +101,9 @@
                           </div>
                         <br>
                         <div class="form-group ">
-                            <label for="cpf" class="control-label col-lg-2">CPF <span class="required">*</span></label>
+                            <label for="email" class="control-label col-lg-2">email <span class="required">*</span></label>
                             <div class="col-lg-10">
-                              <input [(ngModel)]="this.paciente.email" class="form-control " id="cpf" name="cpf" type="email" />
+                              <input [(ngModel)]="this.paciente.email" class="form-control " id="email" name="email" type="email" />
                             </div>
                           </div>
                         <br>
@@ -136,12 +142,12 @@
                             </div>
                           </div>
                         <br>
-                        <div class="form-group ">
+                        <!-- <div class="form-group ">
                             <label for="cpf" class="control-label col-lg-2">CPF  <span class="required">*</span></label>
                             <div class="col-lg-10">
                               <input [(ngModel)]="this.paciente.cpf" class="form-control " id="cpf" name="cpf" type="text" />
                             </div>
-                          </div>
+                          </div> -->
                         <br>
                         <div class="form-group ">
                             <label for="bairro" class="control-label col-lg-2">Bairro  <span class="required">*</span></label>
@@ -174,7 +180,7 @@
                         <div class="form-group ">
                           <label for="comentario" class="control-label col-lg-2">Condicoes clinicas</label>
                           <div class="col-lg-10">
-                            <input [(ngModel)]="this.paciente.condicoesClinicas" class="form-control " id="comentario" name="comentario" type="email" />
+                            <input [(ngModel)]="this.paciente.condicoesClinicas" class="form-control " id="comentario" name="comentario" type="text" />
                           </div>
                         </div>
                         <br>
@@ -197,7 +203,7 @@
                         <div class="form-group">
                         <div class="col-lg-offset-2 col-lg-10">
                           <button  (click)="salvar()" class="btn btn-primary" type="submit">Enviar</button>
-                          <button (click)="voltar()" class="btn btn-default" type="button">Cancelar</button>
+                          <button (click)="voltar()" class="btn btn-default" type="button">Voltar</button>
                         </div>
                         </div>
                       </form>

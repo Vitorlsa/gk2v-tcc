@@ -15,6 +15,7 @@ import { AnaliseCadastroComponent } from './modulos/board/analise-cadastro/anali
 import { PerfilComponent } from './modulos/board/perfil/perfil.component';
 import { ModalperfilComponent } from './modulos/modal/modalperfil/modalperfil.component';
 import { ModalAnaliseComponent } from './modulos/modal/modal-analise/modal-analise.component';
+//import { ModalEditarPacienteComponent } from './modulos/modal/modal-editar-paciente/modal-editar-paciente.component';
 
 
 
@@ -27,6 +28,7 @@ import { ModalAnaliseComponent } from './modulos/modal/modal-analise/modal-anali
     PerfilComponent,
     ModalperfilComponent,
     ModalAnaliseComponent,
+    //ModalEditarPacienteComponent,
   ],
   imports: [
     BrowserModule,

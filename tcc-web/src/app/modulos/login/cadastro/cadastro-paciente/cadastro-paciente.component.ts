@@ -69,6 +69,7 @@ public dataFormatada = null;
       this.http.post(this.apiListar, {Id: this.contratante.id }).subscribe(data => {
         console.log(data);
         this.todosPacientes = [];
+        console.log(typeof data);
         this.todosPacientes = data;
         this.todosPacientes.forEach((element, index) => {
           this.todosPacientes[index].dataFormatada = new DatePipe('pt-BR').transform(element.dataNascimento, 'dd/MM/yyyy');
@@ -78,6 +79,10 @@ public dataFormatada = null;
     } catch{
       console.log("nao chamaou api");
     }
+  }
+
+  editarPaciente(param){
+    console.log(param);
   }
 
 
