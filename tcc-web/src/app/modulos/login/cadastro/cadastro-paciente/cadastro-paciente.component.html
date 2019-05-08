@@ -46,7 +46,7 @@
           <td>{{paciente.dataFormatada}}</td>
           <td>{{paciente.sexo}}</td>
           <td>{{paciente.condicoesClinicas}}</td>
-          <button class="editarPaciente" (click)="editarPaciente(paciente)">editar</button>
+          <button class="editarPaciente" *ngIf="this.perfilPaciente != 4" (click)="editarPaciente(paciente)">editar</button>
         </tr>
       </table>
     </div>
@@ -238,4 +238,4 @@
   </div>
 </footer>
 
-<!-- <app-modal-editar-paciente></app-modal-editar-paciente> -->
+<app-modal-editar-paciente *ngIf="!this.util.nullOrUndef(this.pacienteSelecionado)" [pacienteSelecionado]="this.pacienteSelecionado"></app-modal-editar-paciente>

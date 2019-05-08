@@ -1,3 +1,72 @@
-<p>
-  modal-editar-paciente works!
-</p>
+<!-- <label class="btn" for="modal-one">Selecionar Perfil</label> -->
+<!-- Modal One -->
+<div class="modal">
+  <input class="modal-open" id="modal-one" type="checkbox" hidden>
+  <div class="modal-wrap" aria-hidden="true" role="dialog">
+    <label class="modal-overlay" for="modal-one"></label>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 class="titulo">Dados cadastrais</h2>
+        <label class="btn-close" for="modal-one" aria-hidden="true">×</label>
+      </div>
+      <div class="modal-body">
+        <div>
+          <label for="nome">Nome Completo</label>
+          <input type="text" id="nome" [(ngModel)]="this.pacienteCompleto.nome" >
+        </div>
+        <div>
+          <label for="nasc">Data de Nascimento</label>
+          <input type="text" id="nasc" [(ngModel)]="this.pacienteCompleto.dataFormatada" readonly>
+        </div>
+        <div>
+          <label for="sexo">Sexo</label>
+          <input type="text" id="sexo" [(ngModel)]="this.pacienteCompleto.sexo" readonly>
+        </div>
+        <div>
+          <label for="tel">Telefone</label>
+          <input type="text" id="tel" [(ngModel)]="this.pacienteCompleto.telefone" >
+        </div>
+        <div>
+          <label for="email">Rua</label>
+          <input type="text" id="email" [(ngModel)]="this.pacienteCompleto.rua" >
+        </div>
+        <div>
+          <label for="email">Número</label>
+          <input type="text" id="email" [(ngModel)]="this.pacienteCompleto.numero" >
+        </div>
+        <div>
+          <label for="email">Complemento</label>
+          <input type="text" id="email" [(ngModel)]="this.pacienteCompleto.complemento" >
+        </div>
+        <div>
+          <div>
+            <label for="email">CEP</label>
+            <input type="text" id="email" [(ngModel)]="this.pacienteCompleto.cep" >
+          </div>
+          <div>
+            <div>
+              <div>
+                <label for="email">bairro</label>
+                <input type="text" id="email" [(ngModel)]="this.pacienteCompleto.bairro" >
+              </div>
+              <div>
+                <label for="cidade">Cidade</label>
+                <input type="text" id="cidade" [(ngModel)]="this.pacienteCompleto.cidade" >
+              </div>
+              <div>
+                  <label for="email">Estado</label>
+                  <input type="text" id="email" [(ngModel)]="this.pacienteCompleto.estado" >
+                </div>
+              <div>
+                <label for="msg">Condições clinicas</label>
+                <textarea id="msg"  [(ngModel)]="this.pacienteCompleto.condicoesClinicas"></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <!-- <label class="btn btn-primary" for="modal-one" (click)="fecha()">Nice!</label> -->
+              <button (click)="fechar()">Cancelar</button>
+              <button (click)="atualizarBeneficiario(this.pacienteCompleto)">Atualizar</button>
+            </div>
+          </div>
+        </div>
+      </div>
