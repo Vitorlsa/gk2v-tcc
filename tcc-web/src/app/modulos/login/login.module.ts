@@ -9,10 +9,11 @@ import { CadastroGestorComponent } from './cadastro/cadastro-gestor/cadastro-ges
 import { CadastroPacienteComponent } from './cadastro/cadastro-paciente/cadastro-paciente.component';
 import { NovoPacienteComponent } from './cadastro/cadastro-paciente/novo-paciente/novo-paciente.component';
 import { ListapacienteComponent } from './cadastro/cadastro-paciente/listapaciente/listapaciente.component';
+import { ModalEditarPacienteComponent } from '../modal/modal-editar-paciente/modal-editar-paciente.component';
 
 
 @NgModule({
-  declarations: [LoginComponent, CadastroComponent, CadastroContratanteComponent, CadastroPrestadorComponent, CadastroGestorComponent, CadastroPacienteComponent, NovoPacienteComponent, ListapacienteComponent],
+  declarations: [LoginComponent, CadastroComponent, CadastroContratanteComponent, CadastroPrestadorComponent, CadastroGestorComponent, CadastroPacienteComponent, NovoPacienteComponent, ListapacienteComponent, ModalEditarPacienteComponent],
   imports: [
     CommonModule,
     FormsModule

@@ -19,6 +19,7 @@ import { ModalAnaliseComponent } from './modulos/modal/modal-analise/modal-anali
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

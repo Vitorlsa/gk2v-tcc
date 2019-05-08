@@ -1,7 +1,11 @@
 <div *ngIf="this.perfilsUsuario.length > 1 && perfilSelecionado == null">
   <app-modalperfil (pSelect)="pegaPerfilSelecionado($event)"></app-modalperfil>
 </div>
-<p>Tipo: {{this.perfilSelecionado}}</p>
+<p *ngIf="this.perfilSelecionado == 1">Tipo: ADM</p>
+<p *ngIf="this.perfilSelecionado == 2">Tipo: Contrantante</p>
+<p *ngIf="this.perfilSelecionado == 3">Tipo: Gestor</p>
+<p *ngIf="this.perfilSelecionado == 4">Tipo: Prestador de Serviço</p>
+
 <!-- Header -->
 <header id="header">
   <div class="inner">
@@ -44,7 +48,7 @@
             alt="" /></a>
       </div>
 
-      <div class="image fit clicavel" style="background-color: blue;">
+      <div *ngIf="this.perfilSelecionado == 1" class="image fit clicavel" style="background-color: blue;">
         <a href="analiseCadastro">analise prestadores</a>
       </div>
 

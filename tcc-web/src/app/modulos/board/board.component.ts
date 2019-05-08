@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { LoginService } from '../login/login.service';
 import { UtilsService } from 'src/app/funcoes/utils.service';
+import { UsuarioEnum } from 'src/app/enum/usuario-enum.enum';
 
 
 @Component({
@@ -19,6 +19,7 @@ export class BoardComponent implements OnInit {
 	}
 
 	public perfilsUsuario = null;
+	public usuaEnum:UsuarioEnum;
 
 
 	@Input()
@@ -38,6 +39,7 @@ export class BoardComponent implements OnInit {
 		// 			this.perfilSelecionado = sessionStorage.getItem('tipoPerfil');
 		// 		}
 		// 	}
+		
 
 		this.perfilsUsuario = this.service.getSessionPerfil();
 		if (this.perfilsUsuario.length == 1)
