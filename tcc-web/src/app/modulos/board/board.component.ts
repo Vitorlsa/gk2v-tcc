@@ -19,7 +19,7 @@ export class BoardComponent implements OnInit {
 	}
 
 	public perfilsUsuario = null;
-	public usuaEnum:UsuarioEnum;
+	public usuaEnum: UsuarioEnum;
 
 
 	@Input()
@@ -39,11 +39,15 @@ export class BoardComponent implements OnInit {
 		// 			this.perfilSelecionado = sessionStorage.getItem('tipoPerfil');
 		// 		}
 		// 	}
-		
 
 		this.perfilsUsuario = this.service.getSessionPerfil();
-		if (this.perfilsUsuario.length == 1)
-			this.perfilSelecionado = this.perfilsUsuario[0];
+		if (typeof this.perfilsUsuario != "number") {
+			if (this.perfilsUsuario.length == 1)
+				this.perfilSelecionado = this.perfilsUsuario[0];
+		} else {
+			this.perfilSelecionado = this.perfilsUsuario;
+		}
+
 
 		var $window = $(window),
 			$header = $('#header'),

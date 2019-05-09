@@ -23,9 +23,21 @@
   <div class="inner">
     <div class="columns">
 
+
+      <div class="image fit clicavel" >
+        <a href="perfil"><img src="../../../assets/images/board/Intern_Banner_Template_Perfil.png"
+          alt="" /></a>
+      </div>
+
       <!-- Column 1 (horizontal, vertical, horizontal, vertical) -->
       <div class="image fit clicavel">
         <a><img src="../../../assets/images/board/banner01.png" alt="" /></a>
+      </div>
+
+      
+      <div *ngIf="this.perfilSelecionado == 1" class="image fit clicavel" >
+        <a href="analiseCadastro"><img src="../../../assets/images/board/Intern_Banner_Template_Analise.png"
+          alt="" /></a>
       </div>
 
       <!-- Column 2 (vertical, horizontal, vertical, horizontal) -->
@@ -48,13 +60,6 @@
             alt="" /></a>
       </div>
 
-      <div *ngIf="this.perfilSelecionado == 1" class="image fit clicavel" style="background-color: blue;">
-        <a href="analiseCadastro">analise prestadores</a>
-      </div>
-
-      <div class="image fit clicavel" style="background-color:green;">
-        <a href="perfil">perfil logado</a>
-      </div>
 
     </div>
   </div>

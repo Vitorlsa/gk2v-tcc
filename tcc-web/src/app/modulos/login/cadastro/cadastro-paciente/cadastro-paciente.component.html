@@ -15,14 +15,14 @@
 <div id="main">
   <div class="inner">
     <!-- <router-outlet></router-outlet> -->
-
+<a href="/board">voltar</a>
     <!-- listagem -->
     <div *ngIf="!this.novoPaciente" style="text-align: center">
     <div class="columns" style="display: inline-flex">
         <!-- Column 1 (horizontal, vertical, horizontal, vertical) -->
         <div class="image fit">
           <!-- <a href="cadastro_paciente.html"><img src="images/Intern_Banner_Template_Cadastrar_Paciente.png" alt="" /></a> -->
-          <a (click)="criarNovoPaciente()" class="clicavel"><img src="../../../../../assets/images/cadastro/Intern_Banner_Template_Cadastrar_Paciente.png" alt="" /></a>
+          <a *ngIf="this.perfilPaciente != 4" (click)="criarNovoPaciente()" class="clicavel"><img src="../../../../../assets/images/cadastro/Intern_Banner_Template_Cadastrar_Paciente.png" alt="" /></a>
         </div>
         <!-- Column 2 (vertical, horizontal, vertical, horizontal) -->
         <!-- <div class="image fit">
