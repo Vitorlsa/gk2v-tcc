@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import {NgxMaskModule} from 'ngx-mask'
 
 import { AppComponent } from './app.component';
 import { LoginModule } from './modulos/login/login.module';
@@ -36,7 +37,8 @@ import { ModalAnaliseComponent } from './modulos/modal/modal-analise/modal-anali
     AppRoutingModule,
     HttpClientModule,
     LoginModule,
-    FormsModule
+    FormsModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [CookieService, AuthGuardService, UtilsService],
   bootstrap: [AppComponent]

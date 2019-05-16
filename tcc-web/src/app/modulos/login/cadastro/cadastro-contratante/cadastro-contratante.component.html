@@ -92,14 +92,14 @@
                   <div class="form-group ">
                       <label for="cpf" class="control-label col-lg-2">CPF <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.cpf" class="form-control " id="cpf" name="cpf" type="text" />
+                        <input [(ngModel)]="usuario.cpf" mask="000.000.000.00" [showMaskTyped] = "true" class="form-control " id="cpf" name="cpf" type="text" />
                       </div>
                     </div>
                   <br>
                   <div class="form-group ">
                       <label for="telefone" class="control-label col-lg-2">Telefone <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.telefone" class="form-control " id="telefone" name="telefone" type="text" />
+                        <input [(ngModel)]="usuario.telefone" mask="(00) 000000000" class="form-control " id="telefone" name="telefone" type="text" />
                       </div>
                     </div>
                   <br>
@@ -124,7 +124,7 @@
                     <div class="form-group ">
                       <label for="cep" class="control-label col-lg-2">CEP <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.cep" class="form-control " id="cep" name="cep" type="text" />
+                        <input [(ngModel)]="usuario.cep" mask="00000-000" class="form-control " id="cep" name="cep" type="text" />
                       </div>
                     </div>
                     <div class="form-group ">
@@ -136,7 +136,7 @@
                     <div class="form-group ">
                       <label for="numero" class="control-label col-lg-2">Numero <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.numero" class="form-control " id="numero" name="numero" type="text" />
+                        <input [(ngModel)]="usuario.numero" mask="000000" class="form-control " id="numero" name="numero" type="text" />
                       </div>
                     </div>
                     <div class="form-group ">

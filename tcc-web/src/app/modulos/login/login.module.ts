@@ -10,13 +10,14 @@ import { CadastroPacienteComponent } from './cadastro/cadastro-paciente/cadastro
 import { NovoPacienteComponent } from './cadastro/cadastro-paciente/novo-paciente/novo-paciente.component';
 import { ListapacienteComponent } from './cadastro/cadastro-paciente/listapaciente/listapaciente.component';
 import { ModalEditarPacienteComponent } from '../modal/modal-editar-paciente/modal-editar-paciente.component';
-
+import {NgxMaskModule} from 'ngx-mask';
 
 @NgModule({
   declarations: [LoginComponent, CadastroComponent, CadastroContratanteComponent, CadastroPrestadorComponent, CadastroGestorComponent, CadastroPacienteComponent, NovoPacienteComponent, ListapacienteComponent, ModalEditarPacienteComponent],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    NgxMaskModule.forRoot(),
   ]
 })
 export class LoginModule { }
