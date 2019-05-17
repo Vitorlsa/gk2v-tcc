@@ -101,7 +101,7 @@
                     <div class="form-group ">
                       <label for="cpf" class="control-label col-lg-2">CPF <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="prestador.cpf" class="form-control " id="cpf" name="cpf" type="email" />
+                        <input [(ngModel)]="prestador.cpf" mask="000.000.000.00" [showMaskTyped] = "true" class="form-control " id="cpf" name="cpf" type="text" />
                       </div>
                     </div>
                     <br>
@@ -109,8 +109,7 @@
                       <label for="telefone" class="control-label col-lg-2">Telefone <span
                           class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="prestador.telefone" class="form-control " id="telefone" name="telefone"
-                          type="email" />
+                        <input [(ngModel)]="prestador.telefone" class="form-control " id="telefone" name="telefone" mask="(00) 000000000" type="text" />
                       </div>
                     </div>
                     <br>
@@ -118,7 +117,7 @@
                       <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
                       <div class="col-lg-10">
                         <input [(ngModel)]="prestador.cidade" class="form-control " id="cidade" name="cidade"
-                          type="email" />
+                          type="text" />
                       </div>
                     </div>
                     <br>
@@ -139,7 +138,7 @@
                     <div class="form-group ">
                       <label for="cep" class="control-label col-lg-2">CEP <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="prestador.cep" class="form-control " id="cep" name="cep" type="text" />
+                        <input [(ngModel)]="prestador.cep" mask="00000-000" class="form-control " id="cep" name="cep" type="text" />
                       </div>
                     </div>
                     <div class="form-group ">
@@ -151,7 +150,7 @@
                     <div class="form-group ">
                       <label for="numero" class="control-label col-lg-2">Numero <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="prestador.numero" class="form-control " id="numero" name="numero"
+                        <input [(ngModel)]="prestador.numero" mask="000000" class="form-control " id="numero" name="numero"
                           type="text" />
                       </div>
                     </div>
@@ -168,7 +167,7 @@
                           class="required">*</span></label>
                       <div class="col-lg-10">
                         <input [(ngModel)]="prestador.competencias" class="form-control " id="competencias"
-                          name="competencias" type="email" />
+                          name="competencias" type="text" />
                       </div>
                     </div>
                     <br>
@@ -176,7 +175,7 @@
                       <label for="comentario" class="control-label col-lg-2">Comentário</label>
                       <div class="col-lg-10">
                         <input [(ngModel)]="prestador.comentario" class="form-control " id="comentario"
-                          name="comentario" type="email" />
+                          name="comentario" type="text" />
                       </div>
                     </div>
                     <br>

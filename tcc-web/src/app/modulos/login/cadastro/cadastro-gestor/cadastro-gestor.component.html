@@ -92,21 +92,21 @@
                       <div class="form-group ">
                           <label for="cpf" class="control-label col-lg-2">CPF <span class="required">*</span></label>
                           <div class="col-lg-10">
-                            <input [(ngModel)]="gestor.cpf" class="form-control " id="cpf" name="cpf" type="email" />
+                            <input [(ngModel)]="gestor.cpf" mask="000.000.000.00" [showMaskTyped] = "true" class="form-control " id="cpf" name="cpf" type="text" />
                           </div>
                         </div>
                       <br>
                       <div class="form-group ">
                           <label for="telefone" class="control-label col-lg-2">Telefone <span class="required">*</span></label>
                           <div class="col-lg-10">
-                            <input [(ngModel)]="gestor.telefone" class="form-control " id="telefone" name="telefone" type="email" />
+                            <input [(ngModel)]="gestor.telefone" mask="(00) 000000000" class="form-control " id="telefone" name="telefone" type="text" />
                           </div>
                         </div>
                       <br>
                       <div class="form-group ">
                           <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
                           <div class="col-lg-10">
-                            <input [(ngModel)]="gestor.cidade" class="form-control " id="cidade" name="cidade" type="email" />
+                            <input [(ngModel)]="gestor.cidade" class="form-control " id="cidade" name="cidade" type="text" />
                           </div>
                         </div>
                       <br>
@@ -125,7 +125,7 @@
                       <div class="form-group ">
                         <label for="cep" class="control-label col-lg-2">CEP <span class="required">*</span></label>
                         <div class="col-lg-10">
-                          <input [(ngModel)]="gestor.cep" class="form-control " id="cep" name="cep" type="text" />
+                          <input [(ngModel)]="gestor.cep" mask="00000-000" class="form-control " id="cep" name="cep" type="text" />
                         </div>
                       </div>
                       <div class="form-group ">
@@ -137,7 +137,7 @@
                       <div class="form-group ">
                         <label for="numero" class="control-label col-lg-2">Numero <span class="required">*</span></label>
                         <div class="col-lg-10">
-                          <input [(ngModel)]="gestor.numero" class="form-control " id="numero" name="numero" type="text" />
+                          <input [(ngModel)]="gestor.numero" mask="000000" class="form-control " id="numero" name="numero" type="text" />
                         </div>
                       </div>
                       <div class="form-group ">
@@ -149,21 +149,21 @@
                       <div class="form-group ">
                           <label for="historico" class="control-label col-lg-2">Histórico Profissional</label>
                           <div class="col-lg-10">
-                            <input [(ngModel)]="gestor.historico" class="form-control " id="historico" name="historico" type="email" />
+                            <input [(ngModel)]="gestor.historico" class="form-control " id="historico" name="historico" type="text" />
                           </div>
                         </div>
                       <br>
                       <div class="form-group ">
                           <label for="cursos" class="control-label col-lg-2">Cursos/Certificações</label>
                           <div class="col-lg-10">
-                            <input [(ngModel)]="gestor.cursos" class="form-control " id="cursos" name="cursos" type="email" />
+                            <input [(ngModel)]="gestor.cursos" class="form-control " id="cursos" name="cursos" type="text" />
                           </div>
                         </div>
                       <br>
                       <div class="form-group ">
                           <label for="comentario" class="control-label col-lg-2">Comentário</label>
                           <div class="col-lg-10">
-                            <input [(ngModel)]="gestor.comentario" class="form-control " id="comentario" name="comentario" type="email" />
+                            <input [(ngModel)]="gestor.comentario" class="form-control " id="comentario" name="comentario" type="text" />
                           </div>
                         </div>
                       <br>

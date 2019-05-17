@@ -107,7 +107,7 @@
                         <div class="form-group ">
                             <label for="telefone" class="control-label col-lg-2">Telefone <span class="required">*</span></label>
                             <div class="col-lg-10">
-                              <input [(ngModel)]="this.paciente.telefone" class="form-control " id="telefone" name="telefone" type="text" />
+                              <input [(ngModel)]="this.paciente.telefone" mask="(00) 000000000" class="form-control " id="telefone" name="telefone" type="text" />
                             </div>
                           </div>
                         <br>
@@ -135,7 +135,7 @@
                         <div class="form-group ">
                             <label for="numero" class="control-label col-lg-2">Número <span class="required">*</span></label>
                             <div class="col-lg-10">
-                              <input [(ngModel)]="this.paciente.numero" class="form-control " id="numero" name="numero" type="text" />
+                              <input [(ngModel)]="this.paciente.numero" mask="000000" class="form-control " id="numero" name="numero" type="text" />
                             </div>
                           </div>
                         <br>
@@ -156,7 +156,7 @@
                         <div class="form-group ">
                             <label for="cep" class="control-label col-lg-2">CEP  <span class="required">*</span></label>
                             <div class="col-lg-10">
-                              <input [(ngModel)]="this.paciente.cep" class="form-control " id="cep" name="cep" type="text" />
+                              <input [(ngModel)]="this.paciente.cep" mask="00000-000"  class="form-control " id="cep" name="cep" type="text" />
                             </div>
                           </div>
                         <br>

@@ -144,7 +144,7 @@ export class CadastroPacienteComponent implements OnInit {
     this.paciente.email = "";
     this.paciente.datanascimento = null;
     this.paciente.sexo = 0;
-    this.paciente.cpf = "";
+    // this.paciente.cpf = "";
     this.paciente.telefone = "";
     this.paciente.cidade = "";
     this.paciente.estado = "";
