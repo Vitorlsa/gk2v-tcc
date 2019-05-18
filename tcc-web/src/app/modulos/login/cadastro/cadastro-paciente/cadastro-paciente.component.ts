@@ -17,7 +17,7 @@ registerLocaleData(localePt);
 export class CadastroPacienteComponent implements OnInit {
 
 
-  constructor(private http: HttpClient, private service: LoginService, private cadastroService: CadastroServiceService, private util:UtilsService) {
+  constructor(private http: HttpClient, private service: LoginService, private cadastroService: CadastroServiceService, private util: UtilsService) {
     this.paciente.sexo = 3;
   }
 
@@ -71,25 +71,26 @@ export class CadastroPacienteComponent implements OnInit {
       });
 
     });
+
+
+    //this.cadastroService.setfecharModalEditarCallback(this.fecharModalEditar);
   }
 
 
   listarPacientes() {
     try {
       this.http.post(this.apiListar, { Id: this.contratante.id }).subscribe(data => {
-        console.log(data);
         this.todosPacientes = [];
-        console.log(typeof data);
         this.todosPacientes = data;
         this.todosPacientes.forEach((element, index) => {
           this.todosPacientes[index].dataFormatada = new DatePipe('pt-BR').transform(element.dataNascimento, 'dd/MM/yyyy');
         });
-
       })
     } catch{
       console.log("nao chamaou api");
     }
   }
+
 
   editarPaciente(param) {
     console.log(param);
@@ -99,6 +100,9 @@ export class CadastroPacienteComponent implements OnInit {
     $('.modal-open').prop('checked', true);
   }
 
+  // fecharModalEditar() {
+  //   this.listarPacientes();
+  // }
 
 
 
@@ -127,6 +131,7 @@ export class CadastroPacienteComponent implements OnInit {
         res => {
           alert("Cadastro salvo com sucesso");
           this.cadastroService.setContratantePaciente(this.paciente);
+          this.voltar();
         },
         err => {
           console.log(err);

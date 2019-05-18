@@ -7,17 +7,18 @@ import { CadastroContratanteComponent } from './cadastro-contratante/cadastro-co
 })
 export class CadastroServiceService {
   contratante: any;
+  fecharCallback: any;
 
   constructor(private utils: UtilsService) { }
 
 
-  setSexo() {
+  // setSexo() {
 
-  }
+  // }
 
-  setTermos() {
+  // setTermos() {
 
-  }
+  // }
 
   validaCadastro(usuario) {
     if (usuario.senha != usuario.confirmaSenha)
@@ -40,5 +41,13 @@ export class CadastroServiceService {
   getContratantePaciente() {
     return this.contratante;
   }
+
+// setfecharModalEditarCallback(func){
+// this.fecharCallback = func;
+// }
+
+// fecharModalEditarCallback(){
+//   return this.fecharCallback();
+// }
 
 }

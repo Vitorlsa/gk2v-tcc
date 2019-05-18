@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { DatePipe } from '@angular/common';
+import { CadastroServiceService } from '../../login/cadastro/cadastro-service.service';
 registerLocaleData(localePt);
 
 @Component({
@@ -12,7 +13,7 @@ registerLocaleData(localePt);
 })
 export class ModalEditarPacienteComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cadastroService : CadastroServiceService) { }
 
   private apiBuscar = "http://localhost:8080/api/beneficiario/buscarporid";
   private apiSalvar = "http://localhost:8080/api/beneficiario/editar";
@@ -45,7 +46,7 @@ export class ModalEditarPacienteComponent implements OnInit {
   }
 
   atualizarBeneficiario(param) {
-    param.dataNascimento = param.dataFormatada;
+    //param.dataNascimento = param.dataFormatada;
     if (this.pacienteCompleto.sexo == "masculino")
       this.pacienteCompleto.sexo = 1;
     else if (this.pacienteCompleto.sexo == "feminino")
@@ -54,11 +55,11 @@ export class ModalEditarPacienteComponent implements OnInit {
       this.pacienteCompleto.sexo = 3;
 
 
-
     try {
       this.http.post(this.apiSalvar, param).subscribe(
         res => {
           alert("Cadastro salvo com sucesso");
+          this.fechar();
         },
         err => {
           console.log(err);
@@ -69,7 +70,10 @@ export class ModalEditarPacienteComponent implements OnInit {
   }
 
   fechar() {
+    // this.cadastroService.fecharModalEditarCallback();
     $('.modal-open').prop('checked', false);
+    location.reload();
+
   }
 
 

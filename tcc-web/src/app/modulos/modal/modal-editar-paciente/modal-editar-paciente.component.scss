@@ -63,7 +63,9 @@ textarea{
     transition:transform .6s ease-in-out;
     width:80%;
     max-width:600px;
-    z-index:103
+    z-index:103;
+    height: 520px;
+    overflow: auto;
 }
 .modal-body{
     padding:20px;

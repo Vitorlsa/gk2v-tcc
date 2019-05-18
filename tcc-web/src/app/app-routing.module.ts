@@ -13,6 +13,7 @@ import { PerfilComponent } from './modulos/board/perfil/perfil.component';
 import { CadastroPacienteComponent } from './modulos/login/cadastro/cadastro-paciente/cadastro-paciente.component';
 import { ListapacienteComponent } from './modulos/login/cadastro/cadastro-paciente/listapaciente/listapaciente.component';
 import { NovoPacienteComponent } from './modulos/login/cadastro/cadastro-paciente/novo-paciente/novo-paciente.component';
+import { MedicamentosComponent } from './modulos/medicamentos/medicamentos.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -32,8 +33,8 @@ const routes: Routes = [
     //   { path: 'listaPaciente',  component: ListapacienteComponent },
     //   { path: 'novoPaciente', component: NovoPacienteComponent },
     // ]
-  }
-
+  },
+  { path: 'medicamentos', component: MedicamentosComponent }
 ];
 
 @NgModule({
