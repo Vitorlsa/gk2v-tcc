@@ -29,7 +29,7 @@ export class BoardComponent implements OnInit {
 	pegaPerfilSelecionado() {
 		this.perfilSelecionado = this.serviceContext.getPerfil();
 		sessionStorage.setItem('tipoPerfil', JSON.stringify(this.perfilSelecionado));
-		return this.guardaAcessos();
+		this.guardaAcessos();
 		//return this.pegaPerfilSelecionado.emit(this.guardaAcessos());
 	}
 
@@ -95,15 +95,12 @@ export class BoardComponent implements OnInit {
 
 	guardaAcessos() {
 		let usuario = this.service.getUsuario();
+		let perfilSelecionado = this.perfilSelecionado;
+		let service = this.service;
 		usuario.acessos.forEach(function (perfil, index) {
-			if (usuario.acessos[index].perfil == sessionStorage.getItem('tipoPerfil'))
-			//if (usuario.acessos[index].perfil == this.serviceContext.getPerfil())
-				this.service.setAcessos(usuario.acessos[index].funcionalidadeDTO);
+			if (usuario.acessos[index].perfil == perfilSelecionado)
+				service.setAcessos(usuario.acessos[index].funcionalidadeDTO);
 
-			// console.log(index);
-			// console.log(perfil);
-			// var acessosss = this.service.getAcessos();
-			// console.log(acessosss);
 		});
 	}
 }
