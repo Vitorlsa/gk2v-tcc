@@ -11,18 +11,18 @@ export class AuthGuardService implements CanActivate {
 
   private temPermissao = true;
 
-  private cookieValue;
-  
+  // private cookieValue;
+
   canActivate() {
-    this.cookieValue = this.cookieService.get('Test');
+    // this.cookieValue = this.cookieService.get('Test');
 
-  console.log(this.cookieValue);
+    //console.log(this.cookieValue);
 
-  if (!this.temPermissao)
-    return this.router.navigate(['/login']);
+    if (!this.temPermissao)
+      return this.router.navigate(['/login']);
 
 
     return true;
-}
+  }
 
 }

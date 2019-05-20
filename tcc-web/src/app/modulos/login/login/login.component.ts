@@ -39,7 +39,14 @@ export class LoginComponent implements OnInit {
     this.http.post(this.api, { login: this.usuario.login, senha: this.usuario.senha }).subscribe(data => {
       if (!this.util.nullOrUndef(data)) {
         this.users = data;
+        console.log(this.users);
         this.service.guardaUsuario(this.users);
+
+        // var usuario = this.service.getUsuario();
+        // console.log(usuario);
+        // this.service.setAcessos(usuario.acessos);
+
+
         this.router.navigate(['/board']);
       } else
         alert("Usuario nao existe");

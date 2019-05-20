@@ -50,6 +50,14 @@ export class LoginService {
   atualizaPerfilAtual(){
     this.pegaPerfil();
   }
+  
+  setAcessos(param){
+    sessionStorage.setItem('acessos', JSON.stringify(param));
+  }
+
+  getAcessos() {
+    return JSON.parse(sessionStorage.getItem('acessos'));
+  }
 
 
 }

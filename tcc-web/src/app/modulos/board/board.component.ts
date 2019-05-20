@@ -29,6 +29,8 @@ export class BoardComponent implements OnInit {
 	pegaPerfilSelecionado() {
 		this.perfilSelecionado = this.serviceContext.getPerfil();
 		sessionStorage.setItem('tipoPerfil', JSON.stringify(this.perfilSelecionado));
+		return this.guardaAcessos();
+		//return this.pegaPerfilSelecionado.emit(this.guardaAcessos());
 	}
 
 
@@ -42,12 +44,24 @@ export class BoardComponent implements OnInit {
 
 		this.perfilsUsuario = this.service.getSessionPerfil();
 		if (typeof this.perfilsUsuario != "number") {
-			if (this.perfilsUsuario.length == 1)
+			if (this.perfilsUsuario.length == 1) {
 				this.perfilSelecionado = this.perfilsUsuario[0];
+				this.guardaAcessos();
+			}
 		} else {
 			this.perfilSelecionado = this.perfilsUsuario;
 		}
 
+		//this.service.setAcessos(usuario.acessos[this.perfilSelecionado].funcionalidadeDTO);
+		// var acessosss = this.service.getAcessos();
+		// console.log(acessosss);
+
+
+		// let usuario = this.service.getUsuario();
+		// console.log(usuario);
+		// this.service.setAcessos(usuario.acessos);
+		// var acessosss = this.service.getAcessos();
+		// console.log(acessosss);
 
 		var $window = $(window),
 			$header = $('#header'),
@@ -76,6 +90,20 @@ export class BoardComponent implements OnInit {
 				e.preventDefault();
 			});
 
+		});
+	}
+
+	guardaAcessos() {
+		let usuario = this.service.getUsuario();
+		usuario.acessos.forEach(function (perfil, index) {
+			if (usuario.acessos[index].perfil == sessionStorage.getItem('tipoPerfil'))
+			//if (usuario.acessos[index].perfil == this.serviceContext.getPerfil())
+				this.service.setAcessos(usuario.acessos[index].funcionalidadeDTO);
+
+			// console.log(index);
+			// console.log(perfil);
+			// var acessosss = this.service.getAcessos();
+			// console.log(acessosss);
 		});
 	}
 }

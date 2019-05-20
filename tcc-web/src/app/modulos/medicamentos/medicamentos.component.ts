@@ -64,10 +64,10 @@ export class MedicamentosComponent implements OnInit {
   }
 
   salvar() {
-console.log(this.medicamento);
+    console.log(this.medicamento);
   }
 
-  voltar() { 
+  voltar() {
     this.novoMedicamento = false;
   }
 

@@ -23,11 +23,11 @@ const routes: Routes = [
   { path: 'cadastroContratante', component: CadastroContratanteComponent },
   { path: 'cadastroPrestador', component: CadastroPrestadorComponent },
   { path: 'cadastroGestor', component: CadastroGestorComponent },
-  { path: 'board', component: BoardComponent, canActivate: [AuthGuardService] },
+  { path: 'board', component: BoardComponent },
   { path: 'analiseCadastro', component: AnaliseCadastroComponent },
   { path: 'perfil', component: PerfilComponent },
   {
-    path: 'cadastroPaciente', component: CadastroPacienteComponent,
+    path: 'cadastroPaciente', component: CadastroPacienteComponent, canActivate: [AuthGuardService]
     // children: [
     //   { path: '', redirectTo:'listaPaciente' , component: ListapacienteComponent },
     //   { path: 'listaPaciente',  component: ListapacienteComponent },
