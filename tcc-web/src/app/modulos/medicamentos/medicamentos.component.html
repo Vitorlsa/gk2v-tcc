@@ -11,89 +11,54 @@
 </header>
 
 <!-- Main -->
-<div id="main">
-  <div class="inner">
-    <a href="/board">voltar</a>
-    <!-- listagem -->
-    <div *ngIf="!this.novoMedicamento" style="text-align: center">
-      <div class="columns" style="display: inline-flex">
-        <!-- Column 1 (horizontal, vertical, horizontal, vertical) -->
-        <div class="image fit" (click)="criarNovoRemedio()">
-          <a  class="clicavel"><img
-              src="../../../../../assets/images/cadastro/Intern_Banner_Template_Cadastrar_Paciente.png" alt="" /></a>
+<div id="preview">
+    <div class="inner">
+        <div class="image fit">
+          <img src="../../../assets/images/cadastro/banner_lcm.png" alt="" />
         </div>
-      </div>
+        <div class="content">
+          <header>
+            <h2>Medicamentos</h2>
+          </header>
+          <div>
+              <button class="addMedicamento">+ medicamento</button> 
 
-      <h2>Medicamentos já cadastrados</h2>
+              <form style="float:right">
+                Pesquisa: <input type="text" width="48" height="48" name="pesquisa">
+              </form>
 
-      <table>
-        <tr>
-          <th>Nome</th>
-          <th>Nascimento</th>
-          <th>Sexo</th>
-          <th>Condição clinica</th>
-          <th>&nbsp;</th>
-        </tr>
-        <!-- <tr *ngFor="let paciente of this.todosPacientes">
-          <td>{{paciente.nome}}</td>
-          <td>{{paciente.dataFormatada}}</td>
-          <td>{{paciente.sexo}}</td>
-          <td>{{paciente.condicoesClinicas}}</td>
-          <button class="editarPaciente" *ngIf="this.perfilPaciente != 4"
-            (click)="editarPaciente(paciente)">editar</button>
-        </tr> -->
-      </table>
-    </div>
-
-    <!-- novo medicamento -->
-    <div *ngIf="this.novoMedicamento">
-      <div class="image fit">
-        <img src="images/banner_cadastro.jpg" alt="" />
-      </div>
-      <div class="content">
-        <header>
-          <h2>Cadastro medicamento</h2>
-        </header>
-        <div id="welcome">
-          <div class="title">
-            <span class="byline"><b>Preencha todos os campos obrigatórios.</b></span>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-lg-12">
-              <section class="panel">
-                <header class="panel-heading">
-                </header>
-                <div class="panel-body">
-                  <div class="form">
-                    <form class="form-validate form-horizontal " id="register_form" method="get" action="">
-                      <div class="form-group ">
-                        <label for="fullname" class="control-label col-lg-2">Nome Completo<span
-                            class="required">*</span></label>
-                        <div class="col-lg-10">
-                          <input [(ngModel)]="this.medicamento.nome" class=" form-control" id="fullname" name="fullname"
-                            type="text" />
-                        </div>
-                      </div>
-                      <br>
-                      <div class="form-group">
-                        <div class="col-lg-offset-2 col-lg-10">
-                          <button (click)="salvar()" class="btn btn-primary" type="submit">Salvar</button>
-                          <button (click)="voltar()" class="btn btn-default" type="button">Voltar</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </section>
+              <table>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Quantidade</th>
+                    <th>Dosagem</th>
+                  </tr>
+                  <tr>
+                    <td>Dorflex</td>
+                    <td>6 comprimidos <button class="button">aumentar</button> <button class="button">diminuir</button></td>
+                    <td>1 comprimido <button class="button">aumentar</button> <button class="button">diminuir</button></td>
+                  </tr>
+                  <tr>
+                    <td>Novalgina</td>
+                    <td>1 frasco de 20ml <button class="button">aumentar</button> <button class="button">diminuir</button></td>
+                    <td>20 gotas <button class="button">aumentar</button> <button class="button">diminuir</button></td>
+                  </tr>  
+                  <tr>
+                    <td>Generico X</td>
+                    <td>6 comprimidos <button class="button">aumentar</button> <button class="button">diminuir</button></td>
+                    <td>1 comprimido <button class="button">aumentar</button> <button class="button">diminuir</button></td>
+                  </tr>
+                  <tr>
+                    <td>Generico Y</td>
+                    <td>1 frasco de 20ml <button class="button">aumentar</button> <button class="button">diminuir</button></td>
+                    <td>20 gotas <button class="button">aumentar</button> <button class="button">diminuir</button></td>
+                  </tr>  
+              </table>
             </div>
-          </div>
-        </div>
+          </div>		
       </div>
-    </div>
-
-  </div>
 </div>
+
 
 <!-- Footer -->
 <footer id="footer">
