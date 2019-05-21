@@ -30,7 +30,6 @@ export class BoardComponent implements OnInit {
 		this.perfilSelecionado = this.serviceContext.getPerfil();
 		sessionStorage.setItem('tipoPerfil', JSON.stringify(this.perfilSelecionado));
 		this.guardaAcessos();
-		//return this.pegaPerfilSelecionado.emit(this.guardaAcessos());
 	}
 
 
@@ -52,19 +51,7 @@ export class BoardComponent implements OnInit {
 			this.perfilSelecionado = this.perfilsUsuario;
 		}
 
-		//this.service.setAcessos(usuario.acessos[this.perfilSelecionado].funcionalidadeDTO);
-		// var acessosss = this.service.getAcessos();
-		// console.log(acessosss);
-
-
-		// let usuario = this.service.getUsuario();
-		// console.log(usuario);
-		// this.service.setAcessos(usuario.acessos);
-		// var acessosss = this.service.getAcessos();
-		// console.log(acessosss);
-
-		var $window = $(window),
-			$header = $('#header'),
+		var $header = $('#header'),
 			$footer = $('#footer');
 
 		// Header.

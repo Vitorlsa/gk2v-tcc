@@ -30,7 +30,7 @@
       </div>
 
       <!-- Column 1 (horizontal, vertical, horizontal, vertical) -->
-      <div class="image fit clicavel">
+      <div *ngIf="this.perfilSelecionado != 1" class="image fit clicavel">
         <a><img src="../../../assets/images/board/banner01.png" alt="" /></a>
       </div>
 
@@ -41,12 +41,12 @@
       </div>
 
       <!-- Column 2 (vertical, horizontal, vertical, horizontal) -->
-      <div class="image fit clicavel">
+      <div *ngIf="this.perfilSelecionado != 1" class="image fit clicavel">
         <a><img src="../../../assets/images/board/banner02.png" alt="" /></a>
       </div>
 
       <!-- Column 3 (horizontal, vertical, horizontal, vertical) -->
-      <div class="image fit clicavel">
+      <div *ngIf="this.perfilSelecionado != 1" class="image fit clicavel">
         <a href="medicamentos"><img src="../../../assets/images/board/banner03.png" alt="" /></a>
       </div>
 
@@ -55,7 +55,7 @@
         <a><img src="../../../assets/images/board/banner04.png" alt="" /></a>
       </div>
 
-      <div class="image fit clicavel">
+      <div class="image fit clicavel" *ngIf="this.perfilSelecionado != 1">
         <a href="cadastroPaciente"><img src="../../../assets/images/board/Intern_Banner_Template_Paciente.png" alt="" /></a>
       </div>
 
