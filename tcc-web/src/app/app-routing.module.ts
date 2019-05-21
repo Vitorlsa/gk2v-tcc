@@ -34,7 +34,7 @@ const routes: Routes = [
     //   { path: 'novoPaciente', component: NovoPacienteComponent },
     // ]
   },
-  { path: 'medicamentos', component: MedicamentosComponent }
+  { path: 'medicamentos', component: MedicamentosComponent, canActivate: [AuthGuardService] }
 ];
 
 @NgModule({
