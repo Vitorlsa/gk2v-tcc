@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'cadastroPrestador', component: CadastroPrestadorComponent },
   { path: 'cadastroGestor', component: CadastroGestorComponent },
   { path: 'board', component: BoardComponent },
-  { path: 'analiseCadastro', component: AnaliseCadastroComponent },
+  { path: 'analiseCadastro', component: AnaliseCadastroComponent, canActivate: [AuthGuardService] },
   { path: 'perfil', component: PerfilComponent },
   {
     path: 'cadastroPaciente', component: CadastroPacienteComponent, canActivate: [AuthGuardService]
