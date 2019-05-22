@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UtilsService } from 'src/app/funcoes/utils.service';
 import { CadastroContratanteComponent } from './cadastro-contratante/cadastro-contratante.component';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class CadastroServiceService {
   contratante: any;
   fecharCallback: any;
 
-  constructor(private utils: UtilsService) { }
+  constructor(private utils: UtilsService, private http: HttpClient) { }
 
 
   // setSexo() {
@@ -49,5 +50,19 @@ export class CadastroServiceService {
 // fecharModalEditarCallback(){
 //   return this.fecharCallback();
 // }
+
+
+private apiverificarCpf = "http://localhost:8080/api/usuario/verificarcpfcadastrado"
+
+verificarCpf(cpf){
+  try {
+    this.http.post(this.apiverificarCpf, { Id: this.contratante.id }).subscribe(data => {
+      return data;
+    })
+  } catch{
+    console.log("nao chamaou api");
+  }
+}
+
 
 }

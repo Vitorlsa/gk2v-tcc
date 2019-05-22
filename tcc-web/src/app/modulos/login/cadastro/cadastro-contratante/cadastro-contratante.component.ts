@@ -53,6 +53,13 @@ export class CadastroContratanteComponent implements OnInit {
     }
   }
 
+  confereCpf(){
+    
+    this.cadastroService.verificarCpf(this.usuario.cpf)
+
+    
+  }
+
 
   cancelar() {
     this.router.navigate(['/cadastro']);
