@@ -13,51 +13,62 @@ export class CadastroPrestadorComponent implements OnInit {
 
   constructor(private router: Router, private http: HttpClient, private cadastroService: CadastroServiceService) {
     this.prestador.sexo = 3;
-   }
+  }
 
 
   public api = "http://localhost:8080/api/prestadordeservico/cadastrar";
 
-public prestador = new Prestador();
+  public prestador = new Prestador();
 
 
-  // public prestador = {
-  //   nome: "",
-  //   login: "",
-  //   senha: "",
-  //   confirmaSenha: "",
-  //   email: "",
-  //   dataNascimento: "",
-  //   sexo: 0,
-  //   cpf: "",
-  //   telefone: "",
-  //   cidade: "",
-  //   estado: "",
-  //   bairro: "",
-  //   cep: "",
-  //   rua: "",
-  //   numero: "",
-  //   complemento: "",
-  //   competencias: "",
-  //   comentario: "",
-  //   termos: false,
-  // };
-
-
+  public cpfJaCadastrado = false;
+  public emailJaCadastrado = false;
+  private apiverificarCpf = "http://localhost:8080/api/usuario/verificarcpfcadastrado";
+  private apiverificarEmail = "http://localhost:8080/api/usuario/verificaremailcadastrado";
 
   ngOnInit() {
     this.limparUsuario();
   }
 
   salvar() {
-    if (this.cadastroService.validaCadastro(this.prestador)) {
-      this.http.post(this.api, this.prestador).subscribe(data => {
-        // console.log(data);
-        alert("Cadastro salvo com sucesso");
-      })
-    } else {
-      alert("Campos preenchidos incorretamente");
+    if (!this.emailJaCadastrado && !this.cpfJaCadastrado) {
+      if (this.cadastroService.validaCadastro(this.prestador)) {
+        this.http.post(this.api, this.prestador).subscribe(data => {
+          // console.log(data);
+          alert("Cadastro salvo com sucesso");
+        })
+      } else {
+        alert("Campos preenchidos incorretamente");
+      }
     }
+  }
+
+
+  async confereCpf() {
+    let retorno = null;
+    try {
+      retorno = await this.http.post(this.apiverificarCpf, { Cpf: this.prestador.cpf }).toPromise();
+    } catch{
+      console.log("nao chamaou api");
+      retorno = false;
+    }
+    console.log("retorno --> " + retorno);
+    this.cpfJaCadastrado = retorno;
+    return retorno;
+  }
+
+
+  async confereEmail() {
+    let retorno = null;
+    try {
+      retorno = await this.http.post(this.apiverificarEmail, { Email: this.prestador.email }).toPromise();
+    } catch{
+      console.log("nao chamaou api");
+      retorno = false;
+    }
+    console.log("retorno --> " + retorno);
+    this.emailJaCadastrado = retorno;
+    return retorno;
   }
 
   setSexo(event) {
@@ -76,27 +87,27 @@ public prestador = new Prestador();
   limparUsuario() {
     // this.prestador = new Prestador();
     this.prestador.nome = "";
-    this.prestador.login= "";
-    this.prestador.senha= "";
-    this.prestador.confirmaSenha= "";
-    this.prestador.email= "";
-    this.prestador.datanascimento= null;
-    this.prestador.sexo= 0;
-    this.prestador.cpf= "";
-    this.prestador.telefone= "";
-    this.prestador.cidade= "";
-    this.prestador.estado= "";
-    this.prestador.bairro= "";
-    this.prestador.cep= "";
-    this.prestador.rua= "";
-    this.prestador.numero= "";
-    this.prestador.complemento= "";
-    this.prestador.competencias= "";
-    this.prestador.comentario= "";
-    this.prestador.termos= false;
+    this.prestador.login = "";
+    this.prestador.senha = "";
+    this.prestador.confirmaSenha = "";
+    this.prestador.email = "";
+    this.prestador.datanascimento = null;
+    this.prestador.sexo = 0;
+    this.prestador.cpf = "";
+    this.prestador.telefone = "";
+    this.prestador.cidade = "";
+    this.prestador.estado = "";
+    this.prestador.bairro = "";
+    this.prestador.cep = "";
+    this.prestador.rua = "";
+    this.prestador.numero = "";
+    this.prestador.complemento = "";
+    this.prestador.competencias = "";
+    this.prestador.comentario = "";
+    this.prestador.termos = false;
   }
 
-  voltar(){
+  voltar() {
     this.router.navigate(['/cadastro']);
   }
 
