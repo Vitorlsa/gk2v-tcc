@@ -13,12 +13,15 @@ export class MedicamentosComponent implements OnInit {
 
   constructor(private http: HttpClient, private service: LoginService, private cadastroService: CadastroServiceService, private util: UtilsService) { }
 
-  private apiSalvar = "http://localhost:8080/api/beneficiario/adicionar";
-  private apiListar = "http://localhost:8080/api/beneficiario/listarporcontratante";
+  private apicadastrar = "http://localhost:8080/api/medicamento/cadastrar";
+  private apiEditar = "http://localhost:8080/api/medicamento/editar";
+  private apiListar = "http://localhost:8080/api/medicamento/listar";
+  private apiDetahar = "http://localhost:8080/api/medicamento/detalhar";
+  private apiRemover = "http://localhost:8080/api/medicamento/remover"
   private contratante = this.service.getUsuario();
   public medicamento = {};
   public novoMedicamento = false;
-  public todosMedicamento = null;
+  public medicamentosPaciente = null;
   public dataFormatada = null;
   public perfilMedicamento = null
 
@@ -26,8 +29,9 @@ export class MedicamentosComponent implements OnInit {
 
   ngOnInit() {
 
-    var $window = $(window),
-      $header = $('#header'),
+    this.listarRemedios();
+
+    var $header = $('#header'),
       $footer = $('#footer');
 
     // Header.
@@ -55,6 +59,21 @@ export class MedicamentosComponent implements OnInit {
 
     });
 
+  }
+
+
+  listarRemedios() {
+    try {
+      this.http.post(this.apiListar, { Id: this.contratante.id }).subscribe(data => {
+        this.medicamentosPaciente = [];
+        this.medicamentosPaciente = data;
+        // this.medicamentosPaciente.forEach((element, index) => {
+        //   this.medicamentosPaciente[index].dataFormatada = new DatePipe('pt-BR').transform(element.dataValidade, 'dd/MM/yyyy');
+        // });
+      })
+    } catch{
+      console.log("nao chamaou api");
+    }
   }
 
 

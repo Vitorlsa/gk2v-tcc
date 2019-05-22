@@ -33,12 +33,12 @@
                     <th>Quantidade</th>
                     <th>Dosagem</th>
                   </tr>
-                  <tr>
+                  <tr *ngFor="let medicamento of this.medicamentosPaciente">
                     <td>Dorflex</td>
                     <td>6 comprimidos <button class="button">aumentar</button> <button class="button">diminuir</button></td>
                     <td>1 comprimido <button class="button">aumentar</button> <button class="button">diminuir</button></td>
                   </tr>
-                  <tr>
+                  <!-- <tr>
                     <td>Novalgina</td>
                     <td>1 frasco de 20ml <button class="button">aumentar</button> <button class="button">diminuir</button></td>
                     <td>20 gotas <button class="button">aumentar</button> <button class="button">diminuir</button></td>
@@ -52,7 +52,7 @@
                     <td>Generico Y</td>
                     <td>1 frasco de 20ml <button class="button">aumentar</button> <button class="button">diminuir</button></td>
                     <td>20 gotas <button class="button">aumentar</button> <button class="button">diminuir</button></td>
-                  </tr>  
+                  </tr>   -->
               </table>
             </div>
           </div>		
