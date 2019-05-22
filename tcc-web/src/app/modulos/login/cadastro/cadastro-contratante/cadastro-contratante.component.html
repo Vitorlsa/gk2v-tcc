@@ -68,7 +68,8 @@
                   <div class="form-group ">
                     <label for="email" class="control-label col-lg-2">Email <span class="required">*</span></label>
                     <div class="col-lg-10">
-                      <input [(ngModel)]="usuario.email" class="form-control " id="email" name="email" type="email" />
+                      <input [(ngModel)]="usuario.email" (blur)="this.confereEmail()" class="form-control " id="email" name="email" type="email" />
+                      <p *ngIf="this.emailJaCadastrado" style="color:red;">cpf ja cadastrado</p>
                     </div>
                   </div>
                   <br>
@@ -92,7 +93,8 @@
                   <div class="form-group ">
                       <label for="cpf" class="control-label col-lg-2">CPF <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.cpf" mask="000.000.000.00" [showMaskTyped] = "true" class="form-control " id="cpf" name="cpf" type="text" />
+                        <input [(ngModel)]="usuario.cpf" (blur)="confereCpf(usuario.cpf)" mask="000.000.000.00" [showMaskTyped] = "true" class="form-control " id="cpf" name="cpf" type="text" />
+                        <p *ngIf="this.cpfJaCadastrado" style="color:red;">cpf ja cadastrado</p>
                       </div>
                     </div>
                   <br>

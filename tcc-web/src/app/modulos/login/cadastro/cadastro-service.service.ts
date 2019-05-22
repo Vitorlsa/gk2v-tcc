@@ -52,17 +52,18 @@ export class CadastroServiceService {
 // }
 
 
-private apiverificarCpf = "http://localhost:8080/api/usuario/verificarcpfcadastrado"
+//private apiverificarCpf = "http://localhost:8080/api/usuario/verificarcpfcadastrado"
 
-verificarCpf(cpf){
-  try {
-    this.http.post(this.apiverificarCpf, { Id: this.contratante.id }).subscribe(data => {
-      return data;
-    })
-  } catch{
-    console.log("nao chamaou api");
-  }
-}
+// verificarCpf(cpf){
+//   try {
+//     this.http.post(this.apiverificarCpf, { Cpf: cpf }).subscribe(data => {
+//       return data;
+//     })
+//   } catch{
+//     console.log("nao chamaou api");
+//   }
+//   return false;
+// }
 
 
 }

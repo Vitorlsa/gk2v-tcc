@@ -20,10 +20,16 @@ export class CadastroContratanteComponent implements OnInit {
     valor: false,
     name: "Não aceito",
   }];
+
+  public cpfJaCadastrado = false;
+  public emailJaCadastrado = false;
+  private apiverificarCpf = "http://localhost:8080/api/usuario/verificarcpfcadastrado";
+  private apiverificarEmail = "http://localhost:8080/api/usuario/verificaremailcadastrado";
   
+
   constructor(private router: Router, private http: HttpClient, private cadastroService: CadastroServiceService) {
     this.usuario.sexo = 3;
-   }
+  }
 
   ngOnInit() {
     this.limparUsuario();
@@ -39,25 +45,47 @@ export class CadastroContratanteComponent implements OnInit {
   }
 
   salvar() {
-    if (this.cadastroService.validaCadastro(this.usuario)) {
-      this.http.post(this.api, this.usuario).subscribe(
-        res => {
-          alert("Cadastro salvo com sucesso");
-          this.cadastroService.setContratantePaciente(this.usuario);
-        },
-        err => {
-          console.log(err);
-        });
-    } else {
-      alert("Campos preenchidos incorretamente");
+    if (!this.emailJaCadastrado && !this.cpfJaCadastrado) {
+      if (this.cadastroService.validaCadastro(this.usuario)) {
+        this.http.post(this.api, this.usuario).subscribe(
+          res => {
+            alert("Cadastro salvo com sucesso");
+            this.cadastroService.setContratantePaciente(this.usuario);
+          },
+          err => {
+            console.log(err);
+          });
+      } else {
+        alert("Campos preenchidos incorretamente");
+      }
     }
   }
 
-  confereCpf(){
-    
-    this.cadastroService.verificarCpf(this.usuario.cpf)
+  async confereCpf() {
+    let retorno = null;
+    try {
+      retorno = await this.http.post(this.apiverificarCpf, { Cpf: this.usuario.cpf }).toPromise();
+    } catch{
+      console.log("nao chamaou api");
+      retorno = false;
+    }
+    console.log("retorno --> " + retorno);
+    this.cpfJaCadastrado = retorno;
+    return retorno;
+  }
 
-    
+
+  async confereEmail() {
+    let retorno = null;
+    try {
+      retorno = await this.http.post(this.apiverificarEmail, { Email: this.usuario.email }).toPromise();
+    } catch{
+      console.log("nao chamaou api");
+      retorno = false;
+    }
+    console.log("retorno --> " + retorno);
+    this.emailJaCadastrado = retorno;
+    return retorno;
   }
 
 
@@ -66,25 +94,25 @@ export class CadastroContratanteComponent implements OnInit {
   }
 
 
-  limparUsuario() {    
-    this.usuario.nome= "";
-    this.usuario.login= "";
-    this.usuario.senha= "";
-    this.usuario.confirmaSenha= "";
-    this.usuario.email= "";
-    this.usuario.datanascimento= null;
-    this.usuario.sexo= 3;
-    this.usuario.cpf= "";
-    this.usuario.telefone= "";
-    this.usuario.cidade="";
-    this.usuario.estado= "";
-    this.usuario.bairro= "";
-    this.usuario.cep= "";
-    this.usuario.rua= "";
-    this.usuario.numero= "";
-    this.usuario.complemento= "";
-    this.usuario.comentario= "";
-    this.usuario.termos= false;
+  limparUsuario() {
+    this.usuario.nome = "";
+    this.usuario.login = "";
+    this.usuario.senha = "";
+    this.usuario.confirmaSenha = "";
+    this.usuario.email = "";
+    this.usuario.datanascimento = null;
+    this.usuario.sexo = 3;
+    this.usuario.cpf = "";
+    this.usuario.telefone = "";
+    this.usuario.cidade = "";
+    this.usuario.estado = "";
+    this.usuario.bairro = "";
+    this.usuario.cep = "";
+    this.usuario.rua = "";
+    this.usuario.numero = "";
+    this.usuario.complemento = "";
+    this.usuario.comentario = "";
+    this.usuario.termos = false;
   }
 
   voltar() {
