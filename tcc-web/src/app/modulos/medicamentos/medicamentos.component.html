@@ -12,33 +12,35 @@
 
 <!-- Main -->
 <div id="preview">
-    <div class="inner">
-        <div class="image fit">
-          <img src="../../../assets/images/cadastro/banner_lcm.png" alt="" />
-        </div>
-        <div class="content">
-          <header>
-            <h2>Medicamentos</h2>
-          </header>
-          <div>
-              <button class="addMedicamento">+ medicamento</button> 
+  <div class="inner">
+    <div class="image fit">
+      <img src="../../../assets/images/cadastro/banner_lcm.png" alt="" />
+    </div>
+    <div class="content">
+      <header>
+        <h2>Medicamentos</h2>
+      </header>
 
-              <form style="float:right">
-                Pesquisa: <input type="text" width="48" height="48" name="pesquisa">
-              </form>
+      <!-- lista de medicamentos -->
+      <div *ngIf="!this.novoMedicamento">
+        <button class="addMedicamento" (click)="criarNovoRemedio()">+ medicamento</button>
 
-              <table>
-                  <tr>
-                    <th>Nome</th>
-                    <th>Quantidade</th>
-                    <th>Dosagem</th>
-                  </tr>
-                  <tr *ngFor="let medicamento of this.medicamentosPaciente">
-                    <td>Dorflex</td>
-                    <td>6 comprimidos <button class="button">aumentar</button> <button class="button">diminuir</button></td>
-                    <td>1 comprimido <button class="button">aumentar</button> <button class="button">diminuir</button></td>
-                  </tr>
-                  <!-- <tr>
+        <form style="float:right">
+          Pesquisa: <input type="text" width="48" height="48" name="pesquisa">
+        </form>
+
+        <table>
+          <tr>
+            <th>Nome</th>
+            <th>Quantidade</th>
+            <th>Dosagem</th>
+          </tr>
+          <tr *ngFor="let medicamento of this.medicamentosPaciente">
+            <td>Dorflex</td>
+            <td>6 comprimidos <button class="button">aumentar</button> <button class="button">diminuir</button></td>
+            <td>1 comprimido <button class="button">aumentar</button> <button class="button">diminuir</button></td>
+          </tr>
+          <!-- <tr>
                     <td>Novalgina</td>
                     <td>1 frasco de 20ml <button class="button">aumentar</button> <button class="button">diminuir</button></td>
                     <td>20 gotas <button class="button">aumentar</button> <button class="button">diminuir</button></td>
@@ -53,10 +55,82 @@
                     <td>1 frasco de 20ml <button class="button">aumentar</button> <button class="button">diminuir</button></td>
                     <td>20 gotas <button class="button">aumentar</button> <button class="button">diminuir</button></td>
                   </tr>   -->
-              </table>
-            </div>
-          </div>		
+        </table>
       </div>
+
+      <!-- cadastro manual de medicamentos -->
+      <div *ngIf="this.novoMedicamento">
+        <div id="welcome">
+        <div class="title">
+          <span class="byline"><b>Preencha todos os campos obrigatórios.</b></span>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-12">
+            <section class="panel">
+              <header class="panel-heading">
+              </header>
+              <div class="panel-body">
+                <div class="form">
+                  <form class="form-validate form-horizontal " id="register_form" method="get" action="">
+                    <div class="form-group ">
+                      <label for="fullname" class="control-label col-lg-2">Nome Completo<span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="this.medicamento.Nome" class=" form-control" id="fullname" name="fullname"type="text" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="fullname" class="control-label col-lg-2">Contra indicação<span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="this.medicamento.ContraIndicacao" class=" form-control" id="contraIndicacao" name="contraIndicacao"type="text" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="fullname" class="control-label col-lg-2">Bula<span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="this.medicamento.Bula" class=" form-control" id="bula" name="bula"type="text" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="fullname" class="control-label col-lg-2">Indicação<span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="this.medicamento.Indicacao" class=" form-control" id="indicacao" name="incicacao"
+                          type="text" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="fullname" class="control-label col-lg-2">Tipo<span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="this.medicamento.Tipo" class=" form-control" id="tipo" name="tipo"
+                          type="text" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="fullname" class="control-label col-lg-2">Via de uso<span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="this.medicamento.ViaDeUso" class=" form-control" id="ViaDeUso" name="ViaDeUso"
+                          type="text" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="fullname" class="control-label col-lg-2">Efeito colateral<span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="this.medicamento.EfeitoColateral" class=" form-control" id="EfeitoColateral" name="EfeitoColateral"
+                          type="text" />
+                      </div>
+                    </div>
+                        <button (click)="salvar()" class="btn btn-primary" type="submit">Enviar</button>
+                        <button (click)="voltar()" class="btn btn-default" type="button">Voltar</button>
+                     </form>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </div>
 
 

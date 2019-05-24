@@ -84,6 +84,16 @@ export class MedicamentosComponent implements OnInit {
 
   salvar() {
     console.log(this.medicamento);
+    try {
+      this.http.post(this.apicadastrar, this.medicamento).subscribe(data => {
+        console.log(data);
+        // this.medicamentosPaciente.forEach((element, index) => {
+        //   this.medicamentosPaciente[index].dataFormatada = new DatePipe('pt-BR').transform(element.dataValidade, 'dd/MM/yyyy');
+        // });
+      })
+    } catch{
+      console.log("nao chamaou api");
+    }
   }
 
   voltar() {
