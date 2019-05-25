@@ -16,7 +16,30 @@
     <div class="image fit">
       <img src="../../../assets/images/cadastro/banner_lcm.png" alt="" />
     </div>
-    <div class="content">
+
+
+<div class="content" *ngIf="this.beneficiarioSelecionado == null">
+
+  <h2>Pacientes ja cadastrados</h2>
+    
+      <table>
+        <tr>
+          <th>Nome</th>
+          <th>Nascimento</th>
+          <th>Sexo</th>
+          <th>Condição clinica</th>
+        </tr>
+        <tr *ngFor="let paciente of this.todosPacientes" (click)="selecionarBeneficiario(paciente)">
+          <td>{{paciente.nome}}</td>
+          <td>{{paciente.dataFormatada}}</td>
+          <td>{{paciente.sexo}}</td>
+          <td>{{paciente.condicoesClinicas}}</td>
+        </tr>
+      </table>
+</div>
+
+    
+    <div class="content" *ngIf="this.beneficiarioSelecionado != null">
       <header>
         <h2>Medicamentos</h2>
       </header>
@@ -155,5 +178,3 @@
     </div>
   </div>
 </footer>
-
-<!-- <app-modal-editar-paciente *ngIf="!this.util.nullOrUndef(this.pacienteSelecionado)" [pacienteSelecionado]="this.pacienteSelecionado"></app-modal-editar-paciente> -->
