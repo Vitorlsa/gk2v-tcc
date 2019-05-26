@@ -1,0 +1,89 @@
+<div id="preview">
+  <div class="inner">
+    <div class="content">
+      <header>
+        <h1 class="tituloPrincipal">Nossos profissionais cadastrados</h1>
+      </header>
+      <div id="welcome">
+        <div class="row">
+          <div class="col-lg-12">
+            <section class="panel">
+              <header class="panel-heading">
+              </header>
+
+              <button (click)="this.buscarProfissionais = false">Meus profissionais</button>
+              <button (click)="this.buscarProfissionais = true">Novos profissionais</button>
+
+              <!-- Ja contratados -->
+              <div class="panel-body" *ngIf="!this.buscarProfissionais">
+                <div class="form">
+
+                  <section>
+                    <h2 class="titulo">Gestor</h2>
+                    <div class="listaAnalise">
+                      <p>{{this.gestor.nome}}</p>
+                      <br />
+                      <p>Cursos: {{this.gestor.cursos}}</p>
+                      <br />
+                      <p>Historico profissional:{{gestor.historico}}</p>
+                      <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
+                      <button (click)="remover(this.gestor)">Solicitar</button>
+                      <button (click)="abreDetalhe(this.gestor)">Mais detalhes</button>
+                    </div>
+                  </section>
+
+                  <section>
+                    <h2 class="titulo">Prestadores</h2>
+                    <div class="listaAnalise" *ngFor="let cadastro of this.prestadores">
+                      <p>{{cadastro.nome}}</p>
+                      <br>
+                      <p>Competencias: {{cadastro.competencias}}</p>
+                      <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
+                      <button (click)="remover(cadastro)">Remover</button>
+                      <button (click)="this.abreDetalhe(cadastro)">Mais detalhes</button>
+                    </div>
+                  </section>
+                </div>
+              </div>
+
+              <!-- Novos contratos -->
+              <div class="panel-body" *ngIf="this.buscarProfissionais">
+                <div class="form">
+
+                  <section>
+                    <h2 class="titulo">Gestores</h2>
+                    <div class="listaAnalise" *ngFor="let cadastro of this.todosGestores">
+                      <p>{{cadastro.nome}}</p>
+                      <br />
+                      <p>Cursos: {{cadastro.cursos}}</p>
+                      <br />
+                      <p>Historico profissional:{{cadastro.historico}}</p>
+                      <button (click)="solicitar()">Solicitar</button>
+                      <button (click)="this.abreDetalhe(cadastro)">Mais detalhes</button>
+                    </div>
+                  </section>
+
+                  <section>
+                    <h2 class="titulo">Prestadores</h2>
+                    <div class="listaAnalise" *ngFor="let cadastro of this.todosPrestadores">
+                      <p>{{cadastro.nome}}</p>
+                      <br>
+                      <p>Competencias: {{cadastro.competencias}}</p>
+                      <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
+                      <button (click)="solicitar()">Solicitar</button>
+                      <button (click)="this.abreDetalhe(cadastro)">Mais detalhes</button>
+                    </div>
+                  </section>
+
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+      <button (click)="voltarBoard()">Voltar</button>
+
+    </div>
+  </div>
+</div>
+<!-- <app-modal-analise *ngIf="!this.util.nullOrUndef(this.cadastroSelecionado)" [cadastroSelecionado]="this.cadastroSelecionado"></app-modal-analise> -->

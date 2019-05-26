@@ -14,6 +14,7 @@ import { CadastroPacienteComponent } from './modulos/login/cadastro/cadastro-pac
 import { ListapacienteComponent } from './modulos/login/cadastro/cadastro-paciente/listapaciente/listapaciente.component';
 import { NovoPacienteComponent } from './modulos/login/cadastro/cadastro-paciente/novo-paciente/novo-paciente.component';
 import { MedicamentosComponent } from './modulos/medicamentos/medicamentos.component';
+import { FuncionariosComponent } from './modulos/board/funcionarios/funcionarios.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -34,7 +35,8 @@ const routes: Routes = [
     //   { path: 'novoPaciente', component: NovoPacienteComponent },
     // ]
   },
-  { path: 'medicamentos', component: MedicamentosComponent, canActivate: [AuthGuardService] }
+  { path: 'medicamentos', component: MedicamentosComponent, canActivate: [AuthGuardService] },
+  {path: 'funcionarios', component: FuncionariosComponent}
 ];
 
 @NgModule({
