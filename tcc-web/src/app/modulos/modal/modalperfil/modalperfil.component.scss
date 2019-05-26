@@ -1,12 +1,15 @@
-// @media (max-width:1920){
+.titulo{
+	color:#e74c3c;
+}
 
-// }
-// @media (min-width:1024){
 
-// }
-// @media (min-width:1024){
+.modal-body a{
+    width: 200px;
+}
 
-// }
+.imgsPerfil{
+transform: scale(0.8)
+}
 .modal .btn-close
 {
     color:#aaa;
@@ -57,12 +60,13 @@
     top:-100%;
     transform:translate(-50%,-150%);
     transition:transform .6s ease-in-out;
-    width:80%;
-    max-width:600px;
-    z-index:103
+    width:750px;
+    // max-width:600px;
+    z-index:103;
+    overflow: auto;
 }
 .modal-body{
-    padding:20px;
+    width: 800px;
 }
 .modal-body p{
     margin:0

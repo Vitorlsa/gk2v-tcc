@@ -4,21 +4,27 @@
   <input class="modal-open" id="modal-one" type="checkbox" hidden>
   <div class="modal-wrap" aria-hidden="true" role="dialog">
     <label class="modal-overlay" for="modal-one"></label>
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="top: 52%; height: 630px;">
       <div class="modal-header">
-        <h2>Vimos que você possui diversos perfis</h2>
-        <p>Como deseja acessar?</p>
-        <label class="btn-close" for="modal-one" aria-hidden="true">×</label>
+        <h2 class="titulo">Vimos que você possui diversos perfis</h2>
+        <p class="titulo">Como deseja acessar?</p>
+        <!-- <label class="btn-close" for="modal-one" aria-hidden="true">×</label> -->
       </div>
       <div class="modal-body">
-        <p *ngIf="tipoU.includes(2)" style="cursor: pointer" (click)="this.selecionaPerfil(2)">Contratante</p>
+        <a *ngIf="tipoU.includes(2)" style="cursor: pointer" (click)="this.selecionaPerfil(2)"><img class="imgsPerfil"
+            src="../../../assets/images/cadastro/Intern_Banner_Template_Usuarios.png" alt="" /></a>
+        <a *ngIf="tipoU.includes(3)" style="cursor: pointer" (click)="this.selecionaPerfil(3)"><img class="imgsPerfil"
+            src="../../../assets/images/cadastro/Intern_Banner_Template_Prestador.png" alt="" /></a>
+        <a *ngIf="tipoU.includes(4)" style="cursor: pointer" (click)="this.selecionaPerfil(4)"><img class="imgsPerfil"
+            src="../../../assets/images/cadastro/Intern_Banner_Template_Gestor.png" alt="" /></a>
+        <!-- <p *ngIf="tipoU.includes(2)" style="cursor: pointer" (click)="this.selecionaPerfil(2)">Contratante</p>
         <p *ngIf="tipoU.includes(3)" style="cursor: pointer" (click)="this.selecionaPerfil(3)">Gestor</p>
-        <p *ngIf="tipoU.includes(4)" style="cursor: pointer" (click)="this.selecionaPerfil(4)">Prestador de serviço</p>
+        <p *ngIf="tipoU.includes(4)" style="cursor: pointer" (click)="this.selecionaPerfil(4)">Prestador de serviço</p> -->
       </div>
-      <div class="modal-footer">
-        <!-- <label class="btn btn-primary" for="modal-one" (click)="fecha()">Nice!</label> -->
-        <button (click)="fecha()">OK!</button>
-      </div>
+      <!-- <div class="modal-footer"> -->
+      <!-- <label class="btn btn-primary" for="modal-one" (click)="fecha()">Nice!</label> -->
+      <!-- <button (click)="fecha()">OK!</button> -->
+      <!-- </div> -->
     </div>
   </div>
 </div>
