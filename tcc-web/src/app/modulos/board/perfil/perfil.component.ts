@@ -36,6 +36,35 @@ export class PerfilComponent implements OnInit {
     }
 
     this.buscarDados();
+
+
+    var $header = $('#header'),
+      $footer = $('#footer');
+
+    // Header.
+    $header.each(function () {
+      var t = jQuery(this),
+        button = t.find('.button');
+      button.click(function (e) {
+        t.toggleClass('hide');
+        if (t.hasClass('preview')) {
+          return true;
+        } else {
+          e.preventDefault();
+        }
+      });
+    });
+
+    $footer.each(function () {
+      var t = jQuery(this),
+        inner = t.find('.inner'),
+        button = t.find('.info');
+      button.click(function (e) {
+        t.toggleClass('show');
+        e.preventDefault();
+      });
+
+    });
   }
 
   setSexo(event) {
@@ -61,7 +90,7 @@ export class PerfilComponent implements OnInit {
   }
 
   buscarDados() {
-    this.http.post(this.apiDados, {Id: this.usuaLogado.id}).subscribe(
+    this.http.post(this.apiDados, { Id: this.usuaLogado.id }).subscribe(
       res => {
         this.usuario = res;
       },

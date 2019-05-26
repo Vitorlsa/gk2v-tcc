@@ -1,6 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import url(https://fonts.googleapis.com/css?family=Pattaya|Work+Sans:400,200,300);
+
+
+@font-face {
+    font-family: FontAwesome;
+    // src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+    src: url("../src/app/modulos/login/login/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.ttf")
+  }
+
 @import "../src/app/modulos/medicamentos/medicamentos.component.scss";
+
 
 body{
     margin:0;
@@ -12,4 +22,10 @@ body{
 
 .titulo {
     color: #e74c3c;
+}
+
+.fa-info-circle:before {
+    content: "\f05a";
+    font-family: FontAwesome;
+    cursor: pointer;
 }

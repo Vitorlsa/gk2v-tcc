@@ -30,6 +30,36 @@ export class AnaliseCadastroComponent implements OnInit {
     this.listarContratante();
     this.listarGestor();
     this.listarPrestador();
+
+
+    var $header = $('#header'),
+    $footer = $('#footer');
+
+  // Header.
+  $header.each(function () {
+    var t = jQuery(this),
+      button = t.find('.button');
+    button.click(function (e) {
+      t.toggleClass('hide');
+      if (t.hasClass('preview')) {
+        return true;
+      } else {
+        e.preventDefault();
+      }
+    });
+  });
+
+  $footer.each(function () {
+    var t = jQuery(this),
+      inner = t.find('.inner'),
+      button = t.find('.info');
+    button.click(function (e) {
+      t.toggleClass('show');
+      e.preventDefault();
+    });
+
+  });
+
   }
 
   @Output()
