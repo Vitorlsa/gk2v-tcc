@@ -1,9 +1,8 @@
 import { Paciente } from './paciente';
 
-export class Medicamentos extends Paciente {
+export class Medicamento {
 
     public IdBeneficiario: number;
-    public IdMedicamento: number;
     public Nome: string
     public ContraIndicacao: string
     public Bula: string

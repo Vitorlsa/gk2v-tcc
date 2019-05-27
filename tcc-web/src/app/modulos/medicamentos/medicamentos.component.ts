@@ -3,7 +3,7 @@ import { UtilsService } from 'src/app/funcoes/utils.service';
 import { CadastroServiceService } from '../login/cadastro/cadastro-service.service';
 import { LoginService } from '../login/login.service';
 import { HttpClient } from '@angular/common/http';
-import { Medicamentos } from 'src/app/classes/medicamentos';
+import { Medicamento } from 'src/app/classes/medicamento';
 
 @Component({
   selector: 'app-medicamentos',
@@ -21,7 +21,7 @@ export class MedicamentosComponent implements OnInit {
   private apiRemover = "http://localhost:8080/api/medicamento/remover";
   private apiListarBeneficiario = "http://localhost:8080/api/beneficiario/listarporcontratante";
   private contratante = this.service.getUsuario();
-  public medicamento = new Medicamentos();
+  public medicamento = new Medicamento();
   public novoMedicamento = false;
   public medicamentosPaciente = null;
   public dataFormatada = null;
@@ -105,7 +105,9 @@ export class MedicamentosComponent implements OnInit {
   salvar() {
     console.log(this.medicamento);
     let payload = this.medicamento;
-    payload.IdBeneficiario = this.beneficiarioSelecionado.id
+    payload.IdBeneficiario = this.beneficiarioSelecionado.id;
+    payload.Tipo = 1;
+    payload.ViaDeUso = 1;
     try {
       this.http.post(this.apicadastrar, payload).subscribe(data => {
         console.log(data);
