@@ -17,7 +17,7 @@ export class MedicamentosComponent implements OnInit {
   private apicadastrar = "http://localhost:8080/api/medicamento/cadastrar";
   private apiEditar = "http://localhost:8080/api/medicamento/editar";
   private apiListar = "http://localhost:8080/api/medicamento/listar";
-  private apiDetahar = "http://localhost:8080/api/medicamento/detalhar";
+  private apiDetalhar = "http://localhost:8080/api/medicamento/detalhar";
   private apiRemover = "http://localhost:8080/api/medicamento/remover";
   private apiListarBeneficiario = "http://localhost:8080/api/beneficiario/listarporcontratante";
   private contratante = this.service.getUsuario();
