@@ -15,3 +15,5 @@ para rodar precisa instalar:
 npm install --save ngx-mask
 
 npm install ngx-cookie-service --save
+
+npm install ng-multiselect-dropdown
