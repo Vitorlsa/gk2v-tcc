@@ -10,6 +10,22 @@
   </div>
 </header>
 
+
+<select (change)="setEstado($event)" id=sexo>  
+  <option *ngFor="let estado of this.estados" [value]="estado.id">{{estado.name}}</option>
+  </select>
+
+  <ng-multiselect-dropdown
+  [placeholder]="'custom placeholder'"
+  [data]="estados"
+  [(ngModel)]="selectedItems"
+  [settings]="dropdownSettings"
+  (onSelect)="setEstado($event)"
+  (onSelectAll)="setEstado($event)"
+>
+</ng-multiselect-dropdown>
+
+
 <!-- Main -->
 <div id="preview">
   <div class="inner">

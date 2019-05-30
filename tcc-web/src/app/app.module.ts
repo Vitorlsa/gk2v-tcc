@@ -6,6 +6,8 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import {NgxMaskModule} from 'ngx-mask'
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 
 import { AppComponent } from './app.component';
 import { LoginModule } from './modulos/login/login.module';
@@ -43,6 +45,7 @@ import { FuncionariosComponent } from './modulos/board/funcionarios/funcionarios
     LoginModule,
     FormsModule,
     NgxMaskModule.forRoot(),
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [CookieService, AuthGuardService, UtilsService],
   bootstrap: [AppComponent]

@@ -6,7 +6,7 @@ export class Medicamento {
     public Nome: string
     public ContraIndicacao: string
     public Bula: string
-    public Indicao: string
+    public Indicacao: string
     public Tipo: number ///comprimido, gota, efervece
     public ViaDeUso: number ///oral, etc
     public EfeitoColateral: string

@@ -21,6 +21,30 @@ export class CadastroContratanteComponent implements OnInit {
     name: "Não aceito",
   }];
 
+  public estados = [{
+    id: 1,
+    name: 'Acre'
+  }, {
+    id: 2,
+    name: "São Paulo",
+  }];
+
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {
+    singleSelection: false,
+    idField: 'item_id',
+    textField: 'item_text',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 3,
+    allowSearchFilter: true
+  };
+
+  setEstado(event){
+    console.log(event.target.value);
+  }
+
   public cpfJaCadastrado = false;
   public emailJaCadastrado = false;
   private apiverificarCpf = "http://localhost:8080/api/usuario/verificarcpfcadastrado";

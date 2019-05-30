@@ -11,6 +11,8 @@ import { NovoPacienteComponent } from './cadastro/cadastro-paciente/novo-pacient
 import { ListapacienteComponent } from './cadastro/cadastro-paciente/listapaciente/listapaciente.component';
 import { ModalEditarPacienteComponent } from '../modal/modal-editar-paciente/modal-editar-paciente.component';
 import {NgxMaskModule} from 'ngx-mask';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 
 @NgModule({
   declarations: [LoginComponent, CadastroComponent, CadastroContratanteComponent, CadastroPrestadorComponent, CadastroGestorComponent, CadastroPacienteComponent, NovoPacienteComponent, ListapacienteComponent, ModalEditarPacienteComponent],
@@ -18,6 +20,7 @@ import {NgxMaskModule} from 'ngx-mask';
     CommonModule,
     FormsModule,
     NgxMaskModule.forRoot(),
+    NgMultiSelectDropDownModule.forRoot(),
   ]
 })
 export class LoginModule { }
