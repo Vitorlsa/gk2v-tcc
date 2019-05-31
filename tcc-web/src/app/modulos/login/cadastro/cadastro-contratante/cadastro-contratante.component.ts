@@ -22,11 +22,11 @@ export class CadastroContratanteComponent implements OnInit {
   }];
 
   public estados = [{
-    id: 1,
-    name: 'Acre'
+    item_id: 1,
+    item_text: 'Acre'
   }, {
-    id: 2,
-    name: "São Paulo",
+    item_id: 2,
+    item_text: "São Paulo",
   }];
 
   dropdownList = [];
@@ -42,7 +42,7 @@ export class CadastroContratanteComponent implements OnInit {
   };
 
   setEstado(event){
-    console.log(event.target.value);
+    console.log(event);
   }
 
   public cpfJaCadastrado = false;
