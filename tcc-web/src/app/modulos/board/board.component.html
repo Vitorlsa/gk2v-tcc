@@ -55,6 +55,14 @@
         <a href="funcionarios"><img src="../../../assets/images/board/banner04.png" alt="" /></a>
       </div>
 
+      <div *ngIf="this.perfilSelecionado != 4" class="image fit clicavel">
+        <a href="gestores"><img src="../../../assets/images/cadastro/Intern_Banner_Template_Gestor.png" alt="" /></a>
+      </div>
+
+      <div *ngIf="this.perfilSelecionado != 4" class="image fit clicavel">
+        <a href="contratantes"><img src="../../../assets/images/cadastro/Intern_Banner_Template_Usuarios.png" alt="" /></a>
+      </div>
+
       <div class="image fit clicavel" *ngIf="this.perfilSelecionado != 1">
         <a href="cadastroPaciente"><img src="../../../assets/images/board/Intern_Banner_Template_Paciente.png" alt="" /></a>
       </div>
