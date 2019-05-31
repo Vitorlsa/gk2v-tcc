@@ -12,6 +12,8 @@ Extensões
 
 para rodar precisa instalar:
 
+npm install -g @angular/cli
+
 npm install --save ngx-mask
 
 npm install ngx-cookie-service --save
