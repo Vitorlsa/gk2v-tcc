@@ -10,7 +10,7 @@ Extensões
 -html css support
 -html snippets
 
-para rodar precisa instalar:
+<b>para rodar precisa instalar:</b>
 
 npm install -g @angular/cli
 
