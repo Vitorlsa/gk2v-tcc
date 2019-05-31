@@ -2,15 +2,19 @@
 
 vs code
 
-Extensões
+### Extensões
 
 -angular language service
+
 -c#
+
 -debugger for chrome
+
 -html css support
+
 -html snippets
 
-<b>para rodar precisa instalar:</b>
+### <b>para rodar precisa instalar:</b>
 
 npm install -g @angular/cli
 
