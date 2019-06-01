@@ -10,7 +10,8 @@
   </div>
 </header>
 
-
+<img id="avatar" width="100px" height="100px" [src]="imageSrc" />
+<input id="meuArquivo" type="file" name="file" (change)="previewImagem($event)" />
 <!-- <select (change)="setEstado($event)" id=sexo>  
   <option *ngFor="let estado of this.estados" [value]="estado.id">{{estado.name}}</option>
   </select> -->

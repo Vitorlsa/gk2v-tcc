@@ -21,6 +21,7 @@ export class Usuario {
     public numero: string;
     public complemento: string;
     public perfilLogado:UsuarioEnum;
+    public imagem :string;
 
 
     constructor() { }

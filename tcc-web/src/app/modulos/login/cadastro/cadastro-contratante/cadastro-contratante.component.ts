@@ -11,7 +11,7 @@ import { Usuario } from 'src/app/classes/usuario';
 })
 export class CadastroContratanteComponent implements OnInit {
   public usuario = new Usuario();
-
+  public imageSrc : string;
   public api = "http://localhost:8080/api/contratante/cadastrar";
   public termos = [{
     valor: true,
@@ -88,7 +88,16 @@ export class CadastroContratanteComponent implements OnInit {
   });
   }
 
-
+  previewImagem(event) : void
+  {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () =>{
+      this.imageSrc = reader.result.toString();      
+    }
+    reader.readAsDataURL(file);
+  
+}
   setSexo(event) {
     this.usuario.setSexo(event.target.value);
   }
@@ -100,6 +109,7 @@ export class CadastroContratanteComponent implements OnInit {
   salvar() {
     if (!this.emailJaCadastrado && !this.cpfJaCadastrado) {
       if (this.cadastroService.validaCadastro(this.usuario)) {
+        this.usuario.imagem = this.imageSrc;
         this.http.post(this.api, this.usuario).subscribe(
           res => {
             alert("Cadastro salvo com sucesso");
