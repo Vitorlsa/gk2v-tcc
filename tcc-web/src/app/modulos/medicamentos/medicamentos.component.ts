@@ -4,7 +4,10 @@ import { CadastroServiceService } from '../login/cadastro/cadastro-service.servi
 import { LoginService } from '../login/login.service';
 import { HttpClient } from '@angular/common/http';
 import { Medicamento } from 'src/app/classes/medicamento';
-
+import { registerLocaleData } from '@angular/common';
+import { DatePipe } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
 @Component({
   selector: 'app-medicamentos',
   templateUrl: './medicamentos.component.html',
@@ -71,6 +74,9 @@ export class MedicamentosComponent implements OnInit {
       this.http.post(this.apiListarBeneficiario, { Id: this.contratante.id }).subscribe(data => {
         this.todosPacientes = [];
         this.todosPacientes = data;
+        this.todosPacientes.forEach((element, index) => {
+          this.todosPacientes[index].dataFormatada = new DatePipe('pt-BR').transform(element.dataNascimento, 'dd/MM/yyyy');
+        });
       })
     } catch{
       console.log("nao chamaou api");
@@ -87,9 +93,9 @@ export class MedicamentosComponent implements OnInit {
       this.http.post(this.apiListar, { Id: param.id }).subscribe(data => {
         this.medicamentosPaciente = [];
         this.medicamentosPaciente = data;
-        // this.medicamentosPaciente.forEach((element, index) => {
-        //   this.medicamentosPaciente[index].dataFormatada = new DatePipe('pt-BR').transform(element.dataValidade, 'dd/MM/yyyy');
-        // });
+        this.medicamentosPaciente.forEach((element, index) => {
+          this.medicamentosPaciente[index].dataFormatada = new DatePipe('pt-BR').transform(element.dataValidade, 'dd/MM/yyyy');
+        });
       })
     } catch{
       console.log("nao chamaou api");
@@ -111,9 +117,9 @@ export class MedicamentosComponent implements OnInit {
     try {
       this.http.post(this.apicadastrar, payload).subscribe(data => {
         console.log(data);
-        // this.medicamentosPaciente.forEach((element, index) => {
-        //   this.medicamentosPaciente[index].dataFormatada = new DatePipe('pt-BR').transform(element.dataValidade, 'dd/MM/yyyy');
-        // });
+        this.medicamentosPaciente.forEach((element, index) => {
+          this.medicamentosPaciente[index].dataFormatada = new DatePipe('pt-BR').transform(element.dataValidade, 'dd/MM/yyyy');
+        });
       })
     } catch{
       console.log("nao chamaou api");

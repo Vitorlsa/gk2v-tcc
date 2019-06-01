@@ -18,27 +18,33 @@
     </div>
 
 
-<div class="content" *ngIf="this.beneficiarioSelecionado == null">
+    <div class="content" *ngIf="this.beneficiarioSelecionado == null">
 
-  <h2>Beneficiários ja cadastrados</h2>
-    
+      <h2>Beneficiários ja cadastrados</h2>
+
       <table>
         <tr>
           <th>Nome</th>
           <th>Nascimento</th>
           <th>Sexo</th>
+          <th>Bairro</th>
+          <th>Cidade</th>
           <th>Condição clinica</th>
+          <th>Responsável</th>
         </tr>
         <tr *ngFor="let paciente of this.todosPacientes" (click)="selecionarBeneficiario(paciente)">
           <td>{{paciente.nome}}</td>
           <td>{{paciente.dataFormatada}}</td>
           <td>{{paciente.sexo}}</td>
+          <th>{{paciente.bairro}}</th>
+          <th>{{paciente.cidade}}</th>
           <td>{{paciente.condicoesClinicas}}</td>
+          <td>{{paciente.responsavel}}</td>
         </tr>
       </table>
-</div>
+    </div>
 
-    
+
     <div class="content" *ngIf="this.beneficiarioSelecionado != null">
       <header>
         <h2>Medicamentos</h2>
@@ -84,97 +90,105 @@
       <!-- cadastro manual de medicamentos -->
       <div *ngIf="this.novoMedicamento">
         <div id="welcome">
-        <div class="title">
-          <span class="byline"><b>Preencha todos os campos obrigatórios.</b></span>
-        </div>
-        <br>
-        <div class="row">
-          <div class="col-lg-12">
-            <section class="panel">
-              <header class="panel-heading">
-              </header>
-              <div class="panel-body">
-                <div class="form">
-                  <form class="form-validate form-horizontal " id="register_form" method="get" action="">
-                    <div class="form-group ">
-                      <label for="fullname" class="control-label col-lg-2">Nome Completo<span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="this.medicamento.Nome" class=" form-control" id="fullname" name="fullname"type="text" />
-                      </div>
-                    </div>
-                    <div class="form-group ">
-                      <label for="fullname" class="control-label col-lg-2">Contra indicação<span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="this.medicamento.ContraIndicacao" class=" form-control" id="contraIndicacao" name="contraIndicacao"type="text" />
-                      </div>
-                    </div>
-                    <div class="form-group ">
-                      <label for="fullname" class="control-label col-lg-2">Bula<span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="this.medicamento.Bula" class=" form-control" id="bula" name="bula"type="text" />
-                      </div>
-                    </div>
-                    <div class="form-group ">
-                      <label for="fullname" class="control-label col-lg-2">Indicação<span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="this.medicamento.Indicacao" class=" form-control" id="indicacao" name="incicacao"
-                          type="text" />
-                      </div>
-                    </div>
-                    <div class="form-group ">
-                      <label for="fullname" class="control-label col-lg-2">Tipo<span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="this.medicamento.Tipo" class=" form-control" id="tipo" name="tipo"
-                          type="text" />
-                      </div>
-                    </div>
-                    <div class="form-group ">
-                      <label for="fullname" class="control-label col-lg-2">Via de uso<span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="this.medicamento.ViaDeUso" class=" form-control" id="ViaDeUso" name="ViaDeUso"
-                          type="text" />
-                      </div>
-                    </div>
-                    <div class="form-group ">
-                      <label for="fullname" class="control-label col-lg-2">Efeito colateral<span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="this.medicamento.EfeitoColateral" class=" form-control" id="EfeitoColateral" name="EfeitoColateral"
-                          type="text" />
-                      </div>
-                    </div>
-                        <button (click)="salvar()" class="btn btn-primary" type="submit">Enviar</button>
-                        <button (click)="voltar()" class="btn btn-default" type="button">Voltar</button>
-                     </form>
-                </div>
-              </div>
-            </section>
+          <div class="title">
+            <span class="byline"><b>Preencha todos os campos obrigatórios.</b></span>
           </div>
-        </div>
+          <br>
+          <div class="row">
+            <div class="col-lg-12">
+              <section class="panel">
+                <header class="panel-heading">
+                </header>
+                <div class="panel-body">
+                  <div class="form">
+                    <form class="form-validate form-horizontal " id="register_form" method="get" action="">
+                      <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2">Nome Completo<span
+                            class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input [(ngModel)]="this.medicamento.Nome" class=" form-control" id="fullname" name="fullname"
+                            type="text" />
+                        </div>
+                      </div>
+                      <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2">Contra indicação<span
+                            class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input [(ngModel)]="this.medicamento.ContraIndicacao" class=" form-control"
+                            id="contraIndicacao" name="contraIndicacao" type="text" />
+                        </div>
+                      </div>
+                      <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2">Bula<span class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input [(ngModel)]="this.medicamento.Bula" class=" form-control" id="bula" name="bula"
+                            type="text" />
+                        </div>
+                      </div>
+                      <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2">Indicação<span
+                            class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input [(ngModel)]="this.medicamento.Indicacao" class=" form-control" id="indicacao"
+                            name="incicacao" type="text" />
+                        </div>
+                      </div>
+                      <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2">Tipo<span class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input [(ngModel)]="this.medicamento.Tipo" class=" form-control" id="tipo" name="tipo"
+                            type="text" />
+                        </div>
+                      </div>
+                      <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2">Via de uso<span
+                            class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input [(ngModel)]="this.medicamento.ViaDeUso" class=" form-control" id="ViaDeUso"
+                            name="ViaDeUso" type="text" />
+                        </div>
+                      </div>
+                      <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2">Efeito colateral<span
+                            class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input [(ngModel)]="this.medicamento.EfeitoColateral" class=" form-control"
+                            id="EfeitoColateral" name="EfeitoColateral" type="text" />
+                        </div>
+                      </div>
+                      <button (click)="salvar()" class="btn btn-primary" type="submit">Enviar</button>
+                      <button (click)="voltar()" class="btn btn-default" type="button">Voltar</button>
+                    </form>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
 
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
-<!-- Footer -->
-<footer id="footer">
-  <a href="#" class="info fa fa-info-circle"><span>Sobre</span></a>
-  <div class="inner">
-    <div class="content">
-      <h3>Bem Vindo ao Life Care Manager</h3>
-      <p>Com uma equipe qualificada com médicos experientes e o mais alto padrão de atendimento, a LCM oferece
-        qualidade, economia, e mais comodidade para você e sua família.</p>
+  <!-- Footer -->
+  <footer id="footer">
+    <a href="#" class="info fa fa-info-circle"><span>Sobre</span></a>
+    <div class="inner">
+      <div class="content">
+        <h3>Bem Vindo ao Life Care Manager</h3>
+        <p>Com uma equipe qualificada com médicos experientes e o mais alto padrão de atendimento, a LCM oferece
+          qualidade, economia, e mais comodidade para você e sua família.</p>
+      </div>
+      <div class="copyright">
+        <h3>Siga-nos</h3>
+        <ul class="icons">
+          <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+          <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+          <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+          <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+        </ul>
+        &copy; LCM. Developed by: <a href="#">GK2V Team - PUC-Campinas,SP</a>
+      </div>
     </div>
-    <div class="copyright">
-      <h3>Siga-nos</h3>
-      <ul class="icons">
-        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-        <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-      </ul>
-      &copy; LCM. Developed by: <a href="#">GK2V Team - PUC-Campinas,SP</a>
-    </div>
-  </div>
-</footer>
+  </footer>
