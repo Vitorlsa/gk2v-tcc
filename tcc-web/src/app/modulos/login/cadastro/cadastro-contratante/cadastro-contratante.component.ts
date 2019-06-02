@@ -116,21 +116,60 @@ export class CadastroContratanteComponent implements OnInit {
     this.usuario.setTermos(event.target.value);
   }
 
+
+  // validateEmail(email) {
+  //   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  //   console.log(re.test(String(email).toLowerCase()));
+  //   return re.test(String(email).toLowerCase());
+  // }
+
+  // toDate(dateStr) {
+  //   const [year, month, day] = dateStr.split("-");
+  //   return new Date(year, month - 1, day)
+  // }
+
+  // calculateAge(birthday) { // birthday is a date
+  //   var ageDifMs = Date.now() - birthday.getTime();
+  //   var ageDate = new Date(ageDifMs); // miliseconds from epoch
+  //   return Math.abs(ageDate.getUTCFullYear() - 1970);
+  // }
+
+
   salvar() {
-    if (!this.emailJaCadastrado && !this.cpfJaCadastrado) {
-      if (this.cadastroService.validaCadastro(this.usuario)) {
-        this.usuario.imagem = this.imageSrc;
-        this.http.post(this.api, this.usuario).subscribe(
-          res => {
-            alert("Cadastro salvo com sucesso");
-            this.cadastroService.setContratantePaciente(this.usuario);
-          },
-          err => {
-            console.log(err);
-          });
-      } else {
-        alert("Campos preenchidos incorretamente");
+
+    let idade = this.cadastroService.toDate(this.usuario.datanascimento);
+
+    console.log(this.cadastroService.calculateAge(idade));
+    if (this.cadastroService.calculateAge(idade) >= 18) {
+      if (!this.emailJaCadastrado && !this.cpfJaCadastrado) {
+        if (this.usuario.confirmaSenha.length >= 6 && this.usuario.senha.length >= 6) {
+          if (this.cadastroService.validateEmail(this.usuario.email)) {
+            if (this.cadastroService.testaCPF(this.usuario.cpf)) {
+              if (this.cadastroService.validaCadastro(this.usuario)) {
+                this.usuario.imagem = this.imageSrc;
+                this.http.post(this.api, this.usuario).subscribe(
+                  res => {
+                    alert("Cadastro salvo com sucesso");
+                    this.cadastroService.setContratantePaciente(this.usuario);
+                  },
+                  err => {
+                    console.log(err);
+                  });
+              } else {
+                alert("Campos preenchidos incorretamente");
+              }
+            } else {
+              alert("cpf invalido");
+            }
+          }else{
+            alert("email invalido");
+          }
+        }else{
+          alert("senha deve ter ao menos 6 caracteres");
+        }
       }
+    } else {
+      alert("Precisa ser maior de 18 anos para se cadastrar.");
     }
   }
 
@@ -161,10 +200,6 @@ export class CadastroContratanteComponent implements OnInit {
     return retorno;
   }
 
-  confereSenha() {
-
-  }
-
 
   buscarEstados() {
     this.http.post(this.apiEstados, {}).subscribe(data => {
@@ -184,8 +219,7 @@ export class CadastroContratanteComponent implements OnInit {
   buscarCidades(uf) {
     this.http.post(this.apiCidades, { Uf: uf }).subscribe(data => {
       console.log(data);
-      this.cidades = data;
-      this.usuario.cidade = data[0].key;
+      this.cidades = data[0].key;
     },
       err => {
         console.log(err);
