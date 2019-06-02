@@ -9,7 +9,8 @@
     <a class="button hidden"><span>Vamos la!</span></a>
   </div>
 </header>
-
+<input id="meuArquivo" type="file" name="file" accept=".pdf"
+                        (change)="saveBase64($event)" />
 <!-- Main -->
 <div id="preview">
   <div class="inner">
@@ -102,17 +103,16 @@
                         </div>
                       <br>
                       <div class="form-group ">
-                          <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
-                          <div class="col-lg-10">
-                            <input [(ngModel)]="gestor.cidade" class="form-control " id="cidade" name="cidade" type="text" />
-                          </div>
-                        </div>
-                      <br>
-                      <div class="form-group ">
                         <label for="UF" class="control-label col-lg-2">Estado <span class="required">*</span></label>
-                        <div class="col-lg-10">
-                          <input [(ngModel)]="gestor.estado" class="form-control " id="estado" name="estado" type="text" />
-                        </div>
+                        <select (change)="setEstado($event)" id=sexo>
+                          <option *ngFor="let estado of this.estados" [value]="estado.key">{{estado.value}}</option>
+                        </select>
+                      </div>
+                      <div class="form-group ">
+                        <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
+                        <select (change)="setCidade($event)" id=sexo>
+                          <option *ngFor="let cidade of this.cidades" [value]="cidade.key">{{cidade.value}}</option>
+                        </select>
                       </div>
                       <div class="form-group ">
                         <label for="bairro" class="control-label col-lg-2">Bairro <span class="required">*</span></label>
@@ -144,19 +144,19 @@
                           <input [(ngModel)]="gestor.complemento" class="form-control " id="complemento" name="complemento" type="text" />
                         </div>
                       </div>
-                      <div class="form-group ">
+                      <!--<div class="form-group ">
                           <label for="historico" class="control-label col-lg-2">Histórico Profissional</label>
                           <div class="col-lg-10">
                             <input [(ngModel)]="gestor.historico" class="form-control " id="historico" name="historico" type="text" />
                           </div>
                         </div>
                       <br>
-                      <div class="form-group ">
+                      div class="form-group ">
                           <label for="cursos" class="control-label col-lg-2">Cursos/Certificações</label>
                           <div class="col-lg-10">
                             <input [(ngModel)]="gestor.cursos" class="form-control " id="cursos" name="cursos" type="text" />
                           </div>
-                        </div>
+                        </div>-->
                       <br>
                       <div class="form-group ">
                           <label for="comentario" class="control-label col-lg-2">Comentário</label>

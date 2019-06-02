@@ -10,18 +10,20 @@ import { Gestor } from 'src/app/classes/gestor';
   styleUrls: ['./cadastro-gestor.component.scss']
 })
 export class CadastroGestorComponent implements OnInit {
-
   constructor(private router: Router, private http: HttpClient, private cadastroService: CadastroServiceService) {
     this.gestor.sexo = 3;
+    this.buscarEstados();
   }
 
   public api = "http://localhost:8080/api/gestor/cadastrar";
-
+  public cidades = null;
+  public estados = null;
   public cpfJaCadastrado = false;
   public emailJaCadastrado = false;
   private apiverificarCpf = "http://localhost:8080/api/usuario/verificarcpfcadastrado";
   private apiverificarEmail = "http://localhost:8080/api/usuario/verificaremailcadastrado";
-
+  private apiEstados = "http://localhost:8080/api/dropdown/estados";
+  private apiCidades = "http://localhost:8080/api/dropdown/cidadeporestado";
 
 
   public gestor = new Gestor();
@@ -131,10 +133,59 @@ export class CadastroGestorComponent implements OnInit {
     this.gestor.rua = "";
     this.gestor.numero = "";
     this.gestor.complemento = "";
-    this.gestor.historico = "";
-    this.gestor.cursos = "";
+    this.gestor.curriculo = "";
     this.gestor.comentario = "";
     this.gestor.termos = false;
+  }
+
+  saveBase64(event):   void {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.gestor.curriculo = reader.result.toString();
+        
+      console.log(this.gestor.curriculo);
+      
+      }
+      reader.readAsDataURL(file);
+  }
+
+  
+  buscarEstados() {
+    this.http.post(this.apiEstados, {}).subscribe(data => {
+      console.log(data);
+      this.estados = data;
+      // this.estados.forEach((element, index) => {
+      //   this.estados[index].item_id = element.key;
+      //   this.estados[index].item_text = element.value;
+      // });
+
+    },
+      err => {
+        console.log(err);
+      });
+  }
+
+  buscarCidades(uf) {
+    this.http.post(this.apiCidades, { Uf: uf }).subscribe(data => {
+      console.log(data);
+      this.cidades = data;
+      this.gestor.cidade = data[0].key;
+    },
+      err => {
+        console.log(err);
+      });
+  }
+
+  setEstado(event) {
+    console.log(event.target.value);
+    this.gestor.estado = event.target.value;
+    this.buscarCidades(event.target.value);
+  }
+
+  setCidade(event) {
+    console.log(event.target.value);
+    this.gestor.cidade = event.target.value;
   }
 
   voltar() {

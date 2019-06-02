@@ -53,7 +53,6 @@ export class CadastroContratanteComponent implements OnInit {
   setCidade(event) {
     console.log(event.target.value);
     this.usuario.cidade = event.target.value;
-
   }
 
   public cpfJaCadastrado = false;
