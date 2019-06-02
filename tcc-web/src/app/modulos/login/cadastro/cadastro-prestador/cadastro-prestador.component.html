@@ -165,8 +165,10 @@
                       <label for="competencias" class="control-label col-lg-2">Competências <span
                           class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="prestador.competencias" class="form-control " id="competencias"
-                          name="competencias" type="text" />
+                        <ng-multiselect-dropdown [placeholder]="'custom placeholder'" [data]="this.competencias"
+                        [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="setCompetencias($event)"
+                        (onSelectAll)="setTodasCompetencias($event)" (onDeSelect)="removerCompetencia($event)">
+                      </ng-multiselect-dropdown>
                       </div>
                     </div>
                     <br>

@@ -1,7 +1,7 @@
 import { Usuario } from './usuario';
 
 export class Prestador extends Usuario {
-    public competencias = "";
+    public competencias = null;
 
 
     constructor() { super(); }

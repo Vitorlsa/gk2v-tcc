@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CadastroServiceService } from '../cadastro-service.service';
 import { Prestador } from 'src/app/classes/prestador';
+import { GLOBAL_PUBLISH_EXPANDO_KEY } from '@angular/core/src/render3/global_utils';
 
 @Component({
   selector: 'app-cadastro-prestador',
@@ -13,6 +14,7 @@ export class CadastroPrestadorComponent implements OnInit {
 
   constructor(private router: Router, private http: HttpClient, private cadastroService: CadastroServiceService) {
     this.prestador.sexo = 3;
+    this.buscarCompetencias();
   }
 
 
@@ -25,38 +27,81 @@ export class CadastroPrestadorComponent implements OnInit {
   public emailJaCadastrado = false;
   private apiverificarCpf = "http://localhost:8080/api/usuario/verificarcpfcadastrado";
   private apiverificarEmail = "http://localhost:8080/api/usuario/verificaremailcadastrado";
+  private apiCompetencias = "http://localhost:8080/api/dropdown/competencias";
+  public competencias = null;
+
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {
+    singleSelection: false,
+    idField: 'item_id',
+    textField: 'item_text',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 3,
+    allowSearchFilter: true
+  };
 
   ngOnInit() {
     this.limparUsuario();
 
 
     var $header = $('#header'),
-    $footer = $('#footer');
+      $footer = $('#footer');
 
-  // Header.
-  $header.each(function () {
-    var t = jQuery(this),
-      button = t.find('.button');
-    button.click(function (e) {
-      t.toggleClass('hide');
-      if (t.hasClass('preview')) {
-        return true;
-      } else {
+    // Header.
+    $header.each(function () {
+      var t = jQuery(this),
+        button = t.find('.button');
+      button.click(function (e) {
+        t.toggleClass('hide');
+        if (t.hasClass('preview')) {
+          return true;
+        } else {
+          e.preventDefault();
+        }
+      });
+    });
+
+    $footer.each(function () {
+      var t = jQuery(this),
+        inner = t.find('.inner'),
+        button = t.find('.info');
+      button.click(function (e) {
+        t.toggleClass('show');
         e.preventDefault();
-      }
-    });
-  });
+      });
 
-  $footer.each(function () {
-    var t = jQuery(this),
-      inner = t.find('.inner'),
-      button = t.find('.info');
-    button.click(function (e) {
-      t.toggleClass('show');
-      e.preventDefault();
     });
+  }
 
-  });
+
+  buscarCompetencias() {
+    this.http.post(this.apiCompetencias, {}).subscribe(data => {
+      console.log(data);
+      this.competencias = data;
+      this.competencias.forEach((element, index) => {
+        this.competencias[index].item_id = element.key;
+        this.competencias[index].item_text = element.value;
+      });
+    })
+  }
+
+  setCompetencias(event) {
+    console.log(event.item_id);
+    this.prestador.competencias.push(event.item_id);
+  }
+
+  removerCompetencia(event) {
+    console.log(event.item_id);
+    this.prestador.competencias.pop(event.item_id);
+  }
+
+
+  setTodasCompetencias(event) {
+    event.forEach(element => {
+      this.prestador.competencias.push(element.item_id);
+    });
   }
 
   salvar() {
@@ -131,7 +176,7 @@ export class CadastroPrestadorComponent implements OnInit {
     this.prestador.rua = "";
     this.prestador.numero = "";
     this.prestador.complemento = "";
-    this.prestador.competencias = "";
+    this.prestador.competencias = [];
     this.prestador.comentario = "";
     this.prestador.termos = false;
   }

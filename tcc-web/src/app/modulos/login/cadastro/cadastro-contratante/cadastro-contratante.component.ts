@@ -136,9 +136,7 @@ export class CadastroContratanteComponent implements OnInit {
 
 
   salvar() {
-
     let idade = this.cadastroService.toDate(this.usuario.datanascimento);
-
     console.log(this.cadastroService.calculateAge(idade));
     if (this.cadastroService.calculateAge(idade) >= 18) {
       if (!this.emailJaCadastrado && !this.cpfJaCadastrado) {
@@ -219,7 +217,7 @@ export class CadastroContratanteComponent implements OnInit {
   buscarCidades(uf) {
     this.http.post(this.apiCidades, { Uf: uf }).subscribe(data => {
       console.log(data);
-      this.cidades = data[0].key;
+      this.cidades = data;
     },
       err => {
         console.log(err);
