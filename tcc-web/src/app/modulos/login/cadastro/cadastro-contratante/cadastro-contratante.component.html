@@ -10,20 +10,10 @@
   </div>
 </header>
 
-<img id="avatar" width="100px" height="100px" [src]="imageSrc" />
-<input id="meuArquivo" type="file" name="file" (change)="previewImagem($event)" />
-<!-- <select (change)="setEstado($event)" id=sexo>  
-  <option *ngFor="let estado of this.estados" [value]="estado.id">{{estado.name}}</option>
-  </select> -->
 
-  <ng-multiselect-dropdown
-  [placeholder]="'custom placeholder'"
-  [data]="estados"
-  [(ngModel)]="selectedItems"
-  [settings]="dropdownSettings"
-  (onSelect)="setEstado($event)"
-  (onSelectAll)="setEstado($event)"
->
+
+<ng-multiselect-dropdown [placeholder]="'custom placeholder'" [data]="estados2" [(ngModel)]="selectedItems"
+  [settings]="dropdownSettings" (onSelect)="setEstado($event)" (onSelectAll)="setEstado($event)">
 </ng-multiselect-dropdown>
 
 
@@ -41,105 +31,129 @@
         <div class="title">
           <span class="byline"><b>Preencha todos os campos obrigatórios.</b></span>
         </div>
-        <br>            
+        <br>
         <div class="row">
-            <div class="col-lg-12">
-              <section class="panel">
+          <div class="col-lg-12">
+            <section class="panel">
               <header class="panel-heading">
               </header>
               <div class="panel-body">
                 <div class="form">
                   <form class="form-validate form-horizontal " id="register_form" method="get" action="">
+
+
                     <div class="form-group ">
-                      <label for="fullname" class="control-label col-lg-2">Nome Completo<span class="required">*</span></label>
+                      <label for="foto" class="control-label col-lg-2">Foto de perfil<span class="required">*</span></label>
+                      <img id="avatar" width="100px" height="100px" [src]="imageSrc" />
+                      <br/>
+                      <input id="meuArquivo" type="file" name="file" accept=".jpg,.jpeg"
+                        (change)="previewImagem($event)" />
+                    </div>
+                    <div class="form-group ">
+                      <label for="fullname" class="control-label col-lg-2">Nome Completo<span
+                          class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.nome" class=" form-control" id="fullname" name="fullname" type="text" />
+                        <input [(ngModel)]="usuario.nome" class=" form-control" id="fullname" name="fullname"
+                          type="text" />
                       </div>
                     </div>
-                  <br>
-                  <div class="form-group ">
-                    <label for="username" class="control-label col-lg-2">Login <span class="required">*</span></label>
-                    <div class="col-lg-10">
-                      <input [(ngModel)]="usuario.login" class="form-control " id="username" name="username" type="text" />
-                    </div>
-                  </div>
-                  <br>
-                  <div class="form-group ">
-                    <label for="password" class="control-label col-lg-2">Senha <span class="required">*</span></label>
-                    <div class="col-lg-10">
-                      <input [(ngModel)]="usuario.senha" class="form-control " id="password" name="password" type="password" />
-                    </div>
-                  </div>
-                  <br>
-                  <div class="form-group ">
-                    <label for="confirm_password" class="control-label col-lg-2">Confirmar Senha <span class="required">*</span></label>
-                    <div class="col-lg-10">
-                      <input [(ngModel)]="usuario.confirmaSenha" class="form-control " id="confirm_password" name="confirm_password" type="password" />
-                    </div>
-                  </div>
-                  <br>
-                  <div class="form-group ">
-                    <label for="email" class="control-label col-lg-2">Email <span class="required">*</span></label>
-                    <div class="col-lg-10">
-                      <input [(ngModel)]="usuario.email" (blur)="this.confereEmail()" class="form-control " id="email" name="email" type="email" />
-                      <p *ngIf="this.emailJaCadastrado" style="color:red;">email ja cadastrado</p>
-                    </div>
-                  </div>
-                  <br>
-                  <div class="form-group ">
-                      <label for="nascimento" class="control-label col-lg-2">Data de Nascimento <span class="required">*</span></label>
+                    <br>
+                    <div class="form-group ">
+                      <label for="username" class="control-label col-lg-2">Login <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.datanascimento" class="form-control " id="nascimento" name="nasc" type="date" />
+                        <input [(ngModel)]="usuario.login" class="form-control " id="username" name="username"
+                          type="text" />
                       </div>
                     </div>
-                  <br>
-                  <div class="form-group ">
+                    <br>
+                    <div class="form-group ">
+                      <label for="password" class="control-label col-lg-2">Senha <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="usuario.senha" class="form-control " id="password" name="password"
+                          type="password" />
+                      </div>
+                    </div>
+                    <br>
+                    <div class="form-group ">
+                      <label for="confirm_password" class="control-label col-lg-2">Confirmar Senha <span
+                          class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="usuario.confirmaSenha" class="form-control " id="confirm_password"
+                          name="confirm_password" type="password" />
+                      </div>
+                    </div>
+                    <br>
+                    <div class="form-group ">
+                      <label for="email" class="control-label col-lg-2">Email <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="usuario.email" (blur)="this.confereEmail()" class="form-control " id="email"
+                          name="email" type="email" />
+                        <p *ngIf="this.emailJaCadastrado" style="color:red;">email ja cadastrado</p>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="form-group ">
+                      <label for="nascimento" class="control-label col-lg-2">Data de Nascimento <span
+                          class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="usuario.datanascimento" class="form-control " id="nascimento" name="nasc"
+                          type="date" />
+                      </div>
+                    </div>
+                    <br>
+                    <div class="form-group ">
                       <label for="sexo" class="control-label col-lg-2">Sexo <span class="required">*</span></label>
                       <select (change)="setSexo($event)" id=sexo>
-                          <!-- [(ngModel)]="prestador.sexo" -->
-                          <option [value]="3">Outro</option>
-                          <option [value]="1">Masculino</option>
-                          <option [value]="2">Feminino</option>
-                        </select>
+                        <!-- [(ngModel)]="prestador.sexo" -->
+                        <option [value]="3">Outro</option>
+                        <option [value]="1">Masculino</option>
+                        <option [value]="2">Feminino</option>
+                      </select>
                     </div>
-                  <br>
-                  <div class="form-group ">
+                    <br>
+                    <div class="form-group ">
                       <label for="cpf" class="control-label col-lg-2">CPF <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.cpf" (blur)="confereCpf(usuario.cpf)" minlength="11" mask="000.000.000.00" [showMaskTyped] = "true" class="form-control " id="cpf" name="cpf" type="text" />
+                        <input [(ngModel)]="usuario.cpf" (blur)="confereCpf(usuario.cpf)" minlength="11"
+                          mask="000.000.000.00" [showMaskTyped]="true" class="form-control " id="cpf" name="cpf"
+                          type="text" />
                         <p *ngIf="this.cpfJaCadastrado" style="color:red;">cpf ja cadastrado</p>
                       </div>
                     </div>
-                  <br>
-                  <div class="form-group ">
-                      <label for="telefone" class="control-label col-lg-2">Telefone <span class="required">*</span></label>
+                    <br>
+                    <div class="form-group ">
+                      <label for="telefone" class="control-label col-lg-2">Telefone <span
+                          class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.telefone" mask="(00) 000000000" class="form-control " id="telefone" name="telefone" type="text" />
+                        <input [(ngModel)]="usuario.telefone" mask="(00) 000000000" class="form-control " id="telefone"
+                          name="telefone" type="text" />
                       </div>
                     </div>
-                  <br>
-                  <div class="form-group ">
-                      <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.cidade" class="form-control " id="cidade" name="cidade" type="text" />
-                      </div>
-                    </div>
+                    <br>
                     <div class="form-group ">
                       <label for="UF" class="control-label col-lg-2">Estado <span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.estado" class="form-control " id="estado" name="estado" type="text" />
-                      </div>
+                      <select (change)="setEstado($event)" id=sexo>
+                        <option *ngFor="let estado of this.estados" [value]="estado.key">{{estado.value}}</option>
+                      </select>
+                    </div>
+                    <div class="form-group ">
+                      <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
+                      <select (change)="setCidade($event)" id=sexo>
+                        <option *ngFor="let cidade of this.cidades" [value]="cidade.key">{{cidade.value}}</option>
+                      </select>
                     </div>
                     <div class="form-group ">
                       <label for="bairro" class="control-label col-lg-2">Bairro <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.bairro" class="form-control " id="bairro" name="bairro" type="text" />
+                        <input [(ngModel)]="usuario.bairro" class="form-control " id="bairro" name="bairro"
+                          type="text" />
                       </div>
                     </div>
                     <div class="form-group ">
                       <label for="cep" class="control-label col-lg-2">CEP <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.cep" mask="00000-000" class="form-control " id="cep" name="cep" type="text" />
+                        <input [(ngModel)]="usuario.cep" mask="00000-000" class="form-control " id="cep" name="cep"
+                          type="text" />
                       </div>
                     </div>
                     <div class="form-group ">
@@ -151,57 +165,63 @@
                     <div class="form-group ">
                       <label for="numero" class="control-label col-lg-2">Numero <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.numero" mask="000000" class="form-control " id="numero" name="numero" type="text" />
+                        <input [(ngModel)]="usuario.numero" mask="000000" class="form-control " id="numero"
+                          name="numero" type="text" />
                       </div>
                     </div>
                     <div class="form-group ">
-                      <label for="comlemento" class="control-label col-lg-2">Complemento <span class="required">*</span></label>
+                      <label for="comlemento" class="control-label col-lg-2">Complemento <span
+                          class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.complemento" class="form-control " id="complemento" name="complemento" type="text" />
+                        <input [(ngModel)]="usuario.complemento" class="form-control " id="complemento"
+                          name="complemento" type="text" />
                       </div>
-                    </div>
-                  <br>
-                  <div class="form-group ">
-                      <label for="comentario" class="control-label col-lg-2">Comentário</label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.comentario" class="form-control " id="comentario" name="comentario" type="text" />
-                      </div>
-                    </div>
-                  <br>
-                  <div class="form-group ">
-                      <label for="termos" class="control-label col-lg-2">Termos e política de uso <span class="required">*</span></label>
-                      <select (change)="setTermos($event)" id="termos">
-                          <option [value]="false">Não aceito</option>
-                          <option [value]="true">Aceito</option>
-                        </select>
                     </div>
                     <br>
-                <br>
-                  <div class="form-group">
-                  <div class="col-lg-offset-2 col-lg-10">
-                    <button (click)="salvar()" class="btn btn-primary" type="submit">Enviar</button>
-                    <button (click)="cancelar()" class="btn btn-default" type="button">Cancelar</button>
-                  </div>
-                  </div>
-                </form>
+                    <div class="form-group ">
+                      <label for="comentario" class="control-label col-lg-2">Comentário</label>
+                      <div class="col-lg-10">
+                        <input [(ngModel)]="usuario.comentario" class="form-control " id="comentario" name="comentario"
+                          type="text" />
+                      </div>
+                    </div>
+                    <br>
+                    <div class="form-group ">
+                      <label for="termos" class="control-label col-lg-2">Termos e política de uso <span
+                          class="required">*</span></label>
+                      <select (change)="setTermos($event)" id="termos">
+                        <option [value]="false">Não aceito</option>
+                        <option [value]="true">Aceito</option>
+                      </select>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="form-group">
+                      <div class="col-lg-offset-2 col-lg-10">
+                        <button (click)="salvar()" class="btn btn-primary" type="submit">Enviar</button>
+                        <button (click)="cancelar()" class="btn btn-default" type="button">Cancelar</button>
+                      </div>
+                    </div>
+                  </form>
                 </div>
               </div>
-              </section>
-            </div>
+            </section>
           </div>
         </div>
       </div>
+    </div>
   </div>
   <button (click)="voltar()">Voltar</button>
 </div>
 
-<!-- Footer --> 
+<!-- Footer -->
 <footer id="footer">
   <a href="#" class="info fa fa-info-circle"><span>Sobre</span></a>
   <div class="inner">
     <div class="content">
       <h3>Bem Vindo ao Life Care Manager</h3>
-      <p>Com uma equipe qualificada com médicos experientes e o mais alto padrão de atendimento, a LCM oferece qualidade, economia, e mais comodidade para você e sua família.</p>
+      <p>Com uma equipe qualificada com médicos experientes e o mais alto padrão de atendimento, a LCM oferece
+        qualidade, economia, e mais comodidade para você e sua família.</p>
     </div>
     <div class="copyright">
       <h3>Siga-nos</h3>

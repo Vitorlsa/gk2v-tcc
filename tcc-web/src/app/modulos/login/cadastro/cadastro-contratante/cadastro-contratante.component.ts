@@ -11,7 +11,7 @@ import { Usuario } from 'src/app/classes/usuario';
 })
 export class CadastroContratanteComponent implements OnInit {
   public usuario = new Usuario();
-  public imageSrc : string;
+  public imageSrc: string;
   public api = "http://localhost:8080/api/contratante/cadastrar";
   public termos = [{
     valor: true,
@@ -21,14 +21,17 @@ export class CadastroContratanteComponent implements OnInit {
     name: "Não aceito",
   }];
 
-  public estados = [{
-    item_id: 1,
-    item_text: 'Acre'
-  }, {
-    item_id: 2,
-    item_text: "São Paulo",
-  }];
+  // public estados = [{
+  //   item_id: 1,
+  //   item_text: 'Acre'
+  // }, {
+  //   item_id: 2,
+  //   item_text: "São Paulo",
+  // }];
+  public cidades = null;
 
+  public estados = null;
+  public estados2 = null;
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {
@@ -41,63 +44,71 @@ export class CadastroContratanteComponent implements OnInit {
     allowSearchFilter: true
   };
 
-  setEstado(event){
-    console.log(event);
+  setEstado(event) {
+    console.log(event.target.value);
+    this.usuario.estado = event.target.value;
+    this.buscarCidades(event.target.value);
+  }
+
+  setCidade(event) {
+    console.log(event.target.value);
+    this.usuario.cidade = event.target.value;
+
   }
 
   public cpfJaCadastrado = false;
   public emailJaCadastrado = false;
   private apiverificarCpf = "http://localhost:8080/api/usuario/verificarcpfcadastrado";
   private apiverificarEmail = "http://localhost:8080/api/usuario/verificaremailcadastrado";
-  
+  private apiEstados = "http://localhost:8080/api/dropdown/estados";
+  private apiCidades = "http://localhost:8080/api/dropdown/cidadeporestado";
 
   constructor(private router: Router, private http: HttpClient, private cadastroService: CadastroServiceService) {
     this.usuario.sexo = 3;
+    this.buscarEstados();
   }
 
   ngOnInit() {
     this.limparUsuario();
 
-
     var $header = $('#header'),
-    $footer = $('#footer');
+      $footer = $('#footer');
 
-  // Header.
-  $header.each(function () {
-    var t = jQuery(this),
-      button = t.find('.button');
-    button.click(function (e) {
-      t.toggleClass('hide');
-      if (t.hasClass('preview')) {
-        return true;
-      } else {
+    // Header.
+    $header.each(function () {
+      var t = jQuery(this),
+        button = t.find('.button');
+      button.click(function (e) {
+        t.toggleClass('hide');
+        if (t.hasClass('preview')) {
+          return true;
+        } else {
+          e.preventDefault();
+        }
+      });
+    });
+
+    $footer.each(function () {
+      var t = jQuery(this),
+        inner = t.find('.inner'),
+        button = t.find('.info');
+      button.click(function (e) {
+        t.toggleClass('show');
         e.preventDefault();
-      }
-    });
-  });
+      });
 
-  $footer.each(function () {
-    var t = jQuery(this),
-      inner = t.find('.inner'),
-      button = t.find('.info');
-    button.click(function (e) {
-      t.toggleClass('show');
-      e.preventDefault();
     });
-
-  });
   }
 
-  previewImagem(event) : void
-  {
+  previewImagem(event): void {
     const file = event.target.files[0];
     const reader = new FileReader();
-    reader.onload = () =>{
-      this.imageSrc = reader.result.toString();      
+    reader.onload = () => {
+      this.imageSrc = reader.result.toString();
     }
     reader.readAsDataURL(file);
-  
-}
+  }
+
   setSexo(event) {
     this.usuario.setSexo(event.target.value);
   }
@@ -149,6 +160,36 @@ export class CadastroContratanteComponent implements OnInit {
     console.log("retorno --> " + retorno);
     this.emailJaCadastrado = retorno;
     return retorno;
+  }
+
+  confereSenha() {
+
+  }
+
+
+  buscarEstados() {
+    this.http.post(this.apiEstados, {}).subscribe(data => {
+      console.log(data);
+      this.estados = data;
+      // this.estados.forEach((element, index) => {
+      //   this.estados[index].item_id = element.key;
+      //   this.estados[index].item_text = element.value;
+      // });
+
+    },
+      err => {
+        console.log(err);
+      });
+  }
+
+  buscarCidades(uf) {
+    this.http.post(this.apiCidades, { Uf: uf }).subscribe(data => {
+      console.log(data);
+      this.cidades = data;
+    },
+      err => {
+        console.log(err);
+      });
   }
 
 
