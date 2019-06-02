@@ -11,7 +11,7 @@ export class Usuario {
     public sexo: Sexoenum;
     public cpf: string;
     public telefone: string;
-    public cidade: string;
+    public cidade: number;
     public comentario: string;
     public termos: boolean;
     public estado: string;

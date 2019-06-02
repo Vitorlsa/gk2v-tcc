@@ -124,7 +124,7 @@ export class CadastroPrestadorComponent implements OnInit {
     this.prestador.sexo = 0;
     this.prestador.cpf = "";
     this.prestador.telefone = "";
-    this.prestador.cidade = "";
+    this.prestador.cidade = null;
     this.prestador.estado = "";
     this.prestador.bairro = "";
     this.prestador.cep = "";

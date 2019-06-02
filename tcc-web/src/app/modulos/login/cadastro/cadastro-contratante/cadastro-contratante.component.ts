@@ -186,6 +186,7 @@ export class CadastroContratanteComponent implements OnInit {
     this.http.post(this.apiCidades, { Uf: uf }).subscribe(data => {
       console.log(data);
       this.cidades = data;
+      this.usuario.cidade = data[0].key;
     },
       err => {
         console.log(err);
@@ -208,7 +209,7 @@ export class CadastroContratanteComponent implements OnInit {
     this.usuario.sexo = 3;
     this.usuario.cpf = "";
     this.usuario.telefone = "";
-    this.usuario.cidade = "";
+    this.usuario.cidade = null;
     this.usuario.estado = "";
     this.usuario.bairro = "";
     this.usuario.cep = "";

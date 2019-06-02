@@ -124,7 +124,7 @@ export class CadastroGestorComponent implements OnInit {
     this.gestor.sexo = 0;
     this.gestor.cpf = "";
     this.gestor.telefone = "";
-    this.gestor.cidade = "";
+    this.gestor.cidade = null;
     this.gestor.estado = "";
     this.gestor.bairro = "";
     this.gestor.cep = "";
