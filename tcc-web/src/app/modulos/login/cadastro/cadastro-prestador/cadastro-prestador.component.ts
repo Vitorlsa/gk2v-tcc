@@ -28,14 +28,14 @@ export class CadastroPrestadorComponent implements OnInit {
   private apiverificarCpf = "http://localhost:8080/api/usuario/verificarcpfcadastrado";
   private apiverificarEmail = "http://localhost:8080/api/usuario/verificaremailcadastrado";
   private apiCompetencias = "http://localhost:8080/api/dropdown/competencias";
-  public competencias = null;
+  public competencias = [];
 
-  dropdownList = [];
-  selectedItems = [];
-  dropdownSettings = {
+  public dropdownList = [];
+  public selectedItems = [];
+  public dropdownSettings = {
     singleSelection: false,
-    idField: 'item_id',
-    textField: 'item_text',
+    idField: 'key',
+    textField: 'value',
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All',
     itemsShowLimit: 3,
@@ -79,28 +79,24 @@ export class CadastroPrestadorComponent implements OnInit {
   buscarCompetencias() {
     this.http.post(this.apiCompetencias, {}).subscribe(data => {
       console.log(data);
-      this.competencias = data;
-      this.competencias.forEach((element, index) => {
-        this.competencias[index].item_id = element.key;
-        this.competencias[index].item_text = element.value;
+        this.competencias = Object.values(data);
       });
-    })
   }
 
   setCompetencias(event) {
-    console.log(event.item_id);
-    this.prestador.competencias.push(event.item_id);
+    console.log(event.key);
+    this.prestador.competencias.push(event.key);
   }
 
   removerCompetencia(event) {
-    console.log(event.item_id);
-    this.prestador.competencias.pop(event.item_id);
+    console.log(event.key);
+    this.prestador.competencias.pop(event.key);
   }
 
 
   setTodasCompetencias(event) {
     event.forEach(element => {
-      this.prestador.competencias.push(element.item_id);
+      this.prestador.competencias.push(element.key);
     });
   }
 
