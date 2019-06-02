@@ -15,14 +15,17 @@ export class CadastroPrestadorComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient, private cadastroService: CadastroServiceService) {
     this.prestador.sexo = 3;
     this.buscarCompetencias();
+    this.buscarEstados();
   }
 
 
   public api = "http://localhost:8080/api/prestadordeservico/cadastrar";
-
+  private apiEstados = "http://localhost:8080/api/dropdown/estados";
+  private apiCidades = "http://localhost:8080/api/dropdown/cidadeporestado";
   public prestador = new Prestador();
 
-
+  public cidades = null;
+  public estados = null;
   public cpfJaCadastrado = false;
   public emailJaCadastrado = false;
   private apiverificarCpf = "http://localhost:8080/api/usuario/verificarcpfcadastrado";
@@ -177,6 +180,43 @@ export class CadastroPrestadorComponent implements OnInit {
     this.prestador.termos = false;
   }
 
+
+  buscarEstados() {
+    this.http.post(this.apiEstados, {}).subscribe(data => {
+      console.log(data);
+      this.estados = data;
+      // this.estados.forEach((element, index) => {
+      //   this.estados[index].item_id = element.key;
+      //   this.estados[index].item_text = element.value;
+      // });
+
+    },
+      err => {
+        console.log(err);
+      });
+  }
+
+  buscarCidades(uf) {
+    this.http.post(this.apiCidades, { Uf: uf }).subscribe(data => {
+      console.log(data);
+      this.cidades = data;
+      this.prestador.cidade = data[0].key;
+    },
+      err => {
+        console.log(err);
+      });
+  }
+
+  setEstado(event) {
+    console.log(event.target.value);
+    this.prestador.estado = event.target.value;
+    this.buscarCidades(event.target.value);
+  }
+
+  setCidade(event) {
+    console.log(event.target.value);
+    this.prestador.cidade = event.target.value;
+  }
   voltar() {
     this.router.navigate(['/cadastro']);
   }

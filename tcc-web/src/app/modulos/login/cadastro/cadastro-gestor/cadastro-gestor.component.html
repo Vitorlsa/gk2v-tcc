@@ -104,13 +104,13 @@
                       <br>
                       <div class="form-group ">
                         <label for="UF" class="control-label col-lg-2">Estado <span class="required">*</span></label>
-                        <select (change)="setEstado($event)" id=sexo>
+                        <select (change)="setEstado($event)" >
                           <option *ngFor="let estado of this.estados" [value]="estado.key">{{estado.value}}</option>
                         </select>
                       </div>
                       <div class="form-group ">
                         <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
-                        <select (change)="setCidade($event)" id=sexo>
+                        <select (change)="setCidade($event)" >
                           <option *ngFor="let cidade of this.cidades" [value]="cidade.key">{{cidade.value}}</option>
                         </select>
                       </div>
