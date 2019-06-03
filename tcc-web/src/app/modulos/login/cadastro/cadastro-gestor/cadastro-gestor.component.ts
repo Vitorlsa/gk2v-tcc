@@ -25,7 +25,7 @@ export class CadastroGestorComponent implements OnInit {
   private apiEstados = "http://localhost:8080/api/dropdown/estados";
   private apiCidades = "http://localhost:8080/api/dropdown/cidadeporestado";
 
-
+  public imageSrc:string
   public gestor = new Gestor();
 
 
@@ -75,15 +75,39 @@ export class CadastroGestorComponent implements OnInit {
   }
 
   salvar() {
-    if (!this.emailJaCadastrado && !this.cpfJaCadastrado) {
-      if (this.cadastroService.validaCadastro(this.gestor)) {
-        this.http.post(this.api, this.gestor).subscribe(data => {
-          // console.log(data);
-          alert("Cadastro salvo com sucesso");
-        })
-      } else {
-        alert("Campos preenchidos incorretamente");
+    let idade = this.cadastroService.toDate(this.gestor.datanascimento);
+    console.log(this.cadastroService.calculateAge(idade));
+    if (this.cadastroService.calculateAge(idade) >= 18) {
+      if (!this.emailJaCadastrado && !this.cpfJaCadastrado) {
+        if (this.gestor.confirmaSenha.length >= 6 && this.gestor.senha.length >= 6) {
+          if (this.cadastroService.validateEmail(this.gestor.email)) {
+            if (this.cadastroService.testaCPF(this.gestor.cpf)) {
+              if (this.cadastroService.validaCadastro(this.gestor)) {
+                this.gestor.imagem = this.imageSrc;
+                this.http.post(this.api, this.gestor).subscribe(
+                  res => {
+                    alert("Cadastro salvo com sucesso");
+                    this.cadastroService.setContratantePaciente(this.gestor);
+                    this.limparUsuario();
+                  },
+                    err => {
+                      console.log(err);
+                    });
+              } else {
+                alert("Campos preenchidos incorretamente");
+              }
+            } else {
+              alert("cpf invalido");
+            }
+          } else {
+            alert("email invalido");
+          }
+        } else {
+          alert("senha deve ter ao menos 6 caracteres");
+        }
       }
+    } else {
+      alert("Precisa ser maior de 18 anos para se cadastrar.");
     }
   }
 
@@ -151,19 +175,27 @@ export class CadastroGestorComponent implements OnInit {
     this.gestor.termos = false;
   }
 
-  saveBase64(event):   void {
-      const file = event.target.files[0];
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.gestor.curriculo = reader.result.toString();
-        
+  saveBase64(event): void {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.gestor.curriculo = reader.result.toString();
+
       console.log(this.gestor.curriculo);
-      
-      }
-      reader.readAsDataURL(file);
+
+    }
+    reader.readAsDataURL(file);
   }
 
-  
+  previewImagem(event): void {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageSrc = reader.result.toString();
+    }
+    reader.readAsDataURL(file);
+  }
+
   buscarEstados() {
     this.http.post(this.apiEstados, {}).subscribe(data => {
       console.log(data);
