@@ -23,6 +23,7 @@ export class CadastroPrestadorComponent implements OnInit {
   private apiEstados = "http://localhost:8080/api/dropdown/estados";
   private apiCidades = "http://localhost:8080/api/dropdown/cidadeporestado";
   public prestador = new Prestador();
+  public imageSrc: string;
 
   public cidades = null;
   public estados = null;
@@ -82,8 +83,8 @@ export class CadastroPrestadorComponent implements OnInit {
   buscarCompetencias() {
     this.http.post(this.apiCompetencias, {}).subscribe(data => {
       console.log(data);
-        this.competencias = Object.values(data);
-      });
+      this.competencias = Object.values(data);
+    });
   }
 
   setCompetencias(event) {
@@ -103,18 +104,58 @@ export class CadastroPrestadorComponent implements OnInit {
     });
   }
 
+
+  previewImagem(event): void {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageSrc = reader.result.toString();
+    }
+    reader.readAsDataURL(file);
+  }
+
   salvar() {
-    if (!this.emailJaCadastrado && !this.cpfJaCadastrado) {
-      if (this.cadastroService.validaCadastro(this.prestador)) {
-        this.http.post(this.api, this.prestador).subscribe(data => {
-          // console.log(data);
-          alert("Cadastro salvo com sucesso");
-        })
-      } else {
-        alert("Campos preenchidos incorretamente");
+    let idade = this.cadastroService.toDate(this.prestador.datanascimento);
+    console.log(this.cadastroService.calculateAge(idade));
+    console.log(this.prestador.competencias.length);
+    if (this.cadastroService.calculateAge(idade) >= 18) {
+      if (!this.emailJaCadastrado && !this.cpfJaCadastrado) {
+        if (this.prestador.confirmaSenha.length >= 6 && this.prestador.senha.length >= 6) {
+          if (this.cadastroService.validateEmail(this.prestador.email)) {
+            if (this.cadastroService.testaCPF(this.prestador.cpf)) {
+              if (this.prestador.competencias.length >= 1) {
+                if (this.cadastroService.validaCadastro(this.prestador)) {
+                  this.prestador.imagem = this.imageSrc;
+                  this.http.post(this.api, this.prestador).subscribe(
+                    res => {
+                      alert("Cadastro salvo com sucesso");
+                      this.cadastroService.setContratantePaciente(this.prestador);
+                      this.limparUsuario();
+                    },
+                    err => {
+                      console.log(err);
+                    });
+                } else {
+                  alert("Campos preenchidos incorretamente");
+                }
+              } else {
+                alert("Escolha ao menos uma competência.");
+              }
+            } else {
+              alert("cpf invalido");
+            }
+          } else {
+            alert("email invalido");
+          }
+        } else {
+          alert("senha deve ter ao menos 6 caracteres");
+        }
       }
+    } else {
+      alert("Precisa ser maior de 18 anos para se cadastrar.");
     }
   }
+
 
 
   async confereCpf() {

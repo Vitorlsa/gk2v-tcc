@@ -66,6 +66,7 @@
                       <div class="col-lg-10">
                         <input [(ngModel)]="prestador.confirmaSenha" class="form-control " id="confirm_password"
                           name="confirm_password" type="password" />
+                          <p *ngIf="this.prestador.confirmaSenha.length >= 1 && this.prestador.senha != this.prestador.confirmaSenha" style="color:red;">senhas não são iguais</p>
                       </div>
                     </div>
                     <br>

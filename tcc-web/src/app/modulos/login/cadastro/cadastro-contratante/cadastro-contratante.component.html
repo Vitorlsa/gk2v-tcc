@@ -80,7 +80,6 @@
                         <input [(ngModel)]="usuario.confirmaSenha" minlength="6" class="form-control " id="confirm_password"
                           name="confirm_password" type="password" required />
                           <p *ngIf="this.usuario.confirmaSenha.length >= 1 && this.usuario.senha != this.usuario.confirmaSenha" style="color:red;">senhas não são iguais</p>
-
                       </div>
                     </div>
                     <br>

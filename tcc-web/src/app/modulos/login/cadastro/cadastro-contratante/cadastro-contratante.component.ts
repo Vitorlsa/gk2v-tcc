@@ -31,7 +31,7 @@ export class CadastroContratanteComponent implements OnInit {
   public cidades = null;
 
   public estados = null;
-  public estados2 = null;
+  // public estados2 = null;
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {
@@ -149,6 +149,7 @@ export class CadastroContratanteComponent implements OnInit {
                   res => {
                     alert("Cadastro salvo com sucesso");
                     this.cadastroService.setContratantePaciente(this.usuario);
+                    this.limparUsuario();
                   },
                   err => {
                     console.log(err);
