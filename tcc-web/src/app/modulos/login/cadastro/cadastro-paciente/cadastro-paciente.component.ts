@@ -83,7 +83,15 @@ export class CadastroPacienteComponent implements OnInit {
         this.todosPacientes = [];
         this.todosPacientes = data;
         this.todosPacientes.forEach((element, index) => {
-          this.todosPacientes[index].dataFormatada = new DatePipe('pt-BR').transform(element.dataNascimento, 'dd/MM/yyyy');
+          if (this.todosPacientes[index].sexo == 1)
+            this.todosPacientes[index].sexo = 'masculino'
+          else if (this.todosPacientes[index].sexo == 2)
+            this.todosPacientes[index].sexo = 'feminino'
+          else
+            this.todosPacientes[index].sexo = 'outro'
+          //this.todosPacientes[index].dataFormatada = new DatePipe('pt-BR').transform(element.dataNascimento, 'dd/MM/yyyy');
+          this.todosPacientes[index].idade = this.cadastroService.toDate(element.dataNascimento);
+          this.todosPacientes[index].idade = this.cadastroService.calculateAge(element.dataNascimento);
         });
       })
     } catch{
