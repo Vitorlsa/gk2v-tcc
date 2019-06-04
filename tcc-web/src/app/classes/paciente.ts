@@ -16,7 +16,7 @@ export class Paciente{
     public rua: string;
     public numero: string;
     public complemento: string;
-    public condicoesClinicas:string;
+    public condicoesClinicas = null;
     public IdContratante: Number;
 
 

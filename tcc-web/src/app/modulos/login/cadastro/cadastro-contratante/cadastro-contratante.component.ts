@@ -11,7 +11,8 @@ import { Usuario } from 'src/app/classes/usuario';
 })
 export class CadastroContratanteComponent implements OnInit {
   public usuario = new Usuario();
-  public imageSrc: string;
+  public imageSrc = "../../../../../assets/images/cadastro/usuarioPadrao.png";
+  
   public api = "http://localhost:8080/api/contratante/cadastrar";
   public termos = [{
     valor: true,
@@ -21,17 +22,10 @@ export class CadastroContratanteComponent implements OnInit {
     name: "Não aceito",
   }];
 
-  // public estados = [{
-  //   item_id: 1,
-  //   item_text: 'Acre'
-  // }, {
-  //   item_id: 2,
-  //   item_text: "São Paulo",
-  // }];
+  
   public cidades = null;
-
   public estados = null;
-  // public estados2 = null;
+  
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {

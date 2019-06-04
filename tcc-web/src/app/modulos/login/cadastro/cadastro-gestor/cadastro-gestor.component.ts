@@ -25,7 +25,7 @@ export class CadastroGestorComponent implements OnInit {
   private apiEstados = "http://localhost:8080/api/dropdown/estados";
   private apiCidades = "http://localhost:8080/api/dropdown/cidadeporestado";
 
-  public imageSrc:string
+  public imageSrc = "../../../../../assets/images/cadastro/usuarioPadrao.png";
   public gestor = new Gestor();
 
 

@@ -5,7 +5,6 @@ import { Paciente } from 'src/app/classes/paciente';
 import { LoginService } from '../../login.service';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
-import { DatePipe } from '@angular/common';
 import { UtilsService } from 'src/app/funcoes/utils.service';
 registerLocaleData(localePt);
 
@@ -23,13 +22,31 @@ export class CadastroPacienteComponent implements OnInit {
 
   private apiSalvar = "http://localhost:8080/api/beneficiario/adicionar";
   private apiListar = "http://localhost:8080/api/beneficiario/listarporcontratante";
+  private apiEstados = "http://localhost:8080/api/dropdown/estados";
+  private apiCidades = "http://localhost:8080/api/dropdown/cidadeporestado";
+  private apiCondicoes = "http://localhost:8080/api/dropdown/condicoesclinicas";
   private contratante = this.service.getUsuario();
   public paciente = new Paciente();
   public novoPaciente = false;
   public todosPacientes = null;
   public dataFormatada = null;
   public perfilPaciente = null
+  public condicoes = [];
   //public pacienteSelecionado = null;
+  public cidades = null;
+  public estados = null;
+
+  public dropdownList = [];
+  public selectedItems = [];
+  public dropdownSettings = {
+    singleSelection: false,
+    idField: 'key',
+    textField: 'value',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 3,
+    allowSearchFilter: true
+  };
 
 
   @Output()
@@ -40,6 +57,9 @@ export class CadastroPacienteComponent implements OnInit {
     this.limparPaciente();
 
     this.listarPacientes();
+
+    this.buscarCondicoes();
+    
 
     this.perfilPaciente = this.service.getSessionPerfil();
 
@@ -112,10 +132,72 @@ export class CadastroPacienteComponent implements OnInit {
   //   this.listarPacientes();
   // }
 
+  buscarCondicoes() {
+    this.http.post(this.apiCondicoes, {}).subscribe(data => {
+      console.log(data);
+      this.condicoes = Object.values(data);
+    });
+  }
+
+  setCondicoes(event) {
+    console.log(event.key);
+    this.paciente.condicoesClinicas.push(event.key);
+  }
+
+  removerCondicoes(event) {
+    console.log(event.key);
+    this.paciente.condicoesClinicas.pop(event.key);
+  }
+
+
+  setTodasCondicoes(event) {
+    event.forEach(element => {
+      this.paciente.condicoesClinicas.push(element.key);
+    });
+  }
+
+
+  buscarEstados() {
+    this.http.post(this.apiEstados, {}).subscribe(data => {
+      console.log(data);
+      this.estados = data;
+      // this.estados.forEach((element, index) => {
+      //   this.estados[index].item_id = element.key;
+      //   this.estados[index].item_text = element.value;
+      // });
+
+    },
+      err => {
+        console.log(err);
+      });
+  }
+
+  buscarCidades(uf) {
+    this.http.post(this.apiCidades, { Uf: uf }).subscribe(data => {
+      console.log(data);
+      this.cidades = data;
+      this.paciente.cidade = data[0].key;
+    },
+      err => {
+        console.log(err);
+      });
+  }
+
+  setEstado(event) {
+    console.log(event.target.value);
+    this.paciente.estado = event.target.value;
+    this.buscarCidades(event.target.value);
+  }
+
+  setCidade(event) {
+    console.log(event.target.value);
+    this.paciente.cidade = event.target.value;
+  }
 
 
   criarNovoPaciente() {
     this.novoPaciente = true;
+    this.buscarEstados();
   }
 
   voltar() {
@@ -168,7 +250,7 @@ export class CadastroPacienteComponent implements OnInit {
     this.paciente.complemento = "";
     this.paciente.comentario = "";
     //this.paciente.termos= false;
-    this.paciente.condicoesClinicas = "";
+    this.paciente.condicoesClinicas = null;
 
   }
 }

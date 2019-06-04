@@ -39,7 +39,7 @@
           <th>Sexo</th>
           <th>Bairro</th>
           <th>Cidade</th>
-          <th>Condição clinica</th>
+          <!-- <th>Condição clinica</th> -->
           <th>Responsável</th>
           <th>&nbsp;</th>
         </tr>
@@ -49,7 +49,7 @@
           <td>{{paciente.sexo}}</td>
           <td>{{paciente.bairro}}</td>
           <td>{{paciente.cidade}}</td>
-          <td>{{paciente.condicoesClinicas}}</td>
+          <!-- <td>{{paciente.condicoesClinicas}}</td> -->
           <td>{{paciente.responsavel}}</td>
           <button class="editarPaciente" *ngIf="this.perfilPaciente != 4" (click)="editarPaciente(paciente)">Visualizar</button>
         </tr>
@@ -117,18 +117,17 @@
                           </div>
                         <br>
                         <div class="form-group ">
-                            <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
-                            <div class="col-lg-10">
-                              <input [(ngModel)]="this.paciente.cidade" class="form-control " id="cidade" name="cidade" type="text" />
-                            </div>
-                          </div>
-                        <br>
+                          <label for="UF" class="control-label col-lg-2">Estado <span class="required">*</span></label>
+                          <select (change)="setEstado($event)" id=sexo>
+                            <option *ngFor="let estado of this.estados" [value]="estado.key">{{estado.value}}</option>
+                          </select>
+                        </div>
                         <div class="form-group ">
-                            <label for="estado" class="control-label col-lg-2">Estado <span class="required">*</span></label>
-                            <div class="col-lg-10">
-                              <input [(ngModel)]="this.paciente.estado" class="form-control " id="estado" name="estado" type="text" />
-                            </div>
-                          </div>
+                          <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
+                          <select (change)="setCidade($event)" id=sexo>
+                            <option *ngFor="let cidade of this.cidades" [value]="cidade.key">{{cidade.value}}</option>
+                          </select>
+                        </div>
                         <br>
                         <div class="form-group ">
                             <label for="rua" class="control-label col-lg-2">Rua <span class="required">*</span></label>
@@ -182,7 +181,10 @@
                         <div class="form-group ">
                           <label for="comentario" class="control-label col-lg-2">Condicoes clinicas</label>
                           <div class="col-lg-10">
-                            <input [(ngModel)]="this.paciente.condicoesClinicas" class="form-control " id="comentario" name="comentario" type="text" />
+                            <ng-multiselect-dropdown [placeholder]="'custom placeholder'" [data]="this.condicoes"
+                            [(ngModel)]="this.paciente.condicoesClinicas" [settings]="dropdownSettings" (onSelect)="setCondicoes($event)" name="Condicoes"
+                            (onSelectAll)="setTodasCondicoes($event)" (onDeSelect)="removerCondicoes($event)">
+                          </ng-multiselect-dropdown>
                           </div>
                         </div>
                         <br>
