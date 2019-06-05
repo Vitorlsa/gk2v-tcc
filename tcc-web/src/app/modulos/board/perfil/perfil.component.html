@@ -32,6 +32,13 @@
               <div class="panel-body">
                 <div class="form">
                   <form class="form-validate form-horizontal " id="register_form" method="get" action="">
+                      <div class="form-group ">
+                          <label for="foto" class="control-label col-lg-2">Foto de perfil<span class="required">*</span></label>
+                          <img id="avatar" width="100px" height="100px" [src]="imageSrc" />
+                          <br/>
+                          <input id="meuArquivo" type="file" name="file" accept=".jpg,.jpeg"
+                            (change)="previewImagem($event)" />
+                        </div>
                     <div class="form-group ">
                       <label for="fullname" class="control-label col-lg-2">Nome Completo<span
                           class="required">*</span></label>
@@ -172,16 +179,10 @@
                       <div class="form-group ">
                         <label for="historico" class="control-label col-lg-2">Histórico Profissional</label>
                         <div class="col-lg-10">
-                          <input [(ngModel)]="usuario.historico" class="form-control " id="historico" name="historico" type="text" />
+                            <input id="meuArquivo" type="file" name="file" accept=".pdf" (change)="saveBase64($event)" />
                         </div>
                       </div>
                     <br>
-                    <div class="form-group ">
-                        <label for="cursos" class="control-label col-lg-2">Cursos/Certificações</label>
-                        <div class="col-lg-10">
-                          <input [(ngModel)]="usuario.cursos" class="form-control " id="cursos" name="cursos" type="text" />
-                        </div>
-                      </div>
                     </div>
 
                     <div class="form-group " *ngIf="this.perfilLogado == 4">
@@ -189,8 +190,10 @@
                         <label for="competencias" class="control-label col-lg-2">Competências <span
                             class="required">*</span></label>
                         <div class="col-lg-10">
-                          <input [(ngModel)]="usuario.competencias" class="form-control " id="competencias"
-                            name="competencias" type="text" />
+                            <ng-multiselect-dropdown [placeholder]="'custom placeholder'" [data]="this.competencias"
+                        [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="setCompetencias($event)" name="competencias"
+                        (onSelectAll)="setTodasCompetencias($event)" (onDeSelect)="removerCompetencia($event)">
+                      </ng-multiselect-dropdown>
                         </div>
                       </div>
                     </div>
