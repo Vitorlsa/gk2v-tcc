@@ -245,4 +245,5 @@ export class CadastroPacienteComponent implements OnInit {
         console.log(err);
       });
   }
+
 }
