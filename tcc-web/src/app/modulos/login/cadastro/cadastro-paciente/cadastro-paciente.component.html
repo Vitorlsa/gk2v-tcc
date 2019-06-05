@@ -115,20 +115,20 @@
                               <input [(ngModel)]="this.paciente.telefone" mask="(00) 000000000" class="form-control " id="telefone" name="telefone" type="text" />
                             </div>
                           </div>
-                        <br>
-                        <div class="form-group ">
-                            <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
-                            <div class="col-lg-10">
-                              <input [(ngModel)]="this.paciente.cidade" class="form-control " id="cidade" name="cidade" type="text" />
-                            </div>
-                          </div>
-                        <br>
-                        <div class="form-group ">
-                            <label for="estado" class="control-label col-lg-2">Estado <span class="required">*</span></label>
-                            <div class="col-lg-10">
-                              <input [(ngModel)]="this.paciente.estado" class="form-control " id="estado" name="estado" type="text" />
-                            </div>
-                          </div>
+                        <br>                        
+                    <div class="form-group ">
+                      <label for="UF" class="control-label col-lg-2">Estado <span class="required">*</span></label>
+                      <select (change)="setEstado($event)" >
+                        <option *ngFor="let estado of estados" [value]="estado.key">{{estado.value}}</option>
+                      </select>
+                    </div>
+                    <br>
+                    <div class="form-group ">
+                      <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
+                      <select (change)="setCidade($event)" >
+                        <option *ngFor="let cidade of cidades" [value]="cidade.key">{{cidade.value}}</option>
+                      </select>
+                    </div>
                         <br>
                         <div class="form-group ">
                             <label for="rua" class="control-label col-lg-2">Rua <span class="required">*</span></label>
@@ -180,9 +180,14 @@
                           </div>
                         <br>
                         <div class="form-group ">
-                          <label for="comentario" class="control-label col-lg-2">Condicoes clinicas</label>
+                          <label for="condicoesclinicas" class="control-label col-lg-2">Competências <span
+                              class="required">*</span></label>
                           <div class="col-lg-10">
-                            <input [(ngModel)]="this.paciente.condicoesClinicas" class="form-control " id="comentario" name="comentario" type="text" />
+                            <ng-multiselect-dropdown [placeholder]="'custom placeholder'" [data]="condicoesClinicas"
+                            [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="setCondicoesClinicas($event)" 
+                            name="condicoesclinicas"
+                            (onSelectAll)="setTodasCondicoesClinicas($event)" (onDeSelect)="removerCondicoesClinicas($event)">
+                          </ng-multiselect-dropdown>
                           </div>
                         </div>
                         <br>

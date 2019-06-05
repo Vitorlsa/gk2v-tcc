@@ -7,16 +7,16 @@ export class Paciente{
     public sexo: Sexoenum;
     public cpf: string;
     public telefone: string;
-    public cidade: string;
+    public cidade: number;
     public comentario: string;
-    public termos: boolean;
+    public termoDeResponsalidade: boolean;
     public estado: string;
     public bairro: string;
     public cep: string;
     public rua: string;
     public numero: string;
     public complemento: string;
-    public condicoesClinicas:string;
+    public condicoesClinicas: Array<number>;
     public IdContratante: Number;
 
 
@@ -32,11 +32,11 @@ export class Paciente{
     }
 
     setTermos(termos) {
-        this.termos = termos;
+        this.termoDeResponsalidade = termos;
     }
 
     getTermos() {
-     return this.termos;
+     return this.termoDeResponsalidade;
     }
    
 

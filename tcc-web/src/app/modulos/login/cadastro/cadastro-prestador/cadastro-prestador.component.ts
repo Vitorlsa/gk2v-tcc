@@ -31,8 +31,8 @@ export class CadastroPrestadorComponent implements OnInit {
   private apiverificarCpf = "http://localhost:8080/api/usuario/verificarcpfcadastrado";
   private apiverificarEmail = "http://localhost:8080/api/usuario/verificaremailcadastrado";
   private apiCompetencias = "http://localhost:8080/api/dropdown/competencias";
+  
   public competencias = [];
-
   public dropdownList = [];
   public selectedItems = [];
   public dropdownSettings = {
@@ -77,7 +77,6 @@ export class CadastroPrestadorComponent implements OnInit {
 
     });
   }
-
 
   buscarCompetencias() {
     this.http.post(this.apiCompetencias, {}).subscribe(data => {

@@ -19,18 +19,61 @@ export class CadastroPacienteComponent implements OnInit {
 
   constructor(private http: HttpClient, private service: LoginService, private cadastroService: CadastroServiceService, private util: UtilsService) {
     this.paciente.sexo = 3;
+    this.buscarEstados();
+    this.buscarCondicoesClinicas();
   }
 
   private apiSalvar = "http://localhost:8080/api/beneficiario/adicionar";
   private apiListar = "http://localhost:8080/api/beneficiario/listarporcontratante";
+  private apiEstados = "http://localhost:8080/api/dropdown/estados";
+  private apiCidades = "http://localhost:8080/api/dropdown/cidadeporestado";
+  private apiCondicoes = "http://localhost:8080/api/dropdown/condicoesclinicas";
   private contratante = this.service.getUsuario();
   public paciente = new Paciente();
   public novoPaciente = false;
   public todosPacientes = null;
   public dataFormatada = null;
   public perfilPaciente = null
-  //public pacienteSelecionado = null;
+  
+  public cidades = null;
+  public estados = null;
 
+  public condicoesClinicas = [];
+  public dropdownList = [];
+  public selectedItems = [];
+  public dropdownSettings = {
+    singleSelection: false,
+    idField: 'key',
+    textField: 'value',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 3,
+    allowSearchFilter: true
+  };
+
+  buscarCondicoesClinicas() {
+    this.http.post(this.apiCondicoes, {}).subscribe(data => {
+      console.log(data);
+        this.condicoesClinicas = Object.values(data);
+      });
+  }
+
+  setCondicoesClinicas(event) {
+    console.log(event.key);
+    this.paciente.condicoesClinicas.push(event.key);
+  }
+
+  removerCondicoesClinicas(event) {
+    console.log(event.key);
+    this.paciente.condicoesClinicas.pop();
+  }
+
+
+  setTodasCondicoesClinicas(event) {
+    event.forEach(element => {
+      this.paciente.condicoesClinicas.push(element.key);
+    });
+  }
 
   @Output()
   emitir = new EventEmitter<any>();
@@ -151,7 +194,7 @@ export class CadastroPacienteComponent implements OnInit {
     this.paciente.sexo = 0;
     // this.paciente.cpf = "";
     this.paciente.telefone = "";
-    this.paciente.cidade = "";
+    this.paciente.cidade = null;
     this.paciente.estado = "";
     this.paciente.bairro = "";
     this.paciente.cep = "";
@@ -159,8 +202,39 @@ export class CadastroPacienteComponent implements OnInit {
     this.paciente.numero = "";
     this.paciente.complemento = "";
     this.paciente.comentario = "";
-    //this.paciente.termos= false;
-    this.paciente.condicoesClinicas = "";
+    this.paciente.termoDeResponsalidade= false;
+    this.paciente.condicoesClinicas = [];
 
+  }
+
+  setEstado(event) {
+    console.log(event.target.value);
+    this.paciente.estado = event.target.value;
+    this.buscarCidades(event.target.value);
+  }
+
+  setCidade(event) {
+    console.log(event.target.value);
+    this.paciente.cidade = event.target.value;
+  }
+
+  buscarEstados() {
+    this.http.post(this.apiEstados, {}).subscribe(data => {
+      console.log(data);
+      this.estados = data;
+    },
+      err => {
+        console.log(err);
+      });
+  }
+
+  buscarCidades(uf) {
+    this.http.post(this.apiCidades, { Uf: uf }).subscribe(data => {
+      console.log(data);
+      this.cidades = data;
+    },
+      err => {
+        console.log(err);
+      });
   }
 }
