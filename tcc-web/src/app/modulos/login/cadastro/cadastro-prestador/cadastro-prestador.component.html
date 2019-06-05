@@ -34,6 +34,13 @@
               <div class="panel-body">
                 <div class="form">
                   <form class="form-validate form-horizontal " id="register_form" method="get" action="">
+                      <div class="form-group ">
+                          <label for="foto" class="control-label col-lg-2">Foto de perfil<span class="required">*</span></label>
+                          <img id="avatar" width="100px" height="100px" [src]="imageSrc" />
+                          <br/>
+                          <input id="meuArquivo" type="file" name="file" accept=".jpg,.jpeg"
+                            (change)="previewImagem($event)" />
+                        </div>
                     <div class="form-group ">
                       <label for="fullname" class="control-label col-lg-2">Nome Completo<span
                           class="required">*</span></label>
@@ -66,6 +73,7 @@
                       <div class="col-lg-10">
                         <input [(ngModel)]="prestador.confirmaSenha" class="form-control " id="confirm_password"
                           name="confirm_password" type="password" />
+                          <p *ngIf="this.prestador.confirmaSenha.length >= 1 && this.prestador.senha != this.prestador.confirmaSenha" style="color:red;">senhas não são iguais</p>
                       </div>
                     </div>
                     <br>

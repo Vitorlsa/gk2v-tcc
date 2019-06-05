@@ -75,6 +75,13 @@ export class MedicamentosComponent implements OnInit {
         this.todosPacientes = [];
         this.todosPacientes = data;
         this.todosPacientes.forEach((element, index) => {
+          if (this.todosPacientes[index].sexo == 1)
+            this.todosPacientes[index].sexo = 'masculino'
+          else if (this.todosPacientes[index].sexo == 2)
+            this.todosPacientes[index].sexo = 'feminino'
+          else
+            this.todosPacientes[index].sexo = 'outro'
+
           this.todosPacientes[index].dataFormatada = new DatePipe('pt-BR').transform(element.dataNascimento, 'dd/MM/yyyy');
         });
       })

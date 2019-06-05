@@ -5,7 +5,6 @@ import { Paciente } from 'src/app/classes/paciente';
 import { LoginService } from '../../login.service';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
-import { DatePipe } from '@angular/common';
 import { UtilsService } from 'src/app/funcoes/utils.service';
 registerLocaleData(localePt);
 
@@ -84,6 +83,9 @@ export class CadastroPacienteComponent implements OnInit {
 
     this.listarPacientes();
 
+    this.buscarCondicoes();
+    
+
     this.perfilPaciente = this.service.getSessionPerfil();
 
     var $window = $(window),
@@ -126,7 +128,15 @@ export class CadastroPacienteComponent implements OnInit {
         this.todosPacientes = [];
         this.todosPacientes = data;
         this.todosPacientes.forEach((element, index) => {
-          this.todosPacientes[index].dataFormatada = new DatePipe('pt-BR').transform(element.dataNascimento, 'dd/MM/yyyy');
+          if (this.todosPacientes[index].sexo == 1)
+            this.todosPacientes[index].sexo = 'masculino'
+          else if (this.todosPacientes[index].sexo == 2)
+            this.todosPacientes[index].sexo = 'feminino'
+          else
+            this.todosPacientes[index].sexo = 'outro'
+          //this.todosPacientes[index].dataFormatada = new DatePipe('pt-BR').transform(element.dataNascimento, 'dd/MM/yyyy');
+          this.todosPacientes[index].idade = this.cadastroService.toDate(element.dataNascimento);
+          this.todosPacientes[index].idade = this.cadastroService.calculateAge(element.dataNascimento);
         });
       })
     } catch{
@@ -147,10 +157,72 @@ export class CadastroPacienteComponent implements OnInit {
   //   this.listarPacientes();
   // }
 
+  buscarCondicoes() {
+    this.http.post(this.apiCondicoes, {}).subscribe(data => {
+      console.log(data);
+      this.condicoes = Object.values(data);
+    });
+  }
+
+  setCondicoes(event) {
+    console.log(event.key);
+    this.paciente.condicoesClinicas.push(event.key);
+  }
+
+  removerCondicoes(event) {
+    console.log(event.key);
+    this.paciente.condicoesClinicas.pop(event.key);
+  }
+
+
+  setTodasCondicoes(event) {
+    event.forEach(element => {
+      this.paciente.condicoesClinicas.push(element.key);
+    });
+  }
+
+
+  buscarEstados() {
+    this.http.post(this.apiEstados, {}).subscribe(data => {
+      console.log(data);
+      this.estados = data;
+      // this.estados.forEach((element, index) => {
+      //   this.estados[index].item_id = element.key;
+      //   this.estados[index].item_text = element.value;
+      // });
+
+    },
+      err => {
+        console.log(err);
+      });
+  }
+
+  buscarCidades(uf) {
+    this.http.post(this.apiCidades, { Uf: uf }).subscribe(data => {
+      console.log(data);
+      this.cidades = data;
+      this.paciente.cidade = data[0].key;
+    },
+      err => {
+        console.log(err);
+      });
+  }
+
+  setEstado(event) {
+    console.log(event.target.value);
+    this.paciente.estado = event.target.value;
+    this.buscarCidades(event.target.value);
+  }
+
+  setCidade(event) {
+    console.log(event.target.value);
+    this.paciente.cidade = event.target.value;
+  }
 
 
   criarNovoPaciente() {
     this.novoPaciente = true;
+    this.buscarEstados();
   }
 
   voltar() {
@@ -202,8 +274,13 @@ export class CadastroPacienteComponent implements OnInit {
     this.paciente.numero = "";
     this.paciente.complemento = "";
     this.paciente.comentario = "";
+<<<<<<< HEAD
     this.paciente.termoDeResponsalidade= false;
     this.paciente.condicoesClinicas = [];
+=======
+    //this.paciente.termos= false;
+    this.paciente.condicoesClinicas = null;
+>>>>>>> e7f033b5e708d9be077abf139298ca4f11168404
 
   }
 

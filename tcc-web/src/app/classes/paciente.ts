@@ -16,7 +16,11 @@ export class Paciente{
     public rua: string;
     public numero: string;
     public complemento: string;
+<<<<<<< HEAD
     public condicoesClinicas: Array<number>;
+=======
+    public condicoesClinicas = null;
+>>>>>>> e7f033b5e708d9be077abf139298ca4f11168404
     public IdContratante: Number;
 
 
