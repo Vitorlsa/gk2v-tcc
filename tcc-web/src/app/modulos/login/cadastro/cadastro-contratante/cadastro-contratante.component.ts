@@ -25,10 +25,6 @@ export class CadastroContratanteComponent implements OnInit {
   
   public cidades = null;
   public estados = null;
-<<<<<<< HEAD
-=======
-  
->>>>>>> e7f033b5e708d9be077abf139298ca4f11168404
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {
