@@ -134,7 +134,7 @@ export class CadastroPacienteComponent implements OnInit {
             this.todosPacientes[index].sexo = 'outro'
           //this.todosPacientes[index].dataFormatada = new DatePipe('pt-BR').transform(element.dataNascimento, 'dd/MM/yyyy');
           this.todosPacientes[index].idade = this.cadastroService.toDate(element.dataNascimento);
-          this.todosPacientes[index].idade = this.cadastroService.calculateAge(element.dataNascimento);
+          this.todosPacientes[index].idade = this.cadastroService.calculateAge(element.idade);
         });
       })
     } catch{
@@ -163,6 +163,7 @@ export class CadastroPacienteComponent implements OnInit {
   voltar() {
     this.limparPaciente();
     this.novoPaciente = false;
+    this.listarPacientes();
   }
 
   setSexo(event) {

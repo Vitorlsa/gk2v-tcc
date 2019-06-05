@@ -71,7 +71,8 @@ export class CadastroServiceService {
   }
 
   toDate(dateStr) {
-    const [year, month, day] = dateStr.split("-");
+    let [year, month, day] = dateStr.split("-");
+    day = day.slice(0, 2);
     return new Date(year, month - 1, day)
   }
 
