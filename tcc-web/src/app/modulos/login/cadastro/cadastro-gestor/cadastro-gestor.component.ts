@@ -81,6 +81,7 @@ export class CadastroGestorComponent implements OnInit {
       if (!this.emailJaCadastrado && !this.cpfJaCadastrado) {
         if (this.gestor.confirmaSenha.length >= 6 && this.gestor.senha.length >= 6) {
           if (this.cadastroService.validateEmail(this.gestor.email)) {
+            if (this.gestor.curriculo.startsWith('data:image/pdf;base64')){
             if (this.cadastroService.testaCPF(this.gestor.cpf)) {
               if (this.cadastroService.validaCadastro(this.gestor)) {
                 this.gestor.imagem = this.imageSrc;
@@ -90,15 +91,18 @@ export class CadastroGestorComponent implements OnInit {
                     this.cadastroService.setContratantePaciente(this.gestor);
                     this.limparUsuario();
                   },
-                    err => {
-                      console.log(err);
-                    });
+                  err => {
+                    console.log(err);
+                  });
               } else {
                 alert("Campos preenchidos incorretamente");
               }
             } else {
               alert("cpf invalido");
             }
+          }else{
+            alert("curriculo nao é pdf");
+          }
           } else {
             alert("email invalido");
           }
@@ -179,7 +183,8 @@ export class CadastroGestorComponent implements OnInit {
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.onload = () => {
-      this.gestor.curriculo = reader.result.toString();
+      
+        this.gestor.curriculo = reader.result.toString();
 
       console.log(this.gestor.curriculo);
 

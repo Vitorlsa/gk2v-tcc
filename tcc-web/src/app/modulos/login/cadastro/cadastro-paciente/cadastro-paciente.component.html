@@ -42,7 +42,7 @@
           <th>Bairro</th>
           <th>Cidade</th>
           <!-- <th>Condição clinica</th> -->
-          <th>Responsável</th>
+          <th *ngIf="this.perfilPaciente == 3">Responsável</th>
           <th>&nbsp;</th>
         </tr>
         <tr *ngFor="let paciente of this.todosPacientes">
@@ -52,7 +52,7 @@
           <td>{{paciente.bairro}}</td>
           <td>{{paciente.cidade}}</td>
           <!-- <td>{{paciente.condicoesClinicas}}</td> -->
-          <td>{{paciente.responsavel}}</td>
+          <td *ngIf="this.perfilPaciente == 3">{{paciente.responsavel}}</td>
           <button class="editarPaciente" *ngIf="this.perfilPaciente != 4"
             (click)="editarPaciente(paciente)">Visualizar</button>
         </tr>
