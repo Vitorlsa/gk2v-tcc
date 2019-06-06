@@ -81,7 +81,7 @@ export class CadastroGestorComponent implements OnInit {
       if (!this.emailJaCadastrado && !this.cpfJaCadastrado) {
         if (this.gestor.confirmaSenha.length >= 6 && this.gestor.senha.length >= 6) {
           if (this.cadastroService.validateEmail(this.gestor.email)) {
-            if (this.gestor.curriculo.startsWith('data:image/pdf;base64')){
+            if (this.gestor.curriculo.startsWith('data:application/pdf;base64')){
             if (this.cadastroService.testaCPF(this.gestor.cpf)) {
               if (this.cadastroService.validaCadastro(this.gestor)) {
                 this.gestor.imagem = this.imageSrc;
