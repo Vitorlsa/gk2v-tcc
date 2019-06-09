@@ -20,8 +20,8 @@
 <!-- Main -->
 <div id="preview">
   <div class="inner">
-      <a href="/board">voltar</a>
-      <a style="float:right" href="/login" >Logout </a>
+    <a href="/board">voltar</a>
+    <a style="float:right" href="/login">Logout </a>
     <div class="image fit">
       <img src="../../../assets/images/cadastro/banner_cadastro.jpg" alt="" />
     </div>
@@ -41,12 +41,14 @@
               </header>
               <div class="panel-body">
                 <div class="form">
-                  <form class="form-validate form-horizontal" name="formContratante" id="register_form" method="get" action="">
+                  <form class="form-validate form-horizontal" name="formContratante" id="register_form" method="get"
+                    action="">
 
                     <div class="form-group ">
-                      <label for="foto" class="control-label col-lg-2">Foto de perfil<span class="required">*</span></label>
+                      <label for="foto" class="control-label col-lg-2">Foto de perfil<span
+                          class="required">*</span></label>
                       <img id="avatar" width="100px" height="100px" [src]="imageSrc" />
-                      <br/>
+                      <br />
                       <input id="meuArquivo" type="file" name="file" accept=".jpg,.jpeg"
                         (change)="previewImagem($event)" />
                     </div>
@@ -63,15 +65,16 @@
                       <label for="username" class="control-label col-lg-2">Login <span class="required">*</span></label>
                       <div class="col-lg-10">
                         <input [(ngModel)]="usuario.login" class="form-control " id="username" name="username"
-                          type="text" required/>
+                          type="text" required />
                       </div>
                     </div>
                     <br>
                     <div class="form-group ">
                       <label for="password" class="control-label col-lg-2">Senha <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.senha" class="form-control" minlength="6" id="password" name="password"
-                          type="password" required/>
+                        <input [(ngModel)]="usuario.senha" class="form-control" minlength="6" id="password"
+                          name="password" type="password" required />
+                        <p *ngIf="this.usuario.senha.length >= 1 && this.usuario.senha.length < 6 " style="color:red;">senha precisa ter ao menso 6 caracteres</p>
                       </div>
                     </div>
                     <br>
@@ -79,9 +82,10 @@
                       <label for="confirm_password" class="control-label col-lg-2">Confirmar Senha <span
                           class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.confirmaSenha" minlength="6" class="form-control " id="confirm_password"
-                          name="confirm_password" type="password" required />
-                          <p *ngIf="this.usuario.confirmaSenha.length >= 1 && this.usuario.senha != this.usuario.confirmaSenha" style="color:red;">senhas não são iguais</p>
+                        <input [(ngModel)]="usuario.confirmaSenha" minlength="6" class="form-control "
+                          id="confirm_password" name="confirm_password" type="password" required />
+                        <p *ngIf="this.usuario.confirmaSenha.length >= 1 && this.usuario.senha != this.usuario.confirmaSenha"
+                          style="color:red;">senhas não são iguais</p>
                       </div>
                     </div>
                     <br>
@@ -89,7 +93,8 @@
                       <label for="email" class="control-label col-lg-2">Email <span class="required">*</span></label>
                       <div class="col-lg-10">
                         <input [(ngModel)]="usuario.email" (blur)="this.confereEmail()" class="form-control " id="email"
-                          name="email" type="email" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" required/>
+                          name="email" type="email"
+                          pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" required />
                         <p *ngIf="this.emailJaCadastrado" style="color:red;">email ja cadastrado</p>
                       </div>
                     </div>
@@ -99,7 +104,7 @@
                           class="required">*</span></label>
                       <div class="col-lg-10">
                         <input [(ngModel)]="usuario.datanascimento" class="form-control " id="nascimento" name="nasc"
-                          type="date" required/>
+                          type="date" required />
                       </div>
                     </div>
                     <br>
@@ -118,7 +123,7 @@
                       <div class="col-lg-10">
                         <input [(ngModel)]="usuario.cpf" (blur)="confereCpf(usuario.cpf)" minlength="11"
                           mask="000.000.000.00" [showMaskTyped]="true" class="form-control " id="cpf" name="cpf"
-                          type="text" required/>
+                          type="text" required />
                         <p *ngIf="this.cpfJaCadastrado" style="color:red;">cpf ja cadastrado</p>
                       </div>
                     </div>
@@ -128,19 +133,19 @@
                           class="required">*</span></label>
                       <div class="col-lg-10">
                         <input [(ngModel)]="usuario.telefone" mask="(00) 000000000" class="form-control " id="telefone"
-                          name="telefone" type="text" required/>
+                          name="telefone" type="text" required />
                       </div>
                     </div>
                     <br>
                     <div class="form-group ">
                       <label for="UF" class="control-label col-lg-2">Estado <span class="required">*</span></label>
-                      <select (change)="setEstado($event)" >
+                      <select (change)="setEstado($event)">
                         <option *ngFor="let estado of this.estados" [value]="estado.key">{{estado.value}}</option>
                       </select>
                     </div>
                     <div class="form-group ">
                       <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
-                      <select (change)="setCidade($event)" >
+                      <select (change)="setCidade($event)">
                         <option *ngFor="let cidade of this.cidades" [value]="cidade.key">{{cidade.value}}</option>
                       </select>
                     </div>
@@ -161,14 +166,15 @@
                     <div class="form-group ">
                       <label for="Rua" class="control-label col-lg-2">Rua <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.rua" class="form-control " id="rua" name="rua" type="text" required/>
+                        <input [(ngModel)]="usuario.rua" class="form-control " id="rua" name="rua" type="text"
+                          required />
                       </div>
                     </div>
                     <div class="form-group ">
                       <label for="numero" class="control-label col-lg-2">Numero <span class="required">*</span></label>
                       <div class="col-lg-10">
                         <input [(ngModel)]="usuario.numero" mask="000000" class="form-control " id="numero"
-                          name="numero" type="text" required/>
+                          name="numero" type="text" required />
                       </div>
                     </div>
                     <div class="form-group ">
@@ -176,7 +182,7 @@
                           class="required">*</span></label>
                       <div class="col-lg-10">
                         <input [(ngModel)]="usuario.complemento" class="form-control " id="complemento"
-                          name="complemento" type="text" required/>
+                          name="complemento" type="text" required />
                       </div>
                     </div>
                     <br>
@@ -184,7 +190,7 @@
                       <label for="comentario" class="control-label col-lg-2">Comentário</label>
                       <div class="col-lg-10">
                         <input [(ngModel)]="usuario.comentario" class="form-control " id="comentario" name="comentario"
-                          type="text" required/>
+                          type="text" required />
                       </div>
                     </div>
                     <br>
