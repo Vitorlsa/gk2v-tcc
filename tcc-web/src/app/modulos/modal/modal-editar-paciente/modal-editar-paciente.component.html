@@ -12,7 +12,7 @@
       <div class="modal-body">
         <div>
           <label for="nome">Nome Completo</label>
-          <input type="text" id="nome" [(ngModel)]="this.pacienteCompleto.nome" >
+          <input type="text" id="nome" [(ngModel)]="this.pacienteCompleto.nome">
         </div>
         <div>
           <label for="nasc">Data de Nascimento</label>
@@ -24,42 +24,49 @@
         </div>
         <div>
           <label for="tel">Telefone</label>
-          <input type="text" id="tel" mask="(00) 000000000" [(ngModel)]="this.pacienteCompleto.telefone" >
+          <input type="text" id="tel" mask="(00) 000000000" [(ngModel)]="this.pacienteCompleto.telefone">
         </div>
         <div>
           <label for="rua">Rua</label>
-          <input type="text" id="rua" [(ngModel)]="this.pacienteCompleto.rua" >
+          <input type="text" id="rua" [(ngModel)]="this.pacienteCompleto.rua">
         </div>
         <div>
           <label for="numero">Número</label>
-          <input type="text" id="numero" mask="000000" [(ngModel)]="this.pacienteCompleto.numero" >
+          <input type="text" id="numero" mask="000000" [(ngModel)]="this.pacienteCompleto.numero">
         </div>
         <div>
           <label for="complemento">Complemento</label>
-          <input type="text" id="complemento" [(ngModel)]="this.pacienteCompleto.complemento" >
+          <input type="text" id="complemento" [(ngModel)]="this.pacienteCompleto.complemento">
         </div>
         <div>
           <div>
             <label for="cep">CEP</label>
-            <input type="text" id="cep" mask="00000-000" [(ngModel)]="this.pacienteCompleto.cep" >
+            <input type="text" id="cep" mask="00000-000" [(ngModel)]="this.pacienteCompleto.cep">
           </div>
           <div>
             <div>
               <div>
                 <label for="bairro">bairro</label>
-                <input type="text" id="bairro" [(ngModel)]="this.pacienteCompleto.bairro" >
+                <input type="text" id="bairro" [(ngModel)]="this.pacienteCompleto.bairro">
               </div>
               <div>
-                <label for="cidade">Cidade</label>
-                <input type="text" id="cidade" [(ngModel)]="this.pacienteCompleto.cidade" >
-              </div>
+                <label for="estado">Estado</label>
+                <select (change)="setEstado($event)" placeholder="this.estadoSelecionado">
+                  <option *ngFor="let estado of estados" [value]="estado.key">{{estado.value}}</option>
+                </select> </div>
               <div>
-                  <label for="estado">Estado</label>
-                  <input type="text" id="estado" [(ngModel)]="this.pacienteCompleto.estado" >
+                <div>
+                  <label for="cidade">Cidade</label>
+                  <select (change)="setCidade($event)" placeholder="this.cidadeSelecionada">
+                    <option *ngFor="let cidade of cidades" [value]="cidade.key">{{cidade.value}}</option>
+                  </select>
                 </div>
-              <div>
                 <label for="msg">Condições clinicas</label>
-                <textarea id="msg"  [(ngModel)]="this.pacienteCompleto.condicoesClinicas"></textarea>
+                <ng-multiselect-dropdown [placeholder]="'custom placeholder'" [data]="condicoesClinicas"
+                  [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="setCondicoesClinicas($event)"
+                  name="condicoesclinicas" (onSelectAll)="setTodasCondicoesClinicas($event)"
+                  (onDeSelect)="removerCondicoesClinicas($event)">
+                </ng-multiselect-dropdown>
               </div>
             </div>
             <div class="modal-footer">

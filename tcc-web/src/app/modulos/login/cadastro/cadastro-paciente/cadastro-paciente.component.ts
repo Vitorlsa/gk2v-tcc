@@ -86,8 +86,7 @@ export class CadastroPacienteComponent implements OnInit {
 
     this.perfilPaciente = this.service.getSessionPerfil();
 
-    var $window = $(window),
-      $header = $('#header'),
+    var $header = $('#header'),
       $footer = $('#footer');
 
     // Header.

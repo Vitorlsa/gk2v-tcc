@@ -220,7 +220,7 @@ export class PerfilComponent implements OnInit {
 
 
   cancelar() {
-    this.router.navigate(['/cadastro']);
+    this.router.navigate(['/board']);
   }
 
 }
