@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { UtilsService } from 'src/app/funcoes/utils.service';
 import { CadastroContratanteComponent } from './cadastro-contratante/cadastro-contratante.component';
 import { HttpClient } from '@angular/common/http';
+import { throws } from 'assert';
 
 @Injectable({
   providedIn: 'root'
@@ -11,15 +12,6 @@ export class CadastroServiceService {
   fecharCallback: any;
 
   constructor(private utils: UtilsService, private http: HttpClient) { }
-
-
-  // setSexo() {
-
-  // }
-
-  // setTermos() {
-
-  // }
 
   validaCadastro(usuario) {
     if (usuario.senha != usuario.confirmaSenha)
@@ -80,6 +72,25 @@ export class CadastroServiceService {
     var ageDifMs = Date.now() - birthday.getTime();
     var ageDate = new Date(ageDifMs); // miliseconds from epoch
     return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+
+
+  salvarCadastro(cadastro, tipo) {
+    if (cadastro.senha != cadastro.confirmaSenha)
+      throw "Senhas não são iguais";
+    if (cadastro.termos == 0)
+      throw "Senhas não são iguais";
+    if (this.calculateAge(cadastro.idade) >= 18)
+      throw "Deve ter no mínimo 18 anos para se cadastrar";
+    if (cadastro.confirmaSenha.length >= 6 && cadastro.senha.length >= 6)
+      throw "Precisam ter ao menos 6 caracteres";
+    if (this.validateEmail(cadastro.email))
+      throw "E-mail não é válido";
+    if (this.testaCPF(cadastro.cpf))
+      throw "CPF não é válido";
+
+
+    return
   }
 
   // setfecharModalEditarCallback(func){
