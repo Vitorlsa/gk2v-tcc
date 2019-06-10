@@ -7,6 +7,7 @@ import { Medicamento } from 'src/app/classes/medicamento';
 import { registerLocaleData } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { Router } from '@angular/router';
 registerLocaleData(localePt);
 @Component({
   selector: 'app-medicamentos',
@@ -15,7 +16,7 @@ registerLocaleData(localePt);
 })
 export class MedicamentosComponent implements OnInit {
 
-  constructor(private http: HttpClient, private service: LoginService, private cadastroService: CadastroServiceService, private util: UtilsService) { }
+  constructor(private http: HttpClient, private service: LoginService, private cadastroService: CadastroServiceService, private util: UtilsService, private route: Router) { }
 
   private apicadastrar = "http://localhost:8080/api/medicamento/cadastrar";
   private apiEditar = "http://localhost:8080/api/medicamento/editar";
@@ -134,7 +135,16 @@ export class MedicamentosComponent implements OnInit {
   }
 
   voltar() {
-    this.novoMedicamento = false;
+
+    if (this.novoMedicamento) {
+      this.novoMedicamento = false;
+    }
+    else if (this.beneficiarioSelecionado != null) {
+      this.beneficiarioSelecionado = null;
+    }
+    else {
+      this.route.navigate(["/board"]);
+    }
   }
 
 }
