@@ -3,7 +3,7 @@ import { Sexoenum } from '../enum/sexoenum.enum';
 export class Paciente{
 
     public nome: string;
-    public datanascimento: Date;
+    public dataNascimento: Date;
     public sexo: Sexoenum;
     public cpf: string;
     public telefone: string;

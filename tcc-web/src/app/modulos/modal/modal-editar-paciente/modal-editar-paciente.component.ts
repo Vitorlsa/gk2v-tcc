@@ -7,6 +7,7 @@ import { CadastroServiceService } from '../../login/cadastro/cadastro-service.se
 import { isNullOrUndefined } from 'util';
 import { UtilsService } from 'src/app/funcoes/utils.service';
 import { timingSafeEqual } from 'crypto';
+import { Paciente } from 'src/app/classes/paciente';
 registerLocaleData(localePt);
 
 @Component({
@@ -24,13 +25,13 @@ export class ModalEditarPacienteComponent implements OnInit {
   private apiCidades = "http://localhost:8080/api/dropdown/cidadeporestado";
   private apiCondicoes = "http://localhost:8080/api/dropdown/condicoesclinicas";
 
-  public pacienteCompleto = null;
-
+  public pacienteCompleto = new Paciente();
+  public dataFormatada = "";
   public cidades = null;
   public estados = null;
   public estadoSelecionado = null;
   public cidadeSelecionada = null;
-
+  public SexoSelecionado = "";
   public condicoesClinicas = [];
   public dropdownList = [];
   public selectedItems = [];
@@ -52,35 +53,35 @@ export class ModalEditarPacienteComponent implements OnInit {
   ngOnInit() {
     this.buscarEstados();
     this.pegarInfosBeneficiario(this.pacienteSelecionado);
+    
+    $('.modal-open').prop('checked', true);
   }
 
   pegarInfosBeneficiario(param) {
     try {
       this.http.post(this.apiBuscar, { Id: param.id }).subscribe(data => {
         console.log(data);
-        this.pacienteCompleto = data;
-        this.pacienteCompleto.dataFormatada = new DatePipe('pt-BR').transform(this.pacienteCompleto.dataNascimento, 'dd/MM/yyyy');
+        this.pacienteCompleto = <Paciente>data;
+
+        this.dataFormatada = new DatePipe('pt-BR').transform(this.pacienteCompleto.dataNascimento, 'dd/MM/yyyy');
+        console.log(this.dataFormatada);
         if (this.pacienteCompleto.sexo == 1)
-          this.pacienteCompleto.sexo = "masculino";
+          this.SexoSelecionado = "masculino";
         else if (this.pacienteCompleto.sexo == 2)
-          this.pacienteCompleto.sexo = "feminino";
+          this.SexoSelecionado = "feminino";
         else
-          this.pacienteCompleto.sexo = "outro";
+          this.SexoSelecionado = "outro";
 
-        // this.setEstado(this.pacienteCompleto.estado);
-        console.log(this.pacienteCompleto.estado);
-        console.log(this.estados);
-        let estadoselecionado = this.pacienteCompleto.estado;
-        this.estados.forEach((element, index) => {
-          if (index == estadoselecionado)
-            estadoselecionado = element;
+          
+        this.buscarCondicoesClinicas();
+        this.estados.forEach((element) => {
+          if (element.key == this.pacienteCompleto.estado){
+            element.selected = true;
+          }
         });
-        this.estadoSelecionado = estadoselecionado;
-        console.log(estadoselecionado);
-        console.log(this.pacienteCompleto.estado);
-
-        this.buscarCidades(this.pacienteCompleto.estado)
-
+        
+        this.buscarCidades(this.pacienteCompleto.estado);
+        
 
       })
     } catch{
@@ -89,14 +90,7 @@ export class ModalEditarPacienteComponent implements OnInit {
   }
 
   atualizarBeneficiario(param) {
-    if (this.pacienteCompleto.sexo == "masculino")
-      this.pacienteCompleto.sexo = 1;
-    else if (this.pacienteCompleto.sexo == "feminino")
-      this.pacienteCompleto.sexo = 2
-    else
-      this.pacienteCompleto.sexo = 3;
-
-
+    console.log(param);
     try {
       this.http.post(this.apiSalvar, param).subscribe(
         res => {
@@ -114,8 +108,21 @@ export class ModalEditarPacienteComponent implements OnInit {
 
   buscarCondicoesClinicas() {
     this.http.post(this.apiCondicoes, {}).subscribe(data => {
-      console.log(data);
       this.condicoesClinicas = Object.values(data);
+
+      let condicoes = [];
+      
+      this.condicoesClinicas.forEach((condicao) =>
+      {
+        this.pacienteCompleto.condicoesClinicas.forEach((item) =>
+        {
+           if(item == condicao.key)
+           {
+            condicoes.push(condicao);
+           }
+        });
+      });
+      this.selectedItems = condicoes;
     });
   }
 
@@ -174,8 +181,8 @@ export class ModalEditarPacienteComponent implements OnInit {
 
       let cidadeselecionada = this.pacienteCompleto.cidade;
       this.cidades.forEach((element, index) => {
-        if (element == cidadeselecionada)
-          console.log(index);
+        if (element.key == cidadeselecionada)
+          element.selected = true;
       });
     },
       err => {

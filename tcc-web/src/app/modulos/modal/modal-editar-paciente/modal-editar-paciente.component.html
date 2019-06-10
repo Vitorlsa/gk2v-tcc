@@ -16,11 +16,11 @@
         </div>
         <div>
           <label for="nasc">Data de Nascimento</label>
-          <input type="text" id="nasc" mask="00/00/0000" [(ngModel)]="this.pacienteCompleto.dataFormatada" readonly>
+          <input type="text" id="nasc" mask="00/00/0000" [(ngModel)]="this.dataFormatada" readonly>
         </div>
         <div>
           <label for="sexo">Sexo</label>
-          <input type="text" id="sexo" [(ngModel)]="this.pacienteCompleto.sexo" readonly>
+          <input type="text" id="sexo" [(ngModel)]="this.SexoSelecionado" readonly>
         </div>
         <div>
           <label for="tel">Telefone</label>
@@ -52,13 +52,13 @@
               <div>
                 <label for="estado">Estado</label>
                 <select (change)="setEstado($event)" placeholder="this.estadoSelecionado">
-                  <option *ngFor="let estado of estados" [value]="estado.key">{{estado.value}}</option>
+                  <option *ngFor="let estado of estados" [selected]="estado.selected" [value]="estado.key">{{estado.value}} </option>
                 </select> </div>
               <div>
                 <div>
                   <label for="cidade">Cidade</label>
                   <select (change)="setCidade($event)" placeholder="this.cidadeSelecionada">
-                    <option *ngFor="let cidade of cidades" [value]="cidade.key">{{cidade.value}}</option>
+                    <option *ngFor="let cidade of cidades" [selected]="cidade.selected" [value]="cidade.key">{{cidade.value}}</option>
                   </select>
                 </div>
                 <label for="msg">Condições clinicas</label>

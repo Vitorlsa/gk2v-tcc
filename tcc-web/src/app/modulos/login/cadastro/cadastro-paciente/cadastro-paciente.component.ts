@@ -143,11 +143,8 @@ export class CadastroPacienteComponent implements OnInit {
 
 
   editarPaciente(param) {
-    console.log(param);
     this.pacienteSelecionado = param;
-    console.log(!this.util.nullOrUndef(this.pacienteSelecionado));
     this.emitir.emit(this.pacienteSelecionado);
-    $('.modal-open').prop('checked', true);
   }
 
   // fecharModalEditar() {
@@ -197,7 +194,7 @@ export class CadastroPacienteComponent implements OnInit {
     // this.paciente.senha= "";
     // this.paciente.confirmaSenha= "";
     // this.paciente.email = "";
-    this.paciente.datanascimento = null;
+    this.paciente.dataNascimento = null;
     this.paciente.sexo = 0;
     // this.paciente.cpf = "";
     this.paciente.telefone = "";
