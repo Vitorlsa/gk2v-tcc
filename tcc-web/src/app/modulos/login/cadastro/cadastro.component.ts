@@ -21,8 +21,6 @@ export class CadastroComponent implements OnInit {
 
     this.tipoCadastro = this.func.nullOrUndef(this.tipoCadastro);
 
-
-
     var $header = $('#header'),
       $footer = $('#footer');
 
@@ -42,7 +40,6 @@ export class CadastroComponent implements OnInit {
 
     $footer.each(function () {
       var t = jQuery(this),
-        inner = t.find('.inner'),
         button = t.find('.info');
       button.click(function (e) {
         t.toggleClass('show');

@@ -6,6 +6,7 @@ import { LoginService } from '../../login.service';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { UtilsService } from 'src/app/funcoes/utils.service';
+import { Router } from '@angular/router';
 registerLocaleData(localePt);
 
 @Component({
@@ -16,7 +17,7 @@ registerLocaleData(localePt);
 export class CadastroPacienteComponent implements OnInit {
 
 
-  constructor(private http: HttpClient, private service: LoginService, private cadastroService: CadastroServiceService, private util: UtilsService) {
+  constructor(private http: HttpClient, private service: LoginService, private cadastroService: CadastroServiceService, private util: UtilsService, private route: Router) {
     this.paciente.sexo = 3;
     this.buscarEstados();
     this.buscarCondicoesClinicas();
@@ -33,7 +34,7 @@ export class CadastroPacienteComponent implements OnInit {
   public todosPacientes = null;
   public dataFormatada = null;
   public perfilPaciente = null
-  
+
   public cidades = null;
   public estados = null;
 
@@ -53,8 +54,8 @@ export class CadastroPacienteComponent implements OnInit {
   buscarCondicoesClinicas() {
     this.http.post(this.apiCondicoes, {}).subscribe(data => {
       console.log(data);
-        this.condicoesClinicas = Object.values(data);
-      });
+      this.condicoesClinicas = Object.values(data);
+    });
   }
 
   setCondicoesClinicas(event) {
@@ -82,7 +83,7 @@ export class CadastroPacienteComponent implements OnInit {
     this.limparPaciente();
 
     this.listarPacientes();
-    
+
 
     this.perfilPaciente = this.service.getSessionPerfil();
 
@@ -157,9 +158,13 @@ export class CadastroPacienteComponent implements OnInit {
   }
 
   voltar() {
-    this.limparPaciente();
-    this.novoPaciente = false;
-    this.listarPacientes();
+    if (this.novoPaciente) {
+      this.limparPaciente();
+      this.novoPaciente = false;
+      this.listarPacientes();
+    } else {
+      this.route.navigate(["/board"]);
+    }
   }
 
   setSexo(event) {
@@ -206,7 +211,7 @@ export class CadastroPacienteComponent implements OnInit {
     this.paciente.numero = "";
     this.paciente.complemento = "";
     this.paciente.comentario = "";
-    this.paciente.termoDeResponsalidade= false;
+    this.paciente.termoDeResponsalidade = false;
     this.paciente.condicoesClinicas = [];
 
   }
