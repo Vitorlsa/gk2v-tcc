@@ -24,6 +24,7 @@ export class MedicamentosComponent implements OnInit {
   private apiDetalhar = "http://localhost:8080/api/medicamento/detalhar";
   private apiRemover = "http://localhost:8080/api/medicamento/remover";
   private apiListarBeneficiario = "http://localhost:8080/api/beneficiario/listarporcontratante";
+  private apiDropMedicamentos = "http://localhost:8080/api/dropdown/medicamentos";
   private contratante = this.service.getUsuario();
   public medicamento = new Medicamento();
   public novoMedicamento = false;
@@ -32,12 +33,29 @@ export class MedicamentosComponent implements OnInit {
   public perfilMedicamento = null;
   public beneficiarioSelecionado = null;
   public todosPacientes = null;
+  public perfilLogado = this.service.getSessionPerfil()[0];
+  public todosMedicamentos = [];
+  public selectedItems = [];
+
+  public dropdownSettings = {
+    singleSelection: false,
+    idField: 'key',
+    textField: 'value',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 3,
+    allowSearchFilter: true
+  };
 
 
   ngOnInit() {
 
-    this.listarBeneficiario();
-    //this.listarRemedios();
+
+    console.log(this.contratante);
+    if (this.perfilLogado != 1) {
+      this.listarBeneficiario();
+      this.buscarMedicamentos();
+    }
 
     var $header = $('#header'),
       $footer = $('#footer');
@@ -119,7 +137,7 @@ export class MedicamentosComponent implements OnInit {
   salvar() {
     console.log(this.medicamento);
     let payload = this.medicamento;
-    payload.IdBeneficiario = this.beneficiarioSelecionado.id;
+    //payload.IdBeneficiario = this.beneficiarioSelecionado.id;
     payload.Tipo = 1;
     payload.ViaDeUso = 1;
     try {
@@ -135,7 +153,6 @@ export class MedicamentosComponent implements OnInit {
   }
 
   voltar() {
-
     if (this.novoMedicamento) {
       this.novoMedicamento = false;
     }
@@ -145,6 +162,31 @@ export class MedicamentosComponent implements OnInit {
     else {
       this.route.navigate(["/board"]);
     }
+  }
+
+
+  buscarMedicamentos() {
+    this.http.post(this.apiDropMedicamentos, {}).subscribe(data => {
+      console.log(data);
+      this.todosMedicamentos = Object.values(data);
+    });
+  }
+
+  setMedicamentos(event) {
+    console.log(event.key);
+    this.beneficiarioSelecionado.medicamento.push(event.key);
+  }
+
+  removerMedicamentos(event) {
+    console.log(event.key);
+    this.beneficiarioSelecionado.medicamento.pop(event.key);
+  }
+
+
+  setTodasMedicamentos(event) {
+    event.forEach(element => {
+      this.beneficiarioSelecionado.medicamento.push(element.key);
+    });
   }
 
 }

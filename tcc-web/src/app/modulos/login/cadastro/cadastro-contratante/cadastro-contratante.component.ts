@@ -82,7 +82,6 @@ export class CadastroContratanteComponent implements OnInit {
 
     $footer.each(function () {
       var t = jQuery(this),
-        inner = t.find('.inner'),
         button = t.find('.info');
       button.click(function (e) {
         t.toggleClass('show');

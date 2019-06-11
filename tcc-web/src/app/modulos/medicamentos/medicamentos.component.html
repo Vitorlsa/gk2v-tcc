@@ -13,14 +13,14 @@
 <!-- Main -->
 <div id="preview">
   <div class="inner">
-      <a (click)="voltar()">voltar</a>
-      <a style="float:right" href="/login" >Logout </a>
+    <a (click)="voltar()">voltar</a>
+    <a style="float:right" href="/login">Logout </a>
     <div class="image fit">
       <img src="../../../assets/images/cadastro/banner_lcm.png" alt="" />
     </div>
 
 
-    <div class="content" *ngIf="this.beneficiarioSelecionado == null">
+    <div class="content" *ngIf="this.beneficiarioSelecionado == null && this.perfilLogado !=1">
 
       <h2>Beneficiários ja cadastrados</h2>
 
@@ -47,15 +47,18 @@
     </div>
 
 
-    <div class="content" *ngIf="this.beneficiarioSelecionado != null">
+    <div class="content" *ngIf="this.beneficiarioSelecionado != null || this.perfilLogado ==1">
       <header>
         <h2>Medicamentos</h2>
       </header>
 
       <!-- lista de medicamentos -->
-      <div *ngIf="!this.novoMedicamento">
+      <div *ngIf="this.perfilLogado !=1">
         <button class="addMedicamento" (click)="criarNovoRemedio()">+ medicamento</button>
-
+        <ng-multiselect-dropdown [placeholder]="'custom placeholder'" [data]="this.todosMedicamentos" *ngIf="this.novoMedicamento && this.perfilLogado !=1"
+          [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="setMedicamentos($event)"
+          name="medicamentos" (onSelectAll)="setTodasMedicamentos($event)" (onDeSelect)="removerMedicamentos($event)">
+        </ng-multiselect-dropdown>
         <form style="float:right">
           Pesquisa: <input type="text" width="48" height="48" name="pesquisa">
         </form>
@@ -71,26 +74,11 @@
             <td>6 comprimidos <button class="button">aumentar</button> <button class="button">diminuir</button></td>
             <td>1 comprimido <button class="button">aumentar</button> <button class="button">diminuir</button></td>
           </tr>
-          <!-- <tr>
-                    <td>Novalgina</td>
-                    <td>1 frasco de 20ml <button class="button">aumentar</button> <button class="button">diminuir</button></td>
-                    <td>20 gotas <button class="button">aumentar</button> <button class="button">diminuir</button></td>
-                  </tr>  
-                  <tr>
-                    <td>Generico X</td>
-                    <td>6 comprimidos <button class="button">aumentar</button> <button class="button">diminuir</button></td>
-                    <td>1 comprimido <button class="button">aumentar</button> <button class="button">diminuir</button></td>
-                  </tr>
-                  <tr>
-                    <td>Generico Y</td>
-                    <td>1 frasco de 20ml <button class="button">aumentar</button> <button class="button">diminuir</button></td>
-                    <td>20 gotas <button class="button">aumentar</button> <button class="button">diminuir</button></td>
-                  </tr>   -->
         </table>
       </div>
 
       <!-- cadastro manual de medicamentos -->
-      <div *ngIf="this.novoMedicamento">
+      <div *ngIf="this.perfilLogado ==1">
         <div id="welcome">
           <div class="title">
             <span class="byline"><b>Preencha todos os campos obrigatórios.</b></span>
