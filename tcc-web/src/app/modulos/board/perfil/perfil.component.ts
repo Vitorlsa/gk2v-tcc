@@ -155,7 +155,7 @@ export class PerfilComponent implements OnInit {
       if (this.usuario.confirmaSenha.length >= 6 && this.usuario.senha.length >= 6) {
         if (this.cadastroService.validateEmail(this.usuario.email)) {
           if (this.cadastroService.testaCPF(this.usuario.cpf)) {
-            if (this.cadastroService.validaCadastro(this.usuario)) {
+           // if (this.cadastroService.validaCadastro(this.usuario)) {
               this.http.post(this.apiCadastro, this.usuario).subscribe(
                 res => {
                   alert("Cadastro salvo com sucesso");
@@ -164,9 +164,9 @@ export class PerfilComponent implements OnInit {
                 err => {
                   console.log(err);
                 });
-            } else {
-              alert("Campos preenchidos incorretamente");
-            }
+            //} else {
+             // alert("Campos preenchidos incorretamente");
+            //}
           } else {
             alert("cpf invalido");
           }

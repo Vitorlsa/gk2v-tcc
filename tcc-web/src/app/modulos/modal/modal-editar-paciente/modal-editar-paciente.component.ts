@@ -4,9 +4,7 @@ import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import { CadastroServiceService } from '../../login/cadastro/cadastro-service.service';
-import { isNullOrUndefined } from 'util';
 import { UtilsService } from 'src/app/funcoes/utils.service';
-import { timingSafeEqual } from 'crypto';
 import { Paciente } from 'src/app/classes/paciente';
 registerLocaleData(localePt);
 
@@ -17,7 +15,7 @@ registerLocaleData(localePt);
 })
 export class ModalEditarPacienteComponent implements OnInit {
 
-  constructor(private http: HttpClient, private cadastroService: CadastroServiceService, private util: UtilsService) { }
+  constructor(private http: HttpClient, private cadastroService: CadastroServiceService, private util: UtilsService, private utils: UtilsService) { }
 
   private apiBuscar = "http://localhost:8080/api/beneficiario/buscarporid";
   private apiSalvar = "http://localhost:8080/api/beneficiario/editar";
@@ -53,7 +51,7 @@ export class ModalEditarPacienteComponent implements OnInit {
   ngOnInit() {
     this.buscarEstados();
     this.pegarInfosBeneficiario(this.pacienteSelecionado);
-    
+
     $('.modal-open').prop('checked', true);
   }
 
@@ -72,16 +70,16 @@ export class ModalEditarPacienteComponent implements OnInit {
         else
           this.SexoSelecionado = "outro";
 
-          
+
         this.buscarCondicoesClinicas();
         this.estados.forEach((element) => {
-          if (element.key == this.pacienteCompleto.estado){
+          if (element.key == this.pacienteCompleto.estado) {
             element.selected = true;
           }
         });
-        
+
         this.buscarCidades(this.pacienteCompleto.estado);
-        
+
 
       })
     } catch{
@@ -90,8 +88,24 @@ export class ModalEditarPacienteComponent implements OnInit {
   }
 
   atualizarBeneficiario(param) {
+
     console.log(param);
     try {
+      if (this.utils.nullOrUndefOrEmpty(param.nome))
+        throw "Preencha o nome";
+      if (this.utils.nullOrUndefOrEmpty(param.telefone))
+        throw "Preencha o telefone";
+      if (this.utils.nullOrUndefOrEmpty(param.bairro))
+        throw "Preencha o bairro";
+      if (this.utils.nullOrUndefOrEmpty(param.rua))
+        throw "Preencha o rua";
+      if (this.utils.nullOrUndefOrEmpty(param.numero))
+        throw "Preencha o numero";
+      if (this.utils.nullOrUndefOrEmpty(param.estado) || param.estado == 0)
+        throw "Preencha o estado";
+      if (this.utils.nullOrUndefOrEmpty(param.cidade) || param.cidade == 0)
+        throw "Preencha a cidade";
+
       this.http.post(this.apiSalvar, param).subscribe(
         res => {
           alert("Cadastro salvo com sucesso");
@@ -100,8 +114,8 @@ export class ModalEditarPacienteComponent implements OnInit {
         err => {
           console.log(err);
         });
-    } catch{
-      console.log("nao chamaou api");
+    } catch (e) {
+      alert(e);
     }
   }
 
@@ -111,15 +125,12 @@ export class ModalEditarPacienteComponent implements OnInit {
       this.condicoesClinicas = Object.values(data);
 
       let condicoes = [];
-      
-      this.condicoesClinicas.forEach((condicao) =>
-      {
-        this.pacienteCompleto.condicoesClinicas.forEach((item) =>
-        {
-           if(item == condicao.key)
-           {
+
+      this.condicoesClinicas.forEach((condicao) => {
+        this.pacienteCompleto.condicoesClinicas.forEach((item) => {
+          if (item == condicao.key) {
             condicoes.push(condicao);
-           }
+          }
         });
       });
       this.selectedItems = condicoes;

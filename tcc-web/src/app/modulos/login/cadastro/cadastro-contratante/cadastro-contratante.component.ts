@@ -12,7 +12,7 @@ import { Usuario } from 'src/app/classes/usuario';
 export class CadastroContratanteComponent implements OnInit {
   public usuario = new Usuario();
   public imageSrc = "../../../../../assets/images/cadastro/usuarioPadrao.png";
-  
+
   public api = "http://localhost:8080/api/contratante/cadastrar";
   public termos = [{
     valor: true,
@@ -22,7 +22,7 @@ export class CadastroContratanteComponent implements OnInit {
     name: "Não aceito",
   }];
 
-  
+
   public cidades = null;
   public estados = null;
   dropdownList = [];
@@ -129,40 +129,51 @@ export class CadastroContratanteComponent implements OnInit {
 
 
   salvar() {
-    let idade = this.cadastroService.toDate(this.usuario.datanascimento);
-    console.log(this.cadastroService.calculateAge(idade));
-    if (this.cadastroService.calculateAge(idade) >= 18) {
-      if (!this.emailJaCadastrado && !this.cpfJaCadastrado) {
-        if (this.usuario.confirmaSenha.length >= 6 && this.usuario.senha.length >= 6) {
-          if (this.cadastroService.validateEmail(this.usuario.email)) {
-            if (this.cadastroService.testaCPF(this.usuario.cpf)) {
-              if (this.cadastroService.validaCadastro(this.usuario)) {
-                this.usuario.imagem = this.imageSrc;
-                this.http.post(this.api, this.usuario).subscribe(
-                  res => {
-                    alert("Cadastro salvo com sucesso");
-                    this.cadastroService.setContratantePaciente(this.usuario);
-                    this.limparUsuario();
-                  },
-                  err => {
-                    console.log(err);
-                  });
-              } else {
-                alert("Campos preenchidos incorretamente");
-              }
-            } else {
-              alert("cpf invalido");
-            }
-          }else{
-            alert("email invalido");
-          }
-        }else{
-          alert("senha deve ter ao menos 6 caracteres");
-        }
+    // let idade = this.cadastroService.toDate(this.usuario.datanascimento);
+    // console.log(this.cadastroService.calculateAge(idade));
+    // if (this.cadastroService.calculateAge(idade) >= 18) {
+
+    //     if (this.usuario.confirmaSenha.length >= 6 && this.usuario.senha.length >= 6) {
+    //       if (this.cadastroService.validateEmail(this.usuario.email)) {
+    //         if (this.cadastroService.testaCPF(this.usuario.cpf)) {
+    try {
+      if (this.emailJaCadastrado)
+        throw "E-mail ja cadastrado";
+
+      if (this.cpfJaCadastrado)
+        throw "CPF ja cadastrado";
+
+
+      if (this.cadastroService.validaCadastro(this.usuario)) {
+        this.usuario.imagem = this.imageSrc;
+        this.http.post(this.api, this.usuario).subscribe(
+          res => {
+            alert("Cadastro salvo com sucesso");
+            this.cadastroService.setContratantePaciente(this.usuario);
+            this.limparUsuario();
+          },
+          err => {
+            console.log(err);
+          });
+      } else {
+        alert("Campos preenchidos incorretamente");
       }
-    } else {
-      alert("Precisa ser maior de 18 anos para se cadastrar.");
+    } catch (e) {
+      alert(e);
     }
+    //         } else {
+    //           alert("cpf invalido");
+    //         }
+    //       }else{
+    //         alert("email invalido");
+    //       }
+    //     }else{
+    //       alert("senha deve ter ao menos 6 caracteres");
+    //     }
+    //   }
+    // } else {
+    //   alert("Precisa ser maior de 18 anos para se cadastrar.");
+    // }
   }
 
   async confereCpf() {

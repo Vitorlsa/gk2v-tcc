@@ -7,6 +7,7 @@ import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { UtilsService } from 'src/app/funcoes/utils.service';
 import { Router } from '@angular/router';
+import { createInject } from '@angular/compiler/src/core';
 registerLocaleData(localePt);
 
 @Component({
@@ -17,7 +18,7 @@ registerLocaleData(localePt);
 export class CadastroPacienteComponent implements OnInit {
 
 
-  constructor(private http: HttpClient, private service: LoginService, private cadastroService: CadastroServiceService, private util: UtilsService, private route: Router) {
+  constructor(private http: HttpClient, private service: LoginService, private cadastroService: CadastroServiceService, private utils: UtilsService, private route: Router) {
     this.paciente.sexo = 3;
     this.buscarEstados();
     this.buscarCondicoesClinicas();
@@ -178,7 +179,30 @@ export class CadastroPacienteComponent implements OnInit {
   salvar() {
     console.log(this.paciente);
     this.paciente.IdContratante = this.contratante.id
-    if (this.cadastroService.validaCadastro(this.paciente)) {
+    //if (this.cadastroService.validaCadastro(this.paciente)) {
+
+    try {
+      if (this.utils.nullOrUndefOrEmpty(this.paciente.nome))
+        throw "Preencha o nome";
+      if (this.utils.nullOrUndefOrEmpty(this.paciente.dataNascimento))
+        throw "Preencha o nascimento";
+      if (this.utils.nullOrUndefOrEmpty(this.paciente.telefone))
+        throw "Preencha o telefone";
+      if (this.utils.nullOrUndefOrEmpty(this.paciente.bairro))
+        throw "Preencha o bairro";
+      if (this.utils.nullOrUndefOrEmpty(this.paciente.rua))
+        throw "Preencha o rua";
+      if (this.utils.nullOrUndefOrEmpty(this.paciente.numero))
+        throw "Preencha o numero";
+      if (this.utils.nullOrUndefOrEmpty(this.paciente.estado))
+        throw "Preencha o estado";
+      if (this.utils.nullOrUndefOrEmpty(this.paciente.cidade) || this.paciente.cidade == 0)
+        throw "Preencha a cidade";
+      if (this.utils.nullOrUndefOrEmpty(this.paciente.termoDeResponsalidade) || !this.paciente.termoDeResponsalidade)
+        throw "Aceite os termos";
+      if (this.paciente.condicoesClinicas.length < 1)
+        throw "Selecione as concicoes do paciente";
+
       this.http.post(this.apiSalvar, this.paciente).subscribe(
         res => {
           alert("Cadastro salvo com sucesso");
@@ -188,9 +212,12 @@ export class CadastroPacienteComponent implements OnInit {
         err => {
           console.log(err);
         });
-    } else {
-      alert("Campos preenchidos incorretamente");
+    } catch (e) {
+      alert(e);
     }
+    //} else {
+    //alert("Campos preenchidos incorretamente");
+    //}
   }
 
   limparPaciente() {

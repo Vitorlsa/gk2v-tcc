@@ -32,7 +32,7 @@ export class CadastroPrestadorComponent implements OnInit {
   private apiverificarCpf = "http://localhost:8080/api/usuario/verificarcpfcadastrado";
   private apiverificarEmail = "http://localhost:8080/api/usuario/verificaremailcadastrado";
   private apiCompetencias = "http://localhost:8080/api/dropdown/competencias";
-  
+
   public competencias = [];
   public dropdownList = [];
   public selectedItems = [];
@@ -69,7 +69,6 @@ export class CadastroPrestadorComponent implements OnInit {
 
     $footer.each(function () {
       var t = jQuery(this),
-        inner = t.find('.inner'),
         button = t.find('.info');
       button.click(function (e) {
         t.toggleClass('show');
@@ -114,44 +113,31 @@ export class CadastroPrestadorComponent implements OnInit {
   }
 
   salvar() {
-    let idade = this.cadastroService.toDate(this.prestador.datanascimento);
-    console.log(this.cadastroService.calculateAge(idade));
-    console.log(this.prestador.competencias.length);
-    if (this.cadastroService.calculateAge(idade) >= 18) {
-      if (!this.emailJaCadastrado && !this.cpfJaCadastrado) {
-        if (this.prestador.confirmaSenha.length >= 6 && this.prestador.senha.length >= 6) {
-          if (this.cadastroService.validateEmail(this.prestador.email)) {
-            if (this.cadastroService.testaCPF(this.prestador.cpf)) {
-              if (this.prestador.competencias.length >= 1) {
-                if (this.cadastroService.validaCadastro(this.prestador)) {
-                  this.prestador.imagem = this.imageSrc;
-                  this.http.post(this.api, this.prestador).subscribe(
-                    res => {
-                      alert("Cadastro salvo com sucesso");
-                      this.cadastroService.setContratantePaciente(this.prestador);
-                      this.limparUsuario();
-                    },
-                    err => {
-                      console.log(err);
-                    });
-                } else {
-                  alert("Campos preenchidos incorretamente");
-                }
-              } else {
-                alert("Escolha ao menos uma competência.");
-              }
-            } else {
-              alert("cpf invalido");
-            }
-          } else {
-            alert("email invalido");
-          }
-        } else {
-          alert("senha deve ter ao menos 6 caracteres");
-        }
+    try {
+      if (this.emailJaCadastrado)
+        throw "E-mail ja cadastrado";
+      if (this.cpfJaCadastrado)
+        throw "CPF ja cadastrado";
+      if (this.prestador.competencias.length < 1)
+        throw "Selecione suas competencias";
+
+      if (this.cadastroService.validaCadastro(this.prestador)) {
+        this.prestador.imagem = this.imageSrc;
+        this.http.post(this.api, this.prestador).subscribe(
+          res => {
+            alert("Cadastro salvo com sucesso");
+            this.cadastroService.setContratantePaciente(this.prestador);
+            this.limparUsuario();
+          },
+          err => {
+            console.log(err);
+          });
+      } else {
+        alert("Campos preenchidos incorretamente");
       }
-    } else {
-      alert("Precisa ser maior de 18 anos para se cadastrar.");
+    }
+    catch (e) {
+      alert(e);
     }
   }
 

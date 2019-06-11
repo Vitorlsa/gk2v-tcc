@@ -75,43 +75,39 @@ export class CadastroGestorComponent implements OnInit {
   }
 
   salvar() {
-    let idade = this.cadastroService.toDate(this.gestor.datanascimento);
-    console.log(this.cadastroService.calculateAge(idade));
-    if (this.cadastroService.calculateAge(idade) >= 18) {
-      if (!this.emailJaCadastrado && !this.cpfJaCadastrado) {
-        if (this.gestor.confirmaSenha.length >= 6 && this.gestor.senha.length >= 6) {
-          if (this.cadastroService.validateEmail(this.gestor.email)) {
-            if (this.gestor.curriculo.startsWith('data:application/pdf;base64')){
-            if (this.cadastroService.testaCPF(this.gestor.cpf)) {
-              if (this.cadastroService.validaCadastro(this.gestor)) {
-                this.gestor.imagem = this.imageSrc;
-                this.http.post(this.api, this.gestor).subscribe(
-                  res => {
-                    alert("Cadastro salvo com sucesso");
-                    this.cadastroService.setContratantePaciente(this.gestor);
-                    this.limparUsuario();
-                  },
-                  err => {
-                    console.log(err);
-                  });
-              } else {
-                alert("Campos preenchidos incorretamente");
-              }
-            } else {
-              alert("cpf invalido");
-            }
-          }else{
-            alert("curriculo nao é pdf");
-          }
-          } else {
-            alert("email invalido");
-          }
-        } else {
-          alert("senha deve ter ao menos 6 caracteres");
-        }
+
+    // if (this.gestor.curriculo.startsWith('data:application/pdf;base64')){
+
+
+
+    try {
+      if (this.emailJaCadastrado)
+        throw "E-mail ja cadastrado";
+      if (this.cpfJaCadastrado)
+        throw "CPF ja cadastrado";
+      if (this.gestor.curriculo == "")
+        throw "Insira um curriculo em PDF";
+      if (!this.gestor.curriculo.startsWith('data:application/pdf'))
+        throw "Curriculo não é PDF";
+
+
+      if (this.cadastroService.validaCadastro(this.gestor)) {
+        this.gestor.imagem = this.imageSrc;
+        this.http.post(this.api, this.gestor).subscribe(
+          res => {
+            alert("Cadastro salvo com sucesso");
+            this.cadastroService.setContratantePaciente(this.gestor);
+            this.limparUsuario();
+          },
+          err => {
+            console.log(err);
+          });
+      } else {
+        alert("Campos preenchidos incorretamente");
       }
-    } else {
-      alert("Precisa ser maior de 18 anos para se cadastrar.");
+    }
+    catch (e) {
+      alert(e);
     }
   }
 
@@ -183,8 +179,8 @@ export class CadastroGestorComponent implements OnInit {
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.onload = () => {
-      
-        this.gestor.curriculo = reader.result.toString();
+
+      this.gestor.curriculo = reader.result.toString();
 
       console.log(this.gestor.curriculo);
 

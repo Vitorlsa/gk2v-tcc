@@ -13,19 +13,19 @@ export class CadastroServiceService {
 
   constructor(private utils: UtilsService, private http: HttpClient) { }
 
-  validaCadastro(usuario) {
-    if (usuario.senha != usuario.confirmaSenha)
-      return false;
-    if (usuario.termos == 0)
-      return false;
+  // validaCadastro(usuario) {
+  //   if (usuario.senha != usuario.confirmaSenha)
+  //     return false;
+  //   if (usuario.termos == 0)
+  //     return false;
 
-    for (var key in usuario) {
-      if (this.utils.nullOrUndefOrEmpty(usuario[key]))
-        return false;
-    }
+  //   for (var key in usuario) {
+  //     if (this.utils.nullOrUndefOrEmpty(usuario[key]))
+  //       return false;
+  //   }
 
-    return true
-  }
+  //   return true
+  // }
 
   setContratantePaciente(contratante) {
     this.contratante = contratante;
@@ -75,22 +75,46 @@ export class CadastroServiceService {
   }
 
 
-  salvarCadastro(cadastro, tipo) {
+  validaCadastro(cadastro) {
     if (cadastro.senha != cadastro.confirmaSenha)
       throw "Senhas não são iguais";
     if (cadastro.termos == 0)
-      throw "Senhas não são iguais";
-    if (this.calculateAge(cadastro.idade) >= 18)
+      throw "Aceite os termos";
+
+    try {
+      cadastro.idade = this.toDate(cadastro.datanascimento)
+    } catch (e) {
+      throw "Data não válida";
+    }
+
+    if (this.calculateAge(cadastro.idade) < 18)
       throw "Deve ter no mínimo 18 anos para se cadastrar";
-    if (cadastro.confirmaSenha.length >= 6 && cadastro.senha.length >= 6)
-      throw "Precisam ter ao menos 6 caracteres";
-    if (this.validateEmail(cadastro.email))
+    if (cadastro.confirmaSenha.length < 6 || cadastro.senha.length < 6)
+      throw "Senhas precisam ter ao menos 6 caracteres";
+    if (!this.validateEmail(cadastro.email))
       throw "E-mail não é válido";
-    if (this.testaCPF(cadastro.cpf))
+    if (!this.testaCPF(cadastro.cpf))
       throw "CPF não é válido";
+    if (this.utils.nullOrUndefOrEmpty(cadastro.nome))
+      throw "Preencha o nome";
+    if (this.utils.nullOrUndefOrEmpty(cadastro.login))
+      throw "Preencha o login";
+    if (this.utils.nullOrUndefOrEmpty(cadastro.telefone))
+      throw "Preencha o telefone";
+
+    if (this.utils.nullOrUndefOrEmpty(cadastro.bairro))
+      throw "Preencha o bairro";
+    if (this.utils.nullOrUndefOrEmpty(cadastro.rua))
+      throw "Preencha o rua";
+    if (this.utils.nullOrUndefOrEmpty(cadastro.numero))
+      throw "Preencha o numero";
+    if (this.utils.nullOrUndefOrEmpty(cadastro.estado) || cadastro.estado == 0)
+      throw "Preencha o estado";
+    if (this.utils.nullOrUndefOrEmpty(cadastro.cidade) || cadastro.cidade == 0)
+      throw "Preencha a cidade";
 
 
-    return
+    return true
   }
 
   // setfecharModalEditarCallback(func){
