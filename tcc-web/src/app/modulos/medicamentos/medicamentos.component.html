@@ -60,6 +60,11 @@
           <select (change)="setMedicamentoBeneficiario($event)">
             <option *ngFor="let tipo of this.todosMedicamentos" [value]="tipo.key">{{tipo.value}}</option>
           </select>
+          <select (change)="setMedicamentoPosologia($event)">
+            <option *ngFor="let pos of this.todasPosologias" [value]="pos.key">{{pos.value}}</option>
+          </select>
+          <input type="number" [(ngModel)]="this.beneficiarioSelecionado.qtdMedicamento" />
+          <button (click)="salvarMedicamentoBeneficiario()">Salvar medicamento</button>
           <!-- <input [(ngModel)]="this.medicamento.Tipo" class=" form-control" id="tipo" name="tipo"
             type="text" /> -->
         </div>

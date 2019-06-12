@@ -15,7 +15,7 @@ registerLocaleData(localePt);
   styleUrls: ['./medicamentos.component.scss']
 })
 export class MedicamentosComponent implements OnInit {
-  
+
 
   constructor(private http: HttpClient, private service: LoginService, private cadastroService: CadastroServiceService, private util: UtilsService, private route: Router) { }
 
@@ -28,6 +28,8 @@ export class MedicamentosComponent implements OnInit {
   private apiDropMedicamentos = "http://localhost:8080/api/dropdown/medicamentos";
   private apiDropTipoMedicamento = "http://localhost:8080/api/dropdown/viadeusomedicamento";
   private apiDropViaDeUso = "http://localhost:8080/api/dropdown/tipomedicamento";
+  public apiSalvarMedicamentoBeneficiario = "http://localhost:8080/api/beneficiario/adicionarmedicamento";
+  public apiBuscarPosologia = "http://localhost:8080/api/dropdown/posologia"
   private contratante = this.service.getUsuario();
   public medicamento = new Medicamento();
   public novoMedicamento = false;
@@ -41,6 +43,7 @@ export class MedicamentosComponent implements OnInit {
   public selectedItems = [];
   public tipoMedicamentos: any[];
   public viaDeUsoMedicamentos: any[];
+  public todasPosologias = [];
 
   public dropdownSettings = {
     singleSelection: false,
@@ -59,6 +62,7 @@ export class MedicamentosComponent implements OnInit {
     console.log(this.contratante);
     if (this.perfilLogado != 1) {
       this.listarBeneficiario();
+
     } else {
       this.listarRemedios();
     }
@@ -141,6 +145,7 @@ export class MedicamentosComponent implements OnInit {
     this.buscarMedicamentos();
     this.buscarViaDeUso();
     this.buscarTipoMedicamentos();
+    this.buscarPosologia();
   }
 
   salvar() {
@@ -152,9 +157,10 @@ export class MedicamentosComponent implements OnInit {
     try {
       this.http.post(this.apicadastrar, payload).subscribe(data => {
         console.log(data);
-        this.medicamentosPaciente.forEach((element, index) => {
-          this.medicamentosPaciente[index].dataFormatada = new DatePipe('pt-BR').transform(element.dataValidade, 'dd/MM/yyyy');
-        });
+        alert("Medicamento cadastrado");
+        // this.medicamentosPaciente.forEach((element, index) => {
+        //   this.medicamentosPaciente[index].dataFormatada = new DatePipe('pt-BR').transform(element.dataValidade, 'dd/MM/yyyy');
+        // });
       })
     } catch{
       console.log("nao chamaou api");
@@ -195,16 +201,44 @@ export class MedicamentosComponent implements OnInit {
     });
   }
 
-  setMedicamentoBeneficiario(event) {
-    console.log(event.key);
-    this.beneficiarioSelecionado.medicamento.push(event.key);
+  setMedicamentoPosologia(event) {
+
+    this.beneficiarioSelecionado.posologia = event.target.value;
   }
 
-  setTipoMedicamento(event){
+  setMedicamentoBeneficiario(event) {
+
+    this.beneficiarioSelecionado.medicamento = event.target.value;
+  }
+
+  //api/dropdown/posologia
+  buscarPosologia() {
+    this.http.post(this.apiBuscarPosologia, {}).subscribe(data => {
+      this.todasPosologias = Object.values(data);
+    });
+  }
+
+
+  salvarMedicamentoBeneficiario() {
+    var payload = {
+      BeneficiarioId: this.beneficiarioSelecionado.id,
+      MedicamentoId: this.beneficiarioSelecionado.medicamento,
+      Posologia:this.beneficiarioSelecionado.posologia,
+      Quantidade:this.beneficiarioSelecionado.qtdMedicamento
+    };
+
+
+    this.http.post(this.apiSalvarMedicamentoBeneficiario, payload).subscribe(data => {
+      console.log(data);
+      this.tipoMedicamentos = Object.values(data);
+    });
+  }
+
+  setTipoMedicamento(event) {
     this.medicamento.Tipo = event.target.value;
   }
 
-  setViaDeUso(event){
+  setViaDeUso(event) {
     this.medicamento.ViaDeUso = event.target.value;
   }
 
