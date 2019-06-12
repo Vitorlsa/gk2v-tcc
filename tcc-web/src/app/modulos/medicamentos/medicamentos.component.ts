@@ -25,8 +25,8 @@ export class MedicamentosComponent implements OnInit {
   private apiDetalhar = "http://localhost:8080/api/medicamento/detalhar";
   private apiRemover = "http://localhost:8080/api/medicamento/remover";
   private apiListarBeneficiario = "http://localhost:8080/api/beneficiario/listarporcontratante";
-  private apiDropMedicamentos = "http://localhost:8080/api/dropdown/medicamentos";
-  private apiDropTipoMedicamento = "http://localhost:8080/api/dropdown/viadeusomedicamento";
+  private apiDropTipoMedicamento = "http://localhost:8080/api/dropdown/medicamentos";
+  private apiDropMedicamentos = "http://localhost:8080/api/dropdown/viadeusomedicamento";
   private apiDropViaDeUso = "http://localhost:8080/api/dropdown/tipomedicamento";
   public apiSalvarMedicamentoBeneficiario = "http://localhost:8080/api/beneficiario/adicionarmedicamento";
   public apiBuscarPosologia = "http://localhost:8080/api/dropdown/posologia"
@@ -223,7 +223,7 @@ export class MedicamentosComponent implements OnInit {
     var payload = {
       BeneficiarioId: this.beneficiarioSelecionado.id,
       MedicamentoId: this.beneficiarioSelecionado.medicamento,
-      Posologia:this.beneficiarioSelecionado.posologia,
+      PosologiaId:this.beneficiarioSelecionado.posologia,
       Quantidade:this.beneficiarioSelecionado.qtdMedicamento
     };
 
