@@ -127,16 +127,22 @@
                       <div class="form-group ">
                         <label for="fullname" class="control-label col-lg-2">Tipo<span class="required">*</span></label>
                         <div class="col-lg-10">
-                          <input [(ngModel)]="this.medicamento.Tipo" class=" form-control" id="tipo" name="tipo"
-                            type="text" />
+                            <select (change)="setTipoMedicamento($event)">
+                                <option *ngFor="let tipo of this.tipoMedicamentos" [value]="tipo.key">{{tipo.value}}</option>
+                              </select>
+                          <!-- <input [(ngModel)]="this.medicamento.Tipo" class=" form-control" id="tipo" name="tipo"
+                            type="text" /> -->
                         </div>
                       </div>
                       <div class="form-group ">
                         <label for="fullname" class="control-label col-lg-2">Via de uso<span
                             class="required">*</span></label>
                         <div class="col-lg-10">
-                          <input [(ngModel)]="this.medicamento.ViaDeUso" class=" form-control" id="ViaDeUso"
-                            name="ViaDeUso" type="text" />
+                            <select (change)="setViaDeUso($event)">
+                                <option *ngFor="let via of this.viaDeUsoMedicamentos" [value]="via.key">{{via.value}}</option>
+                              </select>
+                          <!-- <input [(ngModel)]="this.medicamento.ViaDeUso" class=" form-control" id="ViaDeUso"
+                            name="ViaDeUso" type="text" /> -->
                         </div>
                       </div>
                       <div class="form-group ">

@@ -15,6 +15,7 @@ registerLocaleData(localePt);
   styleUrls: ['./medicamentos.component.scss']
 })
 export class MedicamentosComponent implements OnInit {
+  
 
   constructor(private http: HttpClient, private service: LoginService, private cadastroService: CadastroServiceService, private util: UtilsService, private route: Router) { }
 
@@ -25,6 +26,8 @@ export class MedicamentosComponent implements OnInit {
   private apiRemover = "http://localhost:8080/api/medicamento/remover";
   private apiListarBeneficiario = "http://localhost:8080/api/beneficiario/listarporcontratante";
   private apiDropMedicamentos = "http://localhost:8080/api/dropdown/medicamentos";
+  private apiDropTipoMedicamento = "http://localhost:8080/api/dropdown/viadeusomedicamento";
+  private apiDropViaDeUso = "http://localhost:8080/api/dropdown/tipomedicamento";
   private contratante = this.service.getUsuario();
   public medicamento = new Medicamento();
   public novoMedicamento = false;
@@ -36,6 +39,8 @@ export class MedicamentosComponent implements OnInit {
   public perfilLogado = this.service.getSessionPerfil()[0];
   public todosMedicamentos = [];
   public selectedItems = [];
+  public tipoMedicamentos: any[];
+  public viaDeUsoMedicamentos: any[];
 
   public dropdownSettings = {
     singleSelection: false,
@@ -54,7 +59,8 @@ export class MedicamentosComponent implements OnInit {
     console.log(this.contratante);
     if (this.perfilLogado != 1) {
       this.listarBeneficiario();
-      this.buscarMedicamentos();
+    } else {
+      this.listarRemedios();
     }
 
     var $header = $('#header'),
@@ -111,12 +117,12 @@ export class MedicamentosComponent implements OnInit {
 
   selecionarBeneficiario(beneficiario) {
     this.beneficiarioSelecionado = beneficiario;
-    this.listarRemedios(this.beneficiarioSelecionado);
+    //this.listarRemedios(this.beneficiarioSelecionado);
   }
 
-  listarRemedios(param) {
+  listarRemedios() {
     try {
-      this.http.post(this.apiListar, { Id: param.id }).subscribe(data => {
+      this.http.post(this.apiListar, {}).subscribe(data => {
         this.medicamentosPaciente = [];
         this.medicamentosPaciente = data;
         this.medicamentosPaciente.forEach((element, index) => {
@@ -132,6 +138,9 @@ export class MedicamentosComponent implements OnInit {
 
   criarNovoRemedio() {
     this.novoMedicamento = true;
+    this.buscarMedicamentos();
+    this.buscarViaDeUso();
+    this.buscarTipoMedicamentos();
   }
 
   salvar() {
@@ -172,6 +181,20 @@ export class MedicamentosComponent implements OnInit {
     });
   }
 
+  buscarViaDeUso() {
+    this.http.post(this.apiDropViaDeUso, {}).subscribe(data => {
+      console.log(data);
+      this.viaDeUsoMedicamentos = Object.values(data);
+    });
+  }
+
+  buscarTipoMedicamentos() {
+    this.http.post(this.apiDropTipoMedicamento, {}).subscribe(data => {
+      console.log(data);
+      this.tipoMedicamentos = Object.values(data);
+    });
+  }
+
   setMedicamentos(event) {
     console.log(event.key);
     this.beneficiarioSelecionado.medicamento.push(event.key);
@@ -187,6 +210,16 @@ export class MedicamentosComponent implements OnInit {
     event.forEach(element => {
       this.beneficiarioSelecionado.medicamento.push(element.key);
     });
+  }
+
+  setTipoMedicamento(event){
+    this.medicamento.Tipo = event.target.value;
+
+  }
+
+  setViaDeUso(event){
+    this.medicamento.ViaDeUso = event.target.value;
+
   }
 
 }
