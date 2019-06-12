@@ -55,11 +55,17 @@
       <!-- lista de medicamentos -->
       <div *ngIf="(!this.novoMedicamento && this.perfilLogado ==1) || this.perfilLogado !=1">
         <button class="addMedicamento" (click)="criarNovoRemedio()">+ medicamento</button>
-        <ng-multiselect-dropdown [placeholder]="'custom placeholder'" [data]="this.todosMedicamentos"
-         *ngIf="this.novoMedicamento && this.perfilLogado !=1"
-          [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="setMedicamentos($event)"
-          name="medicamentos" (onSelectAll)="setTodasMedicamentos($event)" (onDeSelect)="removerMedicamentos($event)">
-        </ng-multiselect-dropdown>
+
+        <div class="col-lg-10" *ngIf="this.novoMedicamento && this.perfilLogado !=1">
+          <select (change)="setMedicamentoBeneficiario($event)">
+            <option *ngFor="let tipo of this.todosMedicamentos" [value]="tipo.key">{{tipo.value}}</option>
+          </select>
+          <!-- <input [(ngModel)]="this.medicamento.Tipo" class=" form-control" id="tipo" name="tipo"
+            type="text" /> -->
+        </div>
+
+
+
         <form style="float:right">
           Pesquisa: <input type="text" width="48" height="48" name="pesquisa">
         </form>
@@ -127,9 +133,10 @@
                       <div class="form-group ">
                         <label for="fullname" class="control-label col-lg-2">Tipo<span class="required">*</span></label>
                         <div class="col-lg-10">
-                            <select (change)="setTipoMedicamento($event)">
-                                <option *ngFor="let tipo of this.tipoMedicamentos" [value]="tipo.key">{{tipo.value}}</option>
-                              </select>
+                          <select (change)="setTipoMedicamento($event)">
+                            <option *ngFor="let tipo of this.tipoMedicamentos" [value]="tipo.key">{{tipo.value}}
+                            </option>
+                          </select>
                           <!-- <input [(ngModel)]="this.medicamento.Tipo" class=" form-control" id="tipo" name="tipo"
                             type="text" /> -->
                         </div>
@@ -138,9 +145,10 @@
                         <label for="fullname" class="control-label col-lg-2">Via de uso<span
                             class="required">*</span></label>
                         <div class="col-lg-10">
-                            <select (change)="setViaDeUso($event)">
-                                <option *ngFor="let via of this.viaDeUsoMedicamentos" [value]="via.key">{{via.value}}</option>
-                              </select>
+                          <select (change)="setViaDeUso($event)">
+                            <option *ngFor="let via of this.viaDeUsoMedicamentos" [value]="via.key">{{via.value}}
+                            </option>
+                          </select>
                           <!-- <input [(ngModel)]="this.medicamento.ViaDeUso" class=" form-control" id="ViaDeUso"
                             name="ViaDeUso" type="text" /> -->
                         </div>

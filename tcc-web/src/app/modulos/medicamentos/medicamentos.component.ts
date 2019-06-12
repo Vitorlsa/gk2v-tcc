@@ -195,31 +195,17 @@ export class MedicamentosComponent implements OnInit {
     });
   }
 
-  setMedicamentos(event) {
+  setMedicamentoBeneficiario(event) {
     console.log(event.key);
     this.beneficiarioSelecionado.medicamento.push(event.key);
   }
 
-  removerMedicamentos(event) {
-    console.log(event.key);
-    this.beneficiarioSelecionado.medicamento.pop(event.key);
-  }
-
-
-  setTodasMedicamentos(event) {
-    event.forEach(element => {
-      this.beneficiarioSelecionado.medicamento.push(element.key);
-    });
-  }
-
   setTipoMedicamento(event){
     this.medicamento.Tipo = event.target.value;
-
   }
 
   setViaDeUso(event){
     this.medicamento.ViaDeUso = event.target.value;
-
   }
 
 }
