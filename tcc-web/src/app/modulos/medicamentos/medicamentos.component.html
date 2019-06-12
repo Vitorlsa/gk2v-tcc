@@ -82,9 +82,9 @@
             <th>Dosagem</th>
           </tr>
           <tr *ngFor="let medicamento of this.medicamentosPaciente">
-            <td>Dorflex</td>
-            <td>6 comprimidos </td>
-            <td>1 comprimido </td>
+            <td>{{medicamento.nomeMedicamento}}</td>
+            <td>{{medicamento.quantidade}} </td>
+            <td>{{medicamento.posologia}}</td>
           </tr>
         </table>
       </div>
