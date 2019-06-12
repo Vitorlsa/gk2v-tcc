@@ -53,9 +53,10 @@
       </header>
 
       <!-- lista de medicamentos -->
-      <div *ngIf="this.perfilLogado !=1">
+      <div *ngIf="(!this.novoMedicamento && this.perfilLogado ==1) || this.perfilLogado !=1">
         <button class="addMedicamento" (click)="criarNovoRemedio()">+ medicamento</button>
-        <ng-multiselect-dropdown [placeholder]="'custom placeholder'" [data]="this.todosMedicamentos" *ngIf="this.novoMedicamento && this.perfilLogado !=1"
+        <ng-multiselect-dropdown [placeholder]="'custom placeholder'" [data]="this.todosMedicamentos"
+         *ngIf="this.novoMedicamento && this.perfilLogado !=1"
           [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="setMedicamentos($event)"
           name="medicamentos" (onSelectAll)="setTodasMedicamentos($event)" (onDeSelect)="removerMedicamentos($event)">
         </ng-multiselect-dropdown>
@@ -78,7 +79,7 @@
       </div>
 
       <!-- cadastro manual de medicamentos -->
-      <div *ngIf="this.perfilLogado ==1">
+      <div *ngIf="this.novoMedicamento && this.perfilLogado ==1">
         <div id="welcome">
           <div class="title">
             <span class="byline"><b>Preencha todos os campos obrigatórios.</b></span>
