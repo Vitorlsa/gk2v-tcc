@@ -21,13 +21,13 @@ export class MedicamentosComponent implements OnInit {
 
   private apicadastrar = "http://localhost:8080/api/medicamento/cadastrar";
   private apiEditar = "http://localhost:8080/api/medicamento/editar";
-  private apiListar = "http://localhost:8080/api/medicamento/listar";
+  private apiListar = "http://localhost:8080/api/beneficiario/listarmedicamento";
   private apiDetalhar = "http://localhost:8080/api/medicamento/detalhar";
   private apiRemover = "http://localhost:8080/api/medicamento/remover";
   private apiListarBeneficiario = "http://localhost:8080/api/beneficiario/listarporcontratante";
-  private apiDropTipoMedicamento = "http://localhost:8080/api/dropdown/medicamentos";
-  private apiDropMedicamentos = "http://localhost:8080/api/dropdown/viadeusomedicamento";
-  private apiDropViaDeUso = "http://localhost:8080/api/dropdown/tipomedicamento";
+  private apiDropTipoMedicamento = "http://localhost:8080/api/dropdown/tipomedicamento";
+  private apiDropMedicamentos = "http://localhost:8080/api/dropdown/medicamentos";
+  private apiDropViaDeUso = "http://localhost:8080/api/dropdown/viadeusomedicamento";
   public apiSalvarMedicamentoBeneficiario = "http://localhost:8080/api/beneficiario/adicionarmedicamento";
   public apiBuscarPosologia = "http://localhost:8080/api/dropdown/posologia"
   private contratante = this.service.getUsuario();
@@ -121,17 +121,17 @@ export class MedicamentosComponent implements OnInit {
 
   selecionarBeneficiario(beneficiario) {
     this.beneficiarioSelecionado = beneficiario;
-    //this.listarRemedios(this.beneficiarioSelecionado);
+    this.listarRemedios();
   }
 
   listarRemedios() {
     try {
-      this.http.post(this.apiListar, {}).subscribe(data => {
+      this.http.post(this.apiListar, {Id: this.beneficiarioSelecionado.id}).subscribe(data => {
         this.medicamentosPaciente = [];
         this.medicamentosPaciente = data;
-        this.medicamentosPaciente.forEach((element, index) => {
-          this.medicamentosPaciente[index].dataFormatada = new DatePipe('pt-BR').transform(element.dataValidade, 'dd/MM/yyyy');
-        });
+        // this.medicamentosPaciente.forEach((element, index) => {
+        //   this.medicamentosPaciente[index].dataFormatada = new DatePipe('pt-BR').transform(element.dataValidade, 'dd/MM/yyyy');
+        // });
       })
     } catch{
       console.log("nao chamaou api");
@@ -230,7 +230,7 @@ export class MedicamentosComponent implements OnInit {
 
     this.http.post(this.apiSalvarMedicamentoBeneficiario, payload).subscribe(data => {
       console.log(data);
-      this.tipoMedicamentos = Object.values(data);
+      alert("Medicamento salvo!");
     });
   }
 
