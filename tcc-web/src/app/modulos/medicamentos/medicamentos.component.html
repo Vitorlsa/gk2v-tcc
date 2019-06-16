@@ -68,12 +68,12 @@
           <!-- <input [(ngModel)]="this.medicamento.Tipo" class=" form-control" id="tipo" name="tipo"
             type="text" /> -->
         </div>
+<br/>
 
-
-
+<!-- 
         <form style="float:right">
-          Pesquisa: <input type="text" width="48" height="48" name="pesquisa">
-        </form>
+          Pesquisa: <input type="text" width="48" height="48" name="pesquisa" [(ngModel)]="this.pesquisa" />
+        </form> -->
 
         <table *ngIf="this.perfilLogado != 1">
           <tr>
@@ -216,3 +216,6 @@
       </div>
     </div>
   </footer>
+  
+<app-modal-editar-medicamento *ngIf="!this.util.nullOrUndef(this.medicamentoSelecionado)"
+[medicamentoSelecionado]="this.medicamentoSelecionado"></app-modal-editar-medicamento>

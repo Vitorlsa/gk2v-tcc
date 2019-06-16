@@ -15,7 +15,7 @@ registerLocaleData(localePt);
 })
 export class ModalEditarPacienteComponent implements OnInit {
 
-  constructor(private http: HttpClient, private cadastroService: CadastroServiceService, private util: UtilsService, private utils: UtilsService) { }
+  constructor(private http: HttpClient, private cadastroService: CadastroServiceService, private utils: UtilsService) { }
 
   private apiBuscar = "http://localhost:8080/api/beneficiario/buscarporid";
   private apiSalvar = "http://localhost:8080/api/beneficiario/editar";
@@ -161,7 +161,7 @@ export class ModalEditarPacienteComponent implements OnInit {
   }
 
   setEstado(event) {
-    if (!this.util.nullOrUndef(event.target))
+    if (!this.utils.nullOrUndef(event.target))
       this.pacienteCompleto.estado = event.target.value;
     else
       this.pacienteCompleto.estado = event;
@@ -169,7 +169,7 @@ export class ModalEditarPacienteComponent implements OnInit {
   }
 
   setCidade(event) {
-    if (!this.util.nullOrUndef(event.target))
+    if (!this.utils.nullOrUndef(event.target))
       this.pacienteCompleto.cidade = event.target.value;
     else
       this.pacienteCompleto.cidade = event;

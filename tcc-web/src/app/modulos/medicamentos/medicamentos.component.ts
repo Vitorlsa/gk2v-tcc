@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { UtilsService } from 'src/app/funcoes/utils.service';
 import { CadastroServiceService } from '../login/cadastro/cadastro-service.service';
 import { LoginService } from '../login/login.service';
@@ -20,10 +20,8 @@ export class MedicamentosComponent implements OnInit {
   constructor(private http: HttpClient, private service: LoginService, private cadastroService: CadastroServiceService, private util: UtilsService, private route: Router) { }
 
   private apicadastrar = "http://localhost:8080/api/medicamento/cadastrar";
-  private apiEditar = "http://localhost:8080/api/medicamento/editar";
   private apiListar = "http://localhost:8080/api/beneficiario/listarmedicamento";
-  private apiDetalhar = "http://localhost:8080/api/medicamento/detalhar";
-  private apiRemover = "http://localhost:8080/api/medicamento/remover";
+  private apiRemoverAdm = "http://localhost:8080/api/medicamento/remover";
   private apiListarAdm = "http://localhost:8080/api/medicamento/listar";
   private apiListarBeneficiario = "http://localhost:8080/api/beneficiario/listarporcontratante";
   private apiDropTipoMedicamento = "http://localhost:8080/api/dropdown/tipomedicamento";
@@ -56,6 +54,7 @@ export class MedicamentosComponent implements OnInit {
     allowSearchFilter: true
   };
 
+  public pesquisa:string;
 
   ngOnInit() {
 
@@ -151,7 +150,7 @@ export class MedicamentosComponent implements OnInit {
 
   escluirMedicamentoAdm(param){
     try {
-      this.http.post(this.apiListarAdm, {Id: param.Id}).subscribe(data => {
+      this.http.post(this.apiRemoverAdm, {Id: param.id}).subscribe(data => {
         this.listarMedicamentosAdm();
       })
     } catch{
@@ -159,9 +158,6 @@ export class MedicamentosComponent implements OnInit {
     }
   }
 
-  editarMedicamentoAdm(param){
-
-  }
 
 
   criarNovoRemedio() {
@@ -265,5 +261,16 @@ export class MedicamentosComponent implements OnInit {
   setViaDeUso(event) {
     this.medicamento.ViaDeUso = event.target.value;
   }
+  
+
+  @Output()
+  emitir = new EventEmitter<any>();
+  medicamentoSelecionado = null;
+
+  editarMedicamentoAdm(param) {
+    this.medicamentoSelecionado = param;
+    this.emitir.emit(this.medicamentoSelecionado);
+  }
+
 
 }

@@ -20,6 +20,7 @@ import { ModalperfilComponent } from './modulos/modal/modalperfil/modalperfil.co
 import { ModalAnaliseComponent } from './modulos/modal/modal-analise/modal-analise.component';
 import { MedicamentosComponent } from './modulos/medicamentos/medicamentos.component';
 import { FuncionariosComponent } from './modulos/board/funcionarios/funcionarios.component';
+import { ModalEditarMedicamentoComponent } from './modulos/modal/modal-editar-medicamento/modal-editar-medicamento.component';
 //import { ModalEditarPacienteComponent } from './modulos/modal/modal-editar-paciente/modal-editar-paciente.component';
 
 
@@ -36,6 +37,7 @@ import { FuncionariosComponent } from './modulos/board/funcionarios/funcionarios
     ModalAnaliseComponent,
     MedicamentosComponent,
     FuncionariosComponent,
+    ModalEditarMedicamentoComponent,
     //ModalEditarPacienteComponent,
   ],
   imports: [
