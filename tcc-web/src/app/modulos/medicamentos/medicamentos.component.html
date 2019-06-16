@@ -75,7 +75,7 @@
           Pesquisa: <input type="text" width="48" height="48" name="pesquisa">
         </form>
 
-        <table>
+        <table *ngIf="this.perfilLogado != 1">
           <tr>
             <th>Nome</th>
             <th>Quantidade</th>
@@ -87,6 +87,20 @@
             <td>{{medicamento.posologia}}</td>
           </tr>
         </table>
+
+        <table *ngIf="this.perfilLogado == 1">
+          <tr>
+            <th>Nome</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr *ngFor="let medicamento of this.medicamentosPaciente">
+            <td>{{medicamento.nome}}</td>
+            <td><button (click)="editarMedicamentoAdm(medicamento)">Editar</button></td>
+            <td><button (click)="escluirMedicamentoAdm(medicamento)">Excluir</button></td>
+          </tr>
+        </table>
+
       </div>
 
       <!-- cadastro manual de medicamentos -->

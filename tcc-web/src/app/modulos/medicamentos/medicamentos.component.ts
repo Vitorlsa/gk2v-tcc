@@ -24,6 +24,7 @@ export class MedicamentosComponent implements OnInit {
   private apiListar = "http://localhost:8080/api/beneficiario/listarmedicamento";
   private apiDetalhar = "http://localhost:8080/api/medicamento/detalhar";
   private apiRemover = "http://localhost:8080/api/medicamento/remover";
+  private apiListarAdm = "http://localhost:8080/api/medicamento/listar";
   private apiListarBeneficiario = "http://localhost:8080/api/beneficiario/listarporcontratante";
   private apiDropTipoMedicamento = "http://localhost:8080/api/dropdown/tipomedicamento";
   private apiDropMedicamentos = "http://localhost:8080/api/dropdown/medicamentos";
@@ -64,7 +65,7 @@ export class MedicamentosComponent implements OnInit {
       this.listarBeneficiario();
 
     } else {
-      this.listarRemedios();
+      this.listarMedicamentosAdm();
     }
 
     var $header = $('#header'),
@@ -126,7 +127,7 @@ export class MedicamentosComponent implements OnInit {
 
   listarRemedios() {
     try {
-      this.http.post(this.apiListar, {Id: this.beneficiarioSelecionado.id}).subscribe(data => {
+      this.http.post(this.apiListar, { Id: this.beneficiarioSelecionado.id }).subscribe(data => {
         this.medicamentosPaciente = [];
         this.medicamentosPaciente = data;
         console.log(this.medicamentosPaciente);
@@ -136,6 +137,31 @@ export class MedicamentosComponent implements OnInit {
     }
   }
 
+  listarMedicamentosAdm() {
+    try {
+      this.http.post(this.apiListarAdm, {}).subscribe(data => {
+        this.medicamentosPaciente = [];
+        this.medicamentosPaciente = data;
+        console.log(this.medicamentosPaciente);
+      })
+    } catch{
+      console.log("nao chamaou api");
+    }
+  }
+
+  escluirMedicamentoAdm(param){
+    try {
+      this.http.post(this.apiListarAdm, {Id: param.Id}).subscribe(data => {
+        this.listarMedicamentosAdm();
+      })
+    } catch{
+      console.log("nao chamaou api");
+    }
+  }
+
+  editarMedicamentoAdm(param){
+
+  }
 
 
   criarNovoRemedio() {
@@ -221,8 +247,8 @@ export class MedicamentosComponent implements OnInit {
     var payload = {
       BeneficiarioId: this.beneficiarioSelecionado.id,
       MedicamentoId: this.beneficiarioSelecionado.medicamento,
-      PosologiaId:this.beneficiarioSelecionado.posologia,
-      Quantidade:this.beneficiarioSelecionado.qtdMedicamento
+      PosologiaId: this.beneficiarioSelecionado.posologia,
+      Quantidade: this.beneficiarioSelecionado.qtdMedicamento
     };
 
 
