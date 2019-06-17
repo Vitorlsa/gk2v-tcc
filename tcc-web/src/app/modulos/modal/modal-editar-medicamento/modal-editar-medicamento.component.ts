@@ -45,7 +45,7 @@ export class ModalEditarMedicamentoComponent implements OnInit {
         this.medicamentoCompleto = <Medicamento>data;
         // this.setTipoMedicamento(data.tipo);
         // this.setViaDeUso(data.viaDeUso);
-        let retorno = data;
+        let retorno = this.medicamentoCompleto;
         this.tipoMedicamentos.forEach((element) => {
           if (element.key == retorno.tipo) {
             element.selected = true;
@@ -77,18 +77,18 @@ export class ModalEditarMedicamentoComponent implements OnInit {
 
       if (this.utils.nullOrUndefOrEmpty(param.nome))
         throw "Preencha o nome";
-      if (this.utils.nullOrUndefOrEmpty(param.Tipo))
+      if (this.utils.nullOrUndefOrEmpty(param.tipo))
         throw "Escolha um tipo";
-      if (this.utils.nullOrUndefOrEmpty(param.ViaDeUso))
+      if (this.utils.nullOrUndefOrEmpty(param.viaDeUso))
         throw "Escolha uma via de uso";
 
-      param.Id = param.idMedicamento;
-      param.Indicacao = param.indicao;
-      param.viaDeUso = param.ViaDeUso;
-      param.tipo = param.Tipo;
+      // param.Id = param.idMedicamento;
+      // param.Indicacao = param.indicao;
+      // param.viaDeUso = param.ViaDeUso;
+      // param.tipo = param.Tipo;
       this.http.post(this.apiEditar, param).subscribe(
         res => {
-          alert("Cadastro salvo com sucesso");
+          alert("Medicamento atualizado");
           this.fechar();
         },
         err => {
@@ -119,11 +119,11 @@ export class ModalEditarMedicamentoComponent implements OnInit {
   }
 
   setTipoMedicamento(event) {
-    this.medicamentoCompleto.Tipo = this.utils.nullOrUndef(event.target) ? event : event.target.value;
+    this.medicamentoCompleto.tipo = this.utils.nullOrUndef(event.target) ? event : event.target.value;
   }
 
   setViaDeUso(event) {
-    this.medicamentoCompleto.ViaDeUso = this.utils.nullOrUndef(event.target) ? event : event.target.value;
+    this.medicamentoCompleto.viaDeUso = this.utils.nullOrUndef(event.target) ? event : event.target.value;
   }
 
 

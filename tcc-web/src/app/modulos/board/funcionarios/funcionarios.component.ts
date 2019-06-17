@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CadastroServiceService } from '../../login/cadastro/cadastro-service.service';
 import { LoginService } from '../../login/login.service';
+import { Usuario } from 'src/app/classes/usuario';
 
 @Component({
   selector: 'app-funcionarios',
@@ -72,8 +73,8 @@ export class FuncionariosComponent implements OnInit {
   pegarDadosCOntratante() {
     this.http.post(this.apiBuscarContratante, { Id: this.loginService.getUsuario().id }).subscribe(data => {
       console.log(data);
-      let cidadeId = data.cidade;
-      this.pegarVinculos(cidadeId);
+      let  usuario = <Usuario>data;
+      this.pegarVinculos(usuario.cidade);
     },
       err => {
         console.log(err);

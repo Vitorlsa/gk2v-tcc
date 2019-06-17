@@ -172,8 +172,8 @@ export class MedicamentosComponent implements OnInit {
     console.log(this.medicamento);
     let payload = this.medicamento;
     //payload.IdBeneficiario = this.beneficiarioSelecionado.id;
-    payload.Tipo = 1;
-    payload.ViaDeUso = 1;
+    payload.tipo = 1;
+    payload.viaDeUso = 1;
     try {
       this.http.post(this.apicadastrar, payload).subscribe(data => {
         console.log(data);
@@ -255,11 +255,11 @@ export class MedicamentosComponent implements OnInit {
   }
 
   setTipoMedicamento(event) {
-    this.medicamento.Tipo = event.target.value;
+    this.medicamento.tipo = event.target.value;
   }
 
   setViaDeUso(event) {
-    this.medicamento.ViaDeUso = event.target.value;
+    this.medicamento.viaDeUso = event.target.value;
   }
   
 
