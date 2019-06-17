@@ -128,6 +128,7 @@ export class CadastroPrestadorComponent implements OnInit {
             alert("Cadastro salvo com sucesso");
             this.cadastroService.setContratantePaciente(this.prestador);
             this.limparUsuario();
+            this.router.navigate(['/login']);
           },
           err => {
             console.log(err);

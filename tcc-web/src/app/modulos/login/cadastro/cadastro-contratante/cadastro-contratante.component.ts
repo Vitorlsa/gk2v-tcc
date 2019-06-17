@@ -150,6 +150,7 @@ export class CadastroContratanteComponent implements OnInit {
             alert("Cadastro salvo com sucesso");
             this.cadastroService.setContratantePaciente(this.usuario);
             this.limparUsuario();
+            this.router.navigate(['/login']);
           },
           err => {
             console.log(err);

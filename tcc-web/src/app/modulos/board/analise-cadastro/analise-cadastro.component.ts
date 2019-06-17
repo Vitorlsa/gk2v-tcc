@@ -12,7 +12,7 @@ import { ModalAnaliseComponent } from '../../modal/modal-analise/modal-analise.c
 })
 export class AnaliseCadastroComponent implements OnInit {
 
-  constructor(private http: HttpClient, private router:Router, public util:UtilsService) { }
+  constructor(private http: HttpClient, private router: Router, public util: UtilsService) { }
 
   public gestores = null;
   public contratantes = null;
@@ -33,32 +33,32 @@ export class AnaliseCadastroComponent implements OnInit {
 
 
     var $header = $('#header'),
-    $footer = $('#footer');
+      $footer = $('#footer');
 
-  // Header.
-  $header.each(function () {
-    var t = jQuery(this),
-      button = t.find('.button');
-    button.click(function (e) {
-      t.toggleClass('hide');
-      if (t.hasClass('preview')) {
-        return true;
-      } else {
+    // Header.
+    $header.each(function () {
+      var t = jQuery(this),
+        button = t.find('.button');
+      button.click(function (e) {
+        t.toggleClass('hide');
+        if (t.hasClass('preview')) {
+          return true;
+        } else {
+          e.preventDefault();
+        }
+      });
+    });
+
+    $footer.each(function () {
+      var t = jQuery(this),
+        inner = t.find('.inner'),
+        button = t.find('.info');
+      button.click(function (e) {
+        t.toggleClass('show');
         e.preventDefault();
-      }
-    });
-  });
+      });
 
-  $footer.each(function () {
-    var t = jQuery(this),
-      inner = t.find('.inner'),
-      button = t.find('.info');
-    button.click(function (e) {
-      t.toggleClass('show');
-      e.preventDefault();
     });
-
-  });
 
   }
 
@@ -70,6 +70,10 @@ export class AnaliseCadastroComponent implements OnInit {
     try {
       this.http.post(this.apiAprovar, { Id: id, Aprovado: param }).subscribe(data => {
         console.log(data);
+        if (param)
+          alert("Aprovado!");
+        else
+          alert("Reprovado!");
         if (tipo == 1)
           this.listarContratante();
         else if (tipo == 2)
@@ -86,6 +90,7 @@ export class AnaliseCadastroComponent implements OnInit {
     try {
       this.http.post(this.apiDeletar, { Id: id }).subscribe(data => {
         console.log(data);
+        alert("Deletado!");
         if (tipo == 1)
           this.listarContratante();
         else if (tipo == 2)
@@ -141,7 +146,7 @@ export class AnaliseCadastroComponent implements OnInit {
     $('.modal-open').prop('checked', true);
   }
 
-  voltarBoard(){
+  voltarBoard() {
     this.router.navigate(['/board']);
   }
 
