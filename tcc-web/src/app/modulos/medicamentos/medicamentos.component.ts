@@ -178,6 +178,8 @@ export class MedicamentosComponent implements OnInit {
       this.http.post(this.apicadastrar, payload).subscribe(data => {
         console.log(data);
         alert("Medicamento cadastrado");
+        this.novoMedicamento = false;
+        this.listarMedicamentosAdm();
         // this.medicamentosPaciente.forEach((element, index) => {
         //   this.medicamentosPaciente[index].dataFormatada = new DatePipe('pt-BR').transform(element.dataValidade, 'dd/MM/yyyy');
         // });
