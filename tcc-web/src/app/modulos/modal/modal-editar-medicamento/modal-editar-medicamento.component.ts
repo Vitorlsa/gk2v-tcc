@@ -82,8 +82,8 @@ export class ModalEditarMedicamentoComponent implements OnInit {
       if (this.utils.nullOrUndefOrEmpty(param.viaDeUso))
         throw "Escolha uma via de uso";
 
-      // param.Id = param.idMedicamento;
-      // param.Indicacao = param.indicao;
+       param.Id = param.idMedicamento;
+       param.Indicacao = param.indicao;
       // param.viaDeUso = param.ViaDeUso;
       // param.tipo = param.Tipo;
       this.http.post(this.apiEditar, param).subscribe(

@@ -231,7 +231,7 @@ export class CadastroContratanteComponent implements OnInit {
 
 
   cancelar() {
-    this.router.navigate(['/cadastro']);
+    this.router.navigate(['/login']);
   }
 
 

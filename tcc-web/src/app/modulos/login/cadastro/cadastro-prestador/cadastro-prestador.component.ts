@@ -245,7 +245,7 @@ export class CadastroPrestadorComponent implements OnInit {
     this.prestador.cidade = event.target.value;
   }
   voltar() {
-    this.router.navigate(['/cadastro']);
+    this.router.navigate(['/login']);
   }
 
 
