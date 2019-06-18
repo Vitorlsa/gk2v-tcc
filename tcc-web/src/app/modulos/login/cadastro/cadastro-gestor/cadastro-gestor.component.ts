@@ -150,7 +150,7 @@ export class CadastroGestorComponent implements OnInit {
   }
 
   cancelar() {
-    this.router.navigate(['/cadastro']);
+    this.router.navigate(['/login']);
   }
 
 
@@ -236,7 +236,7 @@ export class CadastroGestorComponent implements OnInit {
   }
 
   voltar() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/cadastro']);
   }
 
 }
