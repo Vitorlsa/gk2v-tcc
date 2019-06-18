@@ -135,6 +135,16 @@
                         </select>
                       </div>
                       <br>
+                      
+                      <div class="form-group ">
+                        <label for="bairro" class="control-label col-lg-2">Bairro <span
+                            class="required">*</span></label>
+                        <div class="col-lg-10">
+                          <input [(ngModel)]="this.paciente.bairro" class="form-control " id="bairro" name="bairro"
+                            type="text" />
+                        </div>
+                      </div>
+                      <br/>
                       <div class="form-group ">
                         <label for="rua" class="control-label col-lg-2">Rua <span class="required">*</span></label>
                         <div class="col-lg-10">
@@ -158,15 +168,6 @@
                               <input [(ngModel)]="this.paciente.cpf" class="form-control " id="cpf" name="cpf" type="text" />
                             </div>
                           </div> -->
-                      <br>
-                      <div class="form-group ">
-                        <label for="bairro" class="control-label col-lg-2">Bairro <span
-                            class="required">*</span></label>
-                        <div class="col-lg-10">
-                          <input [(ngModel)]="this.paciente.bairro" class="form-control " id="bairro" name="bairro"
-                            type="text" />
-                        </div>
-                      </div>
                       <br>
                       <div class="form-group ">
                         <label for="cep" class="control-label col-lg-2">CEP <span class="required">*</span></label>
@@ -194,10 +195,10 @@
                       </div>
                       <br>
                       <div class="form-group ">
-                        <label for="condicoesclinicas" class="control-label col-lg-2">Competências <span
+                        <label for="condicoesclinicas" class="control-label col-lg-2">Condições<span
                             class="required">*</span></label>
                         <div class="col-lg-10">
-                          <ng-multiselect-dropdown [placeholder]="'custom placeholder'" [data]="condicoesClinicas"
+                          <ng-multiselect-dropdown [placeholder]="'Condições'" [data]="condicoesClinicas"
                             [(ngModel)]="selectedItems" [settings]="dropdownSettings"
                             (onSelect)="setCondicoesClinicas($event)" name="condicoesclinicas"
                             (onSelectAll)="setTodasCondicoesClinicas($event)"
@@ -208,7 +209,7 @@
                       <br>
                       <div class="form-group ">
                         <label for="termos" class="control-label col-lg-2">Declaro que sou responsável por esse
-                          paciente: <span class="required">*</span></label>
+                          beneficiário: <span class="required">*</span></label>
                         <select (change)="setTermos($event)" id="termos">
                           <option [value]="false">Não</option>
                           <option [value]="true">Sim</option>
@@ -225,7 +226,7 @@
                       <br>
                       <div class="form-group">
                         <div class="col-lg-offset-2 col-lg-10">
-                          <button (click)="salvar()" class="btn btn-primary" type="submit">Enviar</button>
+                          <button (click)="salvar()" class="btn btn-primary" type="submit">Salvar</button>
                           <button (click)="voltar()" class="btn btn-default" type="button">Voltar</button>
                         </div>
                       </div>

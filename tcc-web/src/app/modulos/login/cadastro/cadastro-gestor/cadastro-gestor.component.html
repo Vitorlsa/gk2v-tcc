@@ -14,7 +14,7 @@
 <div id="preview">
   <div class="inner">
       <a href="/login">voltar</a>
-      <a style="float:right" href="/login" >Logout </a>
+      <!-- <a style="float:right" href="/login" >Logout </a> -->
     <div class="image fit">
       <img src="../../../assets/images/cadastro/banner_cadastro.jpg" alt="" />
     </div>
@@ -175,7 +175,7 @@
                     </div>
 
                     <div class="form-group ">
-                      <label for="historico" class="control-label col-lg-2">Histórico Profissional</label>
+                      <label for="historico" class="control-label col-lg-2">Currículo</label>
                       <div class="col-lg-10">
                         <input id="meuArquivo" type="file" name="file" accept=".pdf" (change)="saveBase64($event)" />
                       </div>
@@ -222,7 +222,7 @@
                     <br>
                     <div class="form-group">
                       <div class="col-lg-offset-2 col-lg-10">
-                        <button (click)="salvar()" class="btn btn-primary" type="submit">Enviar</button>
+                        <button (click)="salvar()" class="btn btn-primary" type="submit">Salvar</button>
                         <button (click)="cancelar()" class="btn btn-default" type="button">Cancelar</button>
                       </div>
                     </div>
@@ -235,7 +235,7 @@
       </div>
     </div>
   </div>
-  <button (click)="voltar()">Voltar</button>
+  <!-- <button (click)="voltar()">Voltar</button> -->
 
 </div>
 

@@ -199,9 +199,9 @@ export class CadastroPacienteComponent implements OnInit {
       if (this.utils.nullOrUndefOrEmpty(this.paciente.cidade) || this.paciente.cidade == 0)
         throw "Preencha a cidade";
       if (this.utils.nullOrUndefOrEmpty(this.paciente.termoDeResponsalidade) || !this.paciente.termoDeResponsalidade)
-        throw "Aceite os termos";
-      if (this.paciente.condicoesClinicas.length < 1)
-        throw "Selecione as concicoes do paciente";
+        throw "Precisa ser responsável pelo beneficiário";
+      // if (this.paciente.condicoesClinicas.length < 1)
+      //   throw "Selecione as concicoes do paciente";
 
       this.http.post(this.apiSalvar, this.paciente).subscribe(
         res => {
