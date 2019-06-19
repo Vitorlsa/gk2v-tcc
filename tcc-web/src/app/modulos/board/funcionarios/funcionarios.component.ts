@@ -29,8 +29,11 @@ export class FuncionariosComponent implements OnInit {
   // public todosPrestadores = [new Prestador()];
 
   public buscarProfissionais = false;
+  public perfilLogado = this.loginService.getSessionPerfil();
+  
 
   ngOnInit() {
+  
     //this.pegarVinculos();
     this.pegarDadosCOntratante();
     var $header = $('#header'),

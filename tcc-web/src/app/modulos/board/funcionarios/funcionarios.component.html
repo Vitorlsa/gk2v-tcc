@@ -32,14 +32,14 @@
               <div class="panel-body" *ngIf="!this.buscarProfissionais">
                 <div class="form">
 
-                  <section>
+                  <section *ngIf="this.perfilLogado !=3">
                     <h2 class="titulo">Gestor</h2>
                     <div class="listaAnalise">
                       <p>{{this.gestor.nome}}</p>
                       <br />
-                      <p>Cursos: {{this.gestor.cursos}}</p>
+                      <!-- <p>Cursos: {{this.gestor.cursos}}</p>
                       <br />
-                      <p>Historico profissional:{{gestor.historico}}</p>
+                      <p>Historico profissional:{{gestor.historico}}</p> -->
                       <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
                       <button (click)="remover(this.gestor)">Solicitar</button>
                       <button (click)="abreDetalhe(this.gestor)">Mais detalhes</button>
@@ -51,7 +51,7 @@
                     <div class="listaAnalise" *ngFor="let cadastro of this.prestadores">
                       <p>{{cadastro.nome}}</p>
                       <br>
-                      <p>Competencias: {{cadastro.competencias}}</p>
+                      <!-- <p>Competencias: {{cadastro.competencias}}</p> -->
                       <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
                       <button (click)="remover(cadastro)">Remover</button>
                       <button (click)="this.abreDetalhe(cadastro)">Mais detalhes</button>
@@ -64,14 +64,14 @@
               <div class="panel-body" *ngIf="this.buscarProfissionais">
                 <div class="form">
 
-                  <section>
+                  <section *ngIf="this.perfilLogado !=3">
                     <h2 class="titulo">Gestores</h2>
                     <div class="listaAnalise" *ngFor="let cadastro of this.todosGestores">
                       <p>{{cadastro.nome}}</p>
                       <br />
-                      <p>Cursos: {{cadastro.cursos}}</p>
+                      <!-- <p>Cursos: {{cadastro.cursos}}</p>
                       <br />
-                      <p>Historico profissional:{{cadastro.historico}}</p>
+                      <p>Historico profissional:{{cadastro.historico}}</p> -->
                       <button (click)="solicitar()">Solicitar</button>
                       <button (click)="this.abreDetalhe(cadastro)">Mais detalhes</button>
                     </div>
@@ -82,7 +82,7 @@
                     <div class="listaAnalise" *ngFor="let cadastro of this.todosPrestadores">
                       <p>{{cadastro.nome}}</p>
                       <br>
-                      <p>Competencias: {{cadastro.competencias}}</p>
+                      <!-- <p>Competencias: {{cadastro.competencias}}</p> -->
                       <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
                       <button (click)="solicitar()">Solicitar</button>
                       <button (click)="this.abreDetalhe(cadastro)">Mais detalhes</button>
