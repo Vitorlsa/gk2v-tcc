@@ -56,8 +56,9 @@
                       <label for="username" class="control-label col-lg-2">Login <span
                           class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="prestador.login" class="form-control " id="username" name="username"
+                        <input [(ngModel)]="prestador.login" (blur)="this.confereLogin()" class="form-control " id="username" name="username"
                           type="text" />
+                          <p *ngIf="this.loginJaCadastrado" style="color:red;">Login ja existe</p>
                       </div>
                     </div>
                     <br>

@@ -50,10 +50,14 @@ export class CadastroContratanteComponent implements OnInit {
 
   public cpfJaCadastrado = false;
   public emailJaCadastrado = false;
+  public loginJaCadastrado = false;
   private apiverificarCpf = "http://localhost:8080/api/usuario/verificarcpfcadastrado";
   private apiverificarEmail = "http://localhost:8080/api/usuario/verificaremailcadastrado";
+  private apiVerificaLogin = "http://localhost:8080/api/usuario/verificarlogincadastrado";
+
   private apiEstados = "http://localhost:8080/api/dropdown/estados";
   private apiCidades = "http://localhost:8080/api/dropdown/cidadeporestado";
+
 
   constructor(private router: Router, private http: HttpClient, private cadastroService: CadastroServiceService) {
     this.usuario.sexo = 3;
@@ -138,9 +142,10 @@ export class CadastroContratanteComponent implements OnInit {
     try {
       if (this.emailJaCadastrado)
         throw "E-mail ja cadastrado";
-
       if (this.cpfJaCadastrado)
         throw "CPF ja cadastrado";
+      if (this.loginJaCadastrado)
+        throw "Login ja cadastrado";
 
 
       if (this.cadastroService.validaCadastro(this.usuario)) {
@@ -203,6 +208,19 @@ export class CadastroContratanteComponent implements OnInit {
     return retorno;
   }
 
+
+  async confereLogin() {
+    let retorno = null;
+    try {
+      retorno = await this.http.post(this.apiVerificaLogin, { Login: this.usuario.login }).toPromise();
+    } catch{
+      console.log("nao chamaou api");
+      retorno = false;
+    }
+    console.log("retorno --> " + retorno);
+    this.loginJaCadastrado = retorno;
+    return retorno;
+  }
 
   buscarEstados() {
     this.http.post(this.apiEstados, {}).subscribe(data => {

@@ -32,6 +32,8 @@ export class CadastroPrestadorComponent implements OnInit {
   private apiverificarCpf = "http://localhost:8080/api/usuario/verificarcpfcadastrado";
   private apiverificarEmail = "http://localhost:8080/api/usuario/verificaremailcadastrado";
   private apiCompetencias = "http://localhost:8080/api/dropdown/competencias";
+  private apiVerificaLogin = "http://localhost:8080/api/usuario/verificarlogincadastrado";
+  public loginJaCadastrado = false;
 
   public competencias = [];
   public dropdownList = [];
@@ -118,6 +120,8 @@ export class CadastroPrestadorComponent implements OnInit {
         throw "E-mail ja cadastrado";
       if (this.cpfJaCadastrado)
         throw "CPF ja cadastrado";
+      if (this.loginJaCadastrado)
+        throw "Login ja cadastrado";
       if (this.prestador.competencias.length < 1)
         throw "Selecione suas competencias";
 
@@ -168,6 +172,19 @@ export class CadastroPrestadorComponent implements OnInit {
     }
     console.log("retorno --> " + retorno);
     this.emailJaCadastrado = retorno;
+    return retorno;
+  }
+
+  async confereLogin() {
+    let retorno = null;
+    try {
+      retorno = await this.http.post(this.apiVerificaLogin, { Login: this.prestador.login }).toPromise();
+    } catch{
+      console.log("nao chamaou api");
+      retorno = false;
+    }
+    console.log("retorno --> " + retorno);
+    this.loginJaCadastrado = retorno;
     return retorno;
   }
 

@@ -20,8 +20,11 @@ export class CadastroGestorComponent implements OnInit {
   public estados = null;
   public cpfJaCadastrado = false;
   public emailJaCadastrado = false;
+  public loginJaCadastrado = false;
   private apiverificarCpf = "http://localhost:8080/api/usuario/verificarcpfcadastrado";
   private apiverificarEmail = "http://localhost:8080/api/usuario/verificaremailcadastrado";
+  private apiVerificaLogin = "http://localhost:8080/api/usuario/verificarlogincadastrado";
+
   private apiEstados = "http://localhost:8080/api/dropdown/estados";
   private apiCidades = "http://localhost:8080/api/dropdown/cidadeporestado";
 
@@ -85,6 +88,8 @@ export class CadastroGestorComponent implements OnInit {
         throw "E-mail ja cadastrado";
       if (this.cpfJaCadastrado)
         throw "CPF ja cadastrado";
+      if (this.loginJaCadastrado)
+        throw "Login ja cadastrado";
       if (this.gestor.curriculo == "")
         throw "Insira um curriculo em PDF";
       if (!this.gestor.curriculo.startsWith('data:application/pdf'))
@@ -137,6 +142,19 @@ export class CadastroGestorComponent implements OnInit {
     }
     console.log("retorno --> " + retorno);
     this.emailJaCadastrado = retorno;
+    return retorno;
+  }
+
+  async confereLogin() {
+    let retorno = null;
+    try {
+      retorno = await this.http.post(this.apiVerificaLogin, { Login: this.gestor.login }).toPromise();
+    } catch{
+      console.log("nao chamaou api");
+      retorno = false;
+    }
+    console.log("retorno --> " + retorno);
+    this.loginJaCadastrado = retorno;
     return retorno;
   }
 
