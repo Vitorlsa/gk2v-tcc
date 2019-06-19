@@ -22,7 +22,7 @@
 
     <div class="content" *ngIf="this.beneficiarioSelecionado == null && this.perfilLogado !=1">
 
-      <h2>Beneficiários ja cadastrados</h2>
+      <h2 class="titulo">Beneficiários ja cadastrados</h2>
 
       <table>
         <tr>
@@ -55,26 +55,31 @@
       <!-- lista de medicamentos -->
       <div *ngIf="(!this.novoMedicamento && this.perfilLogado ==1) || this.perfilLogado !=1">
         <button class="addMedicamento" (click)="criarNovoRemedio()">+ medicamento</button>
-
+        
         <div class="col-lg-10" *ngIf="this.novoMedicamento && this.perfilLogado !=1">
+            <h2 class="titulo">Cadastrar novo</h2>
+          <label for="fullname" class="control-label col-lg-2">Nome medicamento<span class="required">*</span></label>
           <select (change)="setMedicamentoBeneficiario($event)">
             <option *ngFor="let tipo of this.todosMedicamentos" [value]="tipo.key">{{tipo.value}}</option>
           </select>
+
+          <label for="fullname" class="control-label col-lg-2">Posologia<span class="required">*</span></label>
           <select (change)="setMedicamentoPosologia($event)">
             <option *ngFor="let pos of this.todasPosologias" [value]="pos.key">{{pos.value}}</option>
           </select>
-          <input type="number" [(ngModel)]="this.beneficiarioSelecionado.qtdMedicamento" />
+          <input type="number" placeholder="Quantidade atual"
+            [(ngModel)]="this.beneficiarioSelecionado.qtdMedicamento" />
           <button (click)="salvarMedicamentoBeneficiario()">Salvar medicamento</button>
           <!-- <input [(ngModel)]="this.medicamento.Tipo" class=" form-control" id="tipo" name="tipo"
             type="text" /> -->
         </div>
-<br/>
+        <br />
 
-<!-- 
+        <!-- 
         <form style="float:right">
           Pesquisa: <input type="text" width="48" height="48" name="pesquisa" [(ngModel)]="this.pesquisa" />
         </form> -->
-
+        <h2 class="titulo">Meus medicamentos</h2>
         <table *ngIf="this.perfilLogado != 1">
           <tr>
             <th>Nome</th>
@@ -216,6 +221,6 @@
       </div>
     </div>
   </footer>
-  
-<app-modal-editar-medicamento *ngIf="!this.util.nullOrUndef(this.medicamentoSelecionado)"
-[medicamentoSelecionado]="this.medicamentoSelecionado"></app-modal-editar-medicamento>
+
+  <app-modal-editar-medicamento *ngIf="!this.util.nullOrUndef(this.medicamentoSelecionado)"
+    [medicamentoSelecionado]="this.medicamentoSelecionado"></app-modal-editar-medicamento>
