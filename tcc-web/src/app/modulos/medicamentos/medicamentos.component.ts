@@ -253,6 +253,7 @@ export class MedicamentosComponent implements OnInit {
     this.http.post(this.apiSalvarMedicamentoBeneficiario, payload).subscribe(data => {
       console.log(data);
       alert("Medicamento salvo!");
+      this.listarRemedios();
     });
   }
 

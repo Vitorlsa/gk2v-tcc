@@ -79,10 +79,6 @@ export class CadastroGestorComponent implements OnInit {
 
   salvar() {
 
-    // if (this.gestor.curriculo.startsWith('data:application/pdf;base64')){
-
-
-
     try {
       if (this.emailJaCadastrado)
         throw "E-mail ja cadastrado";
