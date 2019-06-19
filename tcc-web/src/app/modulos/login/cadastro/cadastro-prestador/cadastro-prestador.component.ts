@@ -40,8 +40,8 @@ export class CadastroPrestadorComponent implements OnInit {
     singleSelection: false,
     idField: 'key',
     textField: 'value',
-    selectAllText: 'Select All',
-    unSelectAllText: 'UnSelect All',
+    selectAllText: 'Marcar todos',
+    unSelectAllText: 'Demarcar todos',
     itemsShowLimit: 3,
     allowSearchFilter: true
   };
@@ -91,8 +91,8 @@ export class CadastroPrestadorComponent implements OnInit {
   }
 
   removerCompetencia(event) {
-    console.log(event.key);
-    this.prestador.competencias.pop(event.key);
+    let index = this.prestador.competencias.indexOf(event.key);
+    this.prestador.competencias.splice(index, 1);
   }
 
 

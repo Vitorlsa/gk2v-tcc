@@ -143,8 +143,8 @@ export class ModalEditarPacienteComponent implements OnInit {
   }
 
   removerCondicoesClinicas(event) {
-    console.log(event.key);
-    this.pacienteCompleto.condicoesClinicas.pop();
+    let index = this.pacienteCompleto.condicoesClinicas.indexOf(event.key);
+    this.pacienteCompleto.condicoesClinicas.splice(index, 1);
   }
 
 

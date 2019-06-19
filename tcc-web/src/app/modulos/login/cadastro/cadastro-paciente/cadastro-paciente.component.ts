@@ -65,8 +65,8 @@ export class CadastroPacienteComponent implements OnInit {
   }
 
   removerCondicoesClinicas(event) {
-    console.log(event.key);
-    this.paciente.condicoesClinicas.pop();
+    let index = this.paciente.condicoesClinicas.indexOf(event.key);
+    this.paciente.condicoesClinicas.splice(index, 1);
   }
 
 
