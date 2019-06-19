@@ -249,12 +249,18 @@ export class MedicamentosComponent implements OnInit {
       Quantidade: this.beneficiarioSelecionado.qtdMedicamento
     };
 
+    try {
+      if(this.util.nullOrUndef(payload.BeneficiarioId) || this.util.nullOrUndef(payload.MedicamentoId) || this.util.nullOrUndef(payload.PosologiaId) ||this.util.nullOrUndef(payload.Quantidade) )
+      throw "É necessário preencher nome, posologia e quantidade";
 
-    this.http.post(this.apiSalvarMedicamentoBeneficiario, payload).subscribe(data => {
-      console.log(data);
-      alert("Medicamento salvo!");
-      this.listarRemedios();
-    });
+      this.http.post(this.apiSalvarMedicamentoBeneficiario, payload).subscribe(data => {
+        console.log(data);
+        alert("Medicamento salvo!");
+        this.listarRemedios();
+      });
+    } catch(e){
+      alert( e || "É necessário preencher nome, posologia e quantidade");
+    }
   }
 
   setTipoMedicamento(event) {

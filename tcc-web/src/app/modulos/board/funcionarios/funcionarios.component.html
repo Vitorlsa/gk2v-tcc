@@ -12,8 +12,8 @@
 
 <div id="preview">
   <div class="inner">
-      <a href="/board">voltar</a>
-      <a style="float:right" href="/login" >Logout </a>
+    <a href="/board">voltar</a>
+    <a style="float:right" href="/login">Logout </a>
     <div class="content">
       <header>
         <h1 class="tituloPrincipal">Nossos profissionais cadastrados</h1>
@@ -34,13 +34,10 @@
 
                   <section *ngIf="this.perfilLogado !=3">
                     <h2 class="titulo">Gestor</h2>
-                    <div class="listaAnalise">
+                    <p>Não existem gestores vinculados no momento!</p>
+                    <div class="listaAnalise" *ngIf="false">
                       <p>{{this.gestor.nome}}</p>
                       <br />
-                      <!-- <p>Cursos: {{this.gestor.cursos}}</p>
-                      <br />
-                      <p>Historico profissional:{{gestor.historico}}</p> -->
-                      <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
                       <button (click)="remover(this.gestor)">Solicitar</button>
                       <button (click)="abreDetalhe(this.gestor)">Mais detalhes</button>
                     </div>
@@ -48,14 +45,13 @@
 
                   <section>
                     <h2 class="titulo">Prestadores</h2>
-                    <div class="listaAnalise" *ngFor="let cadastro of this.prestadores">
+                    <p>Não existem prestadores vinculados no momento!</p>
+                    <!-- <div class="listaAnalise" *ngFor="let cadastro of this.prestadores" *ngIf="false">
                       <p>{{cadastro.nome}}</p>
                       <br>
-                      <!-- <p>Competencias: {{cadastro.competencias}}</p> -->
-                      <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
                       <button (click)="remover(cadastro)">Remover</button>
                       <button (click)="this.abreDetalhe(cadastro)">Mais detalhes</button>
-                    </div>
+                    </div> -->
                   </section>
                 </div>
               </div>
@@ -67,7 +63,7 @@
                   <section *ngIf="this.perfilLogado !=3">
                     <h2 class="titulo">Gestores</h2>
                     <div class="listaAnalise" *ngFor="let cadastro of this.todosGestores">
-                      <p>{{cadastro.nome}}</p>
+                      <p><strong style="font-weight: bold">Nome: </strong>{{cadastro.nome}}</p>
                       <br />
                       <!-- <p>Cursos: {{cadastro.cursos}}</p>
                       <br />
@@ -80,7 +76,7 @@
                   <section>
                     <h2 class="titulo">Prestadores</h2>
                     <div class="listaAnalise" *ngFor="let cadastro of this.todosPrestadores">
-                      <p>{{cadastro.nome}}</p>
+                      <p><strong style="font-weight: bold">Nome: </strong>{{cadastro.nome}}</p>
                       <br>
                       <!-- <p>Competencias: {{cadastro.competencias}}</p> -->
                       <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
