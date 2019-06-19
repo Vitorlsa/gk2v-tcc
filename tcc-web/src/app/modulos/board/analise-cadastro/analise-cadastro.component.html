@@ -1,4 +1,3 @@
-
 <!-- Header -->
 <header id="header">
   <div class="inner">
@@ -16,8 +15,8 @@
 
 <div id="preview">
   <div class="inner">
-      <a href="/board">voltar</a>
-      <a style="float:right" href="/login" >Logout </a>
+    <a href="/board">voltar</a>
+    <a style="float:right" href="/login">Logout </a>
     <div class="content">
       <header>
         <h1 class="tituloPrincipal">Cadastros a serem analisados</h1>
@@ -33,52 +32,53 @@
                   <section>
                     <h2 class="titulo">Contratantes</h2>
                     <div class="listaAnalise" *ngFor="let cadastro of this.contratantes">
-                      <p>{{cadastro.nome}}</p>
-                      <br>
+                      <p><strong style="font-weight: bold">Nome:</strong> {{cadastro.nome}}</p>
+
                       <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
                       <button (click)="aprovar(cadastro.id,true, 1)">Aprovar</button>
                       <button (click)="aprovar(cadastro.id,false, 1)" class="reprovar">Reprovar</button>
-                      <button (click)="deletarUser(cadastro.id, 1)">Recusar</button>
+                      <button (click)="deletarUser(cadastro.id, 1)" class="recusar">Recusar</button>
                       <button (click)="this.abreDetalhe(cadastro)">Mais detalhes</button>
 
                     </div>
                   </section>
+                  <br />
 
                   <section>
                     <h2 class="titulo">Gestores</h2>
-                    <div class="listaAnalise" *ngFor="let cadastro of this.gestores" >
-                      <p>{{cadastro.nome}}</p>
+                    <div class="listaAnalise" *ngFor="let cadastro of this.gestores">
+                      <p><strong style="font-weight: bold">Nome:</strong> {{cadastro.nome}}</p>
+
+                      <!-- <p>Cursos: {{cadastro.cursosCertificacoes}}</p>
                       <br />
-                      <p>Cursos: {{cadastro.cursosCertificacoes}}</p>
-                      <br />
-                      <p>Historico profissional:{{cadastro.historicoProfissional}}</p>
+                      <p>Historico profissional:{{cadastro.historicoProfissional}}</p> -->
                       <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
                       <button (click)="aprovar(cadastro.id, true, 2)">Aprovar</button>
                       <button (click)="aprovar(cadastro.id, false, 2)" class="reprovar">Reprovar</button>
-                      <button (click)="deletarUser(cadastro.id, 2)">Recusar</button>
+                      <button (click)="deletarUser(cadastro.id, 2)" class="recusar">Recusar</button>
                       <button (click)="this.abreDetalhe(cadastro)">Mais detalhes</button>
                     </div>
                   </section>
-
+                  <br />
                   <section>
                     <h2 class="titulo">Prestadores</h2>
                     <div class="listaAnalise" *ngFor="let cadastro of this.prestadores">
-                      <p>{{cadastro.nome}}</p>
-                      <br>
-                      <p>Competencias: {{cadastro.competencias}}</p>
+                      <p><strong style="font-weight: bold">Nome:</strong> {{cadastro.nome}}</p>
+
+                      <!-- <p>Competencias: {{cadastro.competencias}}</p> -->
                       <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
                       <button (click)="aprovar(cadastro.id,true, 3)">Aprovar</button>
                       <button (click)="aprovar(cadastro.id,false,3)" class="reprovar">Reprovar</button>
-                      <button (click)="deletarUser(cadastro.id, 3)">Recusar</button>
+                      <button (click)="deletarUser(cadastro.id, 3)" class="recusar">Recusar</button>
                       <button (click)="this.abreDetalhe(cadastro)">Mais detalhes</button>
                     </div>
                   </section>
-                  <button (click)="voltarBoard()">Voltar</button>
+                  <!-- <button (click)="voltarBoard()">Voltar</button> -->
                 </div>
               </div>
             </section>
           </div>
-        </div> 
+        </div>
       </div>
     </div>
   </div>
@@ -107,4 +107,5 @@
   </div>
 </footer>
 <!-- <app-modal-analise *ngIf="!this.util.nullOrUndef(this.cadastroSelecionado)" (emitir)="abreDetalhe($event)"></app-modal-analise> -->
-<app-modal-analise *ngIf="!this.util.nullOrUndef(this.cadastroSelecionado)" [cadastroSelecionado]="this.cadastroSelecionado"></app-modal-analise>
+<app-modal-analise *ngIf="!this.util.nullOrUndef(this.cadastroSelecionado)"
+  [cadastroSelecionado]="this.cadastroSelecionado"></app-modal-analise>
