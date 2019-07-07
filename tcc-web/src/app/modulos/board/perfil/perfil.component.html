@@ -119,19 +119,20 @@
                     </div>
                     <br>
                     <div class="form-group ">
-                      <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
+                      <label for="UF" class="control-label col-lg-2">Estado <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.cidade" class="form-control " id="cidade" name="cidade"
-                          type="text" />
+                        <select (change)="setEstado($event)">
+                          <option *ngFor="let estado of this.estados" [value]="estado.key">{{estado.value}}</option>
+                        </select>
                       </div>
                     </div>
                     <div class="form-group ">
-                      <label for="UF" class="control-label col-lg-2">Estado <span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.estado" class="form-control " id="estado" name="estado"
-                          type="text" />
-                      </div>
+                      <label for="cidade" class="control-label col-lg-2">Cidade <span class="required">*</span></label>
+                      <select (change)="setCidade($event)">
+                        <option *ngFor="let cidade of this.cidades" [value]="cidade.key">{{cidade.value}}</option>
+                      </select>
                     </div>
+                    
                     <div class="form-group ">
                       <label for="bairro" class="control-label col-lg-2">Bairro <span class="required">*</span></label>
                       <div class="col-lg-10">
@@ -191,12 +192,12 @@
                       <div class="form-group ">
                         <label for="competencias" class="control-label col-lg-2">Competências <span
                             class="required">*</span></label>
-                        <div class="col-lg-10">
-                            <ng-multiselect-dropdown [placeholder]="'custom placeholder'" [data]="this.competencias"
-                        [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="setCompetencias($event)" name="competencias"
-                        (onSelectAll)="setTodasCompetencias($event)" (onDeSelect)="removerCompetencia($event)">
-                      </ng-multiselect-dropdown>
-                        </div>
+                            <div class="col-lg-10">
+                              <ng-multiselect-dropdown [placeholder]="'Competências'" [data]="this.competencias"
+                              [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="setCompetencias($event)" name="competencias"
+                              (onSelectAll)="setTodasCompetencias($event)" (onDeSelect)="removerCompetencia($event)">
+                            </ng-multiselect-dropdown>
+                            </div>
                       </div>
                     </div>
                     <br>

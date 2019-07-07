@@ -16,16 +16,18 @@ export class PerfilComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router, private service: LoginService, private cadastroService: CadastroServiceService) {
     this.buscarDados();
+    this.buscarEstados();
   }
 
   public perfilLogado = null;
   public usuario = null;
-  public apiContratante = "http://localhost:8080/api/contratante/cadastrar";
-  public apiPrestador = "http://localhost:8080/api/prestador/cadastrar";
-  public apiGestor = "http://localhost:8080/api/gestor/cadastrar";
+  public apiContratante = "http://localhost:8080/api/contratante/editar";
+  public apiPrestador = "http://localhost:8080/api/prestador/editar";
+  public apiGestor = "http://localhost:8080/api/gestor/editar";
   private apiDados = "http://localhost:8080/api/usuario/dadoscadastrais";
   private apiEstados = "http://localhost:8080/api/dropdown/estados";
   private apiCidades = "http://localhost:8080/api/dropdown/cidadeporestado";
+  private apiCompetencias = "http://localhost:8080/api/dropdown/competencias";
   public apiCadastro: string;
   public usuaLogado = this.service.getUsuario();
   public imageSrc = "../../../../../assets/images/cadastro/usuarioPadrao.png";
@@ -38,8 +40,8 @@ export class PerfilComponent implements OnInit {
   selectedItems = [];
   dropdownSettings = {
     singleSelection: false,
-    idField: 'item_id',
-    textField: 'item_text',
+    idField: 'key',
+    textField: 'value',
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All',
     itemsShowLimit: 3,
@@ -59,9 +61,9 @@ export class PerfilComponent implements OnInit {
     } else if (this.perfilLogado == 4) {
       this.usuario = new Prestador();
       this.apiCadastro = this.apiPrestador;
+      this.buscarCompetencias();
     }
 
-    this.buscarDados();
 
 
     var $header = $('#header'),
@@ -117,9 +119,9 @@ export class PerfilComponent implements OnInit {
     this.usuario.cidade = event.target.value;
   }
 
-  setTermos() {
-    this.usuario.setTermos(true);
-  }
+  // setTermos() {
+  //   this.usuario.setTermos(true);
+  // }
 
 
   buscarEstados() {
@@ -149,7 +151,7 @@ export class PerfilComponent implements OnInit {
 
 
   salvar() {
-    this.setTermos();
+    this.usuario.setTermos(true);
     let idade = this.cadastroService.toDate(this.usuario.datanascimento);
     if (this.cadastroService.calculateAge(idade) >= 18) {
       if (this.usuario.confirmaSenha.length >= 6 && this.usuario.senha.length >= 6) {
@@ -194,6 +196,7 @@ export class PerfilComponent implements OnInit {
     this.http.post(this.apiDados, { Id: this.usuaLogado.id }).subscribe(
       res => {
         this.usuario = res;
+        console.log(this.usuario);
       },
       err => {
         console.log(err);
@@ -218,6 +221,12 @@ export class PerfilComponent implements OnInit {
     });
   }
 
+  buscarCompetencias() {
+    this.http.post(this.apiCompetencias, {}).subscribe(data => {
+      this.competencias = Object.values(data);
+      console.log(this.competencias);
+    });
+  }
 
   cancelar() {
     this.router.navigate(['/board']);
