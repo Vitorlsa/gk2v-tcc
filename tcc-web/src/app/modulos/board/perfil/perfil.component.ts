@@ -15,20 +15,23 @@ import { Router } from '@angular/router';
 export class PerfilComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router, private service: LoginService, private cadastroService: CadastroServiceService) {
-    this.buscarDados();
+    // this.buscarDados();
     this.buscarEstados();
   }
 
   public perfilLogado = null;
   public usuario = null;
   public apiContratante = "http://localhost:8080/api/contratante/editar";
-  public apiPrestador = "http://localhost:8080/api/prestador/editar";
+  private apiDadosContratante = "http://localhost:8080/api/contratante/buscar";
+  public apiPrestador = "http://localhost:8080/api/prestadordeservico/editar";
+  private apiDadosPrestador = "http://localhost:8080/api/prestadordeservico/buscar";
   public apiGestor = "http://localhost:8080/api/gestor/editar";
-  private apiDados = "http://localhost:8080/api/usuario/dadoscadastrais";
+  private apiDadosGestor = "http://localhost:8080/api/gestor/buscar";
   private apiEstados = "http://localhost:8080/api/dropdown/estados";
   private apiCidades = "http://localhost:8080/api/dropdown/cidadeporestado";
   private apiCompetencias = "http://localhost:8080/api/dropdown/competencias";
   public apiCadastro: string;
+  private apiDados: string;
   public usuaLogado = this.service.getUsuario();
   public imageSrc = "../../../../../assets/images/cadastro/usuarioPadrao.png";
 
@@ -50,20 +53,22 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit() {
     this.perfilLogado = this.service.getSessionPerfil()
-    console.log(this.perfilLogado);
 
     if (this.perfilLogado == 2) {
       this.usuario = new Usuario();
       this.apiCadastro = this.apiContratante;
+      this.apiDados = this.apiDadosContratante;
     } else if (this.perfilLogado == 3) {
       this.usuario = new Gestor();
       this.apiCadastro = this.apiGestor;
+      this.apiDados = this.apiDadosGestor;
     } else if (this.perfilLogado == 4) {
       this.usuario = new Prestador();
       this.apiCadastro = this.apiPrestador;
+      this.apiDados = this.apiDadosPrestador;
       this.buscarCompetencias();
     }
-
+    this.buscarDados();
 
 
     var $header = $('#header'),
@@ -157,17 +162,17 @@ export class PerfilComponent implements OnInit {
       if (this.usuario.confirmaSenha.length >= 6 && this.usuario.senha.length >= 6) {
         if (this.cadastroService.validateEmail(this.usuario.email)) {
           if (this.cadastroService.testaCPF(this.usuario.cpf)) {
-           // if (this.cadastroService.validaCadastro(this.usuario)) {
-              this.http.post(this.apiCadastro, this.usuario).subscribe(
-                res => {
-                  alert("Cadastro salvo com sucesso");
-                  this.cadastroService.setContratantePaciente(this.usuario);
-                },
-                err => {
-                  console.log(err);
-                });
+            // if (this.cadastroService.validaCadastro(this.usuario)) {
+            this.http.post(this.apiCadastro, this.usuario).subscribe(
+              res => {
+                alert("Cadastro salvo com sucesso");
+                this.cadastroService.setContratantePaciente(this.usuario);
+              },
+              err => {
+                console.log(err);
+              });
             //} else {
-             // alert("Campos preenchidos incorretamente");
+            // alert("Campos preenchidos incorretamente");
             //}
           } else {
             alert("cpf invalido");

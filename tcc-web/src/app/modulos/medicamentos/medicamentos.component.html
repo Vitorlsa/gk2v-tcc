@@ -55,23 +55,26 @@
       <!-- lista de medicamentos -->
       <div *ngIf="(!this.novoMedicamento && this.perfilLogado ==1) || this.perfilLogado !=1">
         <button class="addMedicamento" (click)="criarNovoRemedio()">+ medicamento</button>
-        
+
         <div class="col-lg-10" *ngIf="this.novoMedicamento && this.perfilLogado !=1">
-            <h2 class="titulo">Cadastrar novo</h2>
-          <label for="fullname" class="control-label col-lg-2" style="margin:0;">Nome medicamento<span class="required">*</span></label>
+          <h2 class="titulo">Cadastrar novo</h2>
+          <label for="fullname" class="control-label col-lg-2" style="margin:0;">Nome medicamento<span
+              class="required">*</span></label>
           <select (change)="setMedicamentoBeneficiario($event)">
             <option *ngFor="let tipo of this.todosMedicamentos" [value]="tipo.key">{{tipo.value}}</option>
           </select>
 
-          <label for="fullname" class="control-label col-lg-2" style="margin:0;">Posologia<span class="required">*</span></label>
+          <label for="fullname" class="control-label col-lg-2" style="margin:0;">Posologia<span
+              class="required">*</span></label>
           <select (change)="setMedicamentoPosologia($event)">
             <option *ngFor="let pos of this.todasPosologias" [value]="pos.key">{{pos.value}}</option>
           </select>
 
-          <label for="fullname" class="control-label col-lg-2" style="margin:0;">Quantidade<span class="required">*</span></label>
+          <label for="fullname" class="control-label col-lg-2" style="margin:0;">Quantidade<span
+              class="required">*</span></label>
           <input type="number" placeholder="Quantidade atual" min="1"
             [(ngModel)]="this.beneficiarioSelecionado.qtdMedicamento" />
-            <br/>
+          <br />
           <button (click)="salvarMedicamentoBeneficiario()">Salvar medicamento</button>
           <!-- <input [(ngModel)]="this.medicamento.Tipo" class=" form-control" id="tipo" name="tipo"
             type="text" /> -->
@@ -88,11 +91,15 @@
             <th>Nome</th>
             <th>Quantidade</th>
             <th>Dosagem</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
           </tr>
           <tr *ngFor="let medicamento of this.medicamentosPaciente">
             <td>{{medicamento.nomeMedicamento}}</td>
             <td>{{medicamento.quantidade}} </td>
             <td>{{medicamento.posologia}}</td>
+            <td><button (click)="editarMedicamentoAdm(medicamento)">Editar</button></td>
+            <td><button (click)="escluirMedicamentoAdm(medicamento)">Excluir</button></td>
           </tr>
         </table>
 
