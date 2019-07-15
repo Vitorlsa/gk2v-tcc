@@ -17,10 +17,16 @@ export class UtilsService {
   }
 
   // conversores de dados data, sexo, estado, cidade | competencias
-  converteDataServer(data) {
-    let dataConvertida = null;
-    //implementar
-    return dataConvertida;
+  modelToDate(dateStr) {
+    let [year, month, day] = dateStr.split("-");
+    day = day.slice(0, 2);
+    return new Date(year, month - 1, day).toISOString().substring(0, 10);
+  }
+
+  dateToString(dateStr) {
+    let [year, month, day] = dateStr.split("-");
+    day = day.slice(0, 2);
+    return (day + "-" + month + "-" + year).toString();
   }
 
   converteSexoServer(sexo) {

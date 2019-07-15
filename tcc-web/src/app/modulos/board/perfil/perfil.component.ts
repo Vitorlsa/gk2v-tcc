@@ -6,6 +6,7 @@ import { Prestador } from 'src/app/classes/prestador';
 import { CadastroServiceService } from '../../login/cadastro/cadastro-service.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { UtilsService } from 'src/app/funcoes/utils.service';
 
 @Component({
   selector: 'app-perfil',
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class PerfilComponent implements OnInit {
 
-  constructor(private http: HttpClient, private router: Router, private service: LoginService, private cadastroService: CadastroServiceService) {
+  constructor(private http: HttpClient, private router: Router, private service: LoginService, private cadastroService: CadastroServiceService, private utils: UtilsService) {
     // this.buscarDados();
     this.buscarEstados();
   }
@@ -56,6 +57,7 @@ export class PerfilComponent implements OnInit {
 
     if (this.perfilLogado == 2) {
       this.usuario = new Usuario();
+      this.usuario.setTermos(true);
       this.apiCadastro = this.apiContratante;
       this.apiDados = this.apiDadosContratante;
     } else if (this.perfilLogado == 3) {
@@ -156,13 +158,16 @@ export class PerfilComponent implements OnInit {
 
 
   salvar() {
-    this.usuario.setTermos(true);
-    let idade = this.cadastroService.toDate(this.usuario.datanascimento);
-    if (this.cadastroService.calculateAge(idade) >= 18) {
-      if (this.usuario.confirmaSenha.length >= 6 && this.usuario.senha.length >= 6) {
-        if (this.cadastroService.validateEmail(this.usuario.email)) {
-          if (this.cadastroService.testaCPF(this.usuario.cpf)) {
-            // if (this.cadastroService.validaCadastro(this.usuario)) {
+    try {
+      // if (this.emailJaCadastrado)
+      //   throw "E-mail ja cadastrado";
+      // if (this.cpfJaCadastrado)
+      //   throw "CPF ja cadastrado";
+      // if (this.loginJaCadastrado)
+      //   throw "Login ja cadastrado";
+
+      if (this.cadastroService.validaCadastro(this.usuario)) {
+        this.usuario.imagem = this.imageSrc;
             this.http.post(this.apiCadastro, this.usuario).subscribe(
               res => {
                 alert("Cadastro salvo com sucesso");
@@ -171,18 +176,13 @@ export class PerfilComponent implements OnInit {
               err => {
                 console.log(err);
               });
-            //} else {
-            // alert("Campos preenchidos incorretamente");
-            //}
-          } else {
-            alert("cpf invalido");
+            } else {
+              alert("Campos preenchidos incorretamente");
+            }
+          } catch (e) {
+            alert(e);
           }
-        }
-      } else {
-        alert("senha deve ter ao menos 6 caracteres");
-      }
-    }
-  }
+}
 
   saveBase64(event): void {
     const file = event.target.files[0];
@@ -201,6 +201,8 @@ export class PerfilComponent implements OnInit {
     this.http.post(this.apiDados, { Id: this.usuaLogado.id }).subscribe(
       res => {
         this.usuario = res;
+        this.usuario.dataNascimento = this.utils.modelToDate(this.usuario.dataNascimento);
+        this.usuario.sexo = this.utils.converteSexoServer(this.usuario.sexo);
         console.log(this.usuario);
       },
       err => {

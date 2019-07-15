@@ -13,19 +13,6 @@ export class CadastroServiceService {
 
   constructor(private utils: UtilsService, private http: HttpClient) { }
 
-  // validaCadastro(usuario) {
-  //   if (usuario.senha != usuario.confirmaSenha)
-  //     return false;
-  //   if (usuario.termos == 0)
-  //     return false;
-
-  //   for (var key in usuario) {
-  //     if (this.utils.nullOrUndefOrEmpty(usuario[key]))
-  //       return false;
-  //   }
-
-  //   return true
-  // }
 
   setContratantePaciente(contratante) {
     this.contratante = contratante;
