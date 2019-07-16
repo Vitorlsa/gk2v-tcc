@@ -26,7 +26,7 @@ export class PerfilComponent implements OnInit {
   private apiDadosContratante = "http://localhost:8080/api/contratante/buscar";
   public apiPrestador = "http://localhost:8080/api/prestadordeservico/editar";
   private apiDadosPrestador = "http://localhost:8080/api/prestadordeservico/buscar";
-  public apiGestor = "http://localhost:8080/api/gestor/editar";
+  public apiGestor = "http://localhost:8080/api/gestor/Editar";
   private apiDadosGestor = "http://localhost:8080/api/gestor/buscar";
   private apiEstados = "http://localhost:8080/api/dropdown/estados";
   private apiCidades = "http://localhost:8080/api/dropdown/cidadeporestado";
@@ -68,7 +68,7 @@ export class PerfilComponent implements OnInit {
       this.usuario = new Prestador();
       this.apiCadastro = this.apiPrestador;
       this.apiDados = this.apiDadosPrestador;
-      this.buscarCompetencias();
+      // this.buscarCompetencias();
     }
     this.buscarDados();
 
@@ -219,8 +219,11 @@ export class PerfilComponent implements OnInit {
             element.selected = true;
           }
         });
+
         this.setEstado(this.usuario.estado);
         console.log(this.usuario);
+        if (this.perfilLogado == 4)
+          this.buscarCompetencias();
       },
       err => {
         console.log(err);
@@ -247,7 +250,16 @@ export class PerfilComponent implements OnInit {
   buscarCompetencias() {
     this.http.post(this.apiCompetencias, {}).subscribe(data => {
       this.competencias = Object.values(data);
-
+      let comp = [];
+      console.log(this.usuario.competencias);
+      this.competencias.forEach((condicao) => {
+        this.usuario.competencias.forEach((item) => {
+          if (item == condicao.key) {
+            comp.push(condicao);
+          }
+        });
+      });
+      this.selectedItems = comp;
     });
   }
 
