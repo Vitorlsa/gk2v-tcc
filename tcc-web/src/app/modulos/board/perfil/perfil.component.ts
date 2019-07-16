@@ -22,7 +22,7 @@ export class PerfilComponent implements OnInit {
 
   public perfilLogado = null;
   public usuario = null;
-  public apiContratante = "http://localhost:8080/api/contratante/editar";
+  public apiContratante = "http://localhost:8080/api/Contratante/Editar";
   private apiDadosContratante = "http://localhost:8080/api/contratante/buscar";
   public apiPrestador = "http://localhost:8080/api/prestadordeservico/editar";
   private apiDadosPrestador = "http://localhost:8080/api/prestadordeservico/buscar";
@@ -112,18 +112,22 @@ export class PerfilComponent implements OnInit {
   }
 
   setSexo(event) {
-    this.usuario.setSexo(event.target.value);
+    this.usuario.sexo = event.target.value;
   }
 
   setEstado(event) {
-    console.log(event.target.value);
-    this.usuario.estado = event.target.value;
-    this.buscarCidades(event.target.value);
+    if (!this.utils.nullOrUndef(event.target))
+      this.usuario.estado = event.target.value;
+    else
+      this.usuario.estado = event;
+    this.buscarCidades(this.usuario.estado);
   }
 
   setCidade(event) {
-    console.log(event.target.value);
-    this.usuario.cidade = event.target.value;
+    if (!this.utils.nullOrUndef(event.target))
+      this.usuario.cidade = event.target.value;
+    else
+      this.usuario.cidade = event;
   }
 
   // setTermos() {
@@ -135,11 +139,6 @@ export class PerfilComponent implements OnInit {
     this.http.post(this.apiEstados, {}).subscribe(data => {
       console.log(data);
       this.estados = data;
-      // this.estados.forEach((element, index) => {
-      //   this.estados[index].item_id = element.key;
-      //   this.estados[index].item_text = element.value;
-      // });
-
     },
       err => {
         console.log(err);
@@ -150,6 +149,12 @@ export class PerfilComponent implements OnInit {
     this.http.post(this.apiCidades, { Uf: uf }).subscribe(data => {
       console.log(data);
       this.cidades = data;
+      let cidadeselecionada = this.usuario.cidade;
+
+      this.cidades.forEach((element, index) => {
+        if (element.key == cidadeselecionada)
+          element.selected = true;
+      });
     },
       err => {
         console.log(err);
@@ -166,23 +171,25 @@ export class PerfilComponent implements OnInit {
       // if (this.loginJaCadastrado)
       //   throw "Login ja cadastrado";
 
-      if (this.cadastroService.validaCadastro(this.usuario)) {
+      // this.usuario.sexo = this.utils.converteSexoModel(this.usuario.sexo);
+      this.usuario.sexo = parseInt(this.usuario.sexo);
+      if (this.cadastroService.validarEditarPerfil(this.usuario)) {
         this.usuario.imagem = this.imageSrc;
-            this.http.post(this.apiCadastro, this.usuario).subscribe(
-              res => {
-                alert("Cadastro salvo com sucesso");
-                this.cadastroService.setContratantePaciente(this.usuario);
-              },
-              err => {
-                console.log(err);
-              });
-            } else {
-              alert("Campos preenchidos incorretamente");
-            }
-          } catch (e) {
-            alert(e);
-          }
-}
+        this.http.post(this.apiCadastro, this.usuario).subscribe(
+          res => {
+            alert("Cadastro salvo com sucesso");
+            this.cadastroService.setContratantePaciente(this.usuario);
+          },
+          err => {
+            console.log(err);
+          });
+      } else {
+        alert("Campos preenchidos incorretamente");
+      }
+    } catch (e) {
+      alert(e);
+    }
+  }
 
   saveBase64(event): void {
     const file = event.target.files[0];
@@ -202,13 +209,18 @@ export class PerfilComponent implements OnInit {
       res => {
         this.usuario = res;
         this.usuario.dataNascimento = this.utils.modelToDate(this.usuario.dataNascimento);
-        this.usuario.sexo = this.utils.converteSexoServer(this.usuario.sexo);
+        //this.usuario.sexo = this.utils.converteSexoServer(this.usuario.sexo);
+        this.estados.forEach((element) => {
+          if (element.key == this.usuario.estado) {
+            element.selected = true;
+          }
+        });
+        this.setEstado(this.usuario.estado);
         console.log(this.usuario);
       },
       err => {
         console.log(err);
       });
-
   }
 
   setCompetencias(event) {

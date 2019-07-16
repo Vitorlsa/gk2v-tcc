@@ -104,6 +104,44 @@ export class CadastroServiceService {
     return true
   }
 
+  validarEditarPerfil(cadastro) {
+    if (cadastro.termos == 0)
+      throw "Aceite os termos";
+    try {
+      cadastro.idade = this.toDate(cadastro.dataNascimento)
+    } catch (e) {
+      throw "Data não válida";
+    }
+
+    if (this.calculateAge(cadastro.idade) < 18)
+      throw "Deve ter no mínimo 18 anos para se cadastrar";
+
+    if (!this.validateEmail(cadastro.email))
+      throw "E-mail não é válido";
+    if (!this.testaCPF(cadastro.cpf))
+      throw "CPF não é válido";
+    if (this.utils.nullOrUndefOrEmpty(cadastro.nome))
+      throw "Preencha o nome";
+    if (this.utils.nullOrUndefOrEmpty(cadastro.login))
+      throw "Preencha o login";
+    if (this.utils.nullOrUndefOrEmpty(cadastro.telefone))
+      throw "Preencha o telefone";
+
+    if (this.utils.nullOrUndefOrEmpty(cadastro.bairro))
+      throw "Preencha o bairro";
+    if (this.utils.nullOrUndefOrEmpty(cadastro.rua))
+      throw "Preencha o rua";
+    if (this.utils.nullOrUndefOrEmpty(cadastro.numero))
+      throw "Preencha o numero";
+    if (this.utils.nullOrUndefOrEmpty(cadastro.estado) || cadastro.estado == 0)
+      throw "Preencha o estado";
+    if (this.utils.nullOrUndefOrEmpty(cadastro.cidade) || cadastro.cidade == 0)
+      throw "Preencha a cidade";
+
+
+    return true
+  }
+
   // setfecharModalEditarCallback(func){
   // this.fecharCallback = func;
   // }

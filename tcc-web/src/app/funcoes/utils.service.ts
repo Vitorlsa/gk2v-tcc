@@ -16,7 +16,7 @@ export class UtilsService {
     return obj === undefined || obj == null || obj === "";
   }
 
-  // conversores de dados data, sexo, estado, cidade | competencias
+  // conversores de dados DO SERVER data, sexo, estado, cidade | competencias
   modelToDate(dateStr) {
     let [year, month, day] = dateStr.split("-");
     day = day.slice(0, 2);
@@ -34,7 +34,7 @@ export class UtilsService {
     if (sexo == 1)
       sexoConvertido = "Masculino";
     else if (sexo == 2)
-      sexoConvertido = "Femininno";
+      sexoConvertido = "Feminino";
     else
       sexoConvertido = "Outro";
     return sexoConvertido;
@@ -57,5 +57,19 @@ export class UtilsService {
     // implementar
     return competenciasConvertido;
   }
+
+
+// conversores de dados DA MODEL data, sexo, estado, cidade | competencias
+converteSexoModel(sexo) {
+  let sexoConvertido = null;
+  if (sexo == "Masculino")
+    sexoConvertido = 1;
+  else if (sexo == "Feminino")
+    sexoConvertido = 2;
+  else
+    sexoConvertido = 3;
+  return sexoConvertido;
+}
+
 
 }
