@@ -112,7 +112,10 @@ export class PerfilComponent implements OnInit {
   }
 
   setSexo(event) {
-    this.usuario.sexo = event.target.value;
+    if (!this.utils.nullOrUndefOrEmpty(event.target))
+      this.usuario.sexo = event.target.value;
+    else
+      this.usuario.sexo = event;
   }
 
   setEstado(event) {
@@ -210,6 +213,7 @@ export class PerfilComponent implements OnInit {
         this.usuario = res;
         this.usuario.dataNascimento = this.utils.modelToDate(this.usuario.dataNascimento);
         //this.usuario.sexo = this.utils.converteSexoServer(this.usuario.sexo);
+        this.setSexo(this.usuario.sexo);
         this.estados.forEach((element) => {
           if (element.key == this.usuario.estado) {
             element.selected = true;
@@ -224,12 +228,12 @@ export class PerfilComponent implements OnInit {
   }
 
   setCompetencias(event) {
-    console.log(event.key);
+
     this.usuario.competencias.push(event.key);
   }
 
   removerCompetencia(event) {
-    console.log(event.key);
+
     this.usuario.competencias.pop(event.key);
   }
 
@@ -243,7 +247,7 @@ export class PerfilComponent implements OnInit {
   buscarCompetencias() {
     this.http.post(this.apiCompetencias, {}).subscribe(data => {
       this.competencias = Object.values(data);
-      console.log(this.competencias);
+
     });
   }
 

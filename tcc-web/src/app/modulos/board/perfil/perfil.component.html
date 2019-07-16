@@ -77,11 +77,11 @@
                     <br>
                     <div class="form-group ">
                       <label for="sexo" class="control-label col-lg-2">Sexo <span class="required">*</span></label>
-                      <select (change)="setSexo($event)" id=sexo>
+                      <select (change)="setSexo($event)" id="sexo" [(ngModel)]="this.usuario.sexo" name="sexo">
                         <!-- [(ngModel)]="prestador.sexo" -->
-                        <option [value]="3">Outro</option>
-                        <option [value]="1">Masculino</option>
-                        <option [value]="2">Feminino</option>
+                        <option value="3">Outro</option>
+                        <option value="1">Masculino</option>
+                        <option value="2">Feminino</option>
                       </select>
                     </div>
                     <br>
