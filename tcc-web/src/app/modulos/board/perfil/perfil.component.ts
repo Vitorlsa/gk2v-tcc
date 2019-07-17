@@ -212,7 +212,7 @@ export class PerfilComponent implements OnInit {
       res => {
         this.usuario = res;
         this.usuario.dataNascimento = this.utils.modelToDate(this.usuario.dataNascimento);
-        //this.usuario.sexo = this.utils.converteSexoServer(this.usuario.sexo);
+        this.imageSrc = this.usuario.imagem;
         this.setSexo(this.usuario.sexo);
         this.estados.forEach((element) => {
           if (element.key == this.usuario.estado) {
