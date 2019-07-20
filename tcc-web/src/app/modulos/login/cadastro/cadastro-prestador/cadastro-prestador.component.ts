@@ -261,9 +261,22 @@ export class CadastroPrestadorComponent implements OnInit {
     console.log(event.target.value);
     this.prestador.cidade = event.target.value;
   }
-  voltar() {
-    this.router.navigate(['/cadastro']);
+
+  saveBase64(event): void {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+
+      this.prestador.curriculo = reader.result.toString();
+
+      console.log(this.prestador.curriculo);
+
+    }
+    reader.readAsDataURL(file);
   }
 
 
+  voltar() {
+    this.router.navigate(['/cadastro']);
+  }
 }

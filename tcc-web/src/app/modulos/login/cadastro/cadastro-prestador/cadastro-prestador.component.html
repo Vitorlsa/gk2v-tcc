@@ -180,6 +180,17 @@
                       </ng-multiselect-dropdown>
                       </div>
                     </div>
+
+                    <div class="form-group ">
+                      <div class="form-group ">
+                        <label for="historico" class="control-label col-lg-2">Histórico Profissional</label>
+                        <div class="col-lg-10">
+                            <input id="meuArquivo" type="file" name="file" accept=".pdf" (change)="saveBase64($event)" />
+                        </div>
+                      </div>
+                    <br>
+                    </div>
+
                     <br>
                     <div class="form-group ">
                       <label for="comentario" class="control-label col-lg-2">Comentário</label>
