@@ -7,6 +7,7 @@ export class UtilsService {
 
   constructor() { }
 
+  public server = "http://localhost:8080/";
 
   nullOrUndef(obj) {
     return obj === undefined || obj == null;

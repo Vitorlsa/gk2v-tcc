@@ -2,6 +2,7 @@ import { Sexoenum } from '../enum/sexoenum.enum';
 import { UsuarioEnum } from '../enum/usuario-enum.enum';
 
 export class Usuario {
+    public id:number;
     public nome: string;
     public login: string;
     public senha: string;

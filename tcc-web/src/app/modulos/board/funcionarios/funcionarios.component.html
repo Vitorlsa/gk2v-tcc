@@ -68,7 +68,7 @@
                       <!-- <p>Cursos: {{cadastro.cursos}}</p>
                       <br />
                       <p>Historico profissional:{{cadastro.historico}}</p> -->
-                      <button (click)="solicitar()">Solicitar</button>
+                      <button (click)="solicitar(cadastro)">Solicitar</button>
                       <button (click)="this.abreDetalhe(cadastro)">Mais detalhes</button>
                     </div>
                   </section>
@@ -80,7 +80,7 @@
                       <br>
                       <!-- <p>Competencias: {{cadastro.competencias}}</p> -->
                       <!-- <p *ngFor="let d of cadastro.desc"> | {{d}}</p> -->
-                      <button (click)="solicitar()">Solicitar</button>
+                      <button (click)="solicitar(cadastro)">Solicitar</button>
                       <button (click)="this.abreDetalhe(cadastro)">Mais detalhes</button>
                     </div>
                   </section>

@@ -3,9 +3,9 @@ import { Gestor } from 'src/app/classes/gestor';
 import { Prestador } from 'src/app/classes/prestador';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { CadastroServiceService } from '../../login/cadastro/cadastro-service.service';
 import { LoginService } from '../../login/login.service';
 import { Usuario } from 'src/app/classes/usuario';
+import { UtilsService } from 'src/app/funcoes/utils.service';
 
 @Component({
   selector: 'app-funcionarios',
@@ -14,13 +14,14 @@ import { Usuario } from 'src/app/classes/usuario';
 })
 export class FuncionariosComponent implements OnInit {
 
-  constructor(private route: Router, private http: HttpClient, private loginService: LoginService) { }
-
+  constructor(private route: Router, private http: HttpClient, private loginService: LoginService, private utils: UtilsService) { }
 
   private apiListarGestores = "http://localhost:8080/api/gestor/listargestoresproximos";
   private apiListarPrestadores = "http://localhost:8080/api/gestor/listarprestadoresproximos";
   private apiBuscarContratante = "http://localhost:8080/api/contratante/buscar";
+  private apiSolicitar = this.utils.server + "api/contratante/solicitarcontrato"
 
+  public contrantante = new Usuario();
   public gestor = new Gestor();
   public prestadores = [new Prestador()];
   public todosGestores;
@@ -30,10 +31,9 @@ export class FuncionariosComponent implements OnInit {
 
   public buscarProfissionais = false;
   public perfilLogado = this.loginService.getSessionPerfil();
-  
+
 
   ngOnInit() {
-  
     //this.pegarVinculos();
     this.pegarDadosCOntratante();
     var $header = $('#header'),
@@ -67,7 +67,6 @@ export class FuncionariosComponent implements OnInit {
 
 
   pegarVinculos(cidadeId) {
-
     this.pegarGestoresContratados(cidadeId);
     this.pegarPrestadoresContratados(cidadeId);
   }
@@ -76,8 +75,8 @@ export class FuncionariosComponent implements OnInit {
   pegarDadosCOntratante() {
     this.http.post(this.apiBuscarContratante, { Id: this.loginService.getUsuario().id }).subscribe(data => {
       console.log(data);
-      let  usuario = <Usuario>data;
-      this.pegarVinculos(usuario.cidade);
+      this.contrantante = <Usuario>data;
+      this.pegarVinculos(this.contrantante.cidade);
     },
       err => {
         console.log(err);
@@ -112,23 +111,24 @@ export class FuncionariosComponent implements OnInit {
     console.log(funcionario);
   }
 
-
-
-  solicitar() {
-
+  solicitar(contratado) {
+    this.http.post(this.apiSolicitar, { 
+      IdContratante: this.contrantante.id,
+      IdUsuario: contratado.id
+      })
+    .subscribe(data => {
+      alert("Solicitação realizada!")
+    },
+      err => {
+        console.log(err);
+      });
   }
 
   remover(funcionario) {
     console.log(funcionario);
   }
 
-
-
-
   voltarBoard() {
     this.route.navigate(['/board']);
   }
-
-
-
 }
