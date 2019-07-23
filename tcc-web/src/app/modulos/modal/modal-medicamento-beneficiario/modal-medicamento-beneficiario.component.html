@@ -1,0 +1,40 @@
+<!-- <label class="btn" for="modal-one">Selecionar Perfil</label> -->
+<!-- Modal One -->
+<div class="modal">
+  <input class="modal-open" id="modal-one" type="checkbox" hidden>
+  <div class="modal-wrap" aria-hidden="true" role="dialog">
+    <label class="modal-overlay" for="modal-one"></label>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 class="titulo">Dados cadastrais</h2>
+        <!-- <label class="btn-close" for="modal-one" aria-hidden="true">×</label> -->
+      </div>
+      <div class="modal-body">
+
+        <div class="form-group ">
+          <label for="fullname" class="control-label col-lg-2">Via de uso<span class="required">*</span></label>
+          <div class="col-lg-10">
+            <select (change)="setPosologia($event)" placeholder="this.posologiaMedicamento">
+              <option *ngFor="let pos of this.posologiaMedicamento" [selected]="pos.selected" [value]="pos.key">{{pos.value}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        
+        <div class="form-group ">
+          <label for="fullname" class="control-label col-lg-2">Quantidade<span class="required">*</span></label>
+          <div class="col-lg-10">
+            <input type="number" [(ngModel)]="this.medicamentoCompleto.quantidade" />
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <!-- <label class="btn btn-primary" for="modal-one" (click)="fecha()">Nice!</label> -->
+          <button (click)="fechar()">Cancelar</button>
+          <button (click)="atualizarMedicamento(this.medicamentoCompleto)">Atualizar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

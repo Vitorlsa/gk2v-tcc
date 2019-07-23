@@ -232,5 +232,10 @@
     </div>
   </footer>
 
-  <app-modal-editar-medicamento *ngIf="!this.util.nullOrUndef(this.medicamentoSelecionado)"
+  <app-modal-editar-medicamento *ngIf="!this.util.nullOrUndef(this.medicamentoSelecionado) && this.perfilLogado == 1"
     [medicamentoSelecionado]="this.medicamentoSelecionado"></app-modal-editar-medicamento>
+
+
+  <app-modal-medicamento-beneficiario
+    *ngIf="!this.util.nullOrUndef(this.medicamentoSelecionado) && this.perfilLogado != 1"
+    [medicamentoSelecionado]="this.medicamentoSelecionado"></app-modal-medicamento-beneficiario>
