@@ -31,6 +31,7 @@ export class PerfilComponent implements OnInit {
   private apiEstados = "http://localhost:8080/api/dropdown/estados";
   private apiCidades = "http://localhost:8080/api/dropdown/cidadeporestado";
   private apiCompetencias = "http://localhost:8080/api/dropdown/competencias";
+  private apiDownloadCurriculo = this.utils.server + "api/DownloadController/BaixarCurriculoPorUsuario"
   public apiCadastro: string;
   private apiDados: string;
   public usuaLogado = this.service.getUsuario();
@@ -167,14 +168,6 @@ export class PerfilComponent implements OnInit {
 
   salvar() {
     try {
-      // if (this.emailJaCadastrado)
-      //   throw "E-mail ja cadastrado";
-      // if (this.cpfJaCadastrado)
-      //   throw "CPF ja cadastrado";
-      // if (this.loginJaCadastrado)
-      //   throw "Login ja cadastrado";
-
-      // this.usuario.sexo = this.utils.converteSexoModel(this.usuario.sexo);
       this.usuario.sexo = parseInt(this.usuario.sexo);
       if (this.cadastroService.validarEditarPerfil(this.usuario)) {
         this.usuario.imagem = this.imageSrc;
@@ -222,6 +215,7 @@ export class PerfilComponent implements OnInit {
 
         this.setEstado(this.usuario.estado);
         console.log(this.usuario);
+        this.buscarCurriculo(this.usuario.id);
         if (this.perfilLogado == 4)
           this.buscarCompetencias();
       },
@@ -231,12 +225,10 @@ export class PerfilComponent implements OnInit {
   }
 
   setCompetencias(event) {
-
     this.usuario.competencias.push(event.key);
   }
 
   removerCompetencia(event) {
-
     this.usuario.competencias.pop(event.key);
   }
 
@@ -263,6 +255,13 @@ export class PerfilComponent implements OnInit {
     });
   }
 
+
+  buscarCurriculo(id) {
+
+    this.http.get(this.apiDownloadCurriculo + "?id=" + id ).subscribe(data => {
+      this.usuario.curriculo = data;
+    });
+  }
   cancelar() {
     this.router.navigate(['/board']);
   }
