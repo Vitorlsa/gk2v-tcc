@@ -4,7 +4,7 @@ import { Usuario } from 'src/app/classes/usuario';
 import { Gestor } from 'src/app/classes/gestor';
 import { Prestador } from 'src/app/classes/prestador';
 import { CadastroServiceService } from '../../login/cadastro/cadastro-service.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UtilsService } from 'src/app/funcoes/utils.service';
 
@@ -31,7 +31,7 @@ export class PerfilComponent implements OnInit {
   private apiEstados = "http://localhost:8080/api/dropdown/estados";
   private apiCidades = "http://localhost:8080/api/dropdown/cidadeporestado";
   private apiCompetencias = "http://localhost:8080/api/dropdown/competencias";
-  private apiDownloadCurriculo = this.utils.server + "api/DownloadController/BaixarCurriculoPorUsuario"
+  private apiDownloadCurriculo = "http://localhost:8080/api/DownloadController/BaixarCurriculoPorUsuario"
   public apiCadastro: string;
   private apiDados: string;
   public usuaLogado = this.service.getUsuario();
@@ -257,8 +257,8 @@ export class PerfilComponent implements OnInit {
 
 
   buscarCurriculo(id) {
-
-    this.http.get(this.apiDownloadCurriculo + "?id=" + id ).subscribe(data => {
+    let params1 = new HttpParams().set('id', id);
+    this.http.get(this.apiDownloadCurriculo, { params: params1 }).subscribe(data => {
       this.usuario.curriculo = data;
     });
   }
