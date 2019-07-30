@@ -23,10 +23,10 @@ export class MedicamentosComponent implements OnInit {
   private apiListar = "http://localhost:8080/api/beneficiario/listarmedicamento";
   private apiRemoverAdm = "http://localhost:8080/api/medicamento/remover";
   private apiListarAdm = "http://localhost:8080/api/medicamento/listar";
-  private apiRemoverMedBenef = "http://localhost:8080/api/beneficiario/remover"; // precisa ver esse no server
-  private apiDetalharMedBenef = "http://localhost:8080/api/beneficiario/detalhesmedicamento";
-  private apiEditarMedBenef = "http://localhost:8080/api/beneficiario/editarmedicamento";
-  
+  private apiRemoverMedBenef = "http://localhost:8080/api/beneficiario/removermedicamento"; // precisa ver esse no server
+  //private apiDetalharMedBenef = "http://localhost:8080/api/beneficiario/detalhesmedicamento";
+  //private apiEditarMedBenef = "http://localhost:8080/api/beneficiario/editarmedicamento";
+
   private apiListarBeneficiario = "http://localhost:8080/api/beneficiario/listarporcontratante";
   private apiDropTipoMedicamento = "http://localhost:8080/api/dropdown/tipomedicamento";
   private apiDropMedicamentos = "http://localhost:8080/api/dropdown/medicamentos";
@@ -58,7 +58,7 @@ export class MedicamentosComponent implements OnInit {
     allowSearchFilter: true
   };
 
-  public pesquisa:string;
+  public pesquisa: string;
 
   ngOnInit() {
 
@@ -154,16 +154,16 @@ export class MedicamentosComponent implements OnInit {
     }
   }
 
-  escluirMedicamentoAdm(param){
+  excluirMedicamentoAdm(param) {
     try {
-      this.http.post(this.apiRemoverAdm, {Id: param.id}).subscribe(data => {
+      this.http.post(this.apiRemoverAdm, { Id: param.id }).subscribe(data => {
         this.listarMedicamentosAdm();
       })
     } catch{
       console.log("nao chamaou api");
     }
   }
-/*Fim ADM */
+  /*Fim ADM */
 
 
   criarNovoRemedio() {
@@ -253,7 +253,7 @@ export class MedicamentosComponent implements OnInit {
   setViaDeUso(event) {
     this.medicamento.viaDeUso = event.target.value;
   }
-  
+
 
   @Output()
   emitir = new EventEmitter<any>();
@@ -264,11 +264,12 @@ export class MedicamentosComponent implements OnInit {
     this.emitir.emit(this.medicamentoSelecionado);
   }
 
-// BENEFICIARIO
-  escluirMedicamentoBeneficiario(param){
+  // BENEFICIARIO
+  escluirMedicamentoBeneficiario(param) {
     try {
-      this.http.post(this.apiRemoverMedBenef, {Id: param.id}).subscribe(data => {
-        
+      this.http.post(this.apiRemoverMedBenef, { Id: param.id }).subscribe(data => {
+        alert("medicamento excluido");
+        this.listarRemedios();
       })
     } catch{
       console.log("nao chamaou api");
@@ -276,26 +277,26 @@ export class MedicamentosComponent implements OnInit {
   }
 
 
-  detalharMedicamentoBeneficiario(param){
-    try {
-      this.http.post(this.apiDetalharMedBenef, {Id: param.id}).subscribe(data => {
-        //implementar
-      })
-    } catch{
-      console.log("nao chamaou api");
-    }
-  }
+  // detalharMedicamentoBeneficiario(param) {
+  //   try {
+  //     this.http.post(this.apiDetalharMedBenef, { Id: param.id }).subscribe(data => {
+  //       //implementar
+  //     })
+  //   } catch{
+  //     console.log("nao chamaou api");
+  //   }
+  // }
 
 
-  editarMedicamentoBeneficiario(param){
-    try {
-      this.http.post(this.apiEditarMedBenef, {Id: param.id}).subscribe(data => {
-        // implementar
-      })
-    } catch{
-      console.log("nao chamaou api");
-    }
-  }
+  // editarMedicamentoBeneficiario(param) {
+  //   try {
+  //     this.http.post(this.apiEditarMedBenef, { Id: param.id }).subscribe(data => {
+  //       // implementar
+  //     })
+  //   } catch{
+  //     console.log("nao chamaou api");
+  //   }
+  // }
 
   salvarMedicamentoBeneficiario() {
     var payload = {
@@ -306,18 +307,18 @@ export class MedicamentosComponent implements OnInit {
     };
 
     try {
-      if(this.util.nullOrUndef(payload.BeneficiarioId) || this.util.nullOrUndef(payload.MedicamentoId) || this.util.nullOrUndef(payload.PosologiaId) ||this.util.nullOrUndef(payload.Quantidade) )
-      throw "É necessário preencher nome, posologia e quantidade";
+      if (this.util.nullOrUndef(payload.BeneficiarioId) || this.util.nullOrUndef(payload.MedicamentoId) || this.util.nullOrUndef(payload.PosologiaId) || this.util.nullOrUndef(payload.Quantidade))
+        throw "É necessário preencher nome, posologia e quantidade";
 
       this.http.post(this.apiSalvarMedicamentoBeneficiario, payload).subscribe(data => {
         console.log(data);
         alert("Medicamento salvo!");
         this.listarRemedios();
       });
-    } catch(e){
-      alert( e || "É necessário preencher nome, posologia e quantidade");
+    } catch (e) {
+      alert(e || "É necessário preencher nome, posologia e quantidade");
     }
   }
-// FIM BENEFICIARIO 
+  // FIM BENEFICIARIO 
 
 }

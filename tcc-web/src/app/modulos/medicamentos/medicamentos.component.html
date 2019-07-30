@@ -99,7 +99,7 @@
             <td>{{medicamento.quantidade}} </td>
             <td>{{medicamento.posologia}}</td>
             <td><button (click)="editarMedicamentoAdm(medicamento)">Editar</button></td>
-            <td><button (click)="escluirMedicamentoAdm(medicamento)">Excluir</button></td>
+            <td><button (click)="escluirMedicamentoBeneficiario(medicamento)">Excluir</button></td>
           </tr>
         </table>
 
@@ -112,7 +112,7 @@
           <tr *ngFor="let medicamento of this.medicamentosPaciente">
             <td>{{medicamento.nome}}</td>
             <td><button (click)="editarMedicamentoAdm(medicamento)">Editar</button></td>
-            <td><button (click)="escluirMedicamentoAdm(medicamento)">Excluir</button></td>
+            <td><button (click)="excluirMedicamentoAdm(medicamento)">Excluir</button></td>
           </tr>
         </table>
 
