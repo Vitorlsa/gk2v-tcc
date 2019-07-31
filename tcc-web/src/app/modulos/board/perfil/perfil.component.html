@@ -171,6 +171,16 @@
                     <br>
                     </div>
 
+                    <div class="form-group " *ngIf="this.perfilLogado == 3 || this.perfilLogado == 4">
+                      <div class="form-group ">
+  
+                        <a href="http://localhost:8080/api/download/baixarcurriculoporusuario?id=3" download="curriculo.pdf" title="curriculo.pdf" filename="curriculo.pdf" id="download">Baixar curriculo</a>
+                      </div>
+                    <br>
+                    </div>
+
+                    <button (click)="pegarPorCep(01001000)" type="button">CEEEEP</button>
+
                     <div class="form-group " *ngIf="this.perfilLogado == 4">
                       <div class="form-group ">
                         <label for="competencias" class="control-label col-lg-2">Competências <span

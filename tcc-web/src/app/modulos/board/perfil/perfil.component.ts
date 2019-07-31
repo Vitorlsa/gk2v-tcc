@@ -4,7 +4,7 @@ import { Usuario } from 'src/app/classes/usuario';
 import { Gestor } from 'src/app/classes/gestor';
 import { Prestador } from 'src/app/classes/prestador';
 import { CadastroServiceService } from '../../login/cadastro/cadastro-service.service';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UtilsService } from 'src/app/funcoes/utils.service';
 
@@ -215,7 +215,7 @@ export class PerfilComponent implements OnInit {
 
         this.setEstado(this.usuario.estado);
         console.log(this.usuario);
-        this.buscarCurriculo(this.usuario.id);
+        // this.buscarCurriculo(this.usuario.id);
         if (this.perfilLogado == 4)
           this.buscarCompetencias();
       },
@@ -262,6 +262,16 @@ export class PerfilComponent implements OnInit {
       this.usuario.curriculo = data;
     });
   }
+
+
+  public apiPegarPorCep = 'https://viacep.com.br/ws/';
+  pegarPorCep(cep){
+    this.http.get(this.apiPegarPorCep + cep + '/json/').subscribe(data => {
+      console.log(data);
+    });
+  }
+
+
   cancelar() {
     this.router.navigate(['/board']);
   }
