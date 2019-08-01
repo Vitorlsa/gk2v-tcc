@@ -7,6 +7,7 @@ import { CadastroServiceService } from '../../login/cadastro/cadastro-service.se
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UtilsService } from 'src/app/funcoes/utils.service';
+let fileUpload = require('fuctbase64');
 
 @Component({
   selector: 'app-perfil',
@@ -36,10 +37,12 @@ export class PerfilComponent implements OnInit {
   private apiDados: string;
   public usuaLogado = this.service.getUsuario();
   public imageSrc = "../../../../../assets/images/cadastro/usuarioPadrao.png";
-
+  public fileResult: any;
+  private uploadFinalizado = false;
   public competencias = [];
   public cidades = null;
   public estados = null;
+
 
   dropdownList = [];
   selectedItems = [];
@@ -54,6 +57,7 @@ export class PerfilComponent implements OnInit {
   };
 
   ngOnInit() {
+
     this.perfilLogado = this.service.getSessionPerfil()
 
     if (this.perfilLogado == 2) {
@@ -112,6 +116,8 @@ export class PerfilComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
+
+
   setSexo(event) {
     if (!this.utils.nullOrUndefOrEmpty(event.target))
       this.usuario.sexo = event.target.value;
@@ -169,7 +175,10 @@ export class PerfilComponent implements OnInit {
   salvar() {
     try {
       this.usuario.sexo = parseInt(this.usuario.sexo);
+
       if (this.cadastroService.validarEditarPerfil(this.usuario)) {
+        if (!this.uploadFinalizado)
+          throw alert("Aguarde upload do currículo, tente novamente");
         this.usuario.imagem = this.imageSrc;
         this.http.post(this.apiCadastro, this.usuario).subscribe(
           res => {
@@ -187,16 +196,24 @@ export class PerfilComponent implements OnInit {
     }
   }
 
-  saveBase64(event): void {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.usuario.curriculo = reader.result.toString();
+  // let fileUpload = require('fuctbase64');
 
-      console.log(this.usuario.curriculo);
+  saveBase64(event) {
+    let result = fileUpload(event).then(result => {
+      this.usuario.curriculo = result.base64;
+      this.fileResult = result;
+      this.uploadFinalizado = true;
+    });
 
-    }
-    reader.readAsDataURL(file);
+    // const file = event.target.files[0];
+    // const reader = new FileReader();
+    // reader.onload = () => {
+    //   this.usuario.curriculo = reader.result.toString();
+
+    //   console.log(this.usuario.curriculo);
+
+    // }
+    // reader.readAsDataURL(file);
   }
 
 
@@ -265,7 +282,7 @@ export class PerfilComponent implements OnInit {
 
 
   public apiPegarPorCep = 'https://viacep.com.br/ws/';
-  pegarPorCep(cep){
+  pegarPorCep(cep) {
     this.http.get(this.apiPegarPorCep + cep + '/json/').subscribe(data => {
       console.log(data);
     });
