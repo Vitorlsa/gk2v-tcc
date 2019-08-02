@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CadastroServiceService } from '../cadastro-service.service';
 import { Gestor } from 'src/app/classes/gestor';
-
+let fileUpload = require('fuctbase64');
 @Component({
   selector: 'app-cadastro-gestor',
   templateUrl: './cadastro-gestor.component.html',
@@ -30,7 +30,7 @@ export class CadastroGestorComponent implements OnInit {
 
   public imageSrc = "../../../../../assets/images/cadastro/usuarioPadrao.png";
   public gestor = new Gestor();
-
+  private uploadFinalizado = false;
 
   dropdownList = [];
   selectedItems = [];
@@ -191,16 +191,11 @@ export class CadastroGestorComponent implements OnInit {
   }
 
   saveBase64(event): void {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-
-      this.gestor.curriculo = reader.result.toString();
-
-      console.log(this.gestor.curriculo);
-
-    }
-    reader.readAsDataURL(file);
+    let result = fileUpload(event).then(result => {
+      this.gestor.curriculo = result.base64;
+      //this.fileResult = result;
+      this.uploadFinalizado = true;
+    });
   }
 
   previewImagem(event): void {

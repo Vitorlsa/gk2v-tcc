@@ -140,11 +140,6 @@ export class PerfilComponent implements OnInit {
       this.usuario.cidade = event;
   }
 
-  // setTermos() {
-  //   this.usuario.setTermos(true);
-  // }
-
-
   buscarEstados() {
     this.http.post(this.apiEstados, {}).subscribe(data => {
       console.log(data);

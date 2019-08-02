@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CadastroServiceService } from '../cadastro-service.service';
 import { Prestador } from 'src/app/classes/prestador';
-import { GLOBAL_PUBLISH_EXPANDO_KEY } from '@angular/core/src/render3/global_utils';
-
+let fileUpload = require('fuctbase64');
 @Component({
   selector: 'app-cadastro-prestador',
   templateUrl: './cadastro-prestador.component.html',
@@ -24,7 +23,7 @@ export class CadastroPrestadorComponent implements OnInit {
   private apiCidades = "http://localhost:8080/api/dropdown/cidadeporestado";
   public prestador = new Prestador();
   public imageSrc = "../../../../../assets/images/cadastro/usuarioPadrao.png";
-
+  public fileResult: any;
   public cidades = null;
   public estados = null;
   public cpfJaCadastrado = false;
@@ -34,7 +33,7 @@ export class CadastroPrestadorComponent implements OnInit {
   private apiCompetencias = "http://localhost:8080/api/dropdown/competencias";
   private apiVerificaLogin = "http://localhost:8080/api/usuario/verificarlogincadastrado";
   public loginJaCadastrado = false;
-
+  private uploadFinalizado = false;
   public competencias = [];
   public dropdownList = [];
   public selectedItems = [];
@@ -263,16 +262,11 @@ export class CadastroPrestadorComponent implements OnInit {
   }
 
   saveBase64(event): void {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-
-      this.prestador.curriculo = reader.result.toString();
-
-      console.log(this.prestador.curriculo);
-
-    }
-    reader.readAsDataURL(file);
+    let result = fileUpload(event).then(result => {
+      this.prestador.curriculo = result.base64;
+      this.fileResult = result;
+      this.uploadFinalizado = true;
+    });
   }
 
 
