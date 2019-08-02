@@ -16,7 +16,7 @@ let fileUpload = require('fuctbase64');
 })
 export class PerfilComponent implements OnInit {
 
-  constructor(private http: HttpClient, private router: Router, private service: LoginService, private cadastroService: CadastroServiceService, private utils: UtilsService) {
+  constructor(private http: HttpClient, private router: Router, private service: LoginService, private cadastroService: CadastroServiceService, public utils: UtilsService) {
     // this.buscarDados();
     this.buscarEstados();
   }
