@@ -126,8 +126,10 @@
                     <div class="form-group ">
                       <label for="cep" class="control-label col-lg-2">CEP <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input [(ngModel)]="usuario.cep" mask="00000-000" class="form-control " id="cep" name="cep"
+                        <input [(ngModel)]="usuario.cep" mask="00000-000" (blur)="this.pegarPorCep(usuario.cep)" class="form-control " id="cep" name="cep"
                           type="text" />
+                          <p *ngIf="this.cepErrado" style="color:red;">cep não existe</p>
+
                       </div>
                     </div>
                     <div class="form-group ">

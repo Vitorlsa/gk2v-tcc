@@ -32,7 +32,9 @@ export class PerfilComponent implements OnInit {
   private apiEstados = "http://localhost:8080/api/dropdown/estados";
   private apiCidades = "http://localhost:8080/api/dropdown/cidadeporestado";
   private apiCompetencias = "http://localhost:8080/api/dropdown/competencias";
-  private apiDownloadCurriculo = "http://localhost:8080/api/DownloadController/BaixarCurriculoPorUsuario"
+  private apiDownloadCurriculo = "http://localhost:8080/api/DownloadController/BaixarCurriculoPorUsuario";
+  public apiPegarPorCep = this.utils.server + 'api/ChamadasExternas/BuscarEnderecoPorCep';
+  public cepErrado = false;
   public apiCadastro: string;
   private apiDados: string;
   public usuaLogado = this.service.getUsuario();
@@ -276,9 +278,9 @@ export class PerfilComponent implements OnInit {
   }
 
 
-  public apiPegarPorCep = 'https://viacep.com.br/ws/';
-  pegarPorCep(cep) {
-    this.http.get(this.apiPegarPorCep + cep + '/json/').subscribe(data => {
+  pegarPorCep(usuaCep) {
+    this.http.post(this.apiPegarPorCep, { cep: usuaCep }).subscribe(data => {
+      this.cepErrado = true;
       console.log(data);
     });
   }
