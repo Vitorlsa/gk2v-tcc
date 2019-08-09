@@ -7,6 +7,7 @@ import { CadastroServiceService } from '../../login/cadastro/cadastro-service.se
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UtilsService } from 'src/app/funcoes/utils.service';
+import { Endereco } from 'src/app/classes/endereco';
 let fileUpload = require('fuctbase64');
 
 @Component({
@@ -278,10 +279,19 @@ export class PerfilComponent implements OnInit {
   }
 
 
-  pegarPorCep(usuaCep) {
-    this.http.post(this.apiPegarPorCep, { cep: usuaCep }).subscribe(data => {
-      this.cepErrado = true;
+  pegarPorCep(usuaCep:string) {
+    
+    this.http.post(this.apiPegarPorCep + "?cep="+ usuaCep, usuaCep).subscribe(data => {
+      let resposta = <Endereco>data
+      this.usuario.bairro = resposta.bairro;
+      this.usuario.rua = resposta.rua;
+      this.setEstado(resposta.uf);
+      this.setCidade(resposta.idCidade);
       console.log(data);
+    },
+    err => {
+      console.log(err);
+      this.cepErrado = true;
     });
   }
 
