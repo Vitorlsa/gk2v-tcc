@@ -21,7 +21,7 @@ export class PerfilComponent implements OnInit {
     // this.buscarDados();
     this.buscarEstados();
   }
-
+  mostraEstado = true;
   public perfilLogado = null;
   public usuario = null;
   public apiContratante = "http://localhost:8080/api/Contratante/Editar";
@@ -131,8 +131,16 @@ export class PerfilComponent implements OnInit {
   setEstado(event) {
     if (!this.utils.nullOrUndef(event.target))
       this.usuario.estado = event.target.value;
-    else
+    else {
       this.usuario.estado = event;
+
+      // let estadoselecionada = this.usuario.estado;
+
+      // this.estados.forEach((element, index) => {
+      //   if (element.key == estadoselecionada)
+      //     element.selected = true;
+      // });
+    }
     this.buscarCidades(this.usuario.estado);
   }
 
@@ -279,20 +287,28 @@ export class PerfilComponent implements OnInit {
   }
 
 
-  pegarPorCep(usuaCep:string) {
-    
-    this.http.post(this.apiPegarPorCep + "?cep="+ usuaCep, usuaCep).subscribe(data => {
+  pegarPorCep(usuaCep: string) {
+    this.mostraEstado = false;
+    this.http.post(this.apiPegarPorCep + "?cep=" + usuaCep, usuaCep).subscribe(data => {
       let resposta = <Endereco>data
       this.usuario.bairro = resposta.bairro;
       this.usuario.rua = resposta.rua;
+      this.mostraEstado = true;
+
+      this.estados.forEach((element) => {
+        if (element.key == resposta.uf) {
+          element.selected = true;
+        }
+      });
+
       this.setEstado(resposta.uf);
       this.setCidade(resposta.idCidade);
       console.log(data);
     },
-    err => {
-      console.log(err);
-      this.cepErrado = true;
-    });
+      err => {
+        console.log(err);
+        this.cepErrado = true;
+      });
   }
 
 

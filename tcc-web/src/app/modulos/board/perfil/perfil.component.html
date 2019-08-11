@@ -104,8 +104,8 @@
                     <div class="form-group ">
                       <label for="UF" class="control-label col-lg-2">Estado <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <select (change)="setEstado($event)">
-                          <option *ngFor="let estado of this.estados" [selected]="estado.selected" [value]="estado.key">{{estado.value}}</option>
+                        <select (change)="setEstado($event)" *ngIf="this.mostraEstado">
+                          <option *ngFor="let estado of this.estados" [selected]="!this.utils.nullOrUndef(estado.selected)" [value]="estado.key">{{estado.value}}</option>
                         </select>
                       </div>
                     </div>
