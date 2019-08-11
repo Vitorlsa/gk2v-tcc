@@ -173,7 +173,7 @@
                     <br>
                     </div>
 
-                    <div class="form-group " *ngIf="(this.perfilLogado == 3 || this.perfilLogado == 4) ">
+                    <div class="form-group " *ngIf="(this.perfilLogado == 3 || this.perfilLogado == 4) && !this.utils.nullOrUndefOrEmpty(usuario.curriculo)">
                       <div class="form-group ">
   
                         <a href="http://localhost:8080/api/download/baixarcurriculoporusuario?id={{this.usuario.id}}" download="curriculo.pdf" title="curriculo.pdf" filename="curriculo.pdf" id="download">Baixar curriculo</a>

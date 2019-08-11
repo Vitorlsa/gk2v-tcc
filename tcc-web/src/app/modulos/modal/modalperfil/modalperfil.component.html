@@ -1,14 +1,14 @@
-<label class="btn" for="modal-one">Selecionar Perfil</label>
+<label class="btn" >Selecionar Perfil</label>
 <!-- Modal One -->
 <div class="modal">
   <input class="modal-open" id="modal-one" type="checkbox" hidden>
   <div class="modal-wrap" aria-hidden="true" role="dialog">
-    <label class="modal-overlay" for="modal-one"></label>
+    <label class="modal-overlay"></label>
     <div class="modal-dialog" style="top: 52%; height: 630px;">
       <div class="modal-header">
         <h2 class="titulo">Vimos que você possui diversos perfis</h2>
         <p class="titulo">Como deseja acessar?</p>
-        <!-- <label class="btn-close" for="modal-one" aria-hidden="true">×</label> -->
+        <label class="btn-close" aria-hidden="true">×</label>
       </div>
       <div class="modal-body">
         <a *ngIf="tipoU.includes(2)" style="cursor: pointer" (click)="this.selecionaPerfil(2)"><img class="imgsPerfil"
