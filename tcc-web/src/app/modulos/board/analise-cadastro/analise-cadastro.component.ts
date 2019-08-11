@@ -150,4 +150,8 @@ export class AnaliseCadastroComponent implements OnInit {
     this.router.navigate(['/board']);
   }
 
+  modalFechada(listar: boolean) {
+    this.cadastroSelecionado = null;
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
@@ -41,7 +41,15 @@ trazerDados(id){
     $('.modal-open').prop('checked', false);
   }
 
+  @Output()
+  fecharModal = new EventEmitter<any>();
 
+  fechar(listar: boolean) {
+    //this.utils.nullOrUndef(listar) ? false : listar;
+    this.fecharModal.emit(listar);
+    //$('.modal-open').prop('checked', false);
+    //location.reload();
+  }
 
 
 }

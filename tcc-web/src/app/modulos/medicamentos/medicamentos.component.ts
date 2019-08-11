@@ -276,28 +276,6 @@ export class MedicamentosComponent implements OnInit {
     }
   }
 
-
-  // detalharMedicamentoBeneficiario(param) {
-  //   try {
-  //     this.http.post(this.apiDetalharMedBenef, { Id: param.id }).subscribe(data => {
-  //       //implementar
-  //     })
-  //   } catch{
-  //     console.log("nao chamaou api");
-  //   }
-  // }
-
-
-  // editarMedicamentoBeneficiario(param) {
-  //   try {
-  //     this.http.post(this.apiEditarMedBenef, { Id: param.id }).subscribe(data => {
-  //       // implementar
-  //     })
-  //   } catch{
-  //     console.log("nao chamaou api");
-  //   }
-  // }
-
   salvarMedicamentoBeneficiario() {
     var payload = {
       BeneficiarioId: this.beneficiarioSelecionado.id,
@@ -320,5 +298,18 @@ export class MedicamentosComponent implements OnInit {
     }
   }
   // FIM BENEFICIARIO 
+
+  modalFechada(listar: boolean) {
+    this.medicamentoSelecionado = null;
+    if (listar)
+      this.listarMedicamentosAdm();
+  }
+
+  modalFechadaBenef(listar: boolean) {
+    this.medicamentoSelecionado = null;
+    if (listar)
+      this.listarRemedios();
+
+  }
 
 }

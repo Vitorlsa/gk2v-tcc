@@ -68,7 +68,7 @@ export class ModalMedicamentoBeneficiarioComponent implements OnInit {
       this.http.post(this.apiEditar, param).subscribe(
         res => {
           alert("Medicamento atualizado");
-          this.fechar();
+          this.fechar(true);
         },
         err => {
           console.log(err);
@@ -99,11 +99,15 @@ export class ModalMedicamentoBeneficiarioComponent implements OnInit {
     this.emitir.emit(this.pacienteSelecionado);
   }
 
+  @Output()
+  fecharModal = new EventEmitter<any>();
 
-  fechar() {
+  fechar(listar: boolean) {
+    this.utils.nullOrUndef(listar) ? false : listar;
+    this.fecharModal.emit(listar);
     $('.modal-open').prop('checked', false);
-    location.reload();
   }
+
 
 
 }

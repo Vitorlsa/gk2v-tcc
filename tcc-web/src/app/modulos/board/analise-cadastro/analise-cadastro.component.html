@@ -108,4 +108,4 @@
 </footer>
 <!-- <app-modal-analise *ngIf="!this.util.nullOrUndef(this.cadastroSelecionado)" (emitir)="abreDetalhe($event)"></app-modal-analise> -->
 <app-modal-analise *ngIf="!this.util.nullOrUndef(this.cadastroSelecionado)"
-  [cadastroSelecionado]="this.cadastroSelecionado"></app-modal-analise>
+  [cadastroSelecionado]="this.cadastroSelecionado" (fecharModal)="modalFechada($event)"></app-modal-analise>

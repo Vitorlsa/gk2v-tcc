@@ -233,9 +233,9 @@
   </footer>
 
   <app-modal-editar-medicamento *ngIf="!this.util.nullOrUndef(this.medicamentoSelecionado) && this.perfilLogado == 1"
-    [medicamentoSelecionado]="this.medicamentoSelecionado"></app-modal-editar-medicamento>
+    [medicamentoSelecionado]="this.medicamentoSelecionado" (fecharModal)="modalFechada($event)"></app-modal-editar-medicamento>
 
 
   <app-modal-medicamento-beneficiario
     *ngIf="!this.util.nullOrUndef(this.medicamentoSelecionado) && this.perfilLogado != 1"
-    [medicamentoSelecionado]="this.medicamentoSelecionado"></app-modal-medicamento-beneficiario>
+    [medicamentoSelecionado]="this.medicamentoSelecionado" (fecharModal)="modalFechadaBenef($event)"></app-modal-medicamento-beneficiario>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CadastroServiceService } from '../../login/cadastro/cadastro-service.service';
 import { UtilsService } from 'src/app/funcoes/utils.service';
@@ -89,7 +89,7 @@ export class ModalEditarMedicamentoComponent implements OnInit {
       this.http.post(this.apiEditar, param).subscribe(
         res => {
           alert("Medicamento atualizado");
-          this.fechar();
+          this.fechar(true);
         },
         err => {
           console.log(err);
@@ -127,10 +127,13 @@ export class ModalEditarMedicamentoComponent implements OnInit {
   }
 
 
-  fechar() {
-    // this.cadastroService.fecharModalEditarCallback();
+  @Output()
+  fecharModal = new EventEmitter<any>();
+
+  fechar(listar: boolean) {
+    this.utils.nullOrUndef(listar) ? false : listar;
+    this.fecharModal.emit(listar);
     $('.modal-open').prop('checked', false);
-    location.reload();
   }
 
 }
