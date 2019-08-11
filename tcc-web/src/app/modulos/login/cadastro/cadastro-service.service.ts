@@ -142,13 +142,13 @@ export class CadastroServiceService {
     return true
   }
 
-  // setfecharModalEditarCallback(func){
-  // this.fecharCallback = func;
-  // }
+  setfecharModalEditarCallback(func){
+  this.fecharCallback = func;
+  }
 
-  // fecharModalEditarCallback(){
-  //   return this.fecharCallback();
-  // }
+  fecharModalEditarCallback(){
+    return this.fecharCallback();
+  }
 
 
   //private apiverificarCpf = "http://localhost:8080/api/usuario/verificarcpfcadastrado"

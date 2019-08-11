@@ -7,7 +7,7 @@
     <div class="modal-dialog">
       <div class="modal-header">
         <h2 class="titulo">Dados cadastrais</h2>
-        <label class="btn-close" aria-hidden="true">×</label>
+        <label class="btn-close" aria-hidden="true" (click)="fechar(false)">×</label>
       </div>
       <div class="modal-body">
         <div>
@@ -71,7 +71,7 @@
             </div>
             <div class="modal-footer">
               <!-- <label class="btn btn-primary" for="modal-one" (click)="fecha()">Nice!</label> -->
-              <button (click)="fechar()">Cancelar</button>
+              <button (click)="fechar(false)">Cancelar</button>
               <button (click)="atualizarBeneficiario(this.pacienteCompleto)">Atualizar</button>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
@@ -48,10 +48,11 @@ export class ModalEditarPacienteComponent implements OnInit {
   @Input()
   pacienteSelecionado
 
+
+
   ngOnInit() {
     this.buscarEstados();
     this.pegarInfosBeneficiario(this.pacienteSelecionado);
-
     $('.modal-open').prop('checked', true);
   }
 
@@ -109,7 +110,7 @@ export class ModalEditarPacienteComponent implements OnInit {
       this.http.post(this.apiSalvar, param).subscribe(
         res => {
           alert("Cadastro salvo com sucesso");
-          this.fechar();
+          this.fechar(true);
         },
         err => {
           console.log(err);
@@ -154,10 +155,13 @@ export class ModalEditarPacienteComponent implements OnInit {
     });
   }
 
-  fechar() {
-    // this.cadastroService.fecharModalEditarCallback();
+  @Output()
+  fecharModal = new EventEmitter<any>();
+
+  fechar(listar: boolean) {
+    this.utils.nullOrUndef(listar) ? false : listar;
+    this.fecharModal.emit(listar);
     $('.modal-open').prop('checked', false);
-    location.reload();
   }
 
   setEstado(event) {

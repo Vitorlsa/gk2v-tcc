@@ -266,4 +266,4 @@
 </footer>
 
 <app-modal-editar-paciente *ngIf="!this.utils.nullOrUndef(this.pacienteSelecionado)"
-  [pacienteSelecionado]="this.pacienteSelecionado"></app-modal-editar-paciente>
+  [pacienteSelecionado]="this.pacienteSelecionado" (fecharModal)="modalFechada($event)"></app-modal-editar-paciente>

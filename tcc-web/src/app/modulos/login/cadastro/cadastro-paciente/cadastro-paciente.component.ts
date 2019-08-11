@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CadastroServiceService } from '../cadastro-service.service';
 import { Paciente } from 'src/app/classes/paciente';
@@ -7,7 +7,6 @@ import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { UtilsService } from 'src/app/funcoes/utils.service';
 import { Router } from '@angular/router';
-import { createInject } from '@angular/compiler/src/core';
 registerLocaleData(localePt);
 
 @Component({
@@ -80,12 +79,14 @@ export class CadastroPacienteComponent implements OnInit {
   emitir = new EventEmitter<any>();
   pacienteSelecionado = null;
 
+
+  @Input()
+  //this.listarPacientes();
+  pacienteRetorno
+
   ngOnInit() {
     this.limparPaciente();
-
     this.listarPacientes();
-
-
     this.perfilPaciente = this.service.getSessionPerfil();
 
     var $header = $('#header'),
@@ -117,7 +118,7 @@ export class CadastroPacienteComponent implements OnInit {
     });
 
 
-    //this.cadastroService.setfecharModalEditarCallback(this.fecharModalEditar);
+    this.cadastroService.setfecharModalEditarCallback(this.fecharModalEditar);
   }
 
 
@@ -149,9 +150,11 @@ export class CadastroPacienteComponent implements OnInit {
     this.emitir.emit(this.pacienteSelecionado);
   }
 
-  // fecharModalEditar() {
-  //   this.listarPacientes();
-  // }
+
+  fecharModalEditar() {
+    this.pacienteSelecionado = null;
+  }
+
 
   criarNovoPaciente() {
     this.novoPaciente = true;
@@ -272,6 +275,13 @@ export class CadastroPacienteComponent implements OnInit {
       err => {
         console.log(err);
       });
+  }
+
+  modalFechada(listar: boolean) {
+    this.pacienteSelecionado = null;
+    if (listar) {
+      this.listarPacientes();
+    }
   }
 
 }
